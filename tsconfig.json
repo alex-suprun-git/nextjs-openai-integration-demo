@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],
-
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -11,7 +10,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "incremental": true,
     "plugins": [
       {
@@ -22,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["./app/**/*", ".next/types/**/*.ts"],
+  "include": ["./app/**/*", "./components/**/*", "./utils/**/*", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }

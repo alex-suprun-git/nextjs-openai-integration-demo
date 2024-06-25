@@ -1,7 +1,8 @@
+import { FC } from 'react';
 import { auth } from '@clerk/nextjs/server';
 import Link from 'next/link';
 
-export default async function Home() {
+const Home: FC = async () => {
   const { userId } = await auth();
 
   let href = userId ? '/journal' : '/new-user';
@@ -9,7 +10,9 @@ export default async function Home() {
   return (
     <div className="w-screen h-screen bg-black flex justify-center items-center text-white">
       <div className="w-full max-w-[600px] mx-auto">
-        <h1 className="text-6xl mb-6">Sample Headline</h1>
+        <h1 className="text-6xl mb-6">
+          NextJS | TypeScript | Tailwind | Prisma | OpenAI integration demo
+        </h1>
         <p className="text-2xl mb-8 leading-normal text-white/60">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium incidunt sed earum et
           dolorum temporibus quod, fugit consequuntur similique, quo, expedita nobis. Dolore,
@@ -23,4 +26,5 @@ export default async function Home() {
       </div>
     </div>
   );
-}
+};
+export default Home;
