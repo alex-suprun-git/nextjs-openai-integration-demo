@@ -3888,6 +3888,11 @@ queue-microtask@^1.2.2:
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
+react-autosave@^0.4.4:
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/react-autosave/-/react-autosave-0.4.4.tgz#efb686709e9af6d1486e0448f6523708e4483786"
+  integrity sha512-BIDBBXeNWgACpDWvFt//d2wDkfnWQn4VJKEI+Fgg19zYgbfF4RGHtAucOuCCN1qs179+iwXOJcytsR+4YcSXWg==
+
 react-dom@^18:
   version "18.3.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.3.1.tgz#c2265d79511b57d479b3dd3fdfa51536494c5cb4"
