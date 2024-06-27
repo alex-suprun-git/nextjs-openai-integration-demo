@@ -1,10 +1,9 @@
 import { FC } from 'react';
 import { getUserByClerkId } from '@/utils/auth';
-import { prisma } from '@/utils/db';
-
+import Link from 'next/link';
 import EntryCard from '@/components/EntryCard';
 import NewEntryCard from '@/components/NewEntryCard';
-import Link from 'next/link';
+import { prisma } from '@/utils/db';
 
 const getEntries = async () => {
   const user = await getUserByClerkId();

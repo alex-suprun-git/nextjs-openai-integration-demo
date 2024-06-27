@@ -9,6 +9,7 @@ const NewEntryCard: FC<{}> = () => {
 
   const handleOnClick = async () => {
     const entryData = await createNewEntry();
+    console.log(entryData);
     router.push(`/journal/${entryData.id}`);
   };
 

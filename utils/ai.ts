@@ -1,5 +1,6 @@
-import { ChatOpenAI } from '@langchain/openai';
-import { StructuredOutputParser } from 'langchain/output_parsers';
+import { ChatOpenAI, OpenAI } from '@langchain/openai';
+import { OutputFixingParser, StructuredOutputParser } from 'langchain/output_parsers';
+import { PromptTemplate } from '@langchain/core/prompts';
 import z from 'zod';
 
 const parser = StructuredOutputParser.fromZodSchema(
@@ -23,12 +24,40 @@ const parser = StructuredOutputParser.fromZodSchema(
   }),
 );
 
-export const analyze = async (prompt: any) => {
+const getPrompt = async (content: any) => {
+  const formatInstructions = parser.getFormatInstructions();
+
+  const prompt = new PromptTemplate({
+    template:
+      'Analyze the following journal entry. Follow the instructions and format your response to match the format instructions, no matter what! \n{formatInstructions}\n{entry}',
+    inputVariables: ['entry'],
+    partialVariables: { formatInstructions },
+  });
+
+  const input = await prompt.format({
+    entry: content,
+  });
+
+  return input;
+};
+
+export const analyzeEntry = async (content: any) => {
+  const input = await getPrompt(content);
   const model = new ChatOpenAI({
     temperature: 0,
     model: 'gpt-4o',
     apiKey: process.env.OPENAI_API_KEY,
   });
-  const result = await model.invoke(prompt);
-  console.log(result);
+  const output = await model.invoke(input);
+
+  try {
+    return await parser.parse(output.content as string);
+  } catch (e) {
+    const fixParser = OutputFixingParser.fromLLM(
+      new OpenAI({ temperature: 0, model: 'gpt-4o' }),
+      parser,
+    );
+    const fix = await fixParser.parse(output.content as string);
+    return fix;
+  }
 };

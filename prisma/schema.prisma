@@ -51,7 +51,9 @@ model Analysis {
   mood     String
   summary  String  @db.Text()
   color    String
+  sentimentScore Float
   negative Boolean
+  subject  String
 
   @@unique([entryId])
 }
