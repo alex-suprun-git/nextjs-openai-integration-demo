@@ -2,14 +2,12 @@
 
 import { createNewEntry } from '@/utils/api';
 import { useRouter } from 'next/navigation';
-import { FC } from 'react';
 
-const NewEntryCard: FC<{}> = () => {
+const NewEntryCard = () => {
   const router = useRouter();
 
   const handleOnClick = async () => {
     const entryData = await createNewEntry();
-    console.log(entryData);
     router.push(`/journal/${entryData.id}`);
   };
 

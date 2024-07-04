@@ -1,8 +1,7 @@
-import { FC } from 'react';
 import { auth } from '@clerk/nextjs/server';
 import Link from 'next/link';
 
-const Home: FC = async () => {
+const Home = async () => {
   const { userId } = await auth();
 
   let href = userId ? '/journal' : '/new-user';

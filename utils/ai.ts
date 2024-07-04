@@ -1,6 +1,9 @@
-import { ChatOpenAI, OpenAI } from '@langchain/openai';
+import { ChatOpenAI, OpenAI, OpenAIEmbeddings } from '@langchain/openai';
 import { OutputFixingParser, StructuredOutputParser } from 'langchain/output_parsers';
 import { PromptTemplate } from '@langchain/core/prompts';
+import { Document } from 'langchain/document';
+import { loadQARefineChain } from 'langchain/chains';
+import { MemoryVectorStore } from 'langchain/vectorstores/memory';
 import z from 'zod';
 
 const parser = StructuredOutputParser.fromZodSchema(
@@ -60,4 +63,25 @@ export const analyzeEntry = async (content: any) => {
     const fix = await fixParser.parse(output.content as string);
     return fix;
   }
+};
+
+export const qa = async (question: string, entries: any[]) => {
+  const docs = entries.map(
+    (entry: { content: string; id: string; createdAt: string }) =>
+      new Document({
+        pageContent: entry.content,
+        metadata: { source: entry.id, date: entry.createdAt },
+      }),
+  );
+  const model = new OpenAI({ temperature: 0, model: 'gpt-4o' });
+  const chain = loadQARefineChain(model);
+  const embeddings = new OpenAIEmbeddings();
+  const store = await MemoryVectorStore.fromDocuments(docs, embeddings);
+  const relevantDocs = await store.similaritySearch(question);
+  const res = await chain.invoke({
+    input_documents: relevantDocs,
+    question,
+  });
+
+  return res.output_text;
 };
