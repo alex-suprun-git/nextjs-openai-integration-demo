@@ -3,6 +3,7 @@ import Link from 'next/link';
 import EntryCard from '@/components/EntryCard';
 import NewEntryCard from '@/components/NewEntryCard';
 import { prisma } from '@/utils/db';
+import Heading from '@/components/Heading';
 import Question from '@/components/Question';
 
 const getEntries = async () => {
@@ -14,28 +15,40 @@ const getEntries = async () => {
     orderBy: {
       createdAt: 'desc',
     },
+    include: {
+      analysis: true,
+    },
   });
 
   return entries;
 };
 
 const JournalPage = async () => {
-  const entries = await getEntries();
+  const entries: AnalysisEntryResponse[] = await getEntries();
+
+  if (!entries) {
+    return null;
+  }
+
   return (
-    <div className="p-10 bg-zinc-300/10 h-full">
-      <h2 className="text-3xl mb-8">Journal</h2>
-      {!!entries.length && (
-        <div className="my-10">
-          <Question />
-        </div>
-      )}
-      <div className="grid grid-cols-4 gap-4">
+    <div className="min-h-svh bg-zinc-300/10 p-10">
+      <Heading>Journal</Heading>
+      {!!entries.length && <Question />}
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6">
         <NewEntryCard />
-        {entries.map((entry) => (
-          <Link key={entry.id} href={`/journal/${entry.id}`}>
-            <EntryCard entry={entry} />
-          </Link>
-        ))}
+        {entries.map((entry) => {
+          const analysisEntry = entry as Required<AnalysisSubEntry>;
+          return (
+            <Link key={analysisEntry.id} href={`/journal/${analysisEntry.id}`}>
+              <EntryCard
+                createdAt={analysisEntry.createdAt}
+                updatedAt={analysisEntry.updatedAt}
+                content={analysisEntry.content}
+                color={analysisEntry.analysis.color}
+              />
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

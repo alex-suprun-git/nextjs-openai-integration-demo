@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import Editor from '@/components/Editor';
 import { getUserByClerkId } from '@/utils/auth';
 import { prisma } from '@/utils/db';
@@ -20,12 +21,12 @@ const getEntry = async (id: string) => {
 };
 
 const EntryPage = async ({ params }: { params: { id: string } }) => {
-  const entry: AnalysisEntry = await getEntry(params.id);
+  const entry: AnalysisEntryResponse = await getEntry(params.id);
 
-  return (
-    <div className="w-full h-full grid grid-cols-3">
-      <Editor entry={entry} />
-    </div>
-  );
+  if (!entry || !entry.analysis) {
+    notFound();
+  }
+
+  return <Editor entry={entry as Required<AnalysisSubEntry>} />;
 };
 export default EntryPage;

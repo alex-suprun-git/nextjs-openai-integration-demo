@@ -1,14 +1,17 @@
+import { NextResponse } from 'next/server';
+import { update } from '@/utils/actions';
 import { analyzeEntry } from '@/utils/ai';
 import { getUserByClerkId } from '@/utils/auth';
 import { prisma } from '@/utils/db';
-import { NextResponse } from 'next/server';
 
-export const POST = async () => {
+export const POST = async (request: Request) => {
+  const { content } = await request.json();
+
   const user = await getUserByClerkId();
   const entry = await prisma.journalEntry.create({
     data: {
       userId: user.id,
-      content: 'Please tell me about your day!',
+      content,
     },
   });
 
@@ -20,6 +23,8 @@ export const POST = async () => {
       ...analysis,
     },
   });
+
+  update(['/journal']);
 
   return NextResponse.json({ data: entry });
 };

@@ -1,11 +1,12 @@
 const createUrl = (path: string) => window.location.origin + path;
 
-export const createNewEntry = async () => {
+export const createNewEntry = async (content: string) => {
   const url = createUrl('/api/journal');
 
   const res = await fetch(
     new Request(url, {
       method: 'POST',
+      body: JSON.stringify({ content }),
     }),
   );
 
@@ -15,7 +16,7 @@ export const createNewEntry = async () => {
   }
 };
 
-export const updateEntry = async (id: string, content: any) => {
+export const updateEntry = async (id: string, content: string) => {
   const url = createUrl(`/api/journal/${id}`);
 
   const rest = await fetch(
@@ -28,6 +29,20 @@ export const updateEntry = async (id: string, content: any) => {
   if (rest.ok) {
     const data = await rest.json();
     return data.data;
+  }
+};
+
+export const deleteEntry = async (id: string) => {
+  const url = createUrl(`/api/journal/${id}`);
+
+  const res = await fetch(
+    new Request(url, {
+      method: 'DELETE',
+    }),
+  );
+
+  if (res.ok) {
+    return;
   }
 };
 

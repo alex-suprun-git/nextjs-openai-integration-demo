@@ -1,3 +1,4 @@
+import Heading from '@/components/Heading';
 import HistoryChart from '@/components/HistoryChart';
 import { getUserByClerkId } from '@/utils/auth';
 import { prisma } from '@/utils/db';
@@ -23,12 +24,10 @@ const getData = async () => {
 const History = async () => {
   const { analyses, averageSentiment } = await getData();
   return (
-    <div className="w-full h-full">
-      <h1 className="text-3xl font-bold">History</h1>
-      <p className="text-xl">Average sentiment: {averageSentiment}</p>
-      <div className="w-full h-full">
-        <HistoryChart data={analyses} />
-      </div>
+    <div className="p-10">
+      <Heading>Statistics</Heading>
+      <p className="mb-12 text-xl">Average sentiment: {averageSentiment}</p>
+      <HistoryChart data={analyses} />
     </div>
   );
 };

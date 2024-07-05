@@ -1,20 +1,18 @@
 'use client';
 
-import { createNewEntry } from '@/utils/api';
 import { useRouter } from 'next/navigation';
 
 const NewEntryCard = () => {
   const router = useRouter();
 
   const handleOnClick = async () => {
-    const entryData = await createNewEntry();
-    router.push(`/journal/${entryData.id}`);
+    router.push('/journal/new-entry');
   };
 
   return (
-    <div className="cursor-pointer overflow-hidden rounded-lg bg-white shadow">
-      <div className="px-4 py-5 sm:p-6" onClick={handleOnClick}>
-        <span className="text-3xl">New Entry</span>
+    <div onClick={handleOnClick} className="card cursor-pointer bg-yellow-200 text-primary-content">
+      <div className="card-body">
+        <span className="text-2xl font-bold">Write a new memo</span>
       </div>
     </div>
   );

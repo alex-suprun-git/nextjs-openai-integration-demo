@@ -27,7 +27,7 @@ const parser = StructuredOutputParser.fromZodSchema(
   }),
 );
 
-const getPrompt = async (content: any) => {
+const getPrompt = async (content: string) => {
   const formatInstructions = parser.getFormatInstructions();
 
   const prompt = new PromptTemplate({
@@ -44,7 +44,7 @@ const getPrompt = async (content: any) => {
   return input;
 };
 
-export const analyzeEntry = async (content: any) => {
+export const analyzeEntry = async (content: string) => {
   const input = await getPrompt(content);
   const model = new ChatOpenAI({
     temperature: 0,
@@ -65,11 +65,11 @@ export const analyzeEntry = async (content: any) => {
   }
 };
 
-export const qa = async (question: string, entries: any[]) => {
+export const qa = async (question: string, entries: BaseEntry[]) => {
   const docs = entries.map(
-    (entry: { content: string; id: string; createdAt: string }) =>
+    (entry) =>
       new Document({
-        pageContent: entry.content,
+        pageContent: entry.content as string,
         metadata: { source: entry.id, date: entry.createdAt },
       }),
   );

@@ -7,19 +7,19 @@ const Home = async () => {
   let href = userId ? '/journal' : '/new-user';
 
   return (
-    <div className="w-screen h-screen bg-black flex justify-center items-center text-white">
-      <div className="w-full max-w-[600px] mx-auto">
-        <h1 className="text-6xl mb-6">
-          NextJS | TypeScript | Tailwind | Prisma | OpenAI integration demo
+    <div className="bg-slate-550 flex items-center justify-center p-10 text-white">
+      <div className="mx-auto w-full max-w-3xl">
+        <h1 className="mb-6 text-5xl font-black leading-relaxed sm:text-6xl sm:leading-[1.25]">
+          AI-Powered Mood Analysis
         </h1>
-        <p className="text-2xl mb-8 leading-normal text-white/60">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium incidunt sed earum et
-          dolorum temporibus quod, fugit consequuntur similique, quo, expedita nobis. Dolore,
-          inventore? Quos fugit aspernatur dolor accusamus ratione.
+        <p className="mb-8 text-xl leading-relaxed text-white/60 sm:text-2xl sm:leading-[1.65]">
+          This demo application, built with NextJS, TypeScript, Tailwind, Clerk, Prisma, and OpenAI,
+          allows users to analyze their mood based on journal entries. The AI interprets users’
+          thoughts and generates mood statistics, displayed in detailed charts.
         </p>
         <div>
           <Link href={href}>
-            <button className="bg-blue-600 px-4 py-4 rounded-lg text-xl">Get started</button>
+            <button className="rounded-lg bg-blue-600 px-4 py-4 text-xl">Get started</button>
           </Link>
         </div>
       </div>
