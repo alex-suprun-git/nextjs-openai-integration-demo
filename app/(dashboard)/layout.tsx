@@ -7,6 +7,7 @@ const navigationLinks = [
     label: 'Dashboard',
     href: '/journal',
   },
+  { label: 'History', href: '/history' },
 ];
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => (
