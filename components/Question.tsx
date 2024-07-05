@@ -30,7 +30,7 @@ const Question = () => {
             type="text"
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
-            className="mr-2 w-[33%] rounded-md border border-gray-300 p-2 outline-none"
+            className="mr-2 w-[33%] rounded-md border border-gray-300 bg-slate-700 p-2 outline-none"
             disabled={loading}
             minLength={10}
             maxLength={100}
@@ -48,7 +48,7 @@ const Question = () => {
         </div>
       </form>
       {loading && <div className="loading relative top-5"></div>}
-      {!loading && answer && <p className="my-4 text-xl md:max-w-[50%]">{answer}</p>}
+      {!loading && answer && <p className="text my-4 md:max-w-[50%]">{answer}</p>}
     </div>
   );
 };

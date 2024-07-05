@@ -7,8 +7,8 @@ const Home = async () => {
   let href = userId ? '/journal' : '/new-user';
 
   return (
-    <div className="bg-slate-550 flex items-center justify-center p-10 text-white">
-      <div className="mx-auto w-full max-w-3xl">
+    <div className="bg-slate-550 flex min-h-svh items-center justify-center p-10 text-white">
+      <div className="mx-auto max-w-3xl">
         <h1 className="mb-6 text-5xl font-black leading-relaxed sm:text-6xl sm:leading-[1.25]">
           AI-Powered Mood Analysis
         </h1>
