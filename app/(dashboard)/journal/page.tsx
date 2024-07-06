@@ -24,7 +24,7 @@ const getEntries = async () => {
 };
 
 const JournalPage = async () => {
-  const entries: AnalysisEntryResponse[] = await getEntries();
+  const entries: AnalysisSubEntryResponse[] = await getEntries();
 
   if (!entries) {
     return null;

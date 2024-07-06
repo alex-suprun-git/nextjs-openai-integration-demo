@@ -8,8 +8,9 @@ const CustomTooltip = ({
   payload,
   label,
 }: TooltipProps<number, string>): ReactElement | null => {
-  if (active) {
-    const analysis = payload?.[0].payload;
+  if (active && payload?.length) {
+    const analysis = payload[0].payload;
+
     return (
       <div className="custom-tooltip relative rounded-lg border border-black/10 bg-white/5 p-8 shadow-md backdrop-blur-md">
         <div

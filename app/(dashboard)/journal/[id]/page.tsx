@@ -21,7 +21,7 @@ const getEntry = async (id: string) => {
 };
 
 const EntryPage = async ({ params }: { params: { id: string } }) => {
-  const entry: AnalysisEntryResponse = await getEntry(params.id);
+  const entry: AnalysisSubEntryResponse = await getEntry(params.id);
 
   if (!entry || !entry.analysis) {
     notFound();

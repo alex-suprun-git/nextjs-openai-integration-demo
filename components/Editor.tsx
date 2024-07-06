@@ -26,6 +26,7 @@ const Editor = ({ entry }: { entry: { content: string; id?: string; analysis: An
             entryCreatedRef.current = true;
             const { id } = await createNewEntry(_contentValue);
             router.push(`/journal/${id}`);
+            router.refresh();
           }
         } else if (entry.id && entry.content !== _contentValue) {
           const { analysis: updatedAnalysis } = await updateEntry(entry.id, _contentValue);
@@ -45,6 +46,7 @@ const Editor = ({ entry }: { entry: { content: string; id?: string; analysis: An
   const deleteEntryHandler = async (id: string) => {
     await deleteEntry(id);
     router.push('/journal');
+    router.refresh();
   };
 
   const { summary, subject, mood, color, negative } = analysis;

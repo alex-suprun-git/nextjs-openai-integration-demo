@@ -28,8 +28,10 @@ type AnalysisSubEntry = BaseEntry & {
   analysis: AnalysisData;
 };
 
-type AnalysisEntryResponse =
+type AnalysisSubEntryResponse =
   | (BaseEntry & {
       analysis: AnalysisData | null;
     })
   | null;
+
+type AnalysisEntryResponse = BaseEntry & AnalysisData;
