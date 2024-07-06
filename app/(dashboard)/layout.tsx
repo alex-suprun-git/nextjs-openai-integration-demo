@@ -8,7 +8,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => (
         <Navigation />
       </div>
       <div className="ml-auto flex pr-10">
-        <UserButton />
+        <UserButton afterSignOutUrl="/sign-in" />
       </div>
     </header>
     <div className="min-h-svh">{children}</div>

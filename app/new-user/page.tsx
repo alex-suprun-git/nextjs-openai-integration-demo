@@ -15,12 +15,14 @@ const createNewUser = async () => {
     });
   }
 
-  redirect('/journal');
+  if (user) {
+    redirect('/journal');
+  }
 };
 
 const NewUserPage = async () => {
   await createNewUser();
-  return <div>NewUser</div>;
+  return <></>;
 };
 
 export default NewUserPage;

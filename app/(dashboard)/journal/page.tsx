@@ -5,6 +5,7 @@ import NewEntryCard from '@/components/NewEntryCard';
 import { prisma } from '@/utils/db';
 import Heading from '@/components/Heading';
 import Question from '@/components/Question';
+import { redirect } from 'next/navigation';
 
 const getEntries = async () => {
   const user = await getUserByClerkId();
@@ -20,14 +21,15 @@ const getEntries = async () => {
     },
   });
 
-  return entries;
+  return { entries, user };
 };
 
 const JournalPage = async () => {
-  const entries: AnalysisSubEntryResponse[] = await getEntries();
+  const { entries, user }: { entries: AnalysisSubEntryResponse[]; user: BaseEntry } =
+    await getEntries();
 
-  if (!entries) {
-    return null;
+  if (!user) {
+    redirect('/');
   }
 
   return (

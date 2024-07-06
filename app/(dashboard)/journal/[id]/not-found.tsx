@@ -11,13 +11,13 @@ const PageNotFound = () => (
           Page Not Found
         </p>
         <p className="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">
-          Sorry, we can`t find that page.
+          Sorry, we can`t find that note.
         </p>
         <Link
-          href="/"
+          href="/journal"
           className="focus:ring-primary-300 dark:focus:ring-primary-900 my-4 inline-flex rounded-lg bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4"
         >
-          Back to Homepage
+          Back to Journal page
         </Link>
       </div>
     </div>

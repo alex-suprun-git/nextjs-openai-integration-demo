@@ -6,6 +6,11 @@ type BaseEntry = {
   content?: string;
 };
 
+type UserEntry = BaseEntry & {
+  clerkId: string;
+  email: string;
+};
+
 type JournalEntry = BaseEntry & {
   entryId: string;
 };
