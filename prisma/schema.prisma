@@ -24,6 +24,9 @@ model User {
 
   entries  JournalEntry[]
   analyses Analysis[]
+
+  tokenUsage Int @default(0)
+  tokenLimit Int @default(10000)
 }
 
 model JournalEntry {

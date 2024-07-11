@@ -67,7 +67,7 @@ const Editor = ({ entry }: { entry: { content: string; id?: string; analysis: An
     <div className="grid gap-10 pt-12 md:min-h-svh md:grid-cols-3">
       <div className="relative px-5 pb-12 md:col-span-2 md:pl-10">
         {isContentTooShort && (
-          <Alert>
+          <Alert type="warning">
             Please enter at least 30 characters. Changes are not saved for entries with fewer than
             30 characters.
           </Alert>

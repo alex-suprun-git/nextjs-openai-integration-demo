@@ -1,4 +1,4 @@
-import Heading from '@/components/Heading';
+import { Heading } from '@/ui-lib';
 import HistoryChart from '@/components/HistoryChart';
 import { getUserByClerkId } from '@/utils/auth';
 import { prisma } from '@/utils/db';

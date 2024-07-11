@@ -5,10 +5,10 @@ function Alert({
   children: React.ReactNode;
   type?: 'info' | 'warning' | 'error' | 'success';
 }) {
-  const alertTypeClass = type ? `alert-${type}` : '';
+  const alertTypeClass = type ? `alert alert-${type}` : 'alert';
 
   return (
-    <div role="alert" className={`alert ${alertTypeClass} mb-6`}>
+    <div role="alert" className={`${alertTypeClass} mb-6`}>
       {type === 'success' ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
