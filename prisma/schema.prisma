@@ -25,8 +25,8 @@ model User {
   entries  JournalEntry[]
   analyses Analysis[]
 
-  tokenUsage Int @default(0)
-  tokenLimit Int @default(10000)
+  promptSymbolsUsed  Int @default(0)
+  promptSymbolsLimit Int @default(10000)
 }
 
 model JournalEntry {

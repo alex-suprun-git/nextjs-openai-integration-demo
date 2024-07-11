@@ -22,7 +22,7 @@ const EntryCard = ({ createdAt, updatedAt, content, color }: EntryCardProps) => 
           style={{ backgroundColor: color }}
           className="absolute right-4 top-4 ml-auto h-2 w-2 rounded"
         ></div>
-        <h2 className="card-title">{getExcerpt(content)}</h2>
+        <h2 className="card-title overflow-hidden">{getExcerpt(content)}</h2>
         <div className="flex justify-between">
           <small className="flex items-center text-[12px]">
             <IoDocumentTextOutline /> <span className="pl-1">{creationDate}</span>

@@ -3,15 +3,19 @@
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
-const PROMPT_SYMBOLS_LIMIT = 10000;
-
 const navigationLinks = [
   { label: 'Journal', href: '/journal' },
   { label: 'Statistics', href: '/statistics' },
 ];
 
-const Navigation = () => {
-  const promptSymbolsLeft = PROMPT_SYMBOLS_LIMIT - 0;
+const Header = ({
+  userPromptLimit,
+  userPromptUsed,
+}: {
+  userPromptLimit: number;
+  userPromptUsed: number;
+}) => {
+  const promptSymbolsLeft = userPromptLimit - userPromptUsed;
 
   const path = usePathname();
   const isActive = (href: string) => path === href;
@@ -27,11 +31,15 @@ const Navigation = () => {
       </div>
       <div className="ml-auto mr-10 flex">
         <p>
-          You have {promptSymbolsLeft} out of {PROMPT_SYMBOLS_LIMIT} prompt symbols left
+          You have{' '}
+          <strong>
+            {promptSymbolsLeft}/{userPromptLimit}
+          </strong>{' '}
+          prompt symbols remaining
         </p>
       </div>
     </>
   );
 };
 
-export default Navigation;
+export default Header;

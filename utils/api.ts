@@ -1,5 +1,21 @@
 const createUrl = (path: string) => window.location.origin + path;
 
+export const updateUser = async (promptSymbolsUsed: number) => {
+  const url = createUrl('/api/user');
+
+  const rest = await fetch(
+    new Request(url, {
+      method: 'PATCH',
+      body: JSON.stringify({ promptSymbolsUsed }),
+    }),
+  );
+
+  if (rest.ok) {
+    const data = await rest.json();
+    return data.data;
+  }
+};
+
 export const createNewEntry = async (content: string) => {
   const url = createUrl('/api/journal');
 
