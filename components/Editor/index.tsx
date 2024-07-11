@@ -48,7 +48,7 @@ const Editor = ({ entry }: { entry: { content: string; id?: string; analysis: An
   useAutosave({
     data: contentValue,
     onSave: saveContent,
-    interval: 2500,
+    interval: 3500,
   });
 
   return (
