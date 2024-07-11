@@ -22,7 +22,7 @@ const Header = ({
 
   return (
     <>
-      <div className="flex">
+      <div className="mb-12 flex md:mb-0">
         {navigationLinks.map((link) => (
           <Link className={isActive(link.href) ? 'font-bold' : ''} key={link.href} href={link.href}>
             <span className="mr-12 block">{link.label}</span>

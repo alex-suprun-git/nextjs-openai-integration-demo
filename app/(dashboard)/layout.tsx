@@ -11,8 +11,8 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <PromptProvider value={{ promptSymbolsLimit, promptSymbolsUsed }}>
       <div className="min-w-svh relative min-h-svh bg-gray-800">
-        <header className="flex h-[80px] items-center border-b border-black/10 bg-gray-900">
-          <div className="flex w-full pl-10">
+        <header className="flex items-start border-b border-black/10 bg-gray-900 py-5 md:h-[80px] md:items-center md:py-0">
+          <div className="flex flex-col pl-10 md:w-full md:flex-row">
             <Header userPromptLimit={promptSymbolsLimit} userPromptUsed={promptSymbolsUsed} />
           </div>
           <div className="ml-auto flex pr-10">
