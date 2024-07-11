@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["./app/**/*", "./components/**/*", "./utils/**/*", "./contexts/**/*", "./ui-lib/**/*", ".next/types/**/*.ts", "types.d.ts"],
+  "include": ["./app/**/*", "./components/**/*", "./utils/**/*", "./hooks/**/*", "./contexts/**/*", "./ui-lib/**/*", ".next/types/**/*.ts", "types.d.ts"],
   "exclude": ["node_modules"]
 }

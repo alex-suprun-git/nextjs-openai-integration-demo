@@ -43,6 +43,7 @@ const JournalPage = async () => {
           return (
             <Link key={analysisEntry.id} href={`/journal/${analysisEntry.id}`}>
               <EntryCard
+                id={analysisEntry.id}
                 createdAt={analysisEntry.createdAt}
                 updatedAt={analysisEntry.updatedAt}
                 content={analysisEntry.content}
