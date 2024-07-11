@@ -36,7 +36,7 @@ const JournalPage = async () => {
     <div className="min-h-svh bg-zinc-300/10 p-10">
       <Heading>Journal</Heading>
       {!!entries.length && <Question />}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-6">
         <NewEntryCard />
         {entries.map((entry) => {
           const analysisEntry = entry as Required<AnalysisSubEntry>;

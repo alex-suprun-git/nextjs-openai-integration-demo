@@ -4,7 +4,7 @@ import { useCallback, useRef, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { useAutosave } from 'react-autosave';
-import { Alert } from '@/ui-lib';
+import { Alert, Loading } from '@/ui-lib';
 import { updateEntry, createNewEntry, deleteEntry } from '@/utils/api';
 
 const MINIMUM_CONTENT_LENGTH = 30;
@@ -75,7 +75,7 @@ const Editor = ({ entry }: { entry: { content: string; id?: string; analysis: An
         {isContentEntryCreated && (
           <Alert type="success">A new note was created. Redirecting....</Alert>
         )}
-        {isLoading && <div className="loading loading-lg absolute inset-x-2/4 inset-y-2/4"></div>}
+        {isLoading && <Loading customClasses="absolute inset-x-2/4 inset-y-2/4" />}
         <textarea
           className="textarea min-h-72 w-full resize-none p-10 text-xl outline-none md:min-h-svh"
           value={contentValue}
@@ -86,6 +86,7 @@ const Editor = ({ entry }: { entry: { content: string; id?: string; analysis: An
           }}
           placeholder="Please write your thoughts here..."
           maxLength={2500}
+          disabled={isLoading}
           required
         />
       </div>
