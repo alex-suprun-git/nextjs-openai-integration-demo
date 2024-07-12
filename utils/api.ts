@@ -1,4 +1,4 @@
-const createUrl = (path: string) => window.location.origin + path;
+export const createUrl = (path: string) => window.location.origin + path;
 
 export const updateUser = async (promptSymbolsUsed: number) => {
   const url = createUrl('/api/user');

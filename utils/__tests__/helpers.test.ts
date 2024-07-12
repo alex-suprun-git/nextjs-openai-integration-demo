@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { getExcerpt, formatDate } from './helpers';
+import { getExcerpt, formatDate } from '@/utils/helpers';
 
 describe('getExcerpt Function', () => {
   it('should return the full content if it is less than 100 characters', () => {

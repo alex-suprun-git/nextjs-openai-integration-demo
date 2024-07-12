@@ -66,6 +66,10 @@ export const analyzeEntry = async (content: string) => {
 };
 
 export const qa = async (question: string, entries: BaseEntry[]) => {
+  if (!entries.length) {
+    return undefined;
+  }
+
   const docs = entries.map(
     (entry) =>
       new Document({
