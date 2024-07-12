@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
-import Editor from '@/components/Editor';
 import { getUserByClerkId } from '@/utils/auth';
 import { prisma } from '@/utils/db';
+import Editor from '@/components/Editor';
 
 const getEntry = async (id: string) => {
   const user = await getUserByClerkId();

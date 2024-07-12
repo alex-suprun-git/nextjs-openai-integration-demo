@@ -1,5 +1,4 @@
 import Editor from '@/components/Editor';
-import React from 'react';
 
 function NewEntryPage() {
   const initialData = {

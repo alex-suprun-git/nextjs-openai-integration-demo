@@ -1,10 +1,9 @@
 'use client';
-
-import { HiMiniChevronDoubleRight } from 'react-icons/hi2';
 import { FormEvent, useState } from 'react';
+import { HiMiniChevronDoubleRight } from 'react-icons/hi2';
+import { useRouter } from 'next/navigation';
 import { askQuestion, updateUser } from '@/utils/api';
 import { usePrompt } from '@/contexts/PromptContext';
-import { useRouter } from 'next/navigation';
 
 const Question = () => {
   const [question, setQuestion] = useState('');

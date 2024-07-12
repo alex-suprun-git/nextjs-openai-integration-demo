@@ -12,12 +12,9 @@ const Header = ({
   userPromptLimit,
   userPromptUsed,
 }: {
-  userPromptLimit: number;
-  userPromptUsed: number;
+  userPromptLimit: string;
+  userPromptUsed: string;
 }) => {
-  const promptSymbolsLeft = new Intl.NumberFormat().format(userPromptLimit - userPromptUsed);
-  const promptSymbolsLimit = new Intl.NumberFormat().format(userPromptLimit);
-
   const path = usePathname();
   const isActive = (href: string) => path === href;
 
@@ -34,7 +31,7 @@ const Header = ({
         <p>
           You have{' '}
           <strong>
-            {promptSymbolsLeft}/{promptSymbolsLimit}
+            {userPromptUsed}/{userPromptLimit}
           </strong>{' '}
           prompt symbols remaining
         </p>

@@ -1,11 +1,11 @@
-import { getUserByClerkId } from '@/utils/auth';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
+import { getUserByClerkId } from '@/utils/auth';
+import { prisma } from '@/utils/db';
 import EntryCard from '@/components/EntryCard';
 import NewEntryCard from '@/components/NewEntryCard';
-import { prisma } from '@/utils/db';
-import { Heading } from '@/ui-lib';
 import Question from '@/components/Question';
-import { redirect } from 'next/navigation';
+import { Heading } from '@/ui-lib';
 
 const getEntries = async () => {
   const user = await getUserByClerkId();
