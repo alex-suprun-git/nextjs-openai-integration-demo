@@ -1,15 +1,13 @@
 'use client';
 import { FormEvent, useState } from 'react';
 import { HiMiniChevronDoubleRight } from 'react-icons/hi2';
-import { useRouter } from 'next/navigation';
 import { askQuestion, updateUser } from '@/utils/api';
 import { usePrompt } from '@/contexts/PromptContext';
 
 const Question = () => {
   const [question, setQuestion] = useState('');
-  const [answer, setAnswer] = useState(null);
+  const [answer, setAnswer] = useState<string | null>(null);
   const [isLoading, setLoading] = useState(false);
-  const router = useRouter();
 
   const { promptSymbolsUsed, promptSymbolsLimit } = usePrompt();
   const isPromptSymbolsExceeded = promptSymbolsUsed >= promptSymbolsLimit;
@@ -22,13 +20,16 @@ const Question = () => {
     e.preventDefault();
     setLoading(true);
 
-    const { data } = await askQuestion(question);
-
-    setAnswer(data);
-    setLoading(false);
-    await updateUser(promptSymbolsUsed + question.length);
-    setQuestion('');
-    router.refresh();
+    try {
+      const { data } = await askQuestion(question);
+      setAnswer(data);
+      await updateUser(promptSymbolsUsed + question.length);
+      setQuestion('');
+    } catch (error) {
+      setAnswer('Error occurred');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

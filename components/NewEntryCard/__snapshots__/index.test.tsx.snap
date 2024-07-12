@@ -1,0 +1,19 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NewEntryCard > renders correctly and matches snapshot 1`] = `
+<div>
+  <div
+    class="card cursor-pointer bg-yellow-200 text-primary-content"
+  >
+    <div
+      class="card-body"
+    >
+      <span
+        class="text-2xl font-bold text-gray-900"
+      >
+        Write a new memo
+      </span>
+    </div>
+  </div>
+</div>
+`;

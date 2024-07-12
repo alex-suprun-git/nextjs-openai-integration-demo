@@ -5,6 +5,10 @@ function Loading({
   children?: React.ReactNode;
   customClasses?: string;
 }) {
-  return <div className={`loading loading-lg ${customClasses}`}>{children}</div>;
+  return (
+    <div data-testid="loading-ui-component" className={`loading loading-lg ${customClasses}`}>
+      {children}
+    </div>
+  );
 }
 export default Loading;

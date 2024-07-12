@@ -1,0 +1,30 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Question > renders correctly and matches snapshot 1`] = `
+<div>
+  <div
+    class="my-12"
+  >
+    <form>
+      <span
+        class="mb-4 block font-semibold text-white"
+      >
+        Request an AI analysis of your notes (10 to 100 characters)
+      </span>
+      <div
+        class="flex"
+      >
+        <input
+          class="mr-2 w-[100%] rounded-md border border-gray-300 bg-slate-700 p-2 outline-none md:w-[50%] lg:w-[33%]"
+          id="analysis-request"
+          maxlength="100"
+          minlength="10"
+          placeholder="e.g. how good was my week in average?"
+          type="text"
+          value=""
+        />
+      </div>
+    </form>
+  </div>
+</div>
+`;

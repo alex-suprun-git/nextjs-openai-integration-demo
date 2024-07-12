@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import Alert from './index';
+import Alert from '.';
 
 describe('Alert', () => {
   enum AlertTypes {
@@ -11,14 +11,15 @@ describe('Alert', () => {
   }
 
   it('renders with default info type when no type is provided', () => {
-    render(<Alert>Test Message</Alert>);
+    const { container } = render(<Alert>Sample alert text</Alert>);
+    expect(container).toMatchSnapshot();
     expect(screen.getByRole('alert')).toHaveClass('alert alert-info mb-6');
   });
 
   const types = ['info', 'warning', 'error', 'success'] as AlertTypes[];
   types.forEach((type) => {
     it(`renders correctly for type ${type}`, () => {
-      render(<Alert type={type}>Test Message</Alert>);
+      render(<Alert type={type}>Sample alert text</Alert>);
       const expectedClass =
         type === 'error'
           ? 'alert alert-error text-white bg-red-800 mb-6'

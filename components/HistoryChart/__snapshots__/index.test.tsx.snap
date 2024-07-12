@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`HistoryChart > renders correctly and matches snapshot 1`] = `
+<div>
+  <div
+    class="h-full w-full"
+  >
+    <div />
+  </div>
+</div>
+`;

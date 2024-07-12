@@ -1,0 +1,45 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Header > renders navigation links correctly 1`] = `
+<div>
+  <div
+    class="mb-12 flex md:mb-0"
+  >
+    <a
+      class="font-bold"
+      href="/journal"
+    >
+      <span
+        class="mr-12 block"
+      >
+        Journal
+      </span>
+    </a>
+    <a
+      class=""
+      href="/statistics"
+    >
+      <span
+        class="mr-12 block"
+      >
+        Statistics
+      </span>
+    </a>
+  </div>
+  <div
+    class="ml-auto mr-10 flex"
+  >
+    <p>
+      You have
+       
+      <strong>
+        500
+        /
+        1000
+      </strong>
+       
+      prompt symbols remaining
+    </p>
+  </div>
+</div>
+`;
