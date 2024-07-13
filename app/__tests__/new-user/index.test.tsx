@@ -2,9 +2,9 @@ import { screen, render, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { redirect } from 'next/navigation';
 import { currentUser } from '@clerk/nextjs/server';
-import NewUserPage from './page';
+import NewUserPage from '@/app/new-user/page';
+import Loading from '@/app/new-user/loading';
 import { prisma } from '@/utils/db';
-import Loading from './loading';
 
 // Mock dependencies
 vi.mock('@/utils/db', () => ({
