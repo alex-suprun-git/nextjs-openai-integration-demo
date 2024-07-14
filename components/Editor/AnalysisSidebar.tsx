@@ -3,7 +3,7 @@
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { deleteEntry } from '@/utils/api';
 import { FaRegTrashAlt } from 'react-icons/fa';
-import { convertHexToRGBA } from '@/utils/helpers';
+import { convertHexToRGBA, getMoodImage } from '@/utils/helpers';
 
 function AnalysisSidebar({
   entryId,
@@ -31,13 +31,10 @@ function AnalysisSidebar({
   ];
 
   const analysisBackground = convertHexToRGBA(color, 0.25);
-  const analysisImage = negative
-    ? "bg-[url('/analysis/negative.jpg')]"
-    : "bg-[url('/analysis/positive.jpg')]";
 
   return (
     <>
-      <div className={`relative px-6 py-10 ${analysisImage}`}>
+      <div className="relative px-6 py-10" style={{ background: getMoodImage(analysis) }}>
         <h2 className="relative z-10 w-fit bg-gray-800 p-6 text-2xl font-bold text-white">
           Analysis
         </h2>
@@ -50,10 +47,10 @@ function AnalysisSidebar({
         {analysisData.map((item) => (
           <li
             key={item.label}
-            className="flex items-center justify-between border-b-2 border-white/10 px-6 py-3"
+            className="flex items-center justify-between border-b-2 border-white/10 px-6 py-3 md:max-lg:flex-col md:max-lg:items-start"
           >
-            <h3 className="mr-10 font-semibold">{item.label}:</h3>
-            <span className="text-end">{item.value?.toString()}</span>
+            <h3 className="mr-10 font-semibold md:max-lg:mb-2">{item.label}:</h3>
+            <span className="text-end md:max-lg:text-start">{item.value?.toString()}</span>
           </li>
         ))}
       </ul>
@@ -61,7 +58,7 @@ function AnalysisSidebar({
         <div className="mt-12 flex justify-end pb-10 pr-5 md:pb-0 md:pr-0">
           <button
             onClick={() => deleteEntryHandler(entryId as string)}
-            className="btn bg-red-800 text-white hover:bg-red-900"
+            className="btn bg-red-800 text-white hover:bg-red-900 md:max-lg:mb-10"
           >
             Delete this note <FaRegTrashAlt />
           </button>

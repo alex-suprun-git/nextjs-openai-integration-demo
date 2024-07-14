@@ -52,7 +52,7 @@ const Editor = ({ entry }: { entry: { content: string; id?: string; analysis: An
   });
 
   return (
-    <div className="grid gap-10 pt-12 md:min-h-svh md:grid-cols-3">
+    <div className="grid gap-10 pt-12 md:grid-cols-3 md:max-lg:h-[80%] lg:min-h-svh">
       <div className="relative px-5 pb-12 md:col-span-2 md:pl-10">
         <ContentField
           isLoading={isLoading}

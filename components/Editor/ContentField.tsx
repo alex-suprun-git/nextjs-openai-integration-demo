@@ -38,7 +38,7 @@ function Content({
       )}
       {isLoading && <Loading customClasses="absolute inset-x-2/4 inset-y-2/4" />}
       <textarea
-        className="textarea min-h-72 w-full resize-none p-10 text-xl outline-none md:min-h-svh"
+        className="textarea min-h-72 w-full resize-none p-10 text-xl outline-none md:max-lg:h-[80%] lg:min-h-svh"
         value={contentValue}
         onChange={(e) => {
           setContentValue((prevValue: string) =>

@@ -11,7 +11,7 @@ export const formatDate = (date: Date): string => {
   }).format(date);
 };
 
-export const convertHexToRGBA = (_hex: string, _opacity: number = 1) => {
+export const convertHexToRGBA = (_hex: string, _opacity: number = 1): string => {
   let opacity = _opacity;
   let hex = _hex.replace('#', '');
 
@@ -29,4 +29,17 @@ export const convertHexToRGBA = (_hex: string, _opacity: number = 1) => {
   } else if (opacity > 100) opacity = 1;
 
   return `rgba(${r},${g},${b},${opacity})`;
+};
+
+export const getMoodImage = (analysis: AnalysisData): string => {
+  const uncertainMood = ['unknown', 'uncertain', 'confused', 'unclear'];
+  const analysisImage = {
+    positive: "url('/analysis/positive.jpg')",
+    negative: "url('/analysis/negative.jpg')",
+    unknown: "url('/analysis/unknown.jpg')",
+  }[
+    uncertainMood.includes(analysis.mood) ? 'unknown' : analysis.negative ? 'negative' : 'positive'
+  ];
+
+  return analysisImage;
 };
