@@ -19,7 +19,7 @@ describe('Home', () => {
     render(await Home());
 
     await waitFor(() => {
-      const linkElement = screen.getByRole('link', { name: /get started/i });
+      const linkElement = screen.getByRole('link', { name: /go to journal/i });
       expect(linkElement).toHaveAttribute('href', '/journal');
     });
   });

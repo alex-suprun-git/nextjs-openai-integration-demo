@@ -5,6 +5,7 @@ const Home = async () => {
   const { userId } = await auth();
 
   let href = userId ? '/journal' : '/new-user';
+  let buttonLabel = userId ? 'Go to Journal' : 'Get Started';
 
   return (
     <div className="bg-slate-550 flex min-h-svh items-center justify-center p-10 text-white">
@@ -19,7 +20,9 @@ const Home = async () => {
         </p>
         <div>
           <Link href={href}>
-            <button className="rounded-lg bg-blue-600 px-4 py-4 text-xl">Get started</button>
+            <button className="btn btn-lg bg-blue-600 text-white hover:bg-blue-800">
+              {buttonLabel}
+            </button>
           </Link>
         </div>
       </div>

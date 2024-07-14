@@ -3,6 +3,7 @@
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { deleteEntry } from '@/utils/api';
 import { FaRegTrashAlt } from 'react-icons/fa';
+import { convertHexToRGBA } from '@/utils/helpers';
 
 function AnalysisSidebar({
   entryId,
@@ -29,10 +30,21 @@ function AnalysisSidebar({
     { label: 'Negative', value: negative },
   ];
 
+  const analysisBackground = convertHexToRGBA(color, 0.25);
+  const analysisImage = negative
+    ? "bg-[url('/analysis/negative.jpg')]"
+    : "bg-[url('/analysis/positive.jpg')]";
+
   return (
     <>
-      <div className="px-6 py-10" style={{ backgroundColor: color }}>
-        <h2 className="w-fit bg-gray-800 p-6 text-2xl font-bold text-white">Analysis</h2>
+      <div className={`relative px-6 py-10 ${analysisImage}`}>
+        <h2 className="relative z-10 w-fit bg-gray-800 p-6 text-2xl font-bold text-white">
+          Analysis
+        </h2>
+        <div
+          className="absolute left-0 top-0 h-full w-full"
+          style={{ background: analysisBackground }}
+        ></div>
       </div>
       <ul className="mt-5">
         {analysisData.map((item) => (
