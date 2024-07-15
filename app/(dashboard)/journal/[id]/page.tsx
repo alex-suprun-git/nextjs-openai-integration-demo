@@ -5,6 +5,10 @@ import Editor from '@/components/Editor';
 
 const getEntry = async (id: string) => {
   const user = await getUserByClerkId();
+  if (!user) {
+    return null;
+  }
+
   const entry = await prisma.journalEntry.findUnique({
     where: {
       userId_id: {
@@ -21,12 +25,13 @@ const getEntry = async (id: string) => {
 };
 
 const EntryPage = async ({ params }: { params: { id: string } }) => {
-  const entry: AnalysisSubEntryResponse = await getEntry(params.id);
+  const entry = await getEntry(params.id);
 
   if (!entry || !entry.analysis) {
-    notFound();
+    return notFound();
   }
 
   return <Editor entry={entry as Required<AnalysisSubEntry>} />;
 };
+
 export default EntryPage;

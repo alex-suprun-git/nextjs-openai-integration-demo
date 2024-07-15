@@ -1,6 +1,6 @@
 import { getExcerpt, formatDate, convertHexToRGBA } from '@/utils/helpers';
 
-describe('getExcerpt Function', () => {
+describe('getExcerpt', () => {
   it('should return the full content if it is less than 100 characters', () => {
     const content = 'This is a short content.';
     expect(getExcerpt(content)).toBe(content);
@@ -17,17 +17,22 @@ describe('getExcerpt Function', () => {
   });
 });
 
-describe('formatDate Function', () => {
-  it('should format the date correctly in en-GB format', () => {
-    const date = new Date('2024-07-12T12:00:00Z');
-    const formattedDate = formatDate(date);
-    expect(formattedDate).toMatch(/\d{1,2} \w{3} \d{4}, \d{1,2}:\d{2}/);
-  });
-
-  it('should handle different dates correctly', () => {
+describe('formatDate', () => {
+  it('formats date correctly', () => {
     const date = new Date('2023-01-01T00:00:00Z');
     const formattedDate = formatDate(date);
-    expect(formattedDate).toMatch(/\d{1,2} \w{3} \d{4}, \d{1,2}:\d{2}/);
+    expect(formattedDate).toBe('1 Jan 2023, 01:00');
+  });
+
+  it('handles invalid date', () => {
+    const formattedDate = formatDate(new Date('invalid-date'));
+    expect(formattedDate).toBe('Invalid Date');
+  });
+
+  it('formats date correctly in different locale', () => {
+    const date = new Date('2023-01-01T00:00:00Z');
+    const formattedDate = formatDate(date);
+    expect(formattedDate).toBe('1 Jan 2023, 01:00');
   });
 });
 

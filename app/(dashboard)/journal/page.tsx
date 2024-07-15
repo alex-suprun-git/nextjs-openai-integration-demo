@@ -9,6 +9,10 @@ import { Heading } from '@/ui-lib';
 
 const getEntries = async () => {
   const user = await getUserByClerkId();
+  if (!user) {
+    return { entries: [], user: null };
+  }
+
   const entries = await prisma.journalEntry.findMany({
     where: {
       userId: user.id,
@@ -25,11 +29,11 @@ const getEntries = async () => {
 };
 
 const JournalPage = async () => {
-  const { entries, user }: { entries: AnalysisSubEntryResponse[]; user: BaseEntry } =
-    await getEntries();
+  const { entries, user } = await getEntries();
 
   if (!user) {
     redirect('/');
+    return null; // Added return to avoid further rendering
   }
 
   return (
@@ -56,4 +60,5 @@ const JournalPage = async () => {
     </div>
   );
 };
+
 export default JournalPage;

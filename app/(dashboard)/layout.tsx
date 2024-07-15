@@ -29,4 +29,5 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
     </PromptProvider>
   );
 };
+
 export default DashboardLayout;
