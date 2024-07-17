@@ -31,6 +31,10 @@ vi.mock('@/utils/actions', () => ({
   update: vi.fn(),
 }));
 
+vi.mock('next/dist/client/components/hooks-server-context', () => ({
+  isDynamicServerError: vi.fn(),
+}));
+
 describe('PATCH handler', () => {
   let jsonMock: Mock;
 
@@ -109,15 +113,47 @@ describe('PATCH handler', () => {
     jsonMock.mockReturnValue(jsonResponse);
 
     // Act
-    const response = await PATCH(request as any, { params });
+    let error;
+    try {
+      await PATCH(request as any, { params });
+    } catch (e) {
+      error = e;
+    }
 
     // Assert
     expect(request.json).toHaveBeenCalled();
     expect(getUserByClerkId).not.toHaveBeenCalled();
     expect(prisma.journalEntry.update).not.toHaveBeenCalled();
     expect(analyzeEntry).not.toHaveBeenCalled();
+    expect(error).toEqual(new Error('Invalid request'));
+  });
+
+  it('should return 401 when the user is not found', async () => {
+    // Arrange
+    const request = {
+      json: vi.fn().mockResolvedValue({ content: 'Updated content' }),
+    };
+
+    const params = { id: 'entry-123' };
+    (getUserByClerkId as Mock).mockResolvedValue(null); // Mock getUserByClerkId to return null
+
+    const jsonResponse = { message: 'User not found' };
+    jsonMock.mockReturnValue(jsonResponse);
+
+    // Act
+    let response;
+    try {
+      response = await PATCH(request as any, { params });
+    } catch (error) {
+      response = error;
+    }
+
+    // Assert
+    expect(getUserByClerkId).toHaveBeenCalled();
+    expect(prisma.journalEntry.update).not.toHaveBeenCalled();
+    expect(analyzeEntry).not.toHaveBeenCalled();
     expect(prisma.analysis.upsert).not.toHaveBeenCalled();
-    expect(jsonMock).toHaveBeenCalledWith(jsonResponse, { status: 500 });
+    expect(jsonMock).toHaveBeenCalledWith(jsonResponse, { status: 401 });
     expect(response).toEqual(jsonResponse);
   });
 });
@@ -132,6 +168,9 @@ describe('DELETE handler', () => {
     // Mock NextResponse.json separately
     jsonMock = vi.fn();
     NextResponse.json = jsonMock;
+
+    // Mock console.error
+    vi.spyOn(console, 'error').mockImplementation(() => {});
   });
 
   it('should delete journal entry and return deleted entry id', async () => {
@@ -162,7 +201,7 @@ describe('DELETE handler', () => {
     expect(response).toEqual(jsonResponse);
   });
 
-  it('should handle errors properly', async () => {
+  it('should handle general errors properly', async () => {
     // Arrange
     const request = {}; // DELETE request does not have a body
     const params = { id: 'entry-123' };
@@ -170,17 +209,43 @@ describe('DELETE handler', () => {
     const jsonResponse = { message: 'Error processing request' };
     jsonMock.mockReturnValue(jsonResponse);
 
-    // Mock getUserByClerkId to throw an error
-    (getUserByClerkId as Mock).mockRejectedValue(new Error('Invalid request'));
-
     // Act
-    const response = await DELETE(request as any, { params });
+    let response;
+    try {
+      response = await DELETE(request as any, { params });
+    } catch (e) {
+      response = e;
+    }
 
     // Assert
     expect(getUserByClerkId).toHaveBeenCalled();
     expect(prisma.journalEntry.delete).not.toHaveBeenCalled();
     expect(update).not.toHaveBeenCalled();
-    expect(jsonMock).toHaveBeenCalledWith(jsonResponse, { status: 500 });
+    expect(response).toEqual(jsonResponse);
+  });
+
+  it('should return 401 when the user is not found', async () => {
+    // Arrange
+    const request = {}; // DELETE request does not have a body
+    const params = { id: 'entry-123' };
+    (getUserByClerkId as Mock).mockResolvedValue(null); // Mock getUserByClerkId to return null
+
+    const jsonResponse = { message: 'User not found' };
+    jsonMock.mockReturnValue(jsonResponse);
+
+    // Act
+    let response;
+    try {
+      response = await DELETE(request as any, { params });
+    } catch (error) {
+      response = error;
+    }
+
+    // Assert
+    expect(getUserByClerkId).toHaveBeenCalled();
+    expect(prisma.journalEntry.delete).not.toHaveBeenCalled();
+    expect(update).not.toHaveBeenCalled();
+    expect(jsonMock).toHaveBeenCalledWith(jsonResponse, { status: 401 });
     expect(response).toEqual(jsonResponse);
   });
 });

@@ -128,4 +128,21 @@ describe('Content', () => {
     expect(textarea).toHaveValue('Initial content');
     expect(mockSetContentValue).not.toHaveBeenCalledWith('New content');
   });
+
+  it('displays error and loading spinner when loading and prompt symbols limit is exceeded', () => {
+    render(
+      <Content
+        isLoading={true}
+        contentValue="Initial content"
+        setContentValue={mockSetContentValue}
+        entryCreatedRef={mockEntryCreatedRef}
+        isPromptSymbolsExceeded={true}
+      />,
+    );
+
+    expect(screen.getByTestId('alert-error')).toHaveTextContent(
+      'You have reached the 10,000 symbol limit and cannot make new requests.',
+    );
+    expect(screen.getByTestId('loading')).toBeInTheDocument();
+  });
 });

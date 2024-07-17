@@ -23,8 +23,8 @@ beforeEach(() => {
 
 describe('HistoryChart', () => {
   const mockData = [
-    { sentimentScore: 1, updatedAt: '2023-01-01T00:00:00Z', mood: 'Happy', color: '#ff0000' },
-    { sentimentScore: 0, updatedAt: '2023-01-02T00:00:00Z', mood: 'Neutral', color: '#00ff00' },
+    { sentimentScore: 1, updatedAt: '2023-01-01T00:00:00Z', mood: 'Happy', color: 'green' },
+    { sentimentScore: 0, updatedAt: '2023-01-02T00:00:00Z', mood: 'Neutral', color: 'gray' },
   ] as any[];
 
   it('renders correctly and matches snapshot', () => {
@@ -40,7 +40,7 @@ describe('HistoryChart', () => {
       sentimentScore: 1,
       updatedAt: '2023-01-01',
       mood: 'Happy',
-      color: '#ff0000',
+      color: 'green',
     };
 
     render(

@@ -1,4 +1,4 @@
-import { getExcerpt, formatDate, convertHexToRGBA } from '@/utils/helpers';
+import { getExcerpt, formatDate, convertHexToRGBA, getMoodImage } from '@/utils/helpers';
 
 describe('getExcerpt', () => {
   it('should return the full content if it is less than 100 characters', () => {
@@ -64,5 +64,48 @@ describe('convertHexToRGBA', () => {
   it('should handle invalid opacity values correctly', () => {
     expect(convertHexToRGBA('#aabbcc', 101)).toBe('rgba(170,187,204,1)');
     expect(convertHexToRGBA('#aabbcc', -1)).toBe('rgba(170,187,204,-1)');
+  });
+});
+
+describe('getMoodImage', () => {
+  let analysis: AnalysisData = {
+    mood: 'happy',
+    summary: 'some summary',
+    negative: false,
+    subject: 'some subject',
+    color: 'green',
+    sentimentScore: 8,
+  };
+
+  it('should return the correct image URL for positive mood', () => {
+    const result = getMoodImage(analysis);
+    expect(result).toBe("url('/analysis/positive.jpg')");
+  });
+
+  it('should return the correct image URL for negative mood', () => {
+    analysis = { ...analysis, mood: 'sad', negative: true };
+    const result = getMoodImage(analysis);
+    expect(result).toBe("url('/analysis/negative.jpg')");
+  });
+
+  it('should return the correct image URL for neutral mood', () => {
+    analysis = { ...analysis, mood: 'neutral', negative: false };
+    const result = getMoodImage(analysis);
+    expect(result).toBe("url('/analysis/neutral.jpg')");
+  });
+
+  it('should return the correct image URL for uncertain mood', () => {
+    const uncertainMoods = ['unknown', 'uncertain', 'confused', 'unclear'];
+    uncertainMoods.forEach((mood) => {
+      analysis = { ...analysis, mood, negative: false };
+      const result = getMoodImage(analysis);
+      expect(result).toBe("url('/analysis/unknown.jpg')");
+    });
+  });
+
+  it('should return the correct image URL for unknown mood', () => {
+    analysis = { ...analysis, mood: 'something_else', negative: false };
+    const result = getMoodImage(analysis);
+    expect(result).toBe("url('/analysis/positive.jpg')");
   });
 });

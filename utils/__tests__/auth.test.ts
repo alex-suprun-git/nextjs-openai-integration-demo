@@ -3,12 +3,10 @@ import { getUserByClerkId } from '@/utils/auth';
 import { auth } from '@clerk/nextjs/server';
 import { prisma } from '@/utils/db';
 
-// Mock the `auth` function from `@clerk/nextjs/server`
 vi.mock('@clerk/nextjs/server', () => ({
   auth: vi.fn(),
 }));
 
-// Mock the `prisma` client
 vi.mock('@/utils/db', () => ({
   prisma: {
     user: {
@@ -38,8 +36,11 @@ describe('getUserByClerkId', () => {
     // Mock the `auth` function to return a user ID
     vi.mocked(auth).mockResolvedValueOnce({ userId: mockUserId } as any);
 
-    // Mock `prisma.user.findFirstOrThrow` to throw an error
-    const error = new Error('User not found');
+    // Create an error with the code 'P2025'
+    const error = new Error('User not found') as any;
+    error.code = 'P2025';
+
+    // Mock `prisma.user.findFirstOrThrow` to throw the error
     vi.mocked(prisma.user.findFirstOrThrow).mockRejectedValueOnce(error);
 
     await expect(getUserByClerkId()).rejects.toThrow('User not found');
@@ -47,9 +48,9 @@ describe('getUserByClerkId', () => {
 
   it('throws an error when auth fails', async () => {
     // Mock the `auth` function to throw an error
-    const error = new Error('Auth failed');
+    const error = new Error();
     vi.mocked(auth).mockRejectedValueOnce(error);
 
-    await expect(getUserByClerkId()).rejects.toThrow('Auth failed');
+    await expect(getUserByClerkId()).rejects.toThrow('An unexpected error occurred');
   });
 });

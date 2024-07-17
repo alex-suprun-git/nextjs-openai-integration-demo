@@ -78,7 +78,7 @@ describe('Loading', () => {
     render(<Loading />);
 
     // Check if the Loading component is rendered
-    const loadingElement = screen.getByTestId('loading-component');
+    const loadingElement = screen.getByTestId('loading-ui-component');
     expect(loadingElement).toBeInTheDocument();
 
     // Check if the Loading component has the correct class
