@@ -1,4 +1,3 @@
-
 # NextJS OpenAI Integration Demo
 
 This demo application, built with NextJS, TypeScript, Tailwind, Clerk, Prisma, and OpenAI, allows users to dynamically analyze their mood based on journal entries. The AI interprets users’ thoughts and generates mood statistics, displayed in detailed charts.
@@ -67,10 +66,15 @@ To start the production server, run:
 - `start`: Starts the NextJS production server.
 - `lint`: Lints the code using ESLint.
 - `test`: Runs tests using Vitest with coverage.
+- `test:coverage`: Runs tests with coverage report using Vitest.
 - `format`: Formats the code using Prettier.
 - `type-check`: Checks TypeScript types.
 - `db:push`: Pushes the Prisma schema state to the database.
 - `db:format`: Formats the Prisma schema.
+- `cy:open`: Opens Cypress for end-to-end testing.
+- `cy:coverage`: Generates a coverage report for Cypress tests.
+- `prepare`: Prepares Husky for Git hooks.
+- `lint-staged`: Runs lint-staged.
 
 ## Dependencies
 
@@ -81,6 +85,7 @@ To start the production server, run:
 - `@prisma/adapter-neon`: ^5.16.0
 - `@prisma/client`: ^5.16.0
 - `@radix-ui/react-dropdown-menu`: ^2.1.1
+- `@testing-library/dom`: ^10.3.1
 - `langchain`: ^0.2.7
 - `lodash`: ^4.17.21
 - `nanoid`: ^5.0.7
@@ -95,18 +100,21 @@ To start the production server, run:
 ## Dev Dependencies
 
 - `@clerk/testing`: ^1.1.10
-- `@cypress/code-coverage`: ^3.12.42
 - `@commitlint/cli`: ^19.3.0
 - `@commitlint/config-conventional`: ^19.2.2
+- `@cypress/code-coverage`: ^3.12.42
 - `@testing-library/react`: ^16.0.0
 - `@types/lodash`: ^4.17.6
 - `@types/node`: ^20
 - `@types/react`: ^18
 - `@types/react-dom`: ^18
+- `@types/testing-library__jest-dom`: ^6.0.0
 - `@types/ws`: ^8.5.10
 - `@typescript-eslint/eslint-plugin`: ^7.14.1
 - `@vitejs/plugin-react`: ^4.3.1
 - `@vitest/coverage-v8`: ^1.6.0
+- `@vitest/ui`: ^2.0.2
+- `cypress`: ^13.13.0
 - `daisyui`: ^4.12.10
 - `eslint`: ^8
 - `eslint-config-airbnb-typescript`: 16.0.0
@@ -125,6 +133,8 @@ To start the production server, run:
 - `eslint-plugin-testing-library`: 6.2.2
 - `husky`: ^9.0.11
 - `jsdom`: ^24.1.0
+- `lint-staged`: ^15.2.7
+- `nyc`: ^17.0.0
 - `postcss`: ^8
 - `prettier`: ^3.3.2
 - `prettier-plugin-tailwindcss`: ^0.6.5
@@ -132,6 +142,7 @@ To start the production server, run:
 - `react-icons`: ^5.2.1
 - `tailwindcss`: ^3.4.1
 - `typescript`: ^5
+- `vite-tsconfig-paths`: ^4.3.2
 - `vitest`: ^1.6.0
 
 ## Author
