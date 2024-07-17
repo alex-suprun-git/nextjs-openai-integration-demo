@@ -54,6 +54,7 @@ const EntryCard = ({ id, createdAt, updatedAt, content, color }: EntryCardProps)
 
   return (
     <div
+      data-testid="entryCard"
       ref={cardRef}
       onContextMenu={(e) => contextMenuHandler(e)}
       className="card relative bg-white text-primary-content shadow-md"
@@ -74,13 +75,17 @@ const EntryCard = ({ id, createdAt, updatedAt, content, color }: EntryCardProps)
             </small>
           )}
 
-          <button onClick={(e) => contextMenuHandler(e)}>
+          <button data-testid="entryCard-edit-button" onClick={(e) => contextMenuHandler(e)}>
             <BsThreeDotsVertical />
           </button>
         </div>
         {isContextMenuOpen && (
-          <div className="absolute left-0 top-0 z-10 flex h-full w-full items-end justify-end rounded-xl bg-slate-700 bg-opacity-55">
+          <div
+            data-testid="entryCard-context-menu"
+            className="absolute left-0 top-0 z-10 flex h-full w-full items-end justify-end rounded-xl bg-slate-700 bg-opacity-55"
+          >
             <button
+              data-testid="entryCard-delete-button"
               className="btn h-[30%] w-[100%] items-center justify-center"
               onClick={(e) => deleteEntryHandler(e, id)}
             >

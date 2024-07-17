@@ -2,9 +2,11 @@ import { FaCheckCircle } from 'react-icons/fa';
 import { IoWarningOutline } from 'react-icons/io5';
 
 function Alert({
+  testId,
   children,
   type,
 }: {
+  testId?: string;
   children: React.ReactNode;
   type?: 'info' | 'warning' | 'error' | 'success';
 }) {
@@ -16,7 +18,7 @@ function Alert({
   }[type || 'info'];
 
   return (
-    <div role="alert" className={`${alertTypeClass} mb-6`}>
+    <div data-testid={testId || 'alert'} role="alert" className={`${alertTypeClass} mb-6`}>
       {type === 'success' ? <FaCheckCircle /> : <IoWarningOutline />}
       <span>{children}</span>
     </div>

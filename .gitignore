@@ -8,6 +8,7 @@
 
 # testing
 /coverage
+/.nyc_output
 
 # next.js
 /.next/
@@ -18,7 +19,6 @@
 
 # misc
 .DS_Store
-/nyc_output/
 *.pem
 
 # debug

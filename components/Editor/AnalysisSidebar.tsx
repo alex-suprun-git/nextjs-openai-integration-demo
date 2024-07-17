@@ -46,6 +46,7 @@ function AnalysisSidebar({
       <ul className="mt-5">
         {analysisData.map((item) => (
           <li
+            data-testid={'analysis-item'}
             key={item.label}
             className="flex items-center justify-between border-b-2 border-white/10 px-6 py-3 md:max-lg:flex-col md:max-lg:items-start"
           >
@@ -58,6 +59,7 @@ function AnalysisSidebar({
         <div className="mt-12 flex justify-end pb-10 pr-5 md:pb-0 md:pr-0">
           <button
             onClick={() => deleteEntryHandler(entryId as string)}
+            data-testid="delete-entry-button"
             className="btn bg-red-800 text-white hover:bg-red-900 md:max-lg:mb-10"
           >
             Delete this note <FaRegTrashAlt />

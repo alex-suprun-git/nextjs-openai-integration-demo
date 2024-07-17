@@ -34,7 +34,7 @@ const Question = () => {
 
   return (
     <div className="my-12">
-      <form onSubmit={handleSubmit}>
+      <form data-testid="promptInput-wrapper" onSubmit={handleSubmit}>
         <span className="mb-4 block font-semibold text-white">
           Request an AI analysis of your notes (10 to 100 characters)
         </span>
@@ -62,7 +62,11 @@ const Question = () => {
         </div>
       </form>
       {isLoading && <div className="loading relative top-5"></div>}
-      {!isLoading && answer && <p className="text my-4 md:max-w-[50%]">{answer}</p>}
+      {!isLoading && answer && (
+        <p data-testid="promptInput-answer" className="text my-4 md:max-w-[50%]">
+          {answer}
+        </p>
+      )}
     </div>
   );
 };

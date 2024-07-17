@@ -72,7 +72,6 @@ To start the production server, run:
 - `db:push`: Pushes the Prisma schema state to the database.
 - `db:format`: Formats the Prisma schema.
 - `cy:open`: Opens Cypress for end-to-end testing.
-- `cy:coverage`: Generates a coverage report for Cypress tests.
 - `prepare`: Prepares Husky for Git hooks.
 - `lint-staged`: Runs lint-staged.
 
@@ -134,7 +133,6 @@ To start the production server, run:
 - `husky`: ^9.0.11
 - `jsdom`: ^24.1.0
 - `lint-staged`: ^15.2.7
-- `nyc`: ^17.0.0
 - `postcss`: ^8
 - `prettier`: ^3.3.2
 - `prettier-plugin-tailwindcss`: ^0.6.5
@@ -156,7 +154,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## TODO
 
-- [ ] Add unit & e2e tests
-- [ ] Improve error handling in API requests
+- [x] Add unit & e2e tests
+- [x] Improve error handling in API requests
 - [x] Enhance the user interface for better usability
 - [ ] Implement i18n and German localization

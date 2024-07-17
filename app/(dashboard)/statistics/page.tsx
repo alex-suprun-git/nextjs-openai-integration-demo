@@ -31,7 +31,7 @@ const History = async () => {
   const { analyses, averageSentiment } = await getData();
 
   return (
-    <div className="p-10">
+    <div data-testid="statisticsPage" className="p-10">
       <Heading>Statistics</Heading>
       {analyses.length === 0 ? (
         <p className="text-xl">There is no data to display yet.</p>

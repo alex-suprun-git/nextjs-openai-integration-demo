@@ -17,5 +17,30 @@ declare namespace Cypress {
          * @example cy.signIn()
          */
         signIn(): Chainable<void>;
+
+
+        /**
+         * Custom command to sign out using Clerk.
+         * @example cy.signOut()
+         */
+        signOut(): Chainable<void>;
+
+        /**
+         * Custom command to add a new entry.
+         * @example cy.addNewEntry()
+         */
+        addNewEntry(): Chainable<void>;
+
+        /**
+         * Custom command to delete a new entry.
+         * @example cy.deleteNewEntry()
+         */
+        deleteNewEntry(): Chainable<void>;
+
+        /**
+         * Custom command to delete all entries.
+         * @example cy.deleteAllEntries()
+         */
+        deleteAllEntries(): Chainable<void>;  
   }
 }
