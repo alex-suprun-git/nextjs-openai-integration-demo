@@ -1,2 +1,8 @@
-const Loading = () => <div data-testid="loading-component" className="loading loading-lg"></div>;
+import { Loading as Spinner } from '@/ui-lib';
+
+const Loading = () => (
+  <div className="flex h-screen w-screen items-center justify-center">
+    <Spinner />
+  </div>
+);
 export default Loading;

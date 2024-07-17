@@ -75,8 +75,6 @@ To start the production server, run:
 ## Dependencies
 
 - `@clerk/nextjs`: ^5.1.6
-- `@clerk/testing`: ^1.1.10
-- `@cypress/code-coverage`: ^3.12.42
 - `@langchain/core`: ^0.2.10
 - `@langchain/openai`: ^0.2.0
 - `@neondatabase/serverless`: ^0.9.3
@@ -96,6 +94,8 @@ To start the production server, run:
 
 ## Dev Dependencies
 
+- `@clerk/testing`: ^1.1.10
+- `@cypress/code-coverage`: ^3.12.42
 - `@commitlint/cli`: ^19.3.0
 - `@commitlint/config-conventional`: ^19.2.2
 - `@testing-library/react`: ^16.0.0

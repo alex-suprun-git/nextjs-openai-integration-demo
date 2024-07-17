@@ -5,6 +5,10 @@ import HistoryChart from '@/components/HistoryChart';
 
 const getData = async () => {
   const user = await getUserByClerkId();
+  if (!user) {
+    return { analyses: [], averageSentiment: null };
+  }
+
   const analyses: AnalysisEntryResponse[] | [] = await prisma.analysis.findMany({
     where: {
       userId: user.id,

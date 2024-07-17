@@ -16,13 +16,17 @@ const Header = ({
   userPromptUsed: string;
 }) => {
   const path = usePathname();
-  const isActive = (href: string) => path === href;
+  const isActiveLink = (href: string) => path === href;
 
   return (
     <>
       <div className="mb-12 flex md:mb-0">
         {navigationLinks.map((link) => (
-          <Link className={isActive(link.href) ? 'font-bold' : ''} key={link.href} href={link.href}>
+          <Link
+            className={isActiveLink(link.href) ? 'font-bold' : ''}
+            key={link.href}
+            href={link.href}
+          >
             <span className="mr-12 block">{link.label}</span>
           </Link>
         ))}

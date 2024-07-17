@@ -3,10 +3,25 @@ import { PromptProvider } from '@/contexts/PromptContext';
 import { getUserByClerkId } from '@/utils/auth';
 import { UserButton } from '@clerk/nextjs';
 
-const getUserInfo = async () => getUserByClerkId();
+const getUserInfo = async () => {
+  const user = await getUserByClerkId();
+  if (user) {
+    return {
+      promptSymbolsLimit: user.promptSymbolsLimit,
+      promptSymbolsUsed: user.promptSymbolsUsed,
+    };
+  }
+  return null;
+};
 
 const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
-  const { promptSymbolsLimit, promptSymbolsUsed } = await getUserInfo();
+  const userInfo = await getUserInfo();
+
+  if (!userInfo) {
+    return null;
+  }
+
+  const { promptSymbolsLimit, promptSymbolsUsed } = userInfo;
 
   const formattedSymbolsLeft = new Intl.NumberFormat().format(
     promptSymbolsLimit - promptSymbolsUsed,
