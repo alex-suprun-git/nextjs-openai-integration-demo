@@ -87,7 +87,7 @@
   },
   "lint-staged": {
     "*.{test.ts,test.tsx}": [
-      "yarn run test"
+      "vitest run --coverage --changed --update"
     ]
   }
 }
