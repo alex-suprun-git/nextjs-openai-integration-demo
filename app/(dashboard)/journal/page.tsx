@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { getUserByClerkId } from '@/utils/auth';
 import { prisma } from '@/utils/db';
@@ -6,6 +7,11 @@ import EntryCard from '@/components/EntryCard';
 import NewEntryCard from '@/components/NewEntryCard';
 import Question from '@/components/Question';
 import { Heading } from '@/ui-lib';
+
+export const metadata: Metadata = {
+  title: 'Dashboard | OpenAI Daily Journal',
+  description: 'Dashboard page for OpenAI Daily Journal',
+};
 
 const getEntries = async () => {
   const user = await getUserByClerkId();

@@ -1,10 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    swcPlugins: [
-      ['swc-plugin-coverage-instrument', {}], 
-    ],    
-  }
+    productionBrowserSourceMaps: true,
 };
 
 export default nextConfig;

@@ -4,6 +4,7 @@ exports[`EntryCard > renders correctly and matches snapshot 1`] = `
 <div>
   <div
     class="card relative bg-white text-primary-content shadow-md"
+    data-testid="entryCard"
   >
     <div
       class="card-body"
@@ -81,7 +82,10 @@ exports[`EntryCard > renders correctly and matches snapshot 1`] = `
             2023-01-02
           </span>
         </small>
-        <button>
+        <button
+          aria-label="Open context menu"
+          data-testid="entryCard-edit-button"
+        >
           <svg
             fill="currentColor"
             height="1em"

@@ -1,13 +1,13 @@
 'use client';
 
+import { useState, useRef, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { FiEdit } from 'react-icons/fi';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { IoDocumentTextOutline } from 'react-icons/io5';
-import { FiEdit } from 'react-icons/fi';
 import { formatDate, getExcerpt } from '@/utils/helpers';
-import { useState, useRef, useEffect } from 'react';
 import { deleteEntry } from '@/utils/api';
-import { useRouter } from 'next/navigation';
 import useKeyPress from '@/hooks/useKeyPress';
 
 type EntryCardProps = {
@@ -20,10 +20,15 @@ type EntryCardProps = {
 
 const EntryCard = ({ id, createdAt, updatedAt, content, color }: EntryCardProps) => {
   const router = useRouter();
-  const creationDate = formatDate(createdAt);
-  const updatedDate = formatDate(updatedAt);
+  const [creationDate, setCreationDate] = useState<string>('');
+  const [updatedDate, setUpdatedDate] = useState<string>('');
   const [isContextMenuOpen, setIsContextMenuOpen] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setCreationDate(formatDate(new Date(createdAt)));
+    setUpdatedDate(formatDate(new Date(updatedAt)));
+  }, [createdAt, updatedAt]);
 
   const deleteEntryHandler = async (e: React.MouseEvent, id: string) => {
     e.preventDefault();
@@ -75,7 +80,11 @@ const EntryCard = ({ id, createdAt, updatedAt, content, color }: EntryCardProps)
             </small>
           )}
 
-          <button data-testid="entryCard-edit-button" onClick={(e) => contextMenuHandler(e)}>
+          <button
+            aria-label="Open context menu"
+            data-testid="entryCard-edit-button"
+            onClick={(e) => contextMenuHandler(e)}
+          >
             <BsThreeDotsVertical />
           </button>
         </div>
@@ -88,6 +97,7 @@ const EntryCard = ({ id, createdAt, updatedAt, content, color }: EntryCardProps)
               data-testid="entryCard-delete-button"
               className="btn h-[30%] w-[100%] items-center justify-center"
               onClick={(e) => deleteEntryHandler(e, id)}
+              aria-label="Delete item"
             >
               <FaRegTrashAlt />
               <span className="ml-1 font-semibold">Delete item</span>

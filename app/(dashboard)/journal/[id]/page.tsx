@@ -1,7 +1,13 @@
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
 import { getUserByClerkId } from '@/utils/auth';
 import { prisma } from '@/utils/db';
 import Editor from '@/components/Editor';
+
+export const metadata: Metadata = {
+  title: 'Entry | OpenAI Daily Journal',
+  description: 'Entry page for OpenAI Daily Journal',
+};
 
 const getEntry = async (id: string) => {
   const user = await getUserByClerkId();

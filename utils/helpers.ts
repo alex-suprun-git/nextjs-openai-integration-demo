@@ -2,6 +2,10 @@ export const getExcerpt = (content: string): string =>
   content.length >= 100 ? `${content.slice(0, 100)}...` : content;
 
 export const formatDate = (date: Date): string => {
+  if (typeof window === 'undefined') {
+    return date.toISOString();
+  }
+
   if (isNaN(date.getTime())) {
     return 'Invalid Date';
   }

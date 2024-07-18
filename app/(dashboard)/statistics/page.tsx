@@ -1,7 +1,13 @@
+import { Metadata } from 'next';
 import { getUserByClerkId } from '@/utils/auth';
 import { prisma } from '@/utils/db';
 import { Heading } from '@/ui-lib';
 import HistoryChart from '@/components/HistoryChart';
+
+export const metadata: Metadata = {
+  title: 'Statistics | OpenAI Daily Journal',
+  description: 'Statistics page for OpenAI Daily Journal',
+};
 
 const getData = async () => {
   const user = await getUserByClerkId();

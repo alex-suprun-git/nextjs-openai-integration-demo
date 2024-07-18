@@ -158,3 +158,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - [x] Improve error handling in API requests
 - [x] Enhance the user interface for better usability
 - [ ] Implement i18n and German localization
+- [ ] Connect to Contentful CMS
+ 

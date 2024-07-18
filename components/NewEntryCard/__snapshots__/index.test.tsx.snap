@@ -10,6 +10,7 @@ exports[`NewEntryCard > renders correctly and matches snapshot 1`] = `
     >
       <span
         class="text-2xl font-bold text-gray-900"
+        data-testid="new-entry-button"
       >
         Write a new memo
       </span>

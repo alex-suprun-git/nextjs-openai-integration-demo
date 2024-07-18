@@ -9,6 +9,7 @@ exports[`Content > renders correctly and matches snapshot 1`] = `
   </div>
   <textarea
     class="textarea min-h-72 w-full resize-none p-10 text-xl outline-none md:max-lg:h-[80%] lg:min-h-svh"
+    data-testid="entry-content-field"
     maxlength="2500"
     placeholder="Please write your thoughts here..."
     required=""

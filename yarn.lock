@@ -7716,11 +7716,6 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-swc-plugin-coverage-instrument@^0.0.24:
-  version "0.0.24"
-  resolved "https://registry.yarnpkg.com/swc-plugin-coverage-instrument/-/swc-plugin-coverage-instrument-0.0.24.tgz#a6f59bdcf22a5cae718345273901e189d629754c"
-  integrity sha512-ws5VScJuzI8bs3GXs78jPIXSnth3n+zLJlXoKWooo7nkZ6B8viKLu5bQpdPc+b5a78RgMs0uV0OtsyGoaJWdYQ==
-
 swr@^2.2.0:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/swr/-/swr-2.2.5.tgz#063eea0e9939f947227d5ca760cc53696f46446b"

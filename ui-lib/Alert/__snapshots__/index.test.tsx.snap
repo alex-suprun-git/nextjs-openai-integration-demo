@@ -4,6 +4,7 @@ exports[`Alert > renders with default info type when no type is provided 1`] = `
 <div>
   <div
     class="alert alert-info mb-6"
+    data-testid="alert"
     role="alert"
   >
     <svg

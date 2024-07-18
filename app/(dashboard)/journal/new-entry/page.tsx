@@ -1,4 +1,10 @@
+import { Metadata } from 'next';
 import Editor from '@/components/Editor';
+
+export const metadata: Metadata = {
+  title: 'New Entry | OpenAI Daily Journal',
+  description: 'New entry page for OpenAI Daily Journal',
+};
 
 function NewEntryPage() {
   const initialData = {

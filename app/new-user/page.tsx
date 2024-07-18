@@ -1,6 +1,11 @@
 import { prisma } from '@/utils/db';
 import { currentUser } from '@clerk/nextjs/server';
+import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
+
+export const metadata: Metadata = {
+  title: 'New User Creation | OpenAI Daily Journal',
+};
 
 const createNewUser = async () => {
   const user = await currentUser();

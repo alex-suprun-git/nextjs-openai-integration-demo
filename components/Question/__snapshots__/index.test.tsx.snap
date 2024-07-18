@@ -5,7 +5,9 @@ exports[`Question > renders correctly and matches snapshot 1`] = `
   <div
     class="my-12"
   >
-    <form>
+    <form
+      data-testid="promptInput-wrapper"
+    >
       <span
         class="mb-4 block font-semibold text-white"
       >
