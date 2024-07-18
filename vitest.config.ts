@@ -7,7 +7,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: './config/setupTests.ts',
+    setupFiles: './config/setupTests.tsx',
     exclude: [...defaultExclude, 'middleware.ts'],
     coverage: {
       reporter: ['text', 'json', 'html'],

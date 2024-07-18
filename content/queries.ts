@@ -1,24 +1,32 @@
 import { contentGQLQuery } from './fetch';
 import { HeroSchemaQuery } from './types';
 
-export const getContentForHero = async () => {
+export const getContentForHero = async (locale: string) => {
   const query = `#graphql
-    query HeroCollection {
-        homepageHeroBannerCollection {
-            items {
-                homepageHeadline
-                homepageDescription {
-                    json
-                }
-            }
+    query HeroCollection($locale: String!) {
+      homepageHeroBannerCollection(locale: $locale) {
+        items {
+          homepageHeadline
+          homepageDescription {
+            json
+          }
         }
+      }
     }
-`;
-  const data = await contentGQLQuery<HeroSchemaQuery>({ query });
+  `;
 
-  if (!data) {
-    console.error('Error fetching hero content');
+  const variables = { locale };
+
+  try {
+    const data = await contentGQLQuery<HeroSchemaQuery>({ query, variables });
+
+    if (!data) {
+      throw new Error('Error fetching hero content');
+    }
+
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
   }
-
-  return data;
 };

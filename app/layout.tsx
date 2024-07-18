@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { ClerkProvider } from '@clerk/nextjs';
+import { NextIntlClientProvider } from 'next-intl';
+import { getLocale, getMessages } from 'next-intl/server';
 import { Inter } from 'next/font/google';
 import './globals.css';
 
@@ -10,15 +12,20 @@ export const metadata: Metadata = {
   title: 'NextJS | TypeScript | Tailwind | Prisma | Clerk | OpenAI',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
     <ClerkProvider afterSignOutUrl={'/sign-in'}>
-      <html lang="en">
-        <body className={inter.className}>{children}</body>
+      <html lang={locale}>
+        <body className={inter.className}>
+          <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+        </body>
       </html>
     </ClerkProvider>
   );

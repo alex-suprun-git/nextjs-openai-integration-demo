@@ -1,4 +1,5 @@
 import { render, screen, waitFor } from '@testing-library/react';
+import { createTranslator, useTranslations } from 'next-intl';
 import { Mock, vi } from 'vitest';
 import { auth } from '@clerk/nextjs/server';
 import Home from '@/app/page';
@@ -16,6 +17,16 @@ vi.mock('@/content/queries', () => ({
 describe('Home', () => {
   beforeEach(() => {
     vi.mocked(getContentForHero as Mock).mockResolvedValue(heroContentMock);
+  });
+
+  beforeAll(async () => {
+    const translate = createTranslator({
+      locale: 'en',
+      namespace: 'HomePage',
+      messages: (await import('../../messages/en.json')).default,
+    });
+
+    (useTranslations as Mock).mockImplementation(() => translate);
   });
 
   afterEach(() => {

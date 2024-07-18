@@ -1,20 +1,7 @@
-import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
+import { chainMiddlewares } from './middlewares/chainMiddlewares';
+import { authMiddleware } from './middlewares/clerk-middleware';
 
-const isProtectedRoute = createRouteMatcher([
-  '/new-user',
-  '/statistics',
-  '/journal',
-  '/journal/new-entry',
-  '/journal/[id]',
-]);
-
-export default clerkMiddleware((auth, req) => {
-  const userId = auth().userId;
-  if (!userId && isProtectedRoute(req)) {
-    return auth().redirectToSignIn();
-  }
-  // if (isProtectedRoute(req)) auth().protect();
-});
+export default chainMiddlewares([authMiddleware]);
 
 export const config = {
   matcher: ['/((?!.*\\..*|_next).*)', '/', '/(api|trpc)(.*)'],

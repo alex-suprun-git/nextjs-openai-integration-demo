@@ -14,15 +14,32 @@ vi.mock('@clerk/nextjs', () => ({
   ClerkProvider: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
 }));
 
-describe('RootLayout', () => {
-  it('renders children correctly within the ClerkProvider and with the correct class', () => {
+// Mock the NextIntlClientProvider from next-intl
+vi.mock('next-intl', () => ({
+  NextIntlClientProvider: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+  useTranslations: () => (key: string) => key, // mock useTranslations hook
+}));
+
+// Mock the async functions getLocale and getMessages from next-intl/server
+vi.mock('next-intl/server', () => ({
+  getLocale: vi.fn(async () => 'en'),
+  getMessages: vi.fn(async () => ({ message: 'test message' })),
+}));
+
+describe('RootLayout', async () => {
+  it('renders children correctly within the ClerkProvider and with the correct class', async () => {
     const mockChildren = <div data-testid="mock-children">Mock Children</div>;
 
-    render(<RootLayout>{mockChildren}</RootLayout>, {
-      container: document.body.appendChild(document.createElement('div')),
-    });
+    render(
+      // Use a wrapper to handle the async component
+      <div>
+        {await RootLayout({
+          children: mockChildren,
+        })}
+      </div>,
+    );
 
     // Check if the children are rendered within the ClerkProvider
-    expect(screen.getByTestId('mock-children')).toBeInTheDocument();
+    expect(await screen.findByTestId('mock-children')).toBeInTheDocument();
   });
 });

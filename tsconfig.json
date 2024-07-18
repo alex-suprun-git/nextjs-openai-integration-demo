@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["./app/**/*", "./components/**/*", "./content/**/*", "./utils/**/*", "./hooks/**/*", "./contexts/**/*", "./ui-lib/**/*", ".next/types/**/*.ts", "config/**/*", "types.d.ts"],
+  "include": ["./app/**/*", "./middlewares/**/*",  "./components/**/*", "./content/**/*", "./utils/**/*", "./hooks/**/*", "./contexts/**/*", "./ui-lib/**/*", ".next/types/**/*.ts", "config/**/*", "types.d.ts"],
   "exclude": ["node_modules"]
 }
