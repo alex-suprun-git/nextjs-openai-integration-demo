@@ -18,6 +18,7 @@ NextJS OpenAI Integration Demo is designed to showcase the integration of variou
 - Detailed mood statistics displayed in charts
 - User authentication and management with Clerk
 - Integration with Prisma for database management
+- Integration with Contentful Headless CMS for content management
 
 ### Notable Libraries and Technologies
 
@@ -158,5 +159,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - [x] Improve error handling in API requests
 - [x] Enhance the user interface for better usability
 - [ ] Implement i18n and German localization
-- [ ] Connect to Contentful CMS
+- [X] Connect to Contentful CMS
  

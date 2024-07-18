@@ -617,6 +617,18 @@
     "@types/conventional-commits-parser" "^5.0.0"
     chalk "^5.3.0"
 
+"@contentful/rich-text-react-renderer@^15.22.7":
+  version "15.22.7"
+  resolved "https://registry.yarnpkg.com/@contentful/rich-text-react-renderer/-/rich-text-react-renderer-15.22.7.tgz#15921ed4be70a4d3c7f75eb2eeb9a0c9195fcd29"
+  integrity sha512-NKk0ShsuK4xRLVkdg/+s4+wyQX1sYbqj+/0cP3pKslT8mUm6ZNe3KtNgV5rUmgkKnfPzGKQf0lCjQZ2CIZp4QA==
+  dependencies:
+    "@contentful/rich-text-types" "^16.8.1"
+
+"@contentful/rich-text-types@^16.8.1":
+  version "16.8.1"
+  resolved "https://registry.yarnpkg.com/@contentful/rich-text-types/-/rich-text-types-16.8.1.tgz#4c3d17e235dfa37c5fb324470f119df29f621b96"
+  integrity sha512-HvH9GyL9ER+P+DR3SKAyqMXcqzUfs4BT9VGh0k8fZx2+e29fQQEL2SBGtvkY5pXNWc5eEC3ytzwAaR0CCTVTOw==
+
 "@cypress/code-coverage@^3.12.42":
   version "3.12.42"
   resolved "https://registry.yarnpkg.com/@cypress/code-coverage/-/code-coverage-3.12.42.tgz#f04bd6fab6bf5f9fcd7f9e145f94e660847de253"
