@@ -12,10 +12,14 @@ const createNewUser = async () => {
   const match = await prisma.user.findUnique({ where: { clerkId: user?.id as string } });
 
   if (!match) {
+    const now = new Date();
+    const nextRenewalDate = new Date(now.setMonth(now.getMonth() + 1));
+
     await prisma.user.create({
       data: {
         clerkId: user?.id as string,
         email: user?.emailAddresses[0].emailAddress as string,
+        promptSymbolsLimitRenewal: nextRenewalDate as Date,
       },
     });
   }

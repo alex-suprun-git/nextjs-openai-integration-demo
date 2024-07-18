@@ -3,7 +3,7 @@ export const getExcerpt = (content: string): string =>
 
 export const formatDate = (date: Date): string => {
   if (typeof window === 'undefined') {
-    return date.toISOString();
+    return date.toDateString();
   }
 
   if (isNaN(date.getTime())) {

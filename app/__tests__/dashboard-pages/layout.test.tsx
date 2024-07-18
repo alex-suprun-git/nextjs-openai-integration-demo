@@ -37,6 +37,7 @@ describe('DashboardLayout', () => {
     const mockUser = {
       promptSymbolsLimit: 1000,
       promptSymbolsUsed: 400,
+      promptSymbolsLimitRenewal: new Date(),
     };
     (getUserByClerkId as Mock).mockResolvedValue(mockUser);
 
@@ -60,6 +61,7 @@ describe('DashboardLayout', () => {
     const mockUser = {
       promptSymbolsLimit: 1000,
       promptSymbolsUsed: 400,
+      promptSymbolsLimitRenewal: new Date(),
     };
     (getUserByClerkId as Mock).mockResolvedValue(mockUser);
 
