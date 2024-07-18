@@ -1,14 +1,23 @@
 import { render, screen, waitFor } from '@testing-library/react';
-import { vi } from 'vitest';
+import { Mock, vi } from 'vitest';
 import { auth } from '@clerk/nextjs/server';
 import Home from '@/app/page';
+import { getContentForHero } from '@/content/queries';
+import heroContentMock from '@/app/__tests__/__mocks__/heroContentMock.json';
 
-// Mock the auth function from @clerk/nextjs/server
 vi.mock('@clerk/nextjs/server', () => ({
   auth: vi.fn(),
 }));
 
+vi.mock('@/content/queries', () => ({
+  getContentForHero: vi.fn(),
+}));
+
 describe('Home', () => {
+  beforeEach(() => {
+    vi.mocked(getContentForHero as Mock).mockResolvedValue(heroContentMock);
+  });
+
   afterEach(() => {
     vi.clearAllMocks();
   });
