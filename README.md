@@ -4,11 +4,11 @@ This demo application, built with NextJS, TypeScript, Tailwind, Clerk, Prisma, a
 
 ## Project Description
 
-![Project Screenshot 1](./project-preview-01.png)
 
-![Project Screenshot 2](./project-preview-02.png)
 
-![Project Screenshot 2](./project-preview-03.png)
+https://github.com/user-attachments/assets/ccc8c5ee-dcdc-4237-88d7-357d6b5e1220
+
+
 
 NextJS OpenAI Integration Demo is designed to showcase the integration of various modern web technologies to create an AI-powered mood analysis tool.
 
