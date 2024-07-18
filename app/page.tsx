@@ -9,6 +9,7 @@ const Home = async () => {
   const componentData = await getContentForHero();
 
   if (!componentData) {
+    console.error('Hero component data could not be fetched');
     return null;
   }
 

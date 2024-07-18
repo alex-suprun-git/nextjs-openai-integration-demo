@@ -39,7 +39,6 @@ const JournalPage = async () => {
 
   if (!user) {
     redirect('/');
-    return null; // Added return to avoid further rendering
   }
 
   return (

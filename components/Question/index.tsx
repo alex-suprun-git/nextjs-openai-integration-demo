@@ -1,8 +1,10 @@
 'use client';
+
 import { FormEvent, useState } from 'react';
 import { HiMiniChevronDoubleRight } from 'react-icons/hi2';
 import { askQuestion, updateUser } from '@/utils/api';
 import { usePrompt } from '@/contexts/PromptContext';
+import { Loading } from '@/ui-lib';
 
 const Question = () => {
   const [question, setQuestion] = useState('');
@@ -61,7 +63,7 @@ const Question = () => {
           )}
         </div>
       </form>
-      {isLoading && <div className="loading relative top-5"></div>}
+      {isLoading && <Loading fullscreen />}
       {!isLoading && answer && (
         <p data-testid="promptInput-answer" className="text my-4 md:max-w-[50%]">
           {answer}

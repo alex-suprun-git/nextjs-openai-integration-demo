@@ -1,8 +1,10 @@
 'use client';
 
+import { useState } from 'react';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { deleteEntry } from '@/utils/api';
 import { FaRegTrashAlt } from 'react-icons/fa';
+import { Loading } from '@/ui-lib';
 import { convertHexToRGBA, getMoodImage } from '@/utils/helpers';
 
 function AnalysisSidebar({
@@ -14,8 +16,12 @@ function AnalysisSidebar({
   analysis: AnalysisData;
   router: AppRouterInstance;
 }) {
+  const [isLoading, setIsLoading] = useState(false);
+
   const deleteEntryHandler = async (id: string) => {
+    setIsLoading(true);
     await deleteEntry(id);
+    setIsLoading(false);
     router.push('/journal');
     router.refresh();
   };
@@ -34,6 +40,7 @@ function AnalysisSidebar({
 
   return (
     <>
+      {isLoading && <Loading fullscreen />}
       <div className="relative px-6 py-10" style={{ background: getMoodImage(analysis) }}>
         <h2 className="relative z-10 w-fit bg-gray-800 p-6 text-2xl font-bold text-white">
           Analysis

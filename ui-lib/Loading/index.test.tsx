@@ -30,4 +30,11 @@ describe('Loading', () => {
     expect(divElement).toBeInTheDocument();
     expect(divElement).toBeEmptyDOMElement();
   });
+
+  it('renders correctly fullscreen loader', () => {
+    render(<Loading fullscreen />);
+    const divElement = screen.getByTestId('loading-ui-component');
+    expect(divElement).toBeInTheDocument();
+    expect(divElement).not.toBeEmptyDOMElement();
+  });
 });
