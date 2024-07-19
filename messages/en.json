@@ -33,7 +33,7 @@
         }
     },
     "analysisRequest": {
-        "headline": "Request an AI analysis of your notes (10 to 100 characters)",
+        "headline": "Request an AI analysis of your notes (15 to 100 characters)",
         "labels": {
             "inputPlaceholder": "e.g. how good was my week in average?",
             "responseError": "Error occurred"

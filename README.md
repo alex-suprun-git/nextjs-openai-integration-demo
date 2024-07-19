@@ -158,6 +158,6 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - [x] Add unit & e2e tests
 - [x] Improve error handling in API requests
 - [x] Enhance the user interface for better usability
-- [ ] Implement i18n and German localization
+- [x] Implement i18n and German localization
 - [X] Connect to Contentful CMS
  

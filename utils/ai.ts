@@ -5,6 +5,7 @@ import { Document } from 'langchain/document';
 import { loadQARefineChain } from 'langchain/chains';
 import { MemoryVectorStore } from 'langchain/vectorstores/memory';
 import z from 'zod';
+import { detectLanguage } from './helpers';
 
 const parser = StructuredOutputParser.fromZodSchema(
   z.object({
@@ -27,25 +28,27 @@ const parser = StructuredOutputParser.fromZodSchema(
   }),
 );
 
-const getPrompt = async (content: string) => {
+const getPrompt = async (content: string, language: string) => {
   const formatInstructions = parser.getFormatInstructions();
 
   const prompt = new PromptTemplate({
     template:
-      'Analyze the following journal entry. Follow the instructions and format your response to match the format instructions, no matter what! \n{formatInstructions}\n{entry}',
-    inputVariables: ['entry'],
+      'Analyze the following journal entry and respond in {language}. Follow the instructions and format your response to match the format instructions, no matter what! \n{formatInstructions}\n{entry}',
+    inputVariables: ['entry', 'language'],
     partialVariables: { formatInstructions },
   });
 
   const input = await prompt.format({
     entry: content,
+    language,
   });
 
   return input;
 };
 
 export const analyzeEntry = async (content: string) => {
-  const input = await getPrompt(content);
+  const language = detectLanguage(content.slice(0, 15));
+  const input = await getPrompt(content, language);
   const model = new ChatOpenAI({
     temperature: 0,
     model: 'gpt-4o',
@@ -65,10 +68,12 @@ export const analyzeEntry = async (content: string) => {
   }
 };
 
-export const qa = async (question: string, entries: BaseEntry[]) => {
+export const analysisFeedback = async (question: string, entries: BaseEntry[]) => {
   if (!entries.length) {
     return undefined;
   }
+
+  const responseLang = detectLanguage(question);
 
   const docs = entries.map(
     (entry) =>
@@ -82,9 +87,21 @@ export const qa = async (question: string, entries: BaseEntry[]) => {
   const embeddings = new OpenAIEmbeddings();
   const store = await MemoryVectorStore.fromDocuments(docs, embeddings);
   const relevantDocs = await store.similaritySearch(question);
+
+  const promptTemplate = new PromptTemplate({
+    template:
+      'Answer the following question in {language} based on the given documents: \n\n{question}',
+    inputVariables: ['question', 'language'],
+  });
+
+  const input = await promptTemplate.format({
+    question: question,
+    language: responseLang,
+  });
+
   const res = await chain.invoke({
     input_documents: relevantDocs,
-    question,
+    question: input,
   });
 
   return res.output_text;

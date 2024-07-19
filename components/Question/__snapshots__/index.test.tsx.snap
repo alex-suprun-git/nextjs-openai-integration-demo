@@ -11,7 +11,7 @@ exports[`Question > renders correctly and matches snapshot 1`] = `
       <span
         class="mb-4 block font-semibold text-white"
       >
-        Request an AI analysis of your notes (10 to 100 characters)
+        Request an AI analysis of your notes (15 to 100 characters)
       </span>
       <div
         class="flex"
@@ -20,7 +20,7 @@ exports[`Question > renders correctly and matches snapshot 1`] = `
           class="mr-2 w-[100%] rounded-md border border-gray-300 bg-slate-700 p-2 outline-none md:w-[50%] lg:w-[33%]"
           id="analysis-request"
           maxlength="100"
-          minlength="10"
+          minlength="15"
           placeholder="e.g. how good was my week in average?"
           type="text"
           value=""

@@ -1,4 +1,4 @@
-import { qa } from '@/utils/ai';
+import { analysisFeedback } from '@/utils/ai';
 import { getUserByClerkId } from '@/utils/auth';
 import { prisma } from '@/utils/db';
 import { NextResponse } from 'next/server';
@@ -24,7 +24,7 @@ export const POST = async (request: Request) => {
       },
     });
 
-    const answer = await qa(question, entries);
+    const answer = await analysisFeedback(question, entries);
 
     return NextResponse.json({ data: answer });
   } catch (error) {

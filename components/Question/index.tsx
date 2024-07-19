@@ -49,7 +49,7 @@ const Question = () => {
             onChange={(e) => setQuestion(e.target.value)}
             className="mr-2 w-[100%] rounded-md border border-gray-300 bg-slate-700 p-2 outline-none md:w-[50%] lg:w-[33%]"
             disabled={isLoading}
-            minLength={10}
+            minLength={15}
             maxLength={100}
             placeholder={t('labels.inputPlaceholder')}
           />

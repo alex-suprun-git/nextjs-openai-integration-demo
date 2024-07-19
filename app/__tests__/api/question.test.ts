@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { POST } from '@/app/api/question/route';
 import { getUserByClerkId } from '@/utils/auth';
 import { prisma } from '@/utils/db';
-import { qa } from '@/utils/ai';
+import { analysisFeedback } from '@/utils/ai';
 import { NextResponse } from 'next/server';
 
 // Mock the dependencies
@@ -19,7 +19,7 @@ vi.mock('@/utils/db', () => ({
 }));
 
 vi.mock('@/utils/ai', () => ({
-  qa: vi.fn().mockResolvedValue(''),
+  analysisFeedback: vi.fn().mockResolvedValue(''),
 }));
 
 describe('POST handler', () => {
@@ -47,7 +47,7 @@ describe('POST handler', () => {
     (prisma.journalEntry.findMany as Mock).mockResolvedValue(entries);
 
     const answer = 'The meaning of life is subjective.';
-    (qa as Mock).mockResolvedValue(answer);
+    (analysisFeedback as Mock).mockResolvedValue(answer);
 
     const jsonResponse = { data: answer };
     jsonMock.mockReturnValue(jsonResponse);
@@ -66,7 +66,7 @@ describe('POST handler', () => {
         createdAt: true,
       },
     });
-    expect(qa).toHaveBeenCalledWith('What is the meaning of life?', entries);
+    expect(analysisFeedback).toHaveBeenCalledWith('What is the meaning of life?', entries);
     expect(jsonMock).toHaveBeenCalledWith(jsonResponse);
     expect(response).toEqual(jsonResponse);
   });
@@ -92,7 +92,7 @@ describe('POST handler', () => {
     expect(request.json).toHaveBeenCalled();
     expect(getUserByClerkId).not.toHaveBeenCalled();
     expect(prisma.journalEntry.findMany).not.toHaveBeenCalled();
-    expect(qa).not.toHaveBeenCalled();
+    expect(analysisFeedback).not.toHaveBeenCalled();
     expect(jsonMock).not.toHaveBeenCalledWith(jsonResponse);
     expect(error).toEqual(new Error('Invalid request'));
   });

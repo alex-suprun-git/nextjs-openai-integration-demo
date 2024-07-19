@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { analyzeEntry, qa } from '@/utils/ai';
+import { analyzeEntry, analysisFeedback } from '@/utils/ai';
 import { StructuredOutputParser } from 'langchain/output_parsers';
 import { z } from 'zod';
 
@@ -73,16 +73,16 @@ describe('analyzeEntry', () => {
   });
 });
 
-describe('qa', () => {
+describe('analysisFeedback', () => {
   it('returns expected output for a question and single entry', async () => {
-    const result = await qa('test question', [
+    const result = await analysisFeedback('test question', [
       { content: 'test content', id: '1', createdAt: new Date('2023-01-01') },
     ]);
     expect(result).toBe('refined output');
   });
 
   it('returns expected output for a question and multiple entries', async () => {
-    const result = await qa('test question', [
+    const result = await analysisFeedback('test question', [
       { content: 'test content 1', id: '1', createdAt: new Date('2023-01-01') },
       { content: 'test content 2', id: '2', createdAt: new Date('2023-01-02') },
     ]);
@@ -94,15 +94,15 @@ describe('qa', () => {
     expect(result).toBe('parsed output');
   });
 
-  it('handles empty question gracefully in qa', async () => {
-    const result = await qa('', [
+  it('handles empty question gracefully in analysisFeedback', async () => {
+    const result = await analysisFeedback('', [
       { content: 'test content', id: '1', createdAt: new Date('2023-01-01') },
     ]);
     expect(result).toBe('refined output');
   });
 
-  it('handles empty entries array in qa', async () => {
-    const result = await qa('test question', []);
+  it('handles empty entries array in analysisFeedback', async () => {
+    const result = await analysisFeedback('test question', []);
     expect(result).toBeUndefined();
   });
 });

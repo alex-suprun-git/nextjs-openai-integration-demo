@@ -4,7 +4,7 @@ describe('Question input test', () => {
         cy.addNewEntry();
         cy.visit('/journal');
         cy.get('[data-testid=promptInput-wrapper]').within(() => {
-            cy.get('span').contains('Request an AI analysis of your notes (10 to 100 characters)');
+            cy.get('span').contains('Request an AI analysis of your notes (15 to 100 characters)');
             cy.get('input').type('How were my last few days?');
             cy.get('button').click();
         });

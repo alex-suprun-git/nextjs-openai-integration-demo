@@ -33,7 +33,7 @@
       }
   },
   "analysisRequest": {
-      "headline": "Fordern Sie eine KI-Analyse Ihrer Notizen an (10 bis 100 Zeichen)",
+      "headline": "Fordern Sie eine KI-Analyse Ihrer Notizen an (15 bis 100 Zeichen)",
       "labels": {
           "inputPlaceholder": "z.B. Wie gut war meine Woche im Durchschnitt?",
           "responseError": "Es ist ein Fehler aufgetreten"
