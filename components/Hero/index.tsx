@@ -16,7 +16,7 @@ function Hero({
   const t = useTranslations('HomePage');
 
   let href = isAuthorized ? '/journal' : '/new-user';
-  let buttonLabel = isAuthorized ? t('buttonLabelAuthorized') : t('buttonLabelNonAuthorized');
+  let buttonLabel = isAuthorized ? t('buttons.authorized') : t('buttons.unauthorized');
 
   return (
     <div className="bg-slate-550 flex min-h-svh items-center justify-center p-10 text-white">

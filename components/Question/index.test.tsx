@@ -1,5 +1,6 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
+import { createTranslator, useTranslations } from 'next-intl';
 import Question from '.';
 import { askQuestion, updateUser } from '@/utils/api';
 import { usePrompt } from '@/contexts/PromptContext';
@@ -18,6 +19,16 @@ describe('Question', () => {
     promptSymbolsUsed: 50,
     promptSymbolsLimit: 100,
   };
+
+  beforeAll(async () => {
+    const translate = createTranslator({
+      locale: 'en',
+      namespace: 'analysisRequest',
+      messages: (await import('@/messages/en.json')).default,
+    });
+
+    (useTranslations as Mock).mockImplementation(() => translate);
+  });
 
   beforeEach(() => {
     vi.clearAllMocks();

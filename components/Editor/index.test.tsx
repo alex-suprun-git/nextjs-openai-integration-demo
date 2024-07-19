@@ -2,6 +2,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { useAutosave } from 'react-autosave';
 import { usePathname, useRouter } from 'next/navigation';
+import { createTranslator, useTranslations } from 'next-intl';
 import Editor from '.';
 import { usePrompt } from '@/contexts/PromptContext';
 import { createNewEntry, updateUser } from '@/utils/api';
@@ -43,6 +44,16 @@ const mockEntry = {
 describe('Editor', () => {
   const mockRouterPush = vi.fn();
   const mockRouterRefresh = vi.fn();
+
+  beforeAll(async () => {
+    const translate = createTranslator({
+      locale: 'en',
+      namespace: 'Editor',
+      messages: (await import('../../messages/en.json')).default,
+    });
+
+    (useTranslations as Mock).mockImplementation(() => translate);
+  });
 
   beforeEach(() => {
     vi.clearAllMocks();

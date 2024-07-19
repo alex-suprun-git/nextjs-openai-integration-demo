@@ -1,8 +1,15 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import History from '@/app/(dashboard)/statistics/page';
+import { createTranslator, useTranslations } from 'next-intl';
+import StatisticsPage from '@/app/(dashboard)/statistics/page';
 import { getUserByClerkId } from '@/utils/auth';
 import { prisma } from '@/utils/db';
+
+class ResizeObserver {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
 
 // Mock the dependencies
 vi.mock('@/utils/auth', () => ({
@@ -17,7 +24,7 @@ vi.mock('@/utils/db', () => ({
   },
 }));
 
-vi.mock('@/components/HistoryChart', () => ({
+vi.mock('@/components/Statistics/HistoryChart', () => ({
   default: ({ data }: { data: any }) => (
     <div data-testid="history-chart">{JSON.stringify(data)}</div>
   ),
@@ -27,8 +34,19 @@ vi.mock('@/ui-lib', () => ({
   Heading: ({ children }: { children: React.ReactNode }) => <h1>{children}</h1>,
 }));
 
-describe('History', () => {
-  beforeEach(() => {
+describe('StatisticsPage', () => {
+  beforeEach(async () => {
+    (global as any).ResizeObserver = ResizeObserver;
+    const translate = createTranslator({
+      locale: 'en',
+      namespace: 'StatisticsPage',
+      messages: (await import('@/messages/en.json')).default,
+    });
+
+    (useTranslations as Mock).mockImplementation(() => translate);
+  });
+
+  afterEach(() => {
     vi.resetAllMocks();
   });
 
@@ -39,7 +57,7 @@ describe('History', () => {
     (prisma.analysis.findMany as Mock).mockResolvedValue([]);
 
     // Act
-    render(<div>{await History()}</div>);
+    render(<div>{await StatisticsPage()}</div>);
 
     // Assert
     expect(await screen.findByText('Statistics')).toBeInTheDocument();
@@ -62,7 +80,7 @@ describe('History', () => {
     );
 
     // Act
-    render(<div>{await History()}</div>);
+    render(<div>{await StatisticsPage()}</div>);
 
     // Assert
     expect(await screen.findByText('Statistics')).toBeInTheDocument();

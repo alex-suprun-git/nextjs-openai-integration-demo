@@ -4,6 +4,7 @@ import JournalPage from '@/app/(dashboard)/journal/page';
 import { getUserByClerkId } from '@/utils/auth';
 import { prisma } from '@/utils/db';
 import { redirect } from 'next/navigation';
+import { createTranslator, useTranslations } from 'next-intl';
 
 // Mock the dependencies
 vi.mock('@/utils/auth', () => ({
@@ -43,7 +44,17 @@ vi.mock('@/ui-lib', () => ({
 }));
 
 describe('JournalPage', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
+    const translate = createTranslator({
+      locale: 'en',
+      namespace: 'JournalList',
+      messages: (await import('@/messages/en.json')).default,
+    });
+
+    (useTranslations as Mock).mockImplementation(() => translate);
+  });
+
+  afterEach(() => {
     vi.resetAllMocks();
   });
 

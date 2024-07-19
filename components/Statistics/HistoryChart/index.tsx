@@ -1,4 +1,5 @@
 'use client';
+
 import { formatDate } from '@/utils/helpers';
 import { ReactElement } from 'react';
 import { ResponsiveContainer, LineChart, Line, XAxis, Tooltip, TooltipProps } from 'recharts';

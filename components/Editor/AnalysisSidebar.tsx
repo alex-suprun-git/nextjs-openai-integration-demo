@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { deleteEntry } from '@/utils/api';
 import { FaRegTrashAlt } from 'react-icons/fa';
@@ -17,6 +18,7 @@ function AnalysisSidebar({
   router: AppRouterInstance;
 }) {
   const [isLoading, setIsLoading] = useState(false);
+  const t = useTranslations('Editor');
 
   const deleteEntryHandler = async (id: string) => {
     setIsLoading(true);
@@ -30,10 +32,10 @@ function AnalysisSidebar({
   const { summary, subject, mood, color, negative } = analysis;
 
   const analysisData = [
-    { label: 'Summary', value: summary },
-    { label: 'Subject', value: subject },
-    { label: 'Mood', value: mood },
-    { label: 'Negative', value: negative },
+    { label: t('analysis.labels.summary'), value: summary },
+    { label: t('analysis.labels.subject'), value: subject },
+    { label: t('analysis.labels.mood'), value: mood },
+    { label: t('analysis.labels.negative'), value: negative },
   ];
 
   const analysisBackground = convertHexToRGBA(color, 0.25);
@@ -43,7 +45,7 @@ function AnalysisSidebar({
       {isLoading && <Loading fullscreen />}
       <div className="relative px-6 py-10" style={{ background: getMoodImage(analysis) }}>
         <h2 className="relative z-10 w-fit bg-gray-800 p-6 text-2xl font-bold text-white">
-          Analysis
+          {t('analysis.headline')}
         </h2>
         <div
           className="absolute left-0 top-0 h-full w-full"
@@ -69,7 +71,7 @@ function AnalysisSidebar({
             data-testid="delete-entry-button"
             className="btn bg-red-800 text-white hover:bg-red-900 md:max-lg:mb-10"
           >
-            Delete this note <FaRegTrashAlt />
+            {t('buttons.deleteEntry')} <FaRegTrashAlt />
           </button>
         </div>
       )}

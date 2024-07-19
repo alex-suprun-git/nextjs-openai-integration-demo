@@ -3,11 +3,7 @@
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { FaQuestionCircle } from 'react-icons/fa';
-
-const navigationLinks = [
-  { label: 'Journal', href: '/journal' },
-  { label: 'Statistics', href: '/statistics' },
-];
+import { useTranslations } from 'next-intl';
 
 const Header = ({
   userPromptLimit,
@@ -20,6 +16,13 @@ const Header = ({
 }) => {
   const path = usePathname();
   const isActiveLink = (href: string) => path === href;
+
+  const t = useTranslations('Header');
+
+  const navigationLinks = [
+    { label: t('navigation.journal'), href: '/journal' },
+    { label: t('navigation.statistics'), href: '/statistics' },
+  ];
 
   return (
     <>
@@ -36,15 +39,15 @@ const Header = ({
       </div>
       <div className="ml-auto flex flex-col items-center text-center md:mr-10 md:flex-row md:text-left">
         <p className="mr-2 leading-6">
-          You have{' '}
-          <strong>
-            {userPromptUsed}/{userPromptLimit}
-          </strong>{' '}
-          prompt symbols remaining
+          {t.rich('labels.promptSymbolsRemaining', {
+            userPromptUsed,
+            userPromptLimit,
+            strong: (chunks) => <strong>{chunks}</strong>,
+          })}
         </p>
         <div
           className="tooltip tooltip-bottom mt-4 md:tooltip-left md:mt-0"
-          data-tip={`Next limits renewal on ${userPromptLimitRenewal}`}
+          data-tip={t('labels.promptSymbolsRenewalDate', { userPromptLimitRenewal })}
         >
           <span className="cursor-pointer">
             <FaQuestionCircle />

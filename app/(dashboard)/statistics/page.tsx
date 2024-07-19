@@ -1,8 +1,7 @@
 import { Metadata } from 'next';
+import StatisticsData from '@/components/Statistics';
 import { getUserByClerkId } from '@/utils/auth';
 import { prisma } from '@/utils/db';
-import { Heading } from '@/ui-lib';
-import HistoryChart from '@/components/HistoryChart';
 
 export const metadata: Metadata = {
   title: 'Statistics | OpenAI Daily Journal',
@@ -33,22 +32,10 @@ const getData = async () => {
   return { analyses, averageSentiment };
 };
 
-const History = async () => {
+const StatisticsPage = async () => {
   const { analyses, averageSentiment } = await getData();
 
-  return (
-    <div data-testid="statisticsPage" className="p-10">
-      <Heading>Statistics</Heading>
-      {analyses.length === 0 ? (
-        <p className="text-xl">There is no data to display yet.</p>
-      ) : (
-        <>
-          <p className="mb-12 text-xl">Average sentiment: {averageSentiment}</p>
-          <HistoryChart data={analyses as AnalysisEntry[]} />
-        </>
-      )}
-    </div>
-  );
+  return <StatisticsData analyses={analyses} averageSentiment={averageSentiment} />;
 };
 
-export default History;
+export default StatisticsPage;

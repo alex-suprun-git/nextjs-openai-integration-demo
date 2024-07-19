@@ -1,6 +1,6 @@
 import { render, screen, within } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import HistoryChart from '@/components/HistoryChart';
+import HistoryChart from '../HistoryChart';
 import { formatDate } from '@/utils/helpers';
 
 class ResizeObserver {

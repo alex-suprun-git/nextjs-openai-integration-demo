@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, Mock } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { usePathname } from 'next/navigation';
+import { createTranslator, useTranslations } from 'next-intl';
 import Header from './';
 
 vi.mock('next/navigation', () => ({
@@ -8,6 +9,16 @@ vi.mock('next/navigation', () => ({
 }));
 
 describe('Header', () => {
+  beforeAll(async () => {
+    const translate = createTranslator({
+      locale: 'en',
+      namespace: 'Header',
+      messages: (await import('@/messages/en.json')).default,
+    });
+
+    (useTranslations as Mock).mockImplementation(() => translate);
+  });
+
   beforeEach(() => {
     vi.clearAllMocks();
   });
@@ -51,7 +62,7 @@ describe('Header', () => {
       />,
     );
 
-    expect(screen.getByText('500/1000')).toBeInTheDocument();
+    expect(screen.getByText('500 / 1000')).toBeInTheDocument();
     expect(screen.getByText('prompt symbols remaining', { exact: false })).toBeInTheDocument();
   });
 });

@@ -1,6 +1,62 @@
 {
-    "HomePage": {
-        "buttonLabelAuthorized": "Zum Journal",
-        "buttonLabelNonAuthorized": "Loslegen"
-    }
+  "HomePage": {
+      "buttons": {
+          "authorized": "Zum Journal gehen",
+          "unauthorized": "Loslegen"
+      }
+  },
+  "StatisticsPage": {
+      "headline": "Statistiken",
+      "labels": {
+          "averageSentiment": "Durchschnittliche Stimmung: {averageSentiment}",
+          "noEntries": "Es gibt noch keine Daten anzuzeigen."
+      }
+  },
+  "Header": {
+      "labels": {
+          "promptSymbolsRemaining": "Sie haben <strong>{userPromptUsed} / {userPromptLimit}</strong> verbleibende Symbole für Eingaben",
+          "promptSymbolsRenewalDate": "Nächste Begrenzungserneuerung am {userPromptLimitRenewal}"
+      },
+      "navigation": {
+          "journal": "Journal",
+          "statistics": "Statistiken"
+      }
+  },
+  "JournalList": {
+      "headline": "Journal",
+      "buttons": {
+          "newEntry": "Neuen Eintrag schreiben"
+      },
+      "card": {
+          "openContextMenu": "Kontextmenü öffnen",
+          "deleteEntry": "Diesen Eintrag löschen"
+      }
+  },
+  "analysisRequest": {
+      "headline": "Fordern Sie eine KI-Analyse Ihrer Notizen an (10 bis 100 Zeichen)",
+      "labels": {
+          "inputPlaceholder": "z.B. Wie gut war meine Woche im Durchschnitt?",
+          "responseError": "Es ist ein Fehler aufgetreten"
+      }
+  },
+  "Editor": {
+      "alerts": {
+          "symbolsLimitExceeded": "Sie haben das Limit von 10.000 Zeichen erreicht und können keine neuen Anfragen stellen.",
+          "contentTooShort": "Bitte geben Sie mindestens 30 Zeichen ein. Änderungen werden für Einträge mit weniger als 30 Zeichen nicht gespeichert.",
+          "entryCreated": "Eine neue Notiz wurde erstellt. Umleiten...."
+      },
+      "analysis": {
+          "headline": "Analyse",
+          "labels": {
+              "summary": "Zusammenfassung",
+              "subject": "Thema",
+              "mood": "Stimmung",
+              "negative": "Negativ"
+          }
+      },
+      "contentFieldPlaceholder": "Bitte schreiben Sie hier Ihre Gedanken...",
+      "buttons": {
+          "deleteEntry": "Diese Notiz löschen"
+      }
   }
+}

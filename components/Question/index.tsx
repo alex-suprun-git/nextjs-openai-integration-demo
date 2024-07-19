@@ -1,6 +1,7 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { HiMiniChevronDoubleRight } from 'react-icons/hi2';
 import { askQuestion, updateUser } from '@/utils/api';
 import { usePrompt } from '@/contexts/PromptContext';
@@ -13,6 +14,8 @@ const Question = () => {
 
   const { promptSymbolsUsed, promptSymbolsLimit } = usePrompt();
   const isPromptSymbolsExceeded = promptSymbolsUsed >= promptSymbolsLimit;
+
+  const t = useTranslations('analysisRequest');
 
   if (isPromptSymbolsExceeded) {
     return null;
@@ -28,7 +31,7 @@ const Question = () => {
       await updateUser(promptSymbolsUsed + question.length);
       setQuestion('');
     } catch (error) {
-      setAnswer('Error occurred');
+      setAnswer(t('labels.responseError'));
     } finally {
       setLoading(false);
     }
@@ -37,9 +40,7 @@ const Question = () => {
   return (
     <div className="my-12">
       <form data-testid="promptInput-wrapper" onSubmit={handleSubmit}>
-        <span className="mb-4 block font-semibold text-white">
-          Request an AI analysis of your notes (10 to 100 characters)
-        </span>
+        <span className="mb-4 block font-semibold text-white">{t('headline')}</span>
         <div className="flex">
           <input
             id="analysis-request"
@@ -50,7 +51,7 @@ const Question = () => {
             disabled={isLoading}
             minLength={10}
             maxLength={100}
-            placeholder="e.g. how good was my week in average?"
+            placeholder={t('labels.inputPlaceholder')}
           />
           {question && (
             <button

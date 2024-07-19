@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
+import { createTranslator, useTranslations } from 'next-intl';
 import Content from '@/components/Editor/ContentField';
 
 // Mock the Alert and Loading components
@@ -11,6 +12,16 @@ vi.mock('@/ui-lib', () => ({
 describe('Content', () => {
   const mockSetContentValue = vi.fn();
   const mockEntryCreatedRef = { current: false };
+
+  beforeAll(async () => {
+    const translate = createTranslator({
+      locale: 'en',
+      namespace: 'Editor',
+      messages: (await import('@/messages/en.json')).default,
+    });
+
+    (useTranslations as Mock).mockImplementation(() => translate);
+  });
 
   beforeEach(() => {
     vi.clearAllMocks();

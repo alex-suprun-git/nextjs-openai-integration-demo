@@ -110,7 +110,8 @@ exports[`Editor > renders correctly and matches snapshot 1`] = `
           class="btn bg-red-800 text-white hover:bg-red-900 md:max-lg:mb-10"
           data-testid="delete-entry-button"
         >
-          Delete this note 
+          Delete this note
+           
           <svg
             fill="currentColor"
             height="1em"

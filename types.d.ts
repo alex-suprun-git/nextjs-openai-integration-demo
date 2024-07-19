@@ -30,12 +30,26 @@ type AnalysisEntry = BaseEntry &
   };
 
 type AnalysisSubEntry = BaseEntry & {
-  analysis: AnalysisData;
+  analysis: AnalysisData & {
+    id: string;
+    createdAt: Date;
+    updatedAt: Date;
+    entryId: string;
+    userId: string;
+  };
 };
 
 type AnalysisSubEntryResponse =
   | (BaseEntry & {
-      analysis: AnalysisData | null;
+      analysis:
+        | (AnalysisData & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            entryId: string;
+            userId: string;
+          })
+        | null;
     })
   | null;
 

@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { useRouter } from 'next/navigation';
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
+import { createTranslator, useTranslations } from 'next-intl';
 import EntryCard from '.';
 import { formatDate, getExcerpt } from '@/utils/helpers';
 import { deleteEntry } from '@/utils/api';
@@ -30,6 +31,16 @@ describe('EntryCard', () => {
     color: '#ff0000',
   };
 
+  beforeAll(async () => {
+    const translate = createTranslator({
+      locale: 'en',
+      namespace: 'JournalList',
+      messages: (await import('@/messages/en.json')).default,
+    });
+
+    (useTranslations as Mock).mockImplementation(() => translate);
+  });
+
   beforeEach(() => {
     vi.clearAllMocks();
     (formatDate as Mock).mockImplementation((date: Date) => date.toISOString().split('T')[0]);
@@ -56,11 +67,11 @@ describe('EntryCard', () => {
     render(<EntryCard {...mockEntry} />);
 
     fireEvent.contextMenu(screen.getByText('This is a test entry'));
-    expect(screen.getByText('Delete item')).toBeInTheDocument();
+    expect(screen.getByText('Delete this memo')).toBeInTheDocument();
 
     fireEvent.mouseDown(document.body);
     await waitFor(() => {
-      expect(screen.queryByText('Delete item')).not.toBeInTheDocument();
+      expect(screen.queryByText('Delete this memo')).not.toBeInTheDocument();
     });
   });
 
@@ -69,7 +80,7 @@ describe('EntryCard', () => {
     render(<EntryCard {...mockEntry} />);
 
     fireEvent.contextMenu(screen.getByText('This is a test entry'));
-    fireEvent.click(screen.getByText('Delete item'));
+    fireEvent.click(screen.getByText('Delete this memo'));
 
     await waitFor(() => {
       expect(deleteEntry).toHaveBeenCalledWith(mockEntry.id);

@@ -1,12 +1,8 @@
-import Link from 'next/link';
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { getUserByClerkId } from '@/utils/auth';
 import { prisma } from '@/utils/db';
-import EntryCard from '@/components/EntryCard';
-import NewEntryCard from '@/components/NewEntryCard';
-import Question from '@/components/Question';
-import { Heading } from '@/ui-lib';
+import JournalList from '@/components/JournalList';
 
 export const metadata: Metadata = {
   title: 'Dashboard | OpenAI Daily Journal',
@@ -43,25 +39,7 @@ const JournalPage = async () => {
 
   return (
     <div className="min-h-svh bg-zinc-300/10 p-10">
-      <Heading>Journal</Heading>
-      {!!entries.length && <Question />}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-6">
-        <NewEntryCard />
-        {entries.map((entry) => {
-          const analysisEntry = entry as Required<AnalysisSubEntry>;
-          return (
-            <Link key={analysisEntry.id} href={`/journal/${analysisEntry.id}`}>
-              <EntryCard
-                id={analysisEntry.id}
-                createdAt={analysisEntry.createdAt}
-                updatedAt={analysisEntry.updatedAt}
-                content={analysisEntry.content}
-                color={analysisEntry.analysis.color}
-              />
-            </Link>
-          );
-        })}
-      </div>
+      <JournalList entries={entries as Required<AnalysisSubEntry[]> | []} />
     </div>
   );
 };

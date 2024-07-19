@@ -1,5 +1,6 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, Mock } from 'vitest';
+import { createTranslator, useTranslations } from 'next-intl';
 import AnalysisSidebar from '@/components/Editor/AnalysisSidebar';
 import { deleteEntry } from '@/utils/api';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
@@ -37,6 +38,16 @@ describe('AnalysisSidebar', () => {
   };
 
   const mockEntryId = '12345';
+
+  beforeAll(async () => {
+    const translate = createTranslator({
+      locale: 'en',
+      namespace: 'Editor',
+      messages: (await import('@/messages/en.json')).default,
+    });
+
+    (useTranslations as Mock).mockImplementation(() => translate);
+  });
 
   beforeEach(() => {
     vi.clearAllMocks();

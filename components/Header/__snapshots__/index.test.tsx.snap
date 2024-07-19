@@ -32,15 +32,11 @@ exports[`Header > renders navigation links correctly 1`] = `
     <p
       class="mr-2 leading-6"
     >
-      You have
-       
+      You have 
       <strong>
-        500
-        /
-        1000
+        500 / 1000
       </strong>
-       
-      prompt symbols remaining
+       prompt symbols remaining
     </p>
     <div
       class="tooltip tooltip-bottom mt-4 md:tooltip-left md:mt-0"

@@ -10,6 +10,7 @@ import { Loading } from '@/ui-lib';
 import { formatDate, getExcerpt } from '@/utils/helpers';
 import { deleteEntry } from '@/utils/api';
 import useKeyPress from '@/hooks/useKeyPress';
+import { useTranslations } from 'next-intl';
 
 type EntryCardProps = {
   id: string;
@@ -26,6 +27,8 @@ const EntryCard = ({ id, createdAt, updatedAt, content, color }: EntryCardProps)
   const [updatedDate, setUpdatedDate] = useState<string>('');
   const [isContextMenuOpen, setIsContextMenuOpen] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
+
+  const t = useTranslations('JournalList');
 
   const handleOuterClick = (event: MouseEvent) => {
     if (cardRef.current && !cardRef.current.contains(event.target as HTMLElement)) {
@@ -87,7 +90,7 @@ const EntryCard = ({ id, createdAt, updatedAt, content, color }: EntryCardProps)
             )}
 
             <button
-              aria-label="Open context menu"
+              aria-label={t('card.openContextMenu')}
               data-testid="entryCard-edit-button"
               onClick={(e) => contextMenuHandler(e)}
             >
@@ -103,10 +106,10 @@ const EntryCard = ({ id, createdAt, updatedAt, content, color }: EntryCardProps)
                 data-testid="entryCard-delete-button"
                 className="btn h-[30%] w-[100%] items-center justify-center"
                 onClick={(e) => deleteEntryHandler(e, id)}
-                aria-label="Delete item"
+                aria-label={t('card.deleteEntry')}
               >
                 <FaRegTrashAlt />
-                <span className="ml-1 font-semibold">Delete item</span>
+                <span className="ml-1 font-semibold">{t('card.deleteEntry')}</span>
               </button>
             </div>
           )}

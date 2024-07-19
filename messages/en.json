@@ -1,6 +1,62 @@
 {
     "HomePage": {
-        "buttonLabelAuthorized": "Go to Journal",
-        "buttonLabelNonAuthorized": "Get Started"
+        "buttons": {
+            "authorized": "Go to Journal",
+            "unauthorized": "Get Started"
+        }
+    },
+    "StatisticsPage": {
+        "headline": "Statistics",
+        "labels" :{
+            "averageSentiment": "Average sentiment: {averageSentiment}",
+            "noEntries": "There is no data to display yet."
+        }
+    },
+    "Header": {
+        "labels": {
+            "promptSymbolsRemaining": "You have <strong>{userPromptUsed} / {userPromptLimit}</strong> prompt symbols remaining",
+            "promptSymbolsRenewalDate": "Next limits renewal on {userPromptLimitRenewal}"
+        },
+        "navigation": {
+            "journal": "Journal",
+            "statistics": "Statistics"
+        }
+    },
+    "JournalList": {
+        "headline": "Journal",
+        "buttons": {
+            "newEntry": "Write a new memo"
+        },
+        "card": {
+            "openContextMenu": "Open context menu",
+            "deleteEntry": "Delete this memo"
+        }
+    },
+    "analysisRequest": {
+        "headline": "Request an AI analysis of your notes (10 to 100 characters)",
+        "labels": {
+            "inputPlaceholder": "e.g. how good was my week in average?",
+            "responseError": "Error occurred"
+        }
+    },
+    "Editor": {
+        "alerts": {
+            "symbolsLimitExceeded": "You have reached the 10,000 symbol limit and cannot make new requests.",
+            "contentTooShort": "Please enter at least 30 characters. Changes are not saved for entries with fewer than 30 characters.",
+            "entryCreated": "A new note was created. Redirecting...."
+        },
+        "analysis": {
+            "headline": "Analysis",
+            "labels": {
+                "summary": "Summary",
+                "subject": "Subject",
+                "mood": "Mood",
+                "negative": "Negative"
+            }
+        },
+        "contentFieldPlaceholder": "Please write your thoughts here...",
+        "buttons": {
+            "deleteEntry": "Delete this note"
+        }
     }
   }

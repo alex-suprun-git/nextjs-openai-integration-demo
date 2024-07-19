@@ -23,7 +23,7 @@ describe('Home', () => {
     const translate = createTranslator({
       locale: 'en',
       namespace: 'HomePage',
-      messages: (await import('../../messages/en.json')).default,
+      messages: (await import('@/messages/en.json')).default,
     });
 
     (useTranslations as Mock).mockImplementation(() => translate);
