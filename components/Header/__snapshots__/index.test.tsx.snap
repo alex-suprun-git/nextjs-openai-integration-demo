@@ -3,31 +3,27 @@
 exports[`Header > renders navigation links correctly 1`] = `
 <div>
   <div
-    class="mb-12 flex md:mb-0"
+    class="mb-12 flex sm:mb-6 lg:mb-0"
   >
     <a
-      class="font-bold"
+      class="mr-12 font-bold"
       href="/journal"
     >
-      <span
-        class="mr-12 block"
-      >
+      <span>
         Journal
       </span>
     </a>
     <a
-      class=""
+      class="mr-12"
       href="/statistics"
     >
-      <span
-        class="mr-12 block"
-      >
+      <span>
         Statistics
       </span>
     </a>
   </div>
   <div
-    class="ml-auto flex flex-col items-center text-center md:mr-10 md:flex-row md:text-left"
+    class="ml-auto flex flex-col items-center text-center sm:flex-row sm:text-left lg:mr-10"
   >
     <p
       class="mr-2 leading-6"
@@ -39,7 +35,7 @@ exports[`Header > renders navigation links correctly 1`] = `
        prompt symbols remaining
     </p>
     <div
-      class="tooltip tooltip-bottom mt-4 md:tooltip-left md:mt-0"
+      class="tooltip tooltip-bottom mt-4 sm:tooltip-left sm:mt-0"
       data-tip="Next limits renewal on 2022-01-01T00:00:00.000Z"
     >
       <span

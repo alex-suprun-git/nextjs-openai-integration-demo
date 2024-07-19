@@ -134,7 +134,6 @@ describe('detectLanguage', () => {
   it('should return Deutsch for text containing "gutten morgen"', () => {
     const text = 'nach mir sehen, wie es mir geht';
     const language = detectLanguage(text);
-    console.log(language);
     expect(language).toBe('Deutsch');
   });
 

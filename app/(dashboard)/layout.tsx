@@ -34,15 +34,15 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <PromptProvider value={{ promptSymbolsLimit, promptSymbolsUsed }}>
       <div className="min-w-svh relative min-h-svh bg-gray-800">
-        <header className="flex items-start border-b border-black/10 bg-gray-900 py-5 md:h-[80px] md:items-center md:py-0">
-          <div className="flex flex-col pl-10 md:w-full md:flex-row">
+        <header className="flex items-start border-b border-black/10 bg-gray-900 py-5 lg:h-[80px] lg:items-center lg:py-0">
+          <div className="flex w-full flex-col pl-4 pr-4 lg:flex-row lg:pl-10 lg:pr-0">
             <Header
               userPromptLimit={formattedSymbolsLimit}
               userPromptUsed={formattedSymbolsLeft}
               userPromptLimitRenewal={userPromptLimitRenewal}
             />
           </div>
-          <div className="ml-auto flex pr-10">
+          <div className="absolute right-5 top-5 ml-auto flex lg:relative lg:top-0 lg:pr-10">
             <UserButton afterSignOutUrl="/sign-in" />
           </div>
         </header>

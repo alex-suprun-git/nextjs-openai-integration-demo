@@ -32,7 +32,7 @@ describe('Content', () => {
       <Content
         isLoading={false}
         contentValue=""
-        setContentValue={mockSetContentValue}
+        contentChangeHandler={mockSetContentValue}
         entryCreatedRef={mockEntryCreatedRef}
         isPromptSymbolsExceeded={false}
       />,
@@ -45,7 +45,7 @@ describe('Content', () => {
       <Content
         isLoading={false}
         contentValue="Some content"
-        setContentValue={mockSetContentValue}
+        contentChangeHandler={mockSetContentValue}
         entryCreatedRef={mockEntryCreatedRef}
         isPromptSymbolsExceeded={true}
       />,
@@ -61,7 +61,7 @@ describe('Content', () => {
       <Content
         isLoading={false}
         contentValue="Short"
-        setContentValue={mockSetContentValue}
+        contentChangeHandler={mockSetContentValue}
         entryCreatedRef={mockEntryCreatedRef}
         isPromptSymbolsExceeded={false}
       />,
@@ -79,7 +79,7 @@ describe('Content', () => {
       <Content
         isLoading={false}
         contentValue="Some content"
-        setContentValue={mockSetContentValue}
+        contentChangeHandler={mockSetContentValue}
         entryCreatedRef={mockEntryCreatedRef}
         isPromptSymbolsExceeded={false}
       />,
@@ -95,7 +95,7 @@ describe('Content', () => {
       <Content
         isLoading={true}
         contentValue="Some content"
-        setContentValue={mockSetContentValue}
+        contentChangeHandler={mockSetContentValue}
         entryCreatedRef={mockEntryCreatedRef}
         isPromptSymbolsExceeded={false}
       />,
@@ -109,7 +109,7 @@ describe('Content', () => {
       <Content
         isLoading={false}
         contentValue="Initial content"
-        setContentValue={mockSetContentValue}
+        contentChangeHandler={mockSetContentValue}
         entryCreatedRef={mockEntryCreatedRef}
         isPromptSymbolsExceeded={true}
       />,
@@ -127,7 +127,7 @@ describe('Content', () => {
       <Content
         isLoading={true}
         contentValue="Initial content"
-        setContentValue={mockSetContentValue}
+        contentChangeHandler={mockSetContentValue}
         entryCreatedRef={mockEntryCreatedRef}
         isPromptSymbolsExceeded={false}
       />,
@@ -145,7 +145,7 @@ describe('Content', () => {
       <Content
         isLoading={true}
         contentValue="Initial content"
-        setContentValue={mockSetContentValue}
+        contentChangeHandler={mockSetContentValue}
         entryCreatedRef={mockEntryCreatedRef}
         isPromptSymbolsExceeded={true}
       />,

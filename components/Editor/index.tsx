@@ -1,13 +1,14 @@
 'use client';
 
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useAutosave } from 'react-autosave';
+import { debounce } from 'lodash';
 import { usePrompt } from '@/contexts/PromptContext';
 import { updateEntry, createNewEntry, updateUser } from '@/utils/api';
 import AnalysisSidebar from './AnalysisSidebar';
 import ContentField from './ContentField';
-import { MINIMUM_CONTENT_LENGTH } from '@/utils/constants';
+import { AUTOSAVE_INTERVAL, MINIMUM_CONTENT_LENGTH } from '@/utils/constants';
 
 const Editor = ({ entry }: { entry: { content: string; id?: string; analysis: AnalysisData } }) => {
   const pathname = usePathname();
@@ -16,7 +17,13 @@ const Editor = ({ entry }: { entry: { content: string; id?: string; analysis: An
   const { promptSymbolsUsed, promptSymbolsLimit } = usePrompt();
   const isPromptSymbolsExceeded = promptSymbolsUsed >= promptSymbolsLimit;
 
+  const [autoSaveTimerValue, setAutoSaveTimerValue] = useState(0);
+  const isShowAutoSaveTimer = autoSaveTimerValue > 0 && autoSaveTimerValue < 100;
+
   const [contentValue, setContentValue] = useState(entry?.content);
+  const [isContentChanged, setIsContentChanged] = useState(false);
+
+  const [isTyping, setIsTyping] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [analysis, setAnalysis] = useState(entry?.analysis);
   const entryCreatedRef = useRef(false);
@@ -24,7 +31,7 @@ const Editor = ({ entry }: { entry: { content: string; id?: string; analysis: An
   const saveContent = useCallback(
     async (_contentValue: string) => {
       setIsLoading(true);
-      if (_contentValue.length > MINIMUM_CONTENT_LENGTH) {
+      if (_contentValue.length >= MINIMUM_CONTENT_LENGTH) {
         if (pathname === '/journal/new-entry') {
           if (!entryCreatedRef.current) {
             entryCreatedRef.current = true;
@@ -48,16 +55,60 @@ const Editor = ({ entry }: { entry: { content: string; id?: string; analysis: An
   useAutosave({
     data: contentValue,
     onSave: saveContent,
-    interval: 3500,
+    interval: AUTOSAVE_INTERVAL,
   });
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedAutosaveCountdown = useCallback(
+    debounce(() => {
+      setAutoSaveTimerValue(0);
+      const intervalId = setInterval(() => {
+        setAutoSaveTimerValue((prevValue) => {
+          if (prevValue < 100) {
+            return prevValue + 1;
+          } else {
+            clearInterval(intervalId);
+            return 100;
+          }
+        });
+      }, 20);
+    }, 1500),
+    [],
+  );
+
+  useEffect(() => {
+    if (!isTyping && isContentChanged) {
+      debouncedAutosaveCountdown();
+      setAutoSaveTimerValue(0);
+    }
+  }, [isContentChanged, isTyping, debouncedAutosaveCountdown]);
+
+  const contentChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const content = e.target.value.replace(/ {3,}/g, ' '.repeat(1));
+    const isNewContentLengthValid = content.length >= MINIMUM_CONTENT_LENGTH;
+
+    setContentValue(content);
+    if (isNewContentLengthValid) {
+      setIsContentChanged(true);
+      setIsTyping(true);
+    }
+    setTimeout(() => setIsTyping(false), 10);
+  };
 
   return (
     <div className="grid gap-10 pt-12 md:grid-cols-3 md:max-lg:h-[80%] lg:min-h-svh">
       <div className="relative px-5 pb-12 md:col-span-2 md:pl-10">
+        {isShowAutoSaveTimer && (
+          <progress
+            className="progress mb-2 w-full"
+            value={autoSaveTimerValue}
+            max="100"
+          ></progress>
+        )}
         <ContentField
           isLoading={isLoading}
           contentValue={contentValue}
-          setContentValue={setContentValue}
+          contentChangeHandler={contentChangeHandler}
           entryCreatedRef={entryCreatedRef}
           isPromptSymbolsExceeded={isPromptSymbolsExceeded}
         />
@@ -68,4 +119,5 @@ const Editor = ({ entry }: { entry: { content: string; id?: string; analysis: An
     </div>
   );
 };
+
 export default Editor;

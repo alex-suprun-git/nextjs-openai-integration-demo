@@ -1,6 +1,6 @@
 'use client';
 
-import { Dispatch, MutableRefObject, SetStateAction } from 'react';
+import { MutableRefObject } from 'react';
 import { useTranslations } from 'next-intl';
 import { Alert, Loading } from '@/ui-lib';
 import { MINIMUM_CONTENT_LENGTH } from '@/utils/constants';
@@ -8,13 +8,13 @@ import { MINIMUM_CONTENT_LENGTH } from '@/utils/constants';
 function Content({
   isLoading,
   contentValue,
-  setContentValue,
+  contentChangeHandler,
   entryCreatedRef,
   isPromptSymbolsExceeded,
 }: {
   isLoading: boolean;
   contentValue: string;
-  setContentValue: Dispatch<SetStateAction<string>>;
+  contentChangeHandler: Function;
   entryCreatedRef: MutableRefObject<boolean>;
   isPromptSymbolsExceeded: boolean;
 }) {
@@ -37,11 +37,7 @@ function Content({
         data-testid="entry-content-field"
         className="textarea min-h-72 w-full resize-none p-10 text-xl outline-none md:max-lg:h-[80%] lg:min-h-svh"
         value={contentValue}
-        onChange={(e) => {
-          setContentValue((prevValue: string) =>
-            e.target.value !== '' ? e.target.value : prevValue,
-          );
-        }}
+        onChange={(e) => contentChangeHandler(e)}
         placeholder={t('contentFieldPlaceholder')}
         maxLength={2500}
         disabled={isPromptSymbolsExceeded || isLoading}

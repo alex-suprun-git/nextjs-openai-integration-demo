@@ -26,18 +26,18 @@ const Header = ({
 
   return (
     <>
-      <div className="mb-12 flex md:mb-0">
+      <div className="mb-12 flex sm:mb-6 lg:mb-0">
         {navigationLinks.map((link) => (
           <Link
-            className={isActiveLink(link.href) ? 'font-bold' : ''}
+            className={isActiveLink(link.href) ? 'mr-12 font-bold' : 'mr-12'}
             key={link.href}
             href={link.href}
           >
-            <span className="mr-12 block">{link.label}</span>
+            <span>{link.label}</span>
           </Link>
         ))}
       </div>
-      <div className="ml-auto flex flex-col items-center text-center md:mr-10 md:flex-row md:text-left">
+      <div className="ml-auto flex flex-col items-center text-center sm:flex-row sm:text-left lg:mr-10">
         <p className="mr-2 leading-6">
           {t.rich('labels.promptSymbolsRemaining', {
             userPromptUsed,
@@ -46,7 +46,7 @@ const Header = ({
           })}
         </p>
         <div
-          className="tooltip tooltip-bottom mt-4 md:tooltip-left md:mt-0"
+          className="tooltip tooltip-bottom mt-4 sm:tooltip-left sm:mt-0"
           data-tip={t('labels.promptSymbolsRenewalDate', { userPromptLimitRenewal })}
         >
           <span className="cursor-pointer">
