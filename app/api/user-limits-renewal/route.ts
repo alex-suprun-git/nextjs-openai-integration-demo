@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/utils/db';
 
-const CRON_SECRET = process.env.VERCEL_CRON_SECRET;
-
-export async function POST(request: NextRequest) {
+async function handlePostRequest(request: NextRequest) {
   const authHeader = request.headers.get('Authorization');
 
-  if (!authHeader || authHeader !== `Bearer ${CRON_SECRET}`) {
-    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+  if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+    return new Response('Unauthorized', {
+      status: 401,
+    });
   }
 
   try {
@@ -44,4 +44,8 @@ export async function POST(request: NextRequest) {
   } finally {
     await prisma.$disconnect();
   }
+}
+
+export async function GET(request: NextRequest) {
+  return handlePostRequest(request);
 }
