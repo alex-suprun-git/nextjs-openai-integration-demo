@@ -39,7 +39,7 @@ describe('AnalysisSidebar', () => {
 
   const mockEntryId = '12345';
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     const translate = createTranslator({
       locale: 'en',
       namespace: 'Editor',
@@ -49,7 +49,7 @@ describe('AnalysisSidebar', () => {
     (useTranslations as Mock).mockImplementation(() => translate);
   });
 
-  beforeEach(() => {
+  afterEach(() => {
     vi.clearAllMocks();
   });
 

@@ -58,5 +58,15 @@
       "buttons": {
           "deleteEntry": "Diese Notiz löschen"
       }
-  }
+  },
+    "E404Homepage": {
+        "description1": "Seite nicht gefunden",
+        "description2": "Entschuldigung, wir können diese Seite nicht finden.",
+        "linkText": "Zurück zur Startseite"
+    },
+    "E404JournalEntry": {
+        "description1": "Seite nicht gefunden",
+        "description2": "Entschuldigung, wir können diese Notiz nicht finden.",
+        "linkText": "Zurück zur Journalseite"
+    }
 }

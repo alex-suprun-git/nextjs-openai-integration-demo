@@ -1,7 +1,23 @@
 import { render, screen } from '@testing-library/react';
 import PageNotFound from '@/app/not-found';
+import { createTranslator, useTranslations } from 'next-intl';
+import { Mock } from 'vitest';
 
 describe('PageNotFound', () => {
+  beforeEach(async () => {
+    const translate = createTranslator({
+      locale: 'en',
+      namespace: 'E404Homepage',
+      messages: (await import('@/messages/en.json')).default,
+    });
+
+    (useTranslations as Mock).mockImplementation(() => translate);
+  });
+
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+
   it('renders the PageNotFound component correctly', () => {
     render(<PageNotFound />);
 

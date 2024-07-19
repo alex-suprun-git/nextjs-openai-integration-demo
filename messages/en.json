@@ -58,5 +58,15 @@
         "buttons": {
             "deleteEntry": "Delete this note"
         }
+    },
+    "E404Homepage": {
+        "description1": "Page Not Found",
+        "description2": "Sorry, we can`t find that page.",
+        "linkText": "Back to Homepage"
+    },
+    "E404JournalEntry": {
+        "description1": "Page Not Found",
+        "description2": "Sorry, we can`t find that note.",
+        "linkText": "Back to Journal page"
     }
   }

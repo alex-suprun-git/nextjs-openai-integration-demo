@@ -1,8 +1,23 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, Mock } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import PageNotFound from '@/app/(dashboard)/journal/[id]/not-found';
+import { createTranslator, useTranslations } from 'next-intl';
 
 describe('PageNotFound', () => {
+  beforeEach(async () => {
+    const translate = createTranslator({
+      locale: 'en',
+      namespace: 'E404JournalEntry',
+      messages: (await import('@/messages/en.json')).default,
+    });
+
+    (useTranslations as Mock).mockImplementation(() => translate);
+  });
+
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+
   it('should render correctly', () => {
     // Act
     render(<PageNotFound />);

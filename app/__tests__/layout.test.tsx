@@ -32,11 +32,11 @@ describe('RootLayout', async () => {
 
     render(
       // Use a wrapper to handle the async component
-      <div>
+      <>
         {await RootLayout({
           children: mockChildren,
         })}
-      </div>,
+      </>,
     );
 
     // Check if the children are rendered within the ClerkProvider
