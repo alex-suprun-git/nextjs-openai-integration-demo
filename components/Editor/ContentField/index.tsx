@@ -7,12 +7,14 @@ import { MINIMUM_CONTENT_LENGTH } from '@/utils/constants';
 
 function Content({
   isLoading,
+  isContentEntryUpdated,
   contentValue,
   contentChangeHandler,
   entryCreatedRef,
   isPromptSymbolsExceeded,
 }: {
   isLoading: boolean;
+  isContentEntryUpdated: boolean;
   contentValue: string;
   contentChangeHandler: Function;
   entryCreatedRef: MutableRefObject<boolean>;
@@ -32,6 +34,7 @@ function Content({
         </Alert>
       )}
       {isContentEntryCreated && <Alert type="success">{t('alerts.entryCreated')}</Alert>}
+      {isContentEntryUpdated && <Alert type="success">{t('alerts.entryUpdated')}</Alert>}
       {isLoading && <Loading customClasses="absolute inset-x-2/4 inset-y-2/4" />}
       <textarea
         data-testid="entry-content-field"

@@ -1,72 +1,73 @@
 {
   "HomePage": {
-      "buttons": {
-          "authorized": "Zum Journal gehen",
-          "unauthorized": "Loslegen"
-      }
+    "buttons": {
+      "authorized": "Zum Journal gehen",
+      "unauthorized": "Loslegen"
+    }
   },
   "StatisticsPage": {
-      "headline": "Statistiken",
-      "labels": {
-          "averageSentiment": "Durchschnittliche Stimmung: {averageSentiment}",
-          "noEntries": "Es gibt noch keine Daten anzuzeigen."
-      }
+    "headline": "Statistiken",
+    "labels": {
+      "averageSentiment": "Durchschnittliche Stimmung: {averageSentiment}",
+      "noEntries": "Es gibt noch keine Daten anzuzeigen."
+    }
   },
   "Header": {
-      "labels": {
-          "promptSymbolsRemaining": "Sie haben <strong>{userPromptUsed} / {userPromptLimit}</strong> verbleibende Symbole für Eingaben",
-          "promptSymbolsRenewalDate": "Nächste Begrenzungserneuerung am {userPromptLimitRenewal}"
-      },
-      "navigation": {
-          "journal": "Journal",
-          "statistics": "Statistiken"
-      }
+    "labels": {
+      "promptSymbolsRemaining": "Sie haben <strong>{userPromptUsed} / {userPromptLimit}</strong> verbleibende Symbole für Eingaben",
+      "promptSymbolsRenewalDate": "Nächste Begrenzungserneuerung am {userPromptLimitRenewal}"
+    },
+    "navigation": {
+      "journal": "Journal",
+      "statistics": "Statistiken"
+    }
   },
   "JournalList": {
-      "headline": "Journal",
-      "buttons": {
-          "newEntry": "Neuen Eintrag schreiben"
-      },
-      "card": {
-          "openContextMenu": "Kontextmenü öffnen",
-          "deleteEntry": "Diesen Eintrag löschen"
-      }
+    "headline": "Journal",
+    "buttons": {
+      "newEntry": "Neuen Eintrag schreiben"
+    },
+    "card": {
+      "openContextMenu": "Kontextmenü öffnen",
+      "deleteEntry": "Diesen Eintrag löschen"
+    }
   },
   "analysisRequest": {
-      "headline": "Fordern Sie eine KI-Analyse Ihrer Notizen an (15 bis 100 Zeichen)",
-      "labels": {
-          "inputPlaceholder": "z.B. Wie gut war meine Woche im Durchschnitt?",
-          "responseError": "Es ist ein Fehler aufgetreten"
-      }
+    "headline": "Fordern Sie eine KI-Analyse Ihrer Notizen an (15 bis 100 Zeichen)",
+    "labels": {
+      "inputPlaceholder": "z.B. Wie gut war meine Woche im Durchschnitt?",
+      "responseError": "Es ist ein Fehler aufgetreten"
+    }
   },
   "Editor": {
-      "alerts": {
-          "symbolsLimitExceeded": "Sie haben das Limit von 10.000 Zeichen erreicht und können keine neuen Anfragen stellen.",
-          "contentTooShort": "Bitte geben Sie mindestens 30 Zeichen ein. Änderungen werden für Einträge mit weniger als 30 Zeichen nicht gespeichert.",
-          "entryCreated": "Eine neue Notiz wurde erstellt. Umleiten...."
-      },
-      "analysis": {
-          "headline": "Analyse",
-          "labels": {
-              "summary": "Zusammenfassung",
-              "subject": "Thema",
-              "mood": "Stimmung",
-              "negative": "Negativ"
-          }
-      },
-      "contentFieldPlaceholder": "Bitte schreiben Sie hier Ihre Gedanken...",
-      "buttons": {
-          "deleteEntry": "Diese Notiz löschen"
-      }
-  },
-    "E404Homepage": {
-        "description1": "Seite nicht gefunden",
-        "description2": "Entschuldigung, wir können diese Seite nicht finden.",
-        "linkText": "Zurück zur Startseite"
+    "alerts": {
+      "symbolsLimitExceeded": "Sie haben das Limit von 10.000 Zeichen erreicht und können keine neuen Anfragen stellen.",
+      "contentTooShort": "Bitte geben Sie mindestens 30 Zeichen ein. Änderungen werden für Einträge mit weniger als 30 Zeichen nicht gespeichert.",
+      "entryCreated": "Eine neue Notiz wurde erstellt. Umleiten....",
+      "entryUpdated": "Die Notiz wurde erfolgreich aktualisiert."
     },
-    "E404JournalEntry": {
-        "description1": "Seite nicht gefunden",
-        "description2": "Entschuldigung, wir können diese Notiz nicht finden.",
-        "linkText": "Zurück zur Journalseite"
+    "analysis": {
+      "headline": "Analyse",
+      "labels": {
+        "summary": "Zusammenfassung",
+        "subject": "Thema",
+        "mood": "Stimmung",
+        "negative": "Negativ"
+      }
+    },
+    "contentFieldPlaceholder": "Bitte schreiben Sie hier Ihre Gedanken...",
+    "buttons": {
+      "deleteEntry": "Diese Notiz löschen"
     }
+  },
+  "E404Homepage": {
+    "description1": "Seite nicht gefunden",
+    "description2": "Entschuldigung, wir können diese Seite nicht finden.",
+    "linkText": "Zurück zur Startseite"
+  },
+  "E404JournalEntry": {
+    "description1": "Seite nicht gefunden",
+    "description2": "Entschuldigung, wir können diese Notiz nicht finden.",
+    "linkText": "Zurück zur Journalseite"
+  }
 }

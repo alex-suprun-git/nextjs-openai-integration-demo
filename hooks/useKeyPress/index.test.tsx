@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import { fireEvent } from '@testing-library/react';
-import useKeyPress from './useKeyPress';
+import useKeyPress from '.';
 
 describe('useKeyPress', () => {
   const mockCallback = vi.fn();

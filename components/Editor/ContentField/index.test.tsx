@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { createTranslator, useTranslations } from 'next-intl';
-import Content from '@/components/Editor/ContentField';
+import Content from '.';
 
 // Mock the Alert and Loading components
 vi.mock('@/ui-lib', () => ({
@@ -35,6 +35,7 @@ describe('Content', () => {
         contentChangeHandler={mockSetContentValue}
         entryCreatedRef={mockEntryCreatedRef}
         isPromptSymbolsExceeded={false}
+        isContentEntryUpdated={false}
       />,
     );
     expect(container).toMatchSnapshot();
@@ -48,6 +49,7 @@ describe('Content', () => {
         contentChangeHandler={mockSetContentValue}
         entryCreatedRef={mockEntryCreatedRef}
         isPromptSymbolsExceeded={true}
+        isContentEntryUpdated={false}
       />,
     );
 
@@ -64,6 +66,7 @@ describe('Content', () => {
         contentChangeHandler={mockSetContentValue}
         entryCreatedRef={mockEntryCreatedRef}
         isPromptSymbolsExceeded={false}
+        isContentEntryUpdated={false}
       />,
     );
 
@@ -82,6 +85,7 @@ describe('Content', () => {
         contentChangeHandler={mockSetContentValue}
         entryCreatedRef={mockEntryCreatedRef}
         isPromptSymbolsExceeded={false}
+        isContentEntryUpdated={false}
       />,
     );
 
@@ -98,6 +102,7 @@ describe('Content', () => {
         contentChangeHandler={mockSetContentValue}
         entryCreatedRef={mockEntryCreatedRef}
         isPromptSymbolsExceeded={false}
+        isContentEntryUpdated={false}
       />,
     );
 
@@ -112,6 +117,7 @@ describe('Content', () => {
         contentChangeHandler={mockSetContentValue}
         entryCreatedRef={mockEntryCreatedRef}
         isPromptSymbolsExceeded={true}
+        isContentEntryUpdated={false}
       />,
     );
 
@@ -130,6 +136,7 @@ describe('Content', () => {
         contentChangeHandler={mockSetContentValue}
         entryCreatedRef={mockEntryCreatedRef}
         isPromptSymbolsExceeded={false}
+        isContentEntryUpdated={false}
       />,
     );
 
@@ -148,6 +155,7 @@ describe('Content', () => {
         contentChangeHandler={mockSetContentValue}
         entryCreatedRef={mockEntryCreatedRef}
         isPromptSymbolsExceeded={true}
+        isContentEntryUpdated={false}
       />,
     );
 

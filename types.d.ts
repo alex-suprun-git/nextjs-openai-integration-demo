@@ -54,3 +54,9 @@ type AnalysisSubEntryResponse =
   | null;
 
 type AnalysisEntryResponse = BaseEntry & AnalysisData;
+
+type EditorEntry = {
+  content: string;
+  id?: string;
+  analysis: AnalysisData;
+};
