@@ -7,7 +7,12 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "types": ["@testing-library/jest-dom", "vite/client", "vitest/globals", "@contentful/rich-text-types"],
+    "types": [
+      "@testing-library/jest-dom",
+      "vite/client",
+      "vitest/globals",
+      "@contentful/rich-text-types"
+    ],
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -22,6 +27,18 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["./app/**/*", "./middlewares/**/*",  "./components/**/*", "./content/**/*", "./utils/**/*", "./hooks/**/*", "./contexts/**/*", "./ui-lib/**/*", ".next/types/**/*.ts", "config/**/*", "types.d.ts"],
+  "include": [
+    "./app/**/*",
+    "./middlewares/**/*",
+    "./components/**/*",
+    "./content/**/*",
+    "./utils/**/*",
+    "./hooks/**/*",
+    "./contexts/**/*",
+    "./ui-lib/**/*",
+    ".next/types/**/*.ts",
+    "config/**/*",
+    "types.d.ts"
+  ],
   "exclude": ["node_modules"]
 }

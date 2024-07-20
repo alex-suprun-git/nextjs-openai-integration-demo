@@ -9,7 +9,7 @@
     "lint": "next lint",
     "test": "vitest --u",
     "test:coverage": "vitest --coverage",
-    "format": "prettier --write \"app/**/*.{js,jsx,tsx,ts}\"",
+    "format": "prettier --write '**/*.{js,jsx,tsx,ts,json}' --ignore-path .prettierignore",
     "type-check": "tsc --noEmit",
     "db:push": "npx prisma db push",
     "db:format": "npx prisma format",
