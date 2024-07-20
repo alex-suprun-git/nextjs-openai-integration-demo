@@ -5,7 +5,6 @@ import { Document } from 'langchain/document';
 import { loadQARefineChain } from 'langchain/chains';
 import { MemoryVectorStore } from 'langchain/vectorstores/memory';
 import z from 'zod';
-import { detectLanguage } from './helpers';
 
 const parser = StructuredOutputParser.fromZodSchema(
   z.object({
@@ -28,27 +27,25 @@ const parser = StructuredOutputParser.fromZodSchema(
   }),
 );
 
-const getPrompt = async (content: string, language: string) => {
+const getPrompt = async (content: string) => {
   const formatInstructions = parser.getFormatInstructions();
 
   const prompt = new PromptTemplate({
     template:
-      'Analyze the following journal entry and respond in {language}. Follow the instructions and format your response to match the format instructions, no matter what! \n{formatInstructions}\n{entry}',
-    inputVariables: ['entry', 'language'],
+      'Analyze the following journal entry and respond in the same language as the input. Follow the instructions and format your response to match the format instructions, no matter what! \n{formatInstructions}\n{entry}',
+    inputVariables: ['entry'],
     partialVariables: { formatInstructions },
   });
 
   const input = await prompt.format({
     entry: content,
-    language,
   });
 
   return input;
 };
 
 export const analyzeEntry = async (content: string) => {
-  const language = detectLanguage(content.slice(0, 15));
-  const input = await getPrompt(content, language);
+  const input = await getPrompt(content);
   const model = new ChatOpenAI({
     temperature: 0,
     model: 'gpt-4o',
@@ -73,8 +70,6 @@ export const analysisFeedback = async (question: string, entries: BaseEntry[]) =
     return undefined;
   }
 
-  const responseLang = detectLanguage(question);
-
   const docs = entries.map(
     (entry) =>
       new Document({
@@ -90,13 +85,12 @@ export const analysisFeedback = async (question: string, entries: BaseEntry[]) =
 
   const promptTemplate = new PromptTemplate({
     template:
-      'Answer the following question in {language} based on the given documents: \n\n{question}',
-    inputVariables: ['question', 'language'],
+      "Answer the following question focusing exclusively on the person's mood and feelings based on the given documents. If the question touches on any other topic or if the context is unclear, please respond with a polite request to rephrase the question. Ensure your answer is in the same language as the input.\n\nQuestion: {question}",
+    inputVariables: ['question'],
   });
 
   const input = await promptTemplate.format({
     question: question,
-    language: responseLang,
   });
 
   const res = await chain.invoke({

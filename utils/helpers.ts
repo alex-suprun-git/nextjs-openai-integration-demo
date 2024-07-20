@@ -1,5 +1,3 @@
-import { franc } from 'franc-min';
-
 export const getExcerpt = (content: string): string =>
   content.length >= 100 ? `${content.slice(0, 100)}...` : content;
 
@@ -60,18 +58,4 @@ export const getMoodImage = (analysis: AnalysisData): string => {
   }[condition];
 
   return analysisImage;
-};
-
-export const detectLanguage = (text: string): string => {
-  const langCode = franc(text);
-  switch (langCode) {
-    case 'eng':
-      return 'English';
-    case 'deu':
-      return 'Deutsch';
-    case 'rus':
-      return 'Russian';
-    default:
-      return 'English';
-  }
 };

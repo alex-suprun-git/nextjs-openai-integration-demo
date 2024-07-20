@@ -1,10 +1,4 @@
-import {
-  getExcerpt,
-  formatDate,
-  convertHexToRGBA,
-  getMoodImage,
-  detectLanguage,
-} from '@/utils/helpers';
+import { getExcerpt, formatDate, convertHexToRGBA, getMoodImage } from '@/utils/helpers';
 
 vi.mock('franc', () => ({
   default: (text: string) => {
@@ -121,31 +115,5 @@ describe('getMoodImage', () => {
     analysis = { ...analysis, mood: 'something_else', negative: false };
     const result = getMoodImage(analysis);
     expect(result).toBe("url('/analysis/positive.jpg')");
-  });
-});
-
-describe('detectLanguage', () => {
-  it('should return English for text containing "good morning"', () => {
-    const text = 'Good morning';
-    const language = detectLanguage(text);
-    expect(language).toBe('English');
-  });
-
-  it('should return Deutsch for text containing "gutten morgen"', () => {
-    const text = 'nach mir sehen, wie es mir geht';
-    const language = detectLanguage(text);
-    expect(language).toBe('Deutsch');
-  });
-
-  it('should return Russian for text containing "доброе утро"', () => {
-    const text = 'Как мое самочувствие?';
-    const language = detectLanguage(text);
-    expect(language).toBe('Russian');
-  });
-
-  it('should return English for undetermined language', () => {
-    const text = '田ぜきて送意7祝イ';
-    const language = detectLanguage(text);
-    expect(language).toBe('English');
   });
 });

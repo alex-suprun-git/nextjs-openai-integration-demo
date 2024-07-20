@@ -4,6 +4,11 @@ import { createTranslator, useTranslations } from 'next-intl';
 import Question from '.';
 import { askQuestion, updateUser } from '@/utils/api';
 import { usePrompt } from '@/contexts/PromptContext';
+import { useRouter } from 'next/navigation';
+
+vi.mock('next/navigation', () => ({
+  useRouter: vi.fn(),
+}));
 
 vi.mock('@/utils/api', () => ({
   askQuestion: vi.fn(),
@@ -15,6 +20,10 @@ vi.mock('@/contexts/PromptContext', () => ({
 }));
 
 describe('Question', () => {
+  const getPlaceholderRegex = /e.g. how good was my week in average?/i;
+
+  const mockRefresh = vi.fn();
+
   const mockPromptContext = {
     promptSymbolsUsed: 50,
     promptSymbolsLimit: 100,
@@ -33,6 +42,10 @@ describe('Question', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     (usePrompt as Mock).mockReturnValue(mockPromptContext);
+
+    (useRouter as Mock).mockReturnValue({
+      refresh: mockRefresh,
+    });
   });
 
   it('renders correctly and matches snapshot', () => {
@@ -44,7 +57,7 @@ describe('Question', () => {
     (askQuestion as Mock).mockResolvedValueOnce({ data: 'This is the answer' });
 
     render(<Question />);
-    fireEvent.change(screen.getByPlaceholderText(/how good was my week in average/i), {
+    fireEvent.change(screen.getByPlaceholderText(getPlaceholderRegex), {
       target: { value: 'This is a test question' },
     });
 
@@ -53,15 +66,11 @@ describe('Question', () => {
     fireEvent.submit(button);
 
     await waitFor(() => {
-      expect(screen.getByPlaceholderText(/how good was my week in average/i)).toBeDisabled();
+      expect(screen.getByPlaceholderText(getPlaceholderRegex)).toBeDisabled();
     });
 
     await waitFor(() => {
       expect(button).toBeDisabled();
-    });
-
-    await waitFor(() => {
-      expect(screen.queryByRole('button')).not.toBeInTheDocument();
     });
 
     await waitFor(() => {
@@ -74,7 +83,7 @@ describe('Question', () => {
 
     render(<Question />);
 
-    fireEvent.change(screen.getByPlaceholderText(/how good was my week in average/i), {
+    fireEvent.change(screen.getByPlaceholderText(getPlaceholderRegex), {
       target: { value: 'This is a test question' },
     });
 
@@ -101,5 +110,21 @@ describe('Question', () => {
 
     const { container } = render(<Question />);
     expect(container).toBeEmptyDOMElement();
+  });
+
+  it('shows an error message on failed question submission', async () => {
+    (askQuestion as Mock).mockRejectedValueOnce(new Error('Failed to fetch'));
+
+    render(<Question />);
+
+    fireEvent.change(screen.getByPlaceholderText(getPlaceholderRegex), {
+      target: { value: 'This is a test question' },
+    });
+
+    fireEvent.submit(screen.getByRole('button'));
+
+    await waitFor(() => {
+      expect(screen.getByText('Error occurred')).toBeInTheDocument();
+    });
   });
 });
