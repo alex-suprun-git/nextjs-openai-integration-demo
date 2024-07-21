@@ -80,14 +80,16 @@ const EntryCard = ({ id, createdAt, updatedAt, content, color }: EntryCardProps)
           ></div>
           <h2 className="card-title overflow-hidden">{getExcerpt(content)}</h2>
           <div className="flex justify-between">
-            <small className="flex items-center text-[12px]">
-              <IoDocumentTextOutline /> <span className="pl-1">{creationDate}</span>
-            </small>
-            {updatedDate !== creationDate && (
-              <small className="flex items-center text-[12px]">
-                <FiEdit /> <span className="pl-1">{updatedDate}</span>
+            <div className="flex flex-col 2xl:flex-row">
+              <small className="flex items-center text-[12px] 2xl:mr-3">
+                <IoDocumentTextOutline /> <span className="pl-1">{creationDate}</span>
               </small>
-            )}
+              {updatedDate !== creationDate && (
+                <small className="flex items-center text-[12px]">
+                  <FiEdit /> <span className="pl-1">{updatedDate}</span>
+                </small>
+              )}
+            </div>
 
             <button
               aria-label={t('card.openContextMenu')}

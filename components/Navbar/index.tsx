@@ -2,7 +2,7 @@ import { FiMenu } from 'react-icons/fi';
 import { UserButton } from '@clerk/nextjs';
 import LanguageSwitcher from '../LanguageSwitcher';
 import Navigation from '../Navigation';
-import { Header, PromptCounter } from '@/ui-lib';
+import { Drawer, Header, PromptCounter } from '@/ui-lib';
 
 function Navbar() {
   return (
@@ -12,7 +12,10 @@ function Navbar() {
           <Navigation />
         </div>
         <div className="lg:hidden">
-          <FiMenu size={36} />
+          <Drawer icon={<FiMenu size={38} />}>
+            <Navigation />
+            <PromptCounter />
+          </Drawer>
         </div>
       </div>
       <div className="navbar-center">

@@ -14,7 +14,7 @@ const JournalList = ({ entries }: { entries: Required<AnalysisSubEntry[]> | [] }
     <>
       <Heading>{t('headline')}</Heading>
       {!!entries?.length && <Question />}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-6">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
         <NewEntryCard />
         {entries?.map((entry) => {
           const analysisEntry = entry as Required<AnalysisSubEntry>;

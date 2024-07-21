@@ -16,10 +16,14 @@ const Navigation = () => {
   ];
 
   return (
-    <div className="mb-5 md:mb-0">
+    <div className="mb-12 mt-5 flex flex-col lg:mb-0 lg:mt-0 lg:flex-row">
       {navigationLinks.map((link) => (
         <Link
-          className={isActiveLink(link.href) ? 'mr-12 font-bold' : 'mr-12'}
+          className={
+            isActiveLink(link.href)
+              ? 'mb-5 mr-12 text-2xl font-bold lg:mb-0 lg:text-base'
+              : 'mb-5 mr-12 text-lg lg:mb-0 lg:text-base'
+          }
           key={link.href}
           href={link.href}
         >

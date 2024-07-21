@@ -42,6 +42,6 @@ describe('DashboardLayout', () => {
     // Assert
     expect(await screen.findByTestId('header')).toBeInTheDocument();
     expect(await screen.findByTestId('user-button')).toBeInTheDocument();
-    expect(screen.getByText(/symbols remaining/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/symbols remaining/i)).toHaveLength(2);
   });
 });
