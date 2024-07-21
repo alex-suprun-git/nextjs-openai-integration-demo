@@ -14,8 +14,8 @@ const Question = () => {
   const [answer, setAnswer] = useState<string | null>(null);
   const [isLoading, setLoading] = useState(false);
 
-  const { promptSymbolsUsed, promptSymbolsLimit } = usePrompt();
-  const isPromptSymbolsExceeded = promptSymbolsUsed >= promptSymbolsLimit;
+  const { symbolsUsed, symbolsLimit } = usePrompt();
+  const isPromptSymbolsExceeded = +symbolsUsed >= +symbolsLimit;
 
   const t = useTranslations('analysisRequest');
 
@@ -30,7 +30,7 @@ const Question = () => {
     try {
       const { data } = await askQuestion(question);
       setAnswer(data);
-      await updateUser(promptSymbolsUsed + question.length);
+      await updateUser(+symbolsUsed + question.length);
       router.refresh();
       setQuestion('');
     } catch (error) {

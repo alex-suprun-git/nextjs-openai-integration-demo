@@ -59,3 +59,17 @@ export const getMoodImage = (analysis: AnalysisData): string => {
 
   return analysisImage;
 };
+
+export const formatPromptData = (data: any) => {
+  const formattedSymbolsLeft = new Intl.NumberFormat().format(
+    data.promptSymbolsLimit - data.promptSymbolsUsed,
+  );
+  const formattedSymbolsLimit = new Intl.NumberFormat().format(data.promptSymbolsLimit);
+  const userPromptLimitRenewal = formatDate(data.promptSymbolsLimitRenewal);
+
+  return {
+    symbolsUsed: formattedSymbolsLeft,
+    symbolsLimit: formattedSymbolsLimit,
+    limitRenewalDate: userPromptLimitRenewal,
+  };
+};

@@ -60,3 +60,5 @@ type EditorEntry = {
   id?: string;
   analysis: AnalysisData;
 };
+
+type UserLocale = 'en' | 'de';

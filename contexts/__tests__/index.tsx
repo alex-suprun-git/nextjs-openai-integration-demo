@@ -1,11 +1,11 @@
 import { usePrompt } from '../PromptContext';
 
 const TestComponent: React.FC = () => {
-  const { promptSymbolsLimit, promptSymbolsUsed } = usePrompt();
+  const { symbolsLimit, symbolsUsed } = usePrompt();
   return (
     <div>
-      <span data-testid="limit">{promptSymbolsLimit}</span>
-      <span data-testid="used">{promptSymbolsUsed}</span>
+      <span data-testid="limit">{symbolsLimit}</span>
+      <span data-testid="used">{symbolsUsed}</span>
     </div>
   );
 };

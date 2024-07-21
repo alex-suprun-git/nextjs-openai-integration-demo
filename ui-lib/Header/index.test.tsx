@@ -2,7 +2,7 @@ import { describe, it, expect, vi, Mock } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { usePathname } from 'next/navigation';
 import { createTranslator, useTranslations } from 'next-intl';
-import Header from './';
+import Header from '.';
 
 vi.mock('next/navigation', () => ({
   usePathname: vi.fn(),
@@ -26,11 +26,10 @@ describe('Header', () => {
   it('renders navigation links correctly', () => {
     (usePathname as Mock).mockReturnValue('/journal');
     const { container } = render(
-      <Header
-        userPromptLimit="1000"
-        userPromptUsed="500"
-        userPromptLimitRenewal={'2022-01-01T00:00:00.000Z'}
-      />,
+      <Header>
+        <a href="/journal">Journal</a>
+        <a href="/statistics">Statistics</a>
+      </Header>,
     );
     expect(container).toMatchSnapshot();
 
@@ -41,28 +40,15 @@ describe('Header', () => {
   it('applies active class to the current path link', () => {
     (usePathname as Mock).mockReturnValue('/journal');
     render(
-      <Header
-        userPromptLimit="1000"
-        userPromptUsed="500"
-        userPromptLimitRenewal={'2022-01-01T00:00:00.000Z'}
-      />,
+      <Header>
+        <a href="/journal" className="font-bold">
+          Journal
+        </a>
+        <a href="/statistics">Statistics</a>
+      </Header>,
     );
 
     expect(screen.getByRole('link', { name: 'Journal' })).toHaveClass('font-bold');
     expect(screen.getByRole('link', { name: 'Statistics' })).not.toHaveClass('font-bold');
-  });
-
-  it('displays the correct prompt usage', () => {
-    (usePathname as Mock).mockReturnValue('/journal');
-    render(
-      <Header
-        userPromptLimit="1000"
-        userPromptUsed="500"
-        userPromptLimitRenewal={'2022-01-01T00:00:00.000Z'}
-      />,
-    );
-
-    expect(screen.getByText('500 / 1000')).toBeInTheDocument();
-    expect(screen.getByText('prompt symbols remaining', { exact: false })).toBeInTheDocument();
   });
 });

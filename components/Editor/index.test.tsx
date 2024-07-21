@@ -63,8 +63,8 @@ describe('Editor', () => {
       refresh: mockRouterRefresh,
     });
     (usePrompt as Mock).mockReturnValue({
-      promptSymbolsUsed: 50,
-      promptSymbolsLimit: 10000,
+      symbolsUsed: '50',
+      symbolsLimit: '10000',
     });
     (useAutosave as Mock).mockImplementation(({ data, onSave }) => {
       setTimeout(() => {

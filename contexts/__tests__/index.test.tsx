@@ -6,8 +6,9 @@ import TestComponent from '.';
 describe('PromptContext', () => {
   it('provides the correct context values', () => {
     const mockValue = {
-      promptSymbolsLimit: 1000,
-      promptSymbolsUsed: 500,
+      symbolsLimit: '1000',
+      symbolsUsed: '500',
+      limitRenewalDate: '2023-12-31',
     };
 
     render(

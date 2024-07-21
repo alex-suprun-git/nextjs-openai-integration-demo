@@ -20,6 +20,7 @@ export default defineConfig({
         'postcss.config.mjs',
         'tailwind.config.ts',
         'utils/db.ts',
+        'app/loading.tsx',
         'commitlint.config.cjs',
         'app/api/user-limits-renewal/route.ts',
         'i18n.ts',

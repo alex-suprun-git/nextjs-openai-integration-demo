@@ -19,9 +19,9 @@ function Hero({
   let buttonLabel = isAuthorized ? t('buttons.authorized') : t('buttons.unauthorized');
 
   return (
-    <div className="bg-slate-550 flex min-h-svh items-center justify-center p-10 text-white">
-      <div className="mx-auto max-w-3xl">
-        <h1 className="mb-6 text-5xl font-black leading-relaxed sm:text-6xl sm:leading-[1.25]">
+    <div className="bg-slate-550 flex items-center justify-center px-10 text-white">
+      <div className="mx-auto max-w-screen-md">
+        <h1 className="mb-6 break-normal text-5xl font-black leading-relaxed sm:text-6xl sm:leading-[1.25]">
           {headline}
         </h1>
         <div className="mb-8 text-xl leading-relaxed text-white/60 sm:text-2xl sm:leading-[1.65]">
@@ -29,7 +29,7 @@ function Hero({
         </div>
         <div>
           <Link href={href}>
-            <button className="btn btn-lg bg-blue-600 text-white hover:bg-blue-800">
+            <button className="btn btn-lg mb-5 bg-blue-600 text-white hover:bg-blue-800">
               {buttonLabel}
             </button>
           </Link>

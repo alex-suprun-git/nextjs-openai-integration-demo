@@ -25,8 +25,8 @@ describe('Question', () => {
   const mockRefresh = vi.fn();
 
   const mockPromptContext = {
-    promptSymbolsUsed: 50,
-    promptSymbolsLimit: 100,
+    symbolsUsed: '50',
+    symbolsLimit: '100',
   };
 
   beforeAll(async () => {
@@ -94,7 +94,7 @@ describe('Question', () => {
     });
 
     await waitFor(() => {
-      expect(updateUser).toHaveBeenCalledWith(mockPromptContext.promptSymbolsUsed + 23);
+      expect(updateUser).toHaveBeenCalledWith(+mockPromptContext.symbolsUsed + 23);
     });
 
     await waitFor(() => {
@@ -104,8 +104,8 @@ describe('Question', () => {
 
   it('does not render when prompt symbols are exceeded', () => {
     (usePrompt as Mock).mockReturnValue({
-      promptSymbolsUsed: 100,
-      promptSymbolsLimit: 100,
+      symbolsUsed: '100',
+      symbolsLimit: '100',
     });
 
     const { container } = render(<Question />);

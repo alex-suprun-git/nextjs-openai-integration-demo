@@ -1,4 +1,5 @@
 import { getRequestConfig } from 'next-intl/server';
+import { getUserLocale } from './utils/locales';
 import { headers } from 'next/headers';
 
 function getLocaleFromHeaders() {
@@ -14,7 +15,8 @@ function getLocaleFromHeaders() {
 }
 
 export default getRequestConfig(async () => {
-  const locale = getLocaleFromHeaders();
+  const defaultLocale = getLocaleFromHeaders();
+  const locale = (await getUserLocale()) || defaultLocale;
 
   return {
     locale,

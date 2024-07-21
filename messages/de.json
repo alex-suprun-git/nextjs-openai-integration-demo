@@ -14,8 +14,8 @@
   },
   "Header": {
     "labels": {
-      "promptSymbolsRemaining": "Sie haben <strong>{userPromptUsed} / {userPromptLimit}</strong> verbleibende Symbole für Eingaben",
-      "promptSymbolsRenewalDate": "Nächste Begrenzungserneuerung am {userPromptLimitRenewal}"
+      "promptSymbolsRemaining": "Sie haben <strong>{symbolsUsed} / {symbolsLimit}</strong> verbleibende Symbole für Eingaben",
+      "promptSymbolsRenewalDate": "Nächste Begrenzungserneuerung am {limitRenewalDate}"
     },
     "navigation": {
       "journal": "Journal",

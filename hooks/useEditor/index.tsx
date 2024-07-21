@@ -10,8 +10,8 @@ export const useEditor = (entry: EditorEntry) => {
   const pathname = usePathname();
   const router = useRouter();
 
-  const { promptSymbolsUsed, promptSymbolsLimit } = usePrompt();
-  const isPromptSymbolsExceeded = promptSymbolsUsed >= promptSymbolsLimit;
+  const { symbolsUsed, symbolsLimit } = usePrompt();
+  const isPromptSymbolsExceeded = +symbolsUsed >= +symbolsLimit;
 
   const [autoSaveTimerValue, setAutoSaveTimerValue] = useState(0);
   const isShowAutoSaveTimer = autoSaveTimerValue > 0 && autoSaveTimerValue < 100;
@@ -33,7 +33,7 @@ export const useEditor = (entry: EditorEntry) => {
           if (!entryCreatedRef.current) {
             entryCreatedRef.current = true;
             const { id } = await createNewEntry(_contentValue);
-            await updateUser(promptSymbolsUsed + _contentValue.length);
+            await updateUser(+symbolsUsed + _contentValue.length);
             router.push(`/journal/${id}`);
             router.refresh();
           }
@@ -41,14 +41,14 @@ export const useEditor = (entry: EditorEntry) => {
           const { analysis: updatedAnalysis } = await updateEntry(entry.id, _contentValue);
           setAnalysis(updatedAnalysis);
           setIsContentEntryUpdated(true);
-          await updateUser(promptSymbolsUsed + _contentValue.length);
+          await updateUser(+symbolsUsed + _contentValue.length);
           router.refresh();
           setTimeout(() => setIsContentEntryUpdated(false), 1500);
         }
       }
       setIsLoading(false);
     },
-    [entry.content, entry.id, pathname, promptSymbolsUsed, router],
+    [entry.content, entry.id, pathname, symbolsUsed, router],
   );
 
   useAutosave({

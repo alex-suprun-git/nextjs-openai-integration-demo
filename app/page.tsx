@@ -1,7 +1,8 @@
 import { getContentForHero } from '@/content/queries';
 import Hero from '@/components/Hero';
-import { auth } from '@clerk/nextjs/server';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { getLocale } from 'next-intl/server';
+import { auth } from '@clerk/nextjs/server';
 
 const Home = async () => {
   const locale = await getLocale();
@@ -16,6 +17,14 @@ const Home = async () => {
   const headline = componentData.homepageHeroBannerCollection.items[0].homepageHeadline;
   const description = componentData.homepageHeroBannerCollection.items[0].homepageDescription.json;
 
-  return <Hero headline={headline} description={description} isAuthorized={!!userId} />;
+  return (
+    <>
+      <div className="mb-12 flex w-full px-10 pt-5">
+        <LanguageSwitcher />
+      </div>
+
+      <Hero headline={headline} description={description} isAuthorized={!!userId} />
+    </>
+  );
 };
 export default Home;

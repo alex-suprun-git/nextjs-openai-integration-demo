@@ -1,3 +1,4 @@
+import { createTranslator, useTranslations } from 'next-intl';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, Mock } from 'vitest';
 import { useRouter } from 'next/navigation';
@@ -10,10 +11,22 @@ vi.mock('next/navigation', () => ({
 describe('NewEntryCard', () => {
   const mockPush = vi.fn();
 
-  beforeEach(() => {
+  beforeEach(async () => {
     (useRouter as Mock).mockReturnValue({
       push: mockPush,
     });
+
+    const translate = createTranslator({
+      locale: 'en',
+      namespace: 'JournalList',
+      messages: (await import('@/messages/en.json')).default,
+    });
+
+    (useTranslations as Mock).mockImplementation(() => translate);
+  });
+
+  afterEach(() => {
+    vi.clearAllMocks();
   });
 
   it('renders correctly and matches snapshot', () => {

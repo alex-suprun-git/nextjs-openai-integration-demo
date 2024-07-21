@@ -3,18 +3,21 @@
 import React, { createContext, useContext, ReactNode } from 'react';
 
 interface PromptContextProps {
-  promptSymbolsLimit: number;
-  promptSymbolsUsed: number;
+  symbolsLimit: string;
+  symbolsUsed: string;
+  limitRenewalDate: string;
 }
 
 const PromptContext = createContext<PromptContextProps | undefined>(undefined);
 
 export const usePrompt = () => {
-  const context = useContext(PromptContext);
-  if (!context) {
+  const contextData = useContext(PromptContext);
+
+  if (!contextData) {
     throw new Error('usePrompt must be used within a PromptProvider');
   }
-  return context;
+
+  return contextData;
 };
 
 interface PromptProviderProps {
