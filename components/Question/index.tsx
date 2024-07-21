@@ -1,15 +1,13 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { HiMiniChevronDoubleRight } from 'react-icons/hi2';
-import { askQuestion, updateUser } from '@/utils/api';
+import { askQuestion, updateUserPromptUsage } from '@/utils/api';
 import { usePrompt } from '@/contexts/PromptContext';
 import { Loading } from '@/ui-lib';
 
 const Question = () => {
-  const router = useRouter();
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState<string | null>(null);
   const [isLoading, setLoading] = useState(false);
@@ -30,8 +28,7 @@ const Question = () => {
     try {
       const { data } = await askQuestion(question);
       setAnswer(data);
-      await updateUser(+symbolsUsed + question.length);
-      router.refresh();
+      await updateUserPromptUsage(question.length);
       setQuestion('');
     } catch (error) {
       setAnswer(t('labels.responseError'));

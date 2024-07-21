@@ -1,12 +1,12 @@
 export const createUrl = (path: string) => window.location.origin + path;
 
-export const updateUser = async (promptSymbolsUsed: number) => {
+export const updateUserPromptUsage = async (promptContentLength: number) => {
   const url = createUrl('/api/user');
 
   const rest = await fetch(
     new Request(url, {
       method: 'PATCH',
-      body: JSON.stringify({ promptSymbolsUsed }),
+      body: JSON.stringify({ promptContentLength }),
     }),
   );
 

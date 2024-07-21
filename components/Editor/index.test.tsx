@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { createTranslator, useTranslations } from 'next-intl';
 import Editor from '.';
 import { usePrompt } from '@/contexts/PromptContext';
-import { createNewEntry, updateUser } from '@/utils/api';
+import { createNewEntry, updateUserPromptUsage } from '@/utils/api';
 
 vi.mock('next/navigation', () => ({
   usePathname: vi.fn(),
@@ -19,7 +19,7 @@ vi.mock('@/contexts/PromptContext', () => ({
 vi.mock('@/utils/api', () => ({
   updateEntry: vi.fn(),
   createNewEntry: vi.fn(),
-  updateUser: vi.fn(),
+  updateUserPromptUsage: vi.fn(),
 }));
 
 vi.mock('react-autosave', () => ({
@@ -79,7 +79,7 @@ describe('Editor', () => {
   });
 
   it('calls saveContent with correct parameters on autosave', async () => {
-    (updateUser as Mock).mockResolvedValue({});
+    (updateUserPromptUsage as Mock).mockResolvedValue({});
     (createNewEntry as Mock).mockResolvedValue({ id: 'new-id' });
 
     render(<Editor entry={mockEntry} />);
@@ -93,7 +93,7 @@ describe('Editor', () => {
     });
 
     await waitFor(() => {
-      expect(updateUser).toHaveBeenCalledWith(mockContent.length + 50);
+      expect(updateUserPromptUsage).toHaveBeenCalledWith(96); // content length
     });
 
     await waitFor(() => {

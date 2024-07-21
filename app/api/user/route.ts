@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 import { isDynamicServerError } from 'next/dist/client/components/hooks-server-context';
 
 export const PATCH = async (request: Request) => {
-  const { promptSymbolsUsed } = await request.json();
+  const { promptContentLength } = await request.json();
   const user = await getUserByClerkId();
 
   if (!user) {
@@ -12,9 +12,21 @@ export const PATCH = async (request: Request) => {
   }
 
   try {
+    // Fetch the current value of promptSymbolsUsed
+    const currentUser = await prisma.user.findUnique({
+      where: { id: user.id },
+      select: { promptSymbolsUsed: true },
+    });
+
+    if (!currentUser) {
+      return NextResponse.json({ message: 'User not found in database' }, { status: 404 });
+    }
+
+    const updatedPromptSymbolsUsed = currentUser.promptSymbolsUsed + promptContentLength;
+
     await prisma.user.update({
       where: { id: user.id },
-      data: { promptSymbolsUsed },
+      data: { promptSymbolsUsed: updatedPromptSymbolsUsed },
     });
 
     return NextResponse.json({ message: 'User updated successfully' });

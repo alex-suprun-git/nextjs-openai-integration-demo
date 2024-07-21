@@ -2,7 +2,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { createTranslator, useTranslations } from 'next-intl';
 import Question from '.';
-import { askQuestion, updateUser } from '@/utils/api';
+import { askQuestion, updateUserPromptUsage } from '@/utils/api';
 import { usePrompt } from '@/contexts/PromptContext';
 import { useRouter } from 'next/navigation';
 
@@ -12,7 +12,7 @@ vi.mock('next/navigation', () => ({
 
 vi.mock('@/utils/api', () => ({
   askQuestion: vi.fn(),
-  updateUser: vi.fn(),
+  updateUserPromptUsage: vi.fn(),
 }));
 
 vi.mock('@/contexts/PromptContext', () => ({
@@ -78,7 +78,7 @@ describe('Question', () => {
     });
   });
 
-  it('calls askQuestion and updateUser on submit', async () => {
+  it('calls askQuestion and updateUserPromptUsage on submit', async () => {
     (askQuestion as Mock).mockResolvedValueOnce({ data: 'This is the answer' });
 
     render(<Question />);
@@ -94,7 +94,7 @@ describe('Question', () => {
     });
 
     await waitFor(() => {
-      expect(updateUser).toHaveBeenCalledWith(+mockPromptContext.symbolsUsed + 23);
+      expect(updateUserPromptUsage).toHaveBeenCalledWith(23); // content length
     });
 
     await waitFor(() => {

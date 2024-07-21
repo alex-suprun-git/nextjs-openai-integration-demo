@@ -3,7 +3,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useAutosave } from 'react-autosave';
 import { debounce } from 'lodash';
 import { usePrompt } from '@/contexts/PromptContext';
-import { updateEntry, createNewEntry, updateUser } from '@/utils/api';
+import { updateEntry, createNewEntry, updateUserPromptUsage } from '@/utils/api';
 import { AUTOSAVE_INTERVAL, MINIMUM_CONTENT_LENGTH } from '@/utils/constants';
 
 export const useEditor = (entry: EditorEntry) => {
@@ -33,7 +33,7 @@ export const useEditor = (entry: EditorEntry) => {
           if (!entryCreatedRef.current) {
             entryCreatedRef.current = true;
             const { id } = await createNewEntry(_contentValue);
-            await updateUser(+symbolsUsed + _contentValue.length);
+            await updateUserPromptUsage(_contentValue.length);
             router.push(`/journal/${id}`);
             router.refresh();
           }
@@ -41,14 +41,14 @@ export const useEditor = (entry: EditorEntry) => {
           const { analysis: updatedAnalysis } = await updateEntry(entry.id, _contentValue);
           setAnalysis(updatedAnalysis);
           setIsContentEntryUpdated(true);
-          await updateUser(+symbolsUsed + _contentValue.length);
+          await updateUserPromptUsage(_contentValue.length);
           router.refresh();
           setTimeout(() => setIsContentEntryUpdated(false), 1500);
         }
       }
       setIsLoading(false);
     },
-    [entry.content, entry.id, pathname, symbolsUsed, router],
+    [pathname, entry.id, entry.content, router],
   );
 
   useAutosave({
@@ -103,7 +103,5 @@ export const useEditor = (entry: EditorEntry) => {
     contentChangeHandler,
     isPromptSymbolsExceeded,
     entryCreatedRef,
-    saveContent, // Ensure saveContent is returned
-    isContentChanged, // Ensure isContentChanged is returned
   };
 };

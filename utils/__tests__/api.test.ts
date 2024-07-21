@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, Mock } from 'vitest';
 import {
   createUrl,
-  updateUser,
+  updateUserPromptUsage,
   createNewEntry,
   updateEntry,
   deleteEntry,
@@ -30,7 +30,7 @@ describe('createUrl', () => {
   });
 });
 
-describe('updateUser', () => {
+describe('updateUserPromptUsage', () => {
   it('updates user and returns data', async () => {
     const mockData = { data: { id: 1, promptSymbolsUsed: 100 } };
     // Mock the fetch function to return a successful response
@@ -39,7 +39,7 @@ describe('updateUser', () => {
       json: async () => mockData,
     });
 
-    const result = await updateUser(100);
+    const result = await updateUserPromptUsage(100);
     // Assert that the returned data matches the mock data
     expect(result).toEqual(mockData.data);
   });
@@ -47,7 +47,7 @@ describe('updateUser', () => {
   it('handles failed fetch', async () => {
     // Mock the fetch function to return a failed response
     (fetch as Mock).mockResolvedValueOnce({ ok: false });
-    const result = await updateUser(100);
+    const result = await updateUserPromptUsage(100);
     // Assert that the function returns undefined on failure
     expect(result).toBeUndefined();
   });

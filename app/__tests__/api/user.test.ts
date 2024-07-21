@@ -6,13 +6,14 @@ import { NextResponse } from 'next/server';
 
 // Mock the dependencies
 vi.mock('@/utils/auth', () => ({
-  getUserByClerkId: vi.fn().mockResolvedValue({}) as Mock,
+  getUserByClerkId: vi.fn() as Mock,
 }));
 
 vi.mock('@/utils/db', () => ({
   prisma: {
     user: {
-      update: vi.fn().mockResolvedValue({}),
+      findUnique: vi.fn() as Mock,
+      update: vi.fn() as Mock,
     },
   },
 }));
@@ -32,12 +33,12 @@ describe('PATCH handler', () => {
   it('should update user and return success message', async () => {
     // Arrange
     const request = {
-      json: vi.fn().mockResolvedValue({ promptSymbolsUsed: 100 }),
+      json: vi.fn().mockResolvedValue({ promptContentLength: 100 }),
     };
 
     const user = { id: 'user-123' };
     (getUserByClerkId as Mock).mockResolvedValue(user);
-
+    (prisma.user.findUnique as Mock).mockResolvedValue({ promptSymbolsUsed: 50 });
     (prisma.user.update as Mock).mockResolvedValue({});
 
     const jsonResponse = { message: 'User updated successfully' };
@@ -49,36 +50,66 @@ describe('PATCH handler', () => {
     // Assert
     expect(request.json).toHaveBeenCalled();
     expect(getUserByClerkId).toHaveBeenCalled();
+    expect(prisma.user.findUnique).toHaveBeenCalledWith({
+      where: { id: user.id },
+      select: { promptSymbolsUsed: true },
+    });
     expect(prisma.user.update).toHaveBeenCalledWith({
       where: { id: user.id },
-      data: { promptSymbolsUsed: 100 },
+      data: { promptSymbolsUsed: 150 }, // 50 (current) + 100 (new)
     });
     expect(jsonMock).toHaveBeenCalledWith(jsonResponse);
     expect(response).toEqual(jsonResponse);
   });
 
-  it('should handle errors properly', async () => {
+  it('should return 401 if user not found', async () => {
     // Arrange
     const request = {
-      json: vi.fn().mockRejectedValue(new Error('Invalid request')),
+      json: vi.fn().mockResolvedValue({ promptContentLength: 100 }),
     };
 
-    const jsonResponse = { message: 'Error updating user' };
+    (getUserByClerkId as Mock).mockResolvedValue(null);
+
+    const jsonResponse = { message: 'User not found' };
     jsonMock.mockReturnValue(jsonResponse);
 
     // Act
-    let error;
-    try {
-      await PATCH(request as any);
-    } catch (e) {
-      error = e;
-    }
+    const response = await PATCH(request as any);
 
     // Assert
     expect(request.json).toHaveBeenCalled();
-    expect(getUserByClerkId).not.toHaveBeenCalled();
+    expect(getUserByClerkId).toHaveBeenCalled();
+    expect(prisma.user.findUnique).not.toHaveBeenCalled();
     expect(prisma.user.update).not.toHaveBeenCalled();
-    expect(jsonMock).not.toHaveBeenCalledWith(jsonResponse);
-    expect(error).toEqual(new Error('Invalid request'));
+    expect(jsonMock).toHaveBeenCalledWith(jsonResponse, { status: 401 });
+    expect(response).toEqual(jsonResponse);
+  });
+
+  it('should return 404 if user not found in database', async () => {
+    // Arrange
+    const request = {
+      json: vi.fn().mockResolvedValue({ promptContentLength: 100 }),
+    };
+
+    const user = { id: 'user-123' };
+    (getUserByClerkId as Mock).mockResolvedValue(user);
+    (prisma.user.findUnique as Mock).mockResolvedValue(null);
+
+    const jsonResponse = { message: 'User not found in database' };
+    jsonMock.mockReturnValue(jsonResponse);
+
+    // Act
+    const response = await PATCH(request as any);
+
+    // Assert
+    expect(request.json).toHaveBeenCalled();
+    expect(getUserByClerkId).toHaveBeenCalled();
+    expect(prisma.user.findUnique).toHaveBeenCalledWith({
+      where: { id: user.id },
+      select: { promptSymbolsUsed: true },
+    });
+    expect(prisma.user.update).not.toHaveBeenCalled();
+    expect(jsonMock).toHaveBeenCalledWith(jsonResponse, { status: 404 });
+    expect(response).toEqual(jsonResponse);
   });
 });

@@ -16,7 +16,7 @@ vi.mock('@/contexts/PromptContext', () => ({
 vi.mock('@/utils/api', () => ({
   updateEntry: vi.fn(),
   createNewEntry: vi.fn(),
-  updateUser: vi.fn(),
+  updateUserPromptUsage: vi.fn(),
 }));
 
 vi.mock('react-autosave', () => ({
