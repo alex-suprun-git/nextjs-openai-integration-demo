@@ -20,7 +20,7 @@ const Editor = ({ entry }: { entry: EditorEntry }) => {
 
   const router = useRouter();
   return (
-    <div className="grid gap-10 pt-12 md:grid-cols-3 md:max-lg:h-[80%] lg:min-h-svh">
+    <div className="md:max-lg:h-[80%] grid gap-10 pt-12 md:grid-cols-3 lg:min-h-svh">
       <div className="relative px-5 pb-12 md:col-span-2 md:pl-10">
         {isShowAutoSaveTimer && (
           <progress

@@ -3,13 +3,13 @@
 exports[`Editor > renders correctly and matches snapshot 1`] = `
 <div>
   <div
-    class="grid gap-10 pt-12 md:grid-cols-3 md:max-lg:h-[80%] lg:min-h-svh"
+    class="md:max-lg:h-[80%] grid gap-10 pt-12 md:grid-cols-3 lg:min-h-svh"
   >
     <div
       class="relative px-5 pb-12 md:col-span-2 md:pl-10"
     >
       <textarea
-        class="textarea min-h-72 w-full resize-none p-10 text-xl outline-none md:max-lg:h-[80%] lg:min-h-svh"
+        class="md:max-lg:h-[80%] textarea min-h-72 w-full resize-none p-10 text-xl outline-none lg:min-h-svh"
         data-testid="entry-content-field"
         maxlength="2500"
         placeholder="Please write your thoughts here..."
@@ -39,65 +39,65 @@ exports[`Editor > renders correctly and matches snapshot 1`] = `
         class="mt-5"
       >
         <li
-          class="flex items-center justify-between border-b-2 border-white/10 px-6 py-3 md:max-lg:flex-col md:max-lg:items-start"
+          class="md:max-lg:flex-col md:max-lg:items-start flex items-center justify-between border-b-2 border-white/10 px-6 py-3"
           data-testid="analysis-item"
         >
           <h3
-            class="mr-10 font-semibold md:max-lg:mb-2"
+            class="md:max-lg:mb-2 mr-10 font-semibold"
           >
             Summary
             :
           </h3>
           <span
-            class="text-end md:max-lg:text-start"
+            class="md:max-lg:text-start text-end"
           >
             summary
           </span>
         </li>
         <li
-          class="flex items-center justify-between border-b-2 border-white/10 px-6 py-3 md:max-lg:flex-col md:max-lg:items-start"
+          class="md:max-lg:flex-col md:max-lg:items-start flex items-center justify-between border-b-2 border-white/10 px-6 py-3"
           data-testid="analysis-item"
         >
           <h3
-            class="mr-10 font-semibold md:max-lg:mb-2"
+            class="md:max-lg:mb-2 mr-10 font-semibold"
           >
             Subject
             :
           </h3>
           <span
-            class="text-end md:max-lg:text-start"
+            class="md:max-lg:text-start text-end"
           >
             subject
           </span>
         </li>
         <li
-          class="flex items-center justify-between border-b-2 border-white/10 px-6 py-3 md:max-lg:flex-col md:max-lg:items-start"
+          class="md:max-lg:flex-col md:max-lg:items-start flex items-center justify-between border-b-2 border-white/10 px-6 py-3"
           data-testid="analysis-item"
         >
           <h3
-            class="mr-10 font-semibold md:max-lg:mb-2"
+            class="md:max-lg:mb-2 mr-10 font-semibold"
           >
             Mood
             :
           </h3>
           <span
-            class="text-end md:max-lg:text-start"
+            class="md:max-lg:text-start text-end"
           >
             happy
           </span>
         </li>
         <li
-          class="flex items-center justify-between border-b-2 border-white/10 px-6 py-3 md:max-lg:flex-col md:max-lg:items-start"
+          class="md:max-lg:flex-col md:max-lg:items-start flex items-center justify-between border-b-2 border-white/10 px-6 py-3"
           data-testid="analysis-item"
         >
           <h3
-            class="mr-10 font-semibold md:max-lg:mb-2"
+            class="md:max-lg:mb-2 mr-10 font-semibold"
           >
             Negative
             :
           </h3>
           <span
-            class="text-end md:max-lg:text-start"
+            class="md:max-lg:text-start text-end"
           >
             false
           </span>
@@ -107,7 +107,7 @@ exports[`Editor > renders correctly and matches snapshot 1`] = `
         class="mt-12 flex justify-end pb-10 pr-5 md:pb-0 md:pr-0"
       >
         <button
-          class="btn bg-red-800 text-white hover:bg-red-900 md:max-lg:mb-10"
+          class="md:max-lg:mb-10 btn bg-red-800 text-white hover:bg-red-900"
           data-testid="delete-entry-button"
         >
           Delete this note

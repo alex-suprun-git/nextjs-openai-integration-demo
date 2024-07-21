@@ -57,10 +57,10 @@ function AnalysisSidebar({
           <li
             data-testid={'analysis-item'}
             key={item.label}
-            className="flex items-center justify-between border-b-2 border-white/10 px-6 py-3 md:max-lg:flex-col md:max-lg:items-start"
+            className="md:max-lg:flex-col md:max-lg:items-start flex items-center justify-between border-b-2 border-white/10 px-6 py-3"
           >
-            <h3 className="mr-10 font-semibold md:max-lg:mb-2">{item.label}:</h3>
-            <span className="text-end md:max-lg:text-start">{item.value?.toString()}</span>
+            <h3 className="md:max-lg:mb-2 mr-10 font-semibold">{item.label}:</h3>
+            <span className="md:max-lg:text-start text-end">{item.value?.toString()}</span>
           </li>
         ))}
       </ul>
@@ -69,7 +69,7 @@ function AnalysisSidebar({
           <button
             onClick={() => deleteEntryHandler(entryId as string)}
             data-testid="delete-entry-button"
-            className="btn bg-red-800 text-white hover:bg-red-900 md:max-lg:mb-10"
+            className="md:max-lg:mb-10 btn bg-red-800 text-white hover:bg-red-900"
           >
             {t('buttons.deleteEntry')} <FaRegTrashAlt />
           </button>
