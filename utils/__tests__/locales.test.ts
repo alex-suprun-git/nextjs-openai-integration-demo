@@ -1,44 +1,36 @@
-import { describe, it, expect, vi } from 'vitest';
-import { getUserLocale, setUserLocale } from '@/utils/locales';
+import { describe, it, expect, vi, Mock } from 'vitest';
+import { getCookie, setCookie } from 'cookies-next';
 import { cookies } from 'next/headers';
+import { getUserLocale, setUserLocale } from '@/utils/locales';
+import { COOKIE_NAME } from '@/utils/constants';
 
-vi.mock('next/headers', () => ({
-  cookies: vi.fn(),
+vi.mock('cookies-next', () => ({
+  getCookie: vi.fn(),
+  setCookie: vi.fn(),
 }));
 
-describe('Locale Tests', () => {
-  it('should return the user locale if cookie is set', async () => {
-    const mockCookies = {
-      get: vi.fn().mockReturnValue({ value: 'en' }),
-    };
+vi.mock('next/headers', () => ({
+  cookies: {},
+}));
 
-    (cookies as any).mockReturnValue(mockCookies);
-
-    const locale = await getUserLocale();
-    expect(locale).toBe('en');
-    expect(mockCookies.get).toHaveBeenCalledWith('NEXT_LOCALE');
-  });
-
-  it('should return undefined if cookie is not set', async () => {
-    const mockCookies = {
-      get: vi.fn().mockReturnValue(undefined),
-    };
-
-    (cookies as any).mockReturnValue(mockCookies);
+describe('getUserLocale', () => {
+  it('should get the user locale from the cookie', async () => {
+    const mockLocale = 'en';
+    (getCookie as Mock).mockReturnValue(mockLocale);
 
     const locale = await getUserLocale();
-    expect(locale).toBeUndefined();
-    expect(mockCookies.get).toHaveBeenCalledWith('NEXT_LOCALE');
+
+    expect(getCookie).toHaveBeenCalledWith(COOKIE_NAME, { cookies });
+    expect(locale).toBe(mockLocale);
   });
+});
 
-  it('should set the user locale', async () => {
-    const mockCookies = {
-      set: vi.fn(),
-    };
+describe('setUserLocale', () => {
+  it('should set the user locale in the cookie', async () => {
+    const mockLocale = 'en';
 
-    (cookies as any).mockReturnValue(mockCookies);
+    await setUserLocale(mockLocale);
 
-    await setUserLocale('de');
-    expect(mockCookies.set).toHaveBeenCalledWith('NEXT_LOCALE', 'de');
+    expect(setCookie).toHaveBeenCalledWith(COOKIE_NAME, mockLocale, { cookies });
   });
 });

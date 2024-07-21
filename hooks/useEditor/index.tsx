@@ -24,6 +24,7 @@ export const useEditor = (entry: EditorEntry) => {
   const [isLoading, setIsLoading] = useState(false);
   const [analysis, setAnalysis] = useState(entry?.analysis);
   const entryCreatedRef = useRef(false);
+  const intervalIdRef = useRef<NodeJS.Timeout | number>(0);
 
   const saveContent = useCallback(
     async (_contentValue: string) => {
@@ -60,12 +61,12 @@ export const useEditor = (entry: EditorEntry) => {
   const debouncedAutosaveCountdown = useCallback(
     debounce(() => {
       setAutoSaveTimerValue(0);
-      const intervalId = setInterval(() => {
+      intervalIdRef.current = setInterval(() => {
         setAutoSaveTimerValue((prevValue) => {
           if (prevValue < 100) {
             return prevValue + 1;
           } else {
-            clearInterval(intervalId);
+            clearInterval(intervalIdRef.current);
             return 100;
           }
         });
@@ -79,6 +80,13 @@ export const useEditor = (entry: EditorEntry) => {
       debouncedAutosaveCountdown();
       setAutoSaveTimerValue(0);
     }
+    return () => {
+      debouncedAutosaveCountdown.cancel();
+      if (intervalIdRef.current) {
+        clearInterval(intervalIdRef.current);
+        intervalIdRef.current = 0;
+      }
+    };
   }, [isContentChanged, isTyping, debouncedAutosaveCountdown]);
 
   const contentChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
