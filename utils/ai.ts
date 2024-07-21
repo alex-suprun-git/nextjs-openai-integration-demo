@@ -1,3 +1,4 @@
+import { getLocale } from 'next-intl/server';
 import { ChatOpenAI, OpenAI, OpenAIEmbeddings } from '@langchain/openai';
 import { OutputFixingParser, StructuredOutputParser } from 'langchain/output_parsers';
 import { PromptTemplate } from '@langchain/core/prompts';
@@ -27,12 +28,16 @@ const parser = StructuredOutputParser.fromZodSchema(
   }),
 );
 
-const getPrompt = async (content: string) => {
+const getPrompt = async (content: string, language: UserLocale) => {
   const formatInstructions = parser.getFormatInstructions();
 
+  const templates = {
+    de: 'Analysiere den folgenden Tagebucheintrag und antworte in derselben Sprache wie der Eingang. Übersetze die Formatierungsanweisungen ins Deutsche und befolge sie unbedingt! \n{formatInstructions}\n{entry}',
+    en: 'Analyze the following journal entry and respond in the same language as the input. Follow the instructions and format your response to match the format instructions, no matter what! \n{formatInstructions}\n{entry}',
+  };
+
   const prompt = new PromptTemplate({
-    template:
-      'Analyze the following journal entry and respond in the same language as the input. Follow the instructions and format your response to match the format instructions, no matter what! \n{formatInstructions}\n{entry}',
+    template: templates[language],
     inputVariables: ['entry'],
     partialVariables: { formatInstructions },
   });
@@ -45,7 +50,9 @@ const getPrompt = async (content: string) => {
 };
 
 export const analyzeEntry = async (content: string) => {
-  const input = await getPrompt(content);
+  const locale = await getLocale();
+
+  const input = await getPrompt(content, locale as UserLocale);
   const model = new ChatOpenAI({
     temperature: 0,
     model: 'gpt-4o',
