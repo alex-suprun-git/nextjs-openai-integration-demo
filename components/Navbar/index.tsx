@@ -1,10 +1,21 @@
-import { FiMenu } from 'react-icons/fi';
+'use client';
+
+import { useRef } from 'react';
 import { UserButton } from '@clerk/nextjs';
+import { FiMenu } from 'react-icons/fi';
 import LanguageSwitcher from '../LanguageSwitcher';
 import Navigation from '../Navigation';
 import { Drawer, Header, PromptCounter } from '@/ui-lib';
 
 function Navbar() {
+  const drawerToggleRef = useRef<HTMLInputElement>(null);
+
+  const drawerToggleHandler = () => {
+    if (drawerToggleRef.current) {
+      drawerToggleRef.current.checked = false;
+    }
+  };
+
   return (
     <Header>
       <div className="navbar-start">
@@ -12,8 +23,8 @@ function Navbar() {
           <Navigation />
         </div>
         <div className="lg:hidden">
-          <Drawer icon={<FiMenu size={38} />}>
-            <Navigation />
+          <Drawer toggleRef={drawerToggleRef} icon={<FiMenu size={38} />}>
+            <Navigation onClick={drawerToggleHandler} />
             <PromptCounter />
           </Drawer>
         </div>

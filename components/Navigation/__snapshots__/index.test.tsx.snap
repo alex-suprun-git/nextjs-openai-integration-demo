@@ -1,0 +1,76 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Navigation Component > renders correctly when journal link is active 1`] = `
+<div>
+  <div
+    class="mb-12 mt-5 flex flex-col lg:mb-0 lg:mt-0 lg:flex-row"
+  >
+    <a
+      class="mb-5 mr-12 text-2xl font-bold lg:mb-0 lg:text-base"
+      href="/journal"
+    >
+      <span>
+        Journal
+      </span>
+    </a>
+    <a
+      class="mb-5 mr-12 text-lg lg:mb-0 lg:text-base"
+      href="/statistics"
+    >
+      <span>
+        Statistics
+      </span>
+    </a>
+  </div>
+</div>
+`;
+
+exports[`Navigation Component > renders correctly when no link is active 1`] = `
+<div>
+  <div
+    class="mb-12 mt-5 flex flex-col lg:mb-0 lg:mt-0 lg:flex-row"
+  >
+    <a
+      class="mb-5 mr-12 text-lg lg:mb-0 lg:text-base"
+      href="/journal"
+    >
+      <span>
+        Journal
+      </span>
+    </a>
+    <a
+      class="mb-5 mr-12 text-lg lg:mb-0 lg:text-base"
+      href="/statistics"
+    >
+      <span>
+        Statistics
+      </span>
+    </a>
+  </div>
+</div>
+`;
+
+exports[`Navigation Component > renders correctly when statistics link is active 1`] = `
+<div>
+  <div
+    class="mb-12 mt-5 flex flex-col lg:mb-0 lg:mt-0 lg:flex-row"
+  >
+    <a
+      class="mb-5 mr-12 text-lg lg:mb-0 lg:text-base"
+      href="/journal"
+    >
+      <span>
+        Journal
+      </span>
+    </a>
+    <a
+      class="mb-5 mr-12 text-2xl font-bold lg:mb-0 lg:text-base"
+      href="/statistics"
+    >
+      <span>
+        Statistics
+      </span>
+    </a>
+  </div>
+</div>
+`;

@@ -3,8 +3,9 @@
 import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { MouseEventHandler } from 'react';
 
-const Navigation = () => {
+const Navigation = ({ onClick = () => {} }: { onClick?: MouseEventHandler<HTMLAnchorElement> }) => {
   const path = usePathname();
   const isActiveLink = (href: string) => path === href;
 
@@ -26,6 +27,7 @@ const Navigation = () => {
           }
           key={link.href}
           href={link.href}
+          onClick={onClick}
         >
           <span>{link.label}</span>
         </Link>

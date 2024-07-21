@@ -1,15 +1,32 @@
-import { ReactElement, ReactNode } from 'react';
+'use client';
 
-const Drawer = ({ icon, children }: { icon: ReactElement; children: ReactNode }) => (
+import { createContext, Dispatch, ReactElement, ReactNode, RefObject, SetStateAction } from 'react';
+
+interface DrawerContextProps {
+  isOpen: boolean;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+export const DrawerContext = createContext<DrawerContextProps | undefined>(undefined);
+
+const Drawer = ({
+  icon,
+  toggleRef,
+  children,
+}: {
+  icon: ReactElement;
+  toggleRef: RefObject<HTMLInputElement>;
+  children: ReactNode;
+}) => (
   <div className="drawer">
-    <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+    <input ref={toggleRef} id="drawer-mobile" type="checkbox" className="drawer-toggle" />
     <div className="drawer-content">
-      <label htmlFor="my-drawer" className="drawer-button">
+      <label htmlFor="drawer-mobile" className="drawer-button">
         {icon}
       </label>
     </div>
     <div className="drawer-side z-20">
-      <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
+      <label htmlFor="drawer-mobile" aria-label="close sidebar" className="drawer-overlay"></label>
       <div className="menu min-h-full w-80 bg-base-200 p-4 text-base-content">{children}</div>
     </div>
   </div>

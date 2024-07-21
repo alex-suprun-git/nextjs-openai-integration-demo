@@ -1,13 +1,19 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import Drawer from '.';
+import { createRef, RefObject } from 'react';
 
 describe('Drawer', () => {
   it('renders the icon and children', () => {
     const icon = <span>Icon</span>;
     const children = <div>Drawer Content</div>;
+    const mockRef = createRef() as RefObject<HTMLInputElement>;
 
-    render(<Drawer icon={icon}>{children}</Drawer>);
+    render(
+      <Drawer toggleRef={mockRef} icon={icon}>
+        {children}
+      </Drawer>,
+    );
 
     // Check if the icon is rendered
     expect(screen.getByText('Icon')).toBeInTheDocument();
@@ -19,8 +25,13 @@ describe('Drawer', () => {
   it('toggles the drawer when the icon is clicked', () => {
     const icon = <span>Icon</span>;
     const children = <div>Drawer Content</div>;
+    const mockRef = createRef() as RefObject<HTMLInputElement>;
 
-    render(<Drawer icon={icon}>{children}</Drawer>);
+    render(
+      <Drawer toggleRef={mockRef} icon={icon}>
+        {children}
+      </Drawer>,
+    );
 
     const drawerToggle = screen.getByRole('checkbox', { hidden: true }) as HTMLInputElement;
 

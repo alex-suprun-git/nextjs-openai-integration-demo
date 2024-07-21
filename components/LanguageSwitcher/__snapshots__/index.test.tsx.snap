@@ -1,0 +1,50 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`LanguageSwitcher Component > renders correctly 1`] = `
+<div>
+  <div
+    class="dropdown dropdown-left dropdown-hover ml-auto"
+  >
+    <div
+      class="btn m-1 bg-slate-800 hover:bg-slate-800"
+      role="button"
+      tabindex="0"
+    >
+      <svg
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        stroke-width="0"
+        viewBox="0 0 24 24"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12,23 C18.0751322,23 23,18.0751322 23,12 C23,5.92486775 18.0751322,1 12,1 C5.92486775,1 1,5.92486775 1,12 C1,18.0751322 5.92486775,23 12,23 Z M12,23 C15,23 16,18 16,12 C16,6 15,1 12,1 C9,1 8,6 8,12 C8,18 9,23 12,23 Z M2,16 L22,16 M2,8 L22,8"
+          fill="none"
+          stroke-width="2"
+        />
+      </svg>
+    </div>
+    <ul
+      class="menu dropdown-content z-[1] w-52 rounded-box bg-base-100 p-2 shadow"
+      tabindex="0"
+    >
+      <li>
+        <a
+          href="#"
+        >
+          English
+        </a>
+      </li>
+      <li>
+        <a
+          href="#"
+        >
+          Deutsch
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+`;
