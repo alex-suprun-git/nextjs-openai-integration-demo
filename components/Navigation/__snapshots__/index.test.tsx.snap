@@ -9,7 +9,9 @@ exports[`Navigation Component > renders correctly when journal link is active 1`
       class="mb-5 mr-12 text-2xl font-bold lg:mb-0 lg:text-base"
       href="/journal"
     >
-      <span>
+      <span
+        class="text-stone-300"
+      >
         Journal
       </span>
     </a>
@@ -17,7 +19,9 @@ exports[`Navigation Component > renders correctly when journal link is active 1`
       class="mb-5 mr-12 text-lg lg:mb-0 lg:text-base"
       href="/statistics"
     >
-      <span>
+      <span
+        class="text-stone-300"
+      >
         Statistics
       </span>
     </a>
@@ -34,7 +38,9 @@ exports[`Navigation Component > renders correctly when no link is active 1`] = `
       class="mb-5 mr-12 text-lg lg:mb-0 lg:text-base"
       href="/journal"
     >
-      <span>
+      <span
+        class="text-stone-300"
+      >
         Journal
       </span>
     </a>
@@ -42,7 +48,9 @@ exports[`Navigation Component > renders correctly when no link is active 1`] = `
       class="mb-5 mr-12 text-lg lg:mb-0 lg:text-base"
       href="/statistics"
     >
-      <span>
+      <span
+        class="text-stone-300"
+      >
         Statistics
       </span>
     </a>
@@ -59,7 +67,9 @@ exports[`Navigation Component > renders correctly when statistics link is active
       class="mb-5 mr-12 text-lg lg:mb-0 lg:text-base"
       href="/journal"
     >
-      <span>
+      <span
+        class="text-stone-300"
+      >
         Journal
       </span>
     </a>
@@ -67,7 +77,9 @@ exports[`Navigation Component > renders correctly when statistics link is active
       class="mb-5 mr-12 text-2xl font-bold lg:mb-0 lg:text-base"
       href="/statistics"
     >
-      <span>
+      <span
+        class="text-stone-300"
+      >
         Statistics
       </span>
     </a>

@@ -17,10 +17,12 @@ function StatisticsData({
     <div data-testid="statisticsPage" className="p-10">
       <Heading>{t('headline')}</Heading>
       {analyses.length === 0 ? (
-        <p className="text-xl">{t('labels.noEntries')}</p>
+        <p className="text-xl text-stone-300">{t('labels.noEntries')}</p>
       ) : (
         <>
-          <p className="mb-12 text-xl">{t('labels.averageSentiment', { averageSentiment })}</p>
+          <p className="mb-12 text-xl text-stone-300">
+            {t('labels.averageSentiment', { averageSentiment })}
+          </p>
           <HistoryChart data={analyses as AnalysisEntry[]} />
         </>
       )}

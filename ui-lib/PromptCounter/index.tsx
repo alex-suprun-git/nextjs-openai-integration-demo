@@ -20,7 +20,7 @@ function PromptCounter() {
       </p>
 
       <span
-        className="tooltip tooltip-bottom ml-2 sm:tooltip-left"
+        className="tooltip tooltip-left ml-2 text-stone-300"
         data-tip={t('labels.promptSymbolsRenewalDate', { limitRenewalDate })}
       >
         <span className="cursor-pointer">

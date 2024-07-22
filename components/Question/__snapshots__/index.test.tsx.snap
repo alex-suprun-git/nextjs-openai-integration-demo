@@ -9,7 +9,7 @@ exports[`Question > renders correctly and matches snapshot 1`] = `
       data-testid="promptInput-wrapper"
     >
       <span
-        class="mb-4 block font-semibold text-white"
+        class="mb-4 block font-semibold text-stone-300"
       >
         Request an AI analysis of your notes (15 to 100 characters)
       </span>
@@ -17,7 +17,7 @@ exports[`Question > renders correctly and matches snapshot 1`] = `
         class="flex"
       >
         <input
-          class="mr-2 w-[100%] rounded-md border border-gray-300 bg-slate-700 p-2 outline-none md:w-[50%] lg:w-[33%]"
+          class="mr-2 w-[100%] rounded-md border border-gray-300 bg-slate-700 p-2 text-stone-300 outline-none md:w-[50%] lg:w-[33%]"
           id="analysis-request"
           maxlength="100"
           minlength="15"

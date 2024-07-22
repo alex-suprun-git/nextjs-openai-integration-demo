@@ -6,7 +6,7 @@ exports[`LanguageSwitcher Component > renders correctly 1`] = `
     class="dropdown dropdown-left dropdown-hover ml-auto"
   >
     <div
-      class="btn m-1 bg-slate-800 hover:bg-slate-800"
+      class="btn m-1 border-0 bg-slate-800 text-stone-300 hover:bg-slate-800"
       role="button"
       tabindex="0"
     >
@@ -27,11 +27,12 @@ exports[`LanguageSwitcher Component > renders correctly 1`] = `
       </svg>
     </div>
     <ul
-      class="menu dropdown-content z-[1] w-52 rounded-box bg-base-100 p-2 shadow"
+      class="menu dropdown-content z-[1] w-52 rounded-box bg-slate-800 p-2 shadow"
       tabindex="0"
     >
       <li>
         <a
+          class="text-stone-300"
           href="#"
         >
           English
@@ -39,6 +40,7 @@ exports[`LanguageSwitcher Component > renders correctly 1`] = `
       </li>
       <li>
         <a
+          class="text-stone-300"
           href="#"
         >
           Deutsch

@@ -73,7 +73,7 @@ const EntryCard = ({ id, createdAt, updatedAt, content, color }: EntryCardProps)
         onContextMenu={(e) => contextMenuHandler(e)}
         className="card relative bg-white text-primary-content shadow-md"
       >
-        <div className="card-body">
+        <div className="card-body text-black">
           <div
             style={{ backgroundColor: color }}
             className="absolute right-4 top-4 ml-auto h-2 w-2 rounded"
@@ -106,7 +106,7 @@ const EntryCard = ({ id, createdAt, updatedAt, content, color }: EntryCardProps)
             >
               <button
                 data-testid="entryCard-delete-button"
-                className="btn h-[30%] w-[100%] items-center justify-center"
+                className="btn h-[30%] w-[100%] items-center justify-center border-0"
                 onClick={(e) => deleteEntryHandler(e, id)}
                 aria-label={t('card.deleteEntry')}
               >

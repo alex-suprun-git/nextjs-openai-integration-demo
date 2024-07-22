@@ -46,7 +46,7 @@ describe('PageNotFound', () => {
     // Check if the link has the correct styles
     const linkElement = screen.getByRole('link', { name: /back to homepage/i });
     expect(linkElement).toHaveClass(
-      'focus:ring-primary-300 dark:focus:ring-primary-900 my-4 inline-flex rounded-lg bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4',
+      'focus:ring-primary-300 dark:focus:ring-primary-900 my-4 inline-flex rounded-lg bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-stone-300 hover:bg-blue-800 focus:outline-none focus:ring-4',
     );
   });
 });

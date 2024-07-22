@@ -19,17 +19,17 @@ function Hero({
   let buttonLabel = isAuthorized ? t('buttons.authorized') : t('buttons.unauthorized');
 
   return (
-    <div className="bg-slate-550 flex items-center justify-center px-10 text-white">
+    <div className="flex items-center justify-center px-10 pb-24 text-stone-300 md:py-0">
       <div className="mx-auto max-w-screen-md">
         <h1 className="mb-6 break-normal text-5xl font-black leading-relaxed sm:text-6xl sm:leading-[1.25]">
           {headline}
         </h1>
-        <div className="mb-8 text-xl leading-relaxed text-white/60 sm:text-2xl sm:leading-[1.65]">
+        <div className="mb-8 text-xl leading-relaxed text-stone-300/60 sm:text-2xl sm:leading-[1.65]">
           {documentToReactComponents(description)}
         </div>
         <div>
           <Link href={href}>
-            <button className="btn btn-lg mb-5 bg-blue-600 text-white hover:bg-blue-800">
+            <button className="btn btn-lg mb-5 border-0 bg-blue-600 text-stone-300 hover:bg-blue-800">
               {buttonLabel}
             </button>
           </Link>

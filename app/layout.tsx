@@ -25,7 +25,7 @@ export default async function RootLayout({
   return (
     <ClerkProvider afterSignOutUrl={'/sign-in'} localization={clerkLocalization}>
       <html lang={locale}>
-        <body className={inter.className}>
+        <body className={`min-h-dvh bg-slate-900/25 ${inter.className}`}>
           <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
         </body>
       </html>

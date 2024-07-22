@@ -13,7 +13,7 @@ function Alert({
   const alertTypeClass = {
     info: 'alert alert-info',
     warning: 'alert alert-warning',
-    error: 'alert alert-error text-white bg-red-800',
+    error: 'alert alert-error text-stone-300 bg-red-800',
     success: 'alert alert-success',
   }[type || 'info'];
 

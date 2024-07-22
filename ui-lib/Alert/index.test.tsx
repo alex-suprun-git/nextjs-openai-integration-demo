@@ -22,7 +22,7 @@ describe('Alert', () => {
       render(<Alert type={type}>Sample alert text</Alert>);
       const expectedClass =
         type === 'error'
-          ? 'alert alert-error text-white bg-red-800 mb-6'
+          ? 'alert alert-error text-stone-300 bg-red-800 mb-6'
           : `alert alert-${type} mb-6`;
       expect(screen.getByRole('alert')).toHaveClass(expectedClass);
     });
