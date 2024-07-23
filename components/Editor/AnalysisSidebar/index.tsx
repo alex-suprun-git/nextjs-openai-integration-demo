@@ -57,12 +57,10 @@ function AnalysisSidebar({
           <li
             data-testid={'analysis-item'}
             key={item.label}
-            className="md:max-lg:flex-col md:max-lg:items-start flex items-center justify-between border-b-2 border-white/10 px-6 py-3"
+            className="flex flex-col items-start justify-between border-b-2 border-white/10 px-6 py-3 xl:flex-row xl:items-center"
           >
-            <h3 className="md:max-lg:mb-2 mr-10 font-semibold text-stone-300">{item.label}:</h3>
-            <span className="md:max-lg:text-start text-end text-stone-300">
-              {item.value?.toString()}
-            </span>
+            <h3 className="mb-2 mr-10 font-semibold text-stone-300">{item.label}:</h3>
+            <span className="text-start text-stone-300 xl:text-end">{item.value?.toString()}</span>
           </li>
         ))}
       </ul>

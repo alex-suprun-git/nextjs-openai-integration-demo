@@ -38,7 +38,7 @@ function Content({
       {isLoading && <Loading customClasses="absolute inset-x-2/4 inset-y-2/4" />}
       <textarea
         data-testid="entry-content-field"
-        className="md:max-lg:h-[80%] textarea min-h-72 w-full resize-none bg-gray-900 p-10 text-xl outline-none lg:min-h-svh"
+        className="textarea min-h-72 w-full resize-none bg-gray-900 p-10 text-xl outline-none md:min-h-svh"
         value={contentValue}
         onChange={(e) => contentChangeHandler(e)}
         placeholder={t('contentFieldPlaceholder')}
