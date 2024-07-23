@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useLocale, useTranslations } from 'next-intl';
 import { FiEdit } from 'react-icons/fi';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { BsThreeDotsVertical } from 'react-icons/bs';
@@ -10,7 +11,6 @@ import { Loading } from '@/ui-lib';
 import { formatDate, getExcerpt } from '@/utils/helpers';
 import { deleteEntry } from '@/utils/api';
 import useKeyPress from '@/hooks/useKeyPress';
-import { useTranslations } from 'next-intl';
 
 type EntryCardProps = {
   id: string;
@@ -29,6 +29,7 @@ const EntryCard = ({ id, createdAt, updatedAt, content, color }: EntryCardProps)
   const cardRef = useRef<HTMLDivElement>(null);
 
   const t = useTranslations('JournalList');
+  const locale = useLocale();
 
   const handleOuterClick = (event: MouseEvent) => {
     if (cardRef.current && !cardRef.current.contains(event.target as HTMLElement)) {
@@ -37,9 +38,9 @@ const EntryCard = ({ id, createdAt, updatedAt, content, color }: EntryCardProps)
   };
 
   useEffect(() => {
-    setCreationDate(formatDate(new Date(createdAt)));
-    setUpdatedDate(formatDate(new Date(updatedAt)));
-  }, [createdAt, updatedAt]);
+    setCreationDate(formatDate(new Date(createdAt), locale as UserLocale));
+    setUpdatedDate(formatDate(new Date(updatedAt), locale as UserLocale));
+  }, [createdAt, updatedAt, locale]);
 
   useEffect(() => {
     document.addEventListener('mousedown', handleOuterClick);

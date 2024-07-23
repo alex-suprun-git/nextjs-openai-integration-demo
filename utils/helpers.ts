@@ -1,18 +1,18 @@
 export const getExcerpt = (content: string): string =>
   content.length >= 100 ? `${content.slice(0, 100)}...` : content;
 
-export const formatDate = (date: Date): string => {
-  if (typeof window === 'undefined') {
-    return date.toDateString();
-  }
-
+export const formatDate = (date: Date, locale?: UserLocale): string => {
   if (isNaN(date.getTime())) {
     return 'Invalid Date';
   }
 
   const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const supportedLocales = {
+    en: 'en-GB',
+    de: 'de-DE',
+  };
 
-  return new Intl.DateTimeFormat('en-GB', {
+  return new Intl.DateTimeFormat((locale && supportedLocales[locale]) || 'en-GB', {
     dateStyle: 'medium',
     timeStyle: 'short',
     timeZone: userTimezone,
@@ -60,12 +60,12 @@ export const getMoodImage = (analysis: AnalysisData): string => {
   return analysisImage;
 };
 
-export const formatPromptData = (data: any) => {
+export const formatPromptData = (data: any, locale: string) => {
   const formattedSymbolsLeft = new Intl.NumberFormat().format(
     data.promptSymbolsLimit - data.promptSymbolsUsed,
   );
   const formattedSymbolsLimit = new Intl.NumberFormat().format(data.promptSymbolsLimit);
-  const userPromptLimitRenewal = formatDate(data.promptSymbolsLimitRenewal);
+  const userPromptLimitRenewal = formatDate(data.promptSymbolsLimitRenewal, locale as UserLocale);
 
   return {
     symbolsUsed: formattedSymbolsLeft,

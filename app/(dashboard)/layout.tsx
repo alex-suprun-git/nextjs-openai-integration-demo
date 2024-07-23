@@ -1,3 +1,4 @@
+import { getLocale } from 'next-intl/server';
 import Navbar from '@/components/Navbar';
 import { formatPromptData } from '@/utils/helpers';
 import { PromptProvider } from '@/contexts/PromptContext';
@@ -17,12 +18,13 @@ const getUserInfo = async () => {
 
 const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
   const userInfo = await getUserInfo();
+  const locale = await getLocale();
 
   if (!userInfo) {
     return null;
   }
 
-  const { symbolsUsed, symbolsLimit, limitRenewalDate } = formatPromptData(userInfo);
+  const { symbolsUsed, symbolsLimit, limitRenewalDate } = formatPromptData(userInfo, locale);
 
   return (
     <PromptProvider value={{ symbolsUsed, symbolsLimit, limitRenewalDate }}>
