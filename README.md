@@ -4,13 +4,13 @@ This demo application, built with NextJS, TypeScript, Tailwind, Clerk, Prisma, a
 
 ## Project Description
 
-
-
-https://github.com/user-attachments/assets/ccc8c5ee-dcdc-4237-88d7-357d6b5e1220
-
-
-
 NextJS OpenAI Integration Demo is designed to showcase the integration of various modern web technologies to create an AI-powered mood analysis tool.
+
+
+
+https://github.com/user-attachments/assets/edafa667-9318-417d-b86d-11438f1aaf1c
+
+
 
 ### Features
 
@@ -19,6 +19,7 @@ NextJS OpenAI Integration Demo is designed to showcase the integration of variou
 - User authentication and management with Clerk
 - Integration with Prisma for database management
 - Integration with Contentful Headless CMS for content management
+- Progressive Web App (PWA) functionality
 
 ### Notable Libraries and Technologies
 
@@ -28,6 +29,7 @@ NextJS OpenAI Integration Demo is designed to showcase the integration of variou
 - **Clerk**: User management, authentication, and access control.
 - **Prisma**: Next-generation ORM for Node.js and TypeScript.
 - **OpenAI**: AI tools and models for natural language processing.
+- **Next-PWA**: Zero-config PWA plugin for Next.js
 
 ## Table of Contents
 
@@ -38,7 +40,6 @@ NextJS OpenAI Integration Demo is designed to showcase the integration of variou
 - [Dev Dependencies](#dev-dependencies)
 - [Author](#author)
 - [License](#license)
-- [TODO](#todo)
 
 ## Installation
 
@@ -96,12 +97,19 @@ To start the production server, run:
 - `recharts`: ^2.13.0-alpha.4
 - `ws`: ^8.17.1
 - `zod`: ^3.23.8
+- `@clerk/localizations`: ^2.4.8
+- `@contentful/rich-text-react-renderer`: ^15.22.7
+- `cookies-next`: ^4.2.1
+- `franc-min`: ^6.2.0
+- `next-intl`: ^3.17.1
+- `next-pwa`: ^5.6.0
 
 ## Dev Dependencies
 
 - `@clerk/testing`: ^1.1.10
 - `@commitlint/cli`: ^19.3.0
 - `@commitlint/config-conventional`: ^19.2.2
+- `@contentful/rich-text-types`: ^16.8.1
 - `@cypress/code-coverage`: ^3.12.42
 - `@testing-library/react`: ^16.0.0
 - `@types/lodash`: ^4.17.6
@@ -152,12 +160,3 @@ Email: oleksii.suprun.email@gmail.com
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## TODO
-
-- [x] Add unit & e2e tests
-- [x] Improve error handling in API requests
-- [x] Enhance the user interface for better usability
-- [x] Implement i18n and German localization
-- [X] Connect to Contentful CMS
- 
