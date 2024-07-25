@@ -87,19 +87,19 @@ describe('getMoodImage', () => {
 
   it('should return the correct image URL for positive mood', () => {
     const result = getMoodImage(analysis);
-    expect(result).toBe("url('/analysis/positive.jpg')");
+    expect(result).toBe("url('/assets/analysis/positive.jpg')");
   });
 
   it('should return the correct image URL for negative mood', () => {
     analysis = { ...analysis, mood: 'sad', negative: true };
     const result = getMoodImage(analysis);
-    expect(result).toBe("url('/analysis/negative.jpg')");
+    expect(result).toBe("url('/assets/analysis/negative.jpg')");
   });
 
   it('should return the correct image URL for neutral mood', () => {
     analysis = { ...analysis, mood: 'neutral', negative: false };
     const result = getMoodImage(analysis);
-    expect(result).toBe("url('/analysis/neutral.jpg')");
+    expect(result).toBe("url('/assets/analysis/neutral.jpg')");
   });
 
   it('should return the correct image URL for uncertain mood', () => {
@@ -107,13 +107,13 @@ describe('getMoodImage', () => {
     uncertainMoods.forEach((mood) => {
       analysis = { ...analysis, mood, negative: false };
       const result = getMoodImage(analysis);
-      expect(result).toBe("url('/analysis/unknown.jpg')");
+      expect(result).toBe("url('/assets/analysis/unknown.jpg')");
     });
   });
 
   it('should return the correct image URL for unknown mood', () => {
     analysis = { ...analysis, mood: 'something_else', negative: false };
     const result = getMoodImage(analysis);
-    expect(result).toBe("url('/analysis/positive.jpg')");
+    expect(result).toBe("url('/assets/analysis/positive.jpg')");
   });
 });

@@ -51,10 +51,10 @@ export const getMoodImage = (analysis: AnalysisData): string => {
         : 'positive';
 
   const analysisImage = {
-    positive: "url('/analysis/positive.jpg')",
-    negative: "url('/analysis/negative.jpg')",
-    neutral: "url('/analysis/neutral.jpg')",
-    unknown: "url('/analysis/unknown.jpg')",
+    positive: "url('/assets/analysis/positive.jpg')",
+    negative: "url('/assets/analysis/negative.jpg')",
+    neutral: "url('/assets/analysis/neutral.jpg')",
+    unknown: "url('/assets/analysis/unknown.jpg')",
   }[condition];
 
   return analysisImage;

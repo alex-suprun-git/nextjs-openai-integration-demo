@@ -23,7 +23,7 @@ exports[`Editor > renders correctly and matches snapshot 1`] = `
     >
       <div
         class="relative px-6 py-10"
-        style="background: url(/analysis/positive.jpg);"
+        style="background: url(/assets/analysis/positive.jpg);"
       >
         <h2
           class="relative z-10 w-fit bg-gray-800 p-6 text-2xl font-bold text-stone-300"

@@ -1,8 +1,8 @@
-import { getContentForHero } from '@/content/queries';
-import Hero from '@/components/Hero';
-import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { getLocale } from 'next-intl/server';
 import { auth } from '@clerk/nextjs/server';
+import Hero from '@/components/Hero';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
+import { getContentForHero } from '@/content/queries';
 
 const Home = async () => {
   const locale = await getLocale();

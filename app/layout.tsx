@@ -11,6 +11,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'NextJS | TypeScript | Tailwind | Prisma | Clerk | OpenAI',
+  manifest: '/manifest.json',
 };
 
 export default async function RootLayout({
