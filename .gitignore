@@ -33,9 +33,15 @@ yarn-error.log*
 .env*.local
 cypress.env.json
 
+
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# pwa
+**/public/workbox*.*
+**/public/sw*.*
+**/public/fallback*.*
