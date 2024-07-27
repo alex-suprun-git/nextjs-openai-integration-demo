@@ -100,7 +100,6 @@ To start the production server, run:
 - `@clerk/localizations`: ^2.4.8
 - `@contentful/rich-text-react-renderer`: ^15.22.7
 - `cookies-next`: ^4.2.1
-- `franc-min`: ^6.2.0
 - `next-intl`: ^3.17.1
 - `next-pwa`: ^5.6.0
 

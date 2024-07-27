@@ -1,13 +1,5 @@
 import { getExcerpt, formatDate, convertHexToRGBA, getMoodImage } from '@/utils/helpers';
 
-vi.mock('franc', () => ({
-  default: (text: string) => {
-    if (text.includes('hello')) return 'eng';
-    if (text.includes('hallo')) return 'deu';
-    if (text.includes('привет')) return 'rus';
-  },
-}));
-
 describe('getExcerpt', () => {
   it('should return the full content if it is less than 100 characters', () => {
     const content = 'This is a short content.';
