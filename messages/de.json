@@ -69,5 +69,11 @@
     "description1": "Seite nicht gefunden",
     "description2": "Entschuldigung, wir können diese Notiz nicht finden.",
     "linkText": "Zurück zur Journalseite"
+  },
+  "ErrorBoundary": {
+    "headline": "Ups! Da ist etwas schiefgegangen",
+    "buttons": {
+      "tryAgain": "Erneut versuchen"
+    }
   }
 }
