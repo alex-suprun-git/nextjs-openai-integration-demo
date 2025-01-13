@@ -11,6 +11,7 @@ function Navbar() {
   const drawerToggleRef = useRef<HTMLInputElement>(null);
 
   const drawerToggleHandler = () => {
+    //testo
     if (drawerToggleRef.current) {
       drawerToggleRef.current.checked = false;
     }
