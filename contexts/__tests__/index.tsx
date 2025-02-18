@@ -1,6 +1,6 @@
 import { usePrompt } from '../PromptContext';
 
-const TestComponent: React.FC = () => {
+const TestComponent = () => {
   const { symbolsLimit, symbolsUsed } = usePrompt();
   return (
     <div>

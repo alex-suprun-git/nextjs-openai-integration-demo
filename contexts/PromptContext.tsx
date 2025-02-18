@@ -25,6 +25,6 @@ interface PromptProviderProps {
   value: PromptContextProps;
 }
 
-export const PromptProvider: React.FC<PromptProviderProps> = ({ children, value }) => (
+export const PromptProvider = ({ children, value }: PromptProviderProps) => (
   <PromptContext.Provider value={value}>{children}</PromptContext.Provider>
 );
