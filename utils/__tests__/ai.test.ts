@@ -1,7 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { analyzeEntry, analysisFeedback } from '@/utils/ai';
 import { StructuredOutputParser } from 'langchain/output_parsers';
-import { z } from 'zod';
 
 // Mock adjustment for OpenAI to include _modelType and other methods
 vi.mock('@langchain/openai', () => ({
@@ -65,7 +64,7 @@ describe('analyzeEntry', () => {
 
   it('returns fixed output when initial parsing fails', async () => {
     // Adjust the mock to simulate parsing failure
-    const originalParse = vi.mocked(StructuredOutputParser.fromZodSchema({} as z.ZodTypeAny).parse);
+    const originalParse = vi.mocked(StructuredOutputParser.fromZodSchema({} as any).parse);
     originalParse.mockRejectedValueOnce(new Error('Parsing Error'));
 
     const result = await analyzeEntry('test content with parsing error');

@@ -1,5 +1,5 @@
 import { getRequestConfig } from 'next-intl/server';
-import { getUserLocale } from './utils/locales';
+import { getUserLocale } from '../utils/locales';
 import { headers } from 'next/headers';
 
 function getLocaleFromHeaders() {
@@ -20,6 +20,6 @@ export default getRequestConfig(async () => {
 
   return {
     locale,
-    messages: (await import(`./messages/${locale}.json`)).default,
+    messages: (await import(`../messages/${locale}.json`)).default,
   };
 });

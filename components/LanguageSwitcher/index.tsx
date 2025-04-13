@@ -20,7 +20,7 @@ const LanguageSwitcher = () => {
   };
 
   return (
-    <div className="dropdown dropdown-left dropdown-hover ml-auto">
+    <div className="dropdown dropdown-hover dropdown-left ml-auto">
       <div
         tabIndex={0}
         role="button"
@@ -30,7 +30,7 @@ const LanguageSwitcher = () => {
       </div>
       <ul
         tabIndex={0}
-        className="menu dropdown-content z-[1] w-52 rounded-box bg-slate-800 p-2 shadow"
+        className="dropdown-content menu z-[1] w-52 rounded-box bg-slate-800 p-2 shadow"
       >
         {languages.map((language, index) => (
           <li key={index}>
