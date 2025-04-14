@@ -11,9 +11,9 @@ describe('update', () => {
     vi.clearAllMocks();
   });
 
-  it('should call revalidatePath for each path', () => {
+  it('should call revalidatePath for each path', async () => {
     const paths = ['/path1', '/path2', '/path3'];
-    update(paths);
+    await update(paths);
 
     expect(revalidatePath).toHaveBeenCalledTimes(paths.length);
     paths.forEach((path, index) => {
@@ -21,23 +21,23 @@ describe('update', () => {
     });
   });
 
-  it('should not call revalidatePath if no paths are provided', () => {
-    update();
+  it('should not call revalidatePath if no paths are provided', async () => {
+    await update();
 
     expect(revalidatePath).not.toHaveBeenCalled();
   });
 
-  it('should call revalidatePath once if one path is provided', () => {
+  it('should call revalidatePath once if one path is provided', async () => {
     const paths = ['/single-path'];
-    update(paths);
+    await update(paths);
 
     expect(revalidatePath).toHaveBeenCalledTimes(1);
     expect(revalidatePath).toHaveBeenCalledWith('/single-path');
   });
 
-  it('should handle empty paths array', () => {
+  it('should handle empty paths array', async () => {
     const paths: string[] = [];
-    update(paths);
+    await update(paths);
 
     expect(revalidatePath).not.toHaveBeenCalled();
   });

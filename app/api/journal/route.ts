@@ -30,7 +30,7 @@ export const POST = async (request: Request) => {
       },
     });
 
-    update(['/journal']);
+    await update(['/journal']);
 
     return NextResponse.json({ data: entry });
   } catch (error) {

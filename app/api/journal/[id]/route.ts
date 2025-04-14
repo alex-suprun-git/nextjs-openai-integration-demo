@@ -5,7 +5,8 @@ import { getUserByClerkId } from '@/utils/auth';
 import { prisma } from '@/utils/db';
 import { isDynamicServerError } from 'next/dist/client/components/hooks-server-context';
 
-export const PATCH = async (request: Request, { params }: { params: { id: string } }) => {
+export const PATCH = async (request: Request, { params }: { params: Promise<{ id: string }> }) => {
+  const { id } = await params;
   const { content } = await request.json();
   const user = await getUserByClerkId();
 
@@ -18,7 +19,7 @@ export const PATCH = async (request: Request, { params }: { params: { id: string
       where: {
         userId_id: {
           userId: user.id,
-          id: params.id,
+          id,
         },
       },
       data: {
@@ -51,8 +52,12 @@ export const PATCH = async (request: Request, { params }: { params: { id: string
   }
 };
 
-export const DELETE = async (_request: Request, { params }: { params: { id: string } }) => {
+export const DELETE = async (
+  _request: Request,
+  { params }: { params: Promise<{ id: string }> },
+) => {
   const user = await getUserByClerkId();
+  const { id } = await params;
 
   if (!user) {
     return NextResponse.json({ message: 'User not found' }, { status: 401 });
@@ -62,15 +67,15 @@ export const DELETE = async (_request: Request, { params }: { params: { id: stri
     await prisma.journalEntry.delete({
       where: {
         userId_id: {
-          id: params.id,
+          id,
           userId: user.id,
         },
       },
     });
 
-    update(['/journal']);
+    await update(['/journal']);
 
-    return NextResponse.json({ data: { id: params.id } });
+    return NextResponse.json({ data: { id } });
   } catch (error) {
     if (isDynamicServerError(error)) {
       throw error;

@@ -30,8 +30,9 @@ const getEntry = async (id: string) => {
   return entry;
 };
 
-const EntryPage = async ({ params }: { params: { id: string } }) => {
-  const entry = await getEntry(params.id);
+const EntryPage = async ({ params }: { params: Promise<{ id: string }> }) => {
+  const { id } = await params;
+  const entry = await getEntry(id);
 
   if (!entry || !entry.analysis) {
     return notFound();

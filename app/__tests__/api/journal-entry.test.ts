@@ -53,11 +53,13 @@ describe('PATCH handler', () => {
       json: vi.fn().mockResolvedValue({ content: 'Updated content' }),
     };
 
-    const params = { id: 'entry-123' };
+    const asyncParams = Promise.resolve({ id: 'entry-123' });
+    const { id } = await asyncParams;
+
     const user = { id: 'user-123' };
     (getUserByClerkId as Mock).mockResolvedValue(user);
 
-    const updatedEntry = { id: params.id, userId: user.id, content: 'Updated content' };
+    const updatedEntry = { id, userId: user.id, content: 'Updated content' };
     (prisma.journalEntry.update as Mock).mockResolvedValue(updatedEntry);
 
     const analysis = { sentiment: 'neutral', keywords: ['updated', 'content'] };
@@ -70,7 +72,7 @@ describe('PATCH handler', () => {
     jsonMock.mockReturnValue(jsonResponse);
 
     // Act
-    const response = await PATCH(request as any, { params });
+    const response = await PATCH(request as any, { params: asyncParams });
 
     // Assert
     expect(request.json).toHaveBeenCalled();
@@ -79,7 +81,7 @@ describe('PATCH handler', () => {
       where: {
         userId_id: {
           userId: user.id,
-          id: params.id,
+          id,
         },
       },
       data: {
@@ -108,7 +110,7 @@ describe('PATCH handler', () => {
       json: vi.fn().mockRejectedValue(new Error('Invalid request')),
     };
 
-    const params = { id: 'entry-123' };
+    const params = Promise.resolve({ id: 'entry-123' });
     const jsonResponse = { message: 'Error processing request' };
     jsonMock.mockReturnValue(jsonResponse);
 
@@ -134,7 +136,7 @@ describe('PATCH handler', () => {
       json: vi.fn().mockResolvedValue({ content: 'Updated content' }),
     };
 
-    const params = { id: 'entry-123' };
+    const asyncParams = Promise.resolve({ id: 'entry-123' });
     (getUserByClerkId as Mock).mockResolvedValue(null); // Mock getUserByClerkId to return null
 
     const jsonResponse = { message: 'User not found' };
@@ -143,7 +145,7 @@ describe('PATCH handler', () => {
     // Act
     let response;
     try {
-      response = await PATCH(request as any, { params });
+      response = await PATCH(request as any, { params: asyncParams });
     } catch (error) {
       response = error;
     }
@@ -176,22 +178,24 @@ describe('DELETE handler', () => {
   it('should delete journal entry and return deleted entry id', async () => {
     // Arrange
     const request = {}; // DELETE request does not have a body
-    const params = { id: 'entry-123' };
+
+    const asyncParams = Promise.resolve({ id: 'entry-123' });
+    const { id } = await asyncParams;
     const user = { id: 'user-123' };
     (getUserByClerkId as Mock).mockResolvedValue(user);
 
-    const jsonResponse = { data: { id: params.id } };
+    const jsonResponse = { data: { id } };
     jsonMock.mockReturnValue(jsonResponse);
 
     // Act
-    const response = await DELETE(request as any, { params });
+    const response = await DELETE(request as any, { params: asyncParams });
 
     // Assert
     expect(getUserByClerkId).toHaveBeenCalled();
     expect(prisma.journalEntry.delete).toHaveBeenCalledWith({
       where: {
         userId_id: {
-          id: params.id,
+          id,
           userId: user.id,
         },
       },
@@ -204,7 +208,7 @@ describe('DELETE handler', () => {
   it('should handle general errors properly', async () => {
     // Arrange
     const request = {}; // DELETE request does not have a body
-    const params = { id: 'entry-123' };
+    const asyncParams = Promise.resolve({ id: 'entry-123' });
 
     const jsonResponse = { message: 'Error processing request' };
     jsonMock.mockReturnValue(jsonResponse);
@@ -212,7 +216,7 @@ describe('DELETE handler', () => {
     // Act
     let response;
     try {
-      response = await DELETE(request as any, { params });
+      response = await DELETE(request as any, { params: asyncParams });
     } catch (e) {
       response = e;
     }
@@ -227,7 +231,7 @@ describe('DELETE handler', () => {
   it('should return 401 when the user is not found', async () => {
     // Arrange
     const request = {}; // DELETE request does not have a body
-    const params = { id: 'entry-123' };
+    const params = Promise.resolve({ id: 'entry-123' });
     (getUserByClerkId as Mock).mockResolvedValue(null); // Mock getUserByClerkId to return null
 
     const jsonResponse = { message: 'User not found' };

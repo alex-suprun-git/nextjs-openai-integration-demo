@@ -54,8 +54,10 @@ describe('EntryPage', () => {
     (getUserByClerkId as Mock).mockResolvedValue(mockUser);
     (prisma.journalEntry.findUnique as Mock).mockResolvedValue(mockEntry);
 
+    const asyncParams = Promise.resolve({ id: 'entry-1' });
+
     // Act
-    render(<div>{await EntryPage({ params: { id: 'entry-1' } })}</div>);
+    render(<div>{await EntryPage({ params: asyncParams })}</div>);
 
     // Assert
     expect(await screen.findByTestId('editor')).toBeInTheDocument();
@@ -71,8 +73,10 @@ describe('EntryPage', () => {
     (getUserByClerkId as Mock).mockResolvedValue(mockUser);
     (prisma.journalEntry.findUnique as Mock).mockResolvedValue(null);
 
+    const asyncParams = Promise.resolve({ id: 'entry-1' });
+
     // Act
-    render(<div>{await EntryPage({ params: { id: 'entry-1' } })}</div>);
+    render(<div>{await EntryPage({ params: asyncParams })}</div>);
 
     // Assert
     await waitFor(() => expect(notFound).toHaveBeenCalled());
@@ -89,8 +93,10 @@ describe('EntryPage', () => {
     (getUserByClerkId as Mock).mockResolvedValue(mockUser);
     (prisma.journalEntry.findUnique as Mock).mockResolvedValue(mockEntry);
 
+    const asyncParams = Promise.resolve({ id: 'entry-1' });
+
     // Act
-    render(<div>{await EntryPage({ params: { id: 'entry-1' } })}</div>);
+    render(<div>{await EntryPage({ params: asyncParams })}</div>);
 
     // Assert
     await waitFor(() => expect(notFound).toHaveBeenCalled());
