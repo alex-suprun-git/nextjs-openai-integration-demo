@@ -3,7 +3,7 @@
 import { cookies } from 'next/headers';
 import { COOKIE_NAME } from './constants';
 
-import { getCookie, setCookie } from 'cookies-next';
+import { getCookie, setCookie } from 'cookies-next/server';
 
 export async function getUserLocale() {
   return getCookie(COOKIE_NAME, { cookies });
