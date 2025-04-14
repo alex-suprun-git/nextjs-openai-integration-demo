@@ -1,10 +1,10 @@
 import { describe, it, expect, vi, Mock } from 'vitest';
-import { getCookie, setCookie } from 'cookies-next';
+import { getCookie, setCookie } from 'cookies-next/server';
 import { cookies } from 'next/headers';
 import { getUserLocale, setUserLocale } from '@/utils/locales';
 import { COOKIE_NAME } from '@/utils/constants';
 
-vi.mock('cookies-next', () => ({
+vi.mock('cookies-next/server', () => ({
   getCookie: vi.fn(),
   setCookie: vi.fn(),
 }));

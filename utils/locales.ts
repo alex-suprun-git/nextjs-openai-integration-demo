@@ -10,5 +10,5 @@ export async function getUserLocale() {
 }
 
 export async function setUserLocale(locale: UserLocale) {
-  setCookie(COOKIE_NAME, locale, { cookies });
+  await setCookie(COOKIE_NAME, locale, { cookies });
 }
