@@ -11,7 +11,6 @@ function Navbar() {
   const drawerToggleRef = useRef<HTMLInputElement>(null);
 
   const drawerToggleHandler = () => {
-    //testo
     if (drawerToggleRef.current) {
       drawerToggleRef.current.checked = false;
     }
@@ -40,7 +39,7 @@ function Navbar() {
           <LanguageSwitcher />
         </div>
         <div className="pt-2 text-center">
-          <UserButton afterSignOutUrl="/sign-in" />
+          <UserButton />
         </div>
       </div>
     </Header>
