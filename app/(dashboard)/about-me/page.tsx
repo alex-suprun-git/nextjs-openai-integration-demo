@@ -13,8 +13,6 @@ export const metadata: Metadata = {
   description: 'A Brief info about Alex Suprun - the developer of this project.',
 };
 
-export const revalidate = 60;
-
 const AboutMePage = async () => {
   const locale = await getLocale();
   const componentData = (await getContentFromCMS(pageQuery, locale, {
