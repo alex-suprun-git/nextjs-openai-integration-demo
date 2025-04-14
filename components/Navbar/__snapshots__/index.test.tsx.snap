@@ -8,14 +8,14 @@ exports[`Navbar Component > renders correctly 1`] = `
       class="navbar-start"
     >
       <div
-        class="hidden lg:flex"
+        class="hidden xl:flex"
       >
         <div>
           Navigation
         </div>
       </div>
       <div
-        class="lg:hidden"
+        class="xl:hidden"
       >
         <div>
           Drawer 

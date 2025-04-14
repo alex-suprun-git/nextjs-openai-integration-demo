@@ -11,12 +11,19 @@ export type HomepageHeroSchema = {
   };
 };
 
-export type pageSchema = {
+export type PageSchema = {
   pageCollection: {
     items: {
       title: string;
       content: {
         json: Document;
+      };
+      hasImage: boolean;
+      image: {
+        width: number;
+        height: number;
+        url: string;
+        description: string;
       };
     }[];
   };

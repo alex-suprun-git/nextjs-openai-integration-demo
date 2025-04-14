@@ -18,13 +18,13 @@ const Navigation = ({ onClick = () => {} }: { onClick?: MouseEventHandler<HTMLAn
   ];
 
   return (
-    <div className="mb-12 mt-5 flex flex-col lg:mb-0 lg:mt-0 lg:flex-row">
+    <div className="mb-12 mt-5 flex flex-col xl:mb-0 xl:mt-0 xl:flex-row">
       {navigationLinks.map((link) => (
         <Link
           className={
             isActiveLink(link.href)
-              ? 'mb-5 mr-12 text-2xl font-bold lg:mb-0 lg:text-base'
-              : 'mb-5 mr-12 text-lg lg:mb-0 lg:text-base'
+              ? 'mb-5 mr-12 text-2xl font-bold xl:mb-0 xl:text-base'
+              : 'mb-5 mr-12 text-lg xl:mb-0 xl:text-base'
           }
           key={link.href}
           href={link.href}

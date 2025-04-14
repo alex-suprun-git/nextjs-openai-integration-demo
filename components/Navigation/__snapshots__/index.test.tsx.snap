@@ -3,10 +3,10 @@
 exports[`Navigation Component > renders correctly when journal link is active 1`] = `
 <div>
   <div
-    class="mb-12 mt-5 flex flex-col lg:mb-0 lg:mt-0 lg:flex-row"
+    class="mb-12 mt-5 flex flex-col xl:mb-0 xl:mt-0 xl:flex-row"
   >
     <a
-      class="mb-5 mr-12 text-2xl font-bold lg:mb-0 lg:text-base"
+      class="mb-5 mr-12 text-2xl font-bold xl:mb-0 xl:text-base"
       href="/journal"
     >
       <span
@@ -16,7 +16,7 @@ exports[`Navigation Component > renders correctly when journal link is active 1`
       </span>
     </a>
     <a
-      class="mb-5 mr-12 text-lg lg:mb-0 lg:text-base"
+      class="mb-5 mr-12 text-lg xl:mb-0 xl:text-base"
       href="/statistics"
     >
       <span
@@ -26,7 +26,7 @@ exports[`Navigation Component > renders correctly when journal link is active 1`
       </span>
     </a>
     <a
-      class="mb-5 mr-12 text-lg lg:mb-0 lg:text-base"
+      class="mb-5 mr-12 text-lg xl:mb-0 xl:text-base"
       href="/about-me"
     >
       <span
@@ -42,10 +42,10 @@ exports[`Navigation Component > renders correctly when journal link is active 1`
 exports[`Navigation Component > renders correctly when no link is active 1`] = `
 <div>
   <div
-    class="mb-12 mt-5 flex flex-col lg:mb-0 lg:mt-0 lg:flex-row"
+    class="mb-12 mt-5 flex flex-col xl:mb-0 xl:mt-0 xl:flex-row"
   >
     <a
-      class="mb-5 mr-12 text-lg lg:mb-0 lg:text-base"
+      class="mb-5 mr-12 text-lg xl:mb-0 xl:text-base"
       href="/journal"
     >
       <span
@@ -55,7 +55,7 @@ exports[`Navigation Component > renders correctly when no link is active 1`] = `
       </span>
     </a>
     <a
-      class="mb-5 mr-12 text-lg lg:mb-0 lg:text-base"
+      class="mb-5 mr-12 text-lg xl:mb-0 xl:text-base"
       href="/statistics"
     >
       <span
@@ -65,7 +65,7 @@ exports[`Navigation Component > renders correctly when no link is active 1`] = `
       </span>
     </a>
     <a
-      class="mb-5 mr-12 text-lg lg:mb-0 lg:text-base"
+      class="mb-5 mr-12 text-lg xl:mb-0 xl:text-base"
       href="/about-me"
     >
       <span
@@ -81,10 +81,10 @@ exports[`Navigation Component > renders correctly when no link is active 1`] = `
 exports[`Navigation Component > renders correctly when statistics link is active 1`] = `
 <div>
   <div
-    class="mb-12 mt-5 flex flex-col lg:mb-0 lg:mt-0 lg:flex-row"
+    class="mb-12 mt-5 flex flex-col xl:mb-0 xl:mt-0 xl:flex-row"
   >
     <a
-      class="mb-5 mr-12 text-lg lg:mb-0 lg:text-base"
+      class="mb-5 mr-12 text-lg xl:mb-0 xl:text-base"
       href="/journal"
     >
       <span
@@ -94,7 +94,7 @@ exports[`Navigation Component > renders correctly when statistics link is active
       </span>
     </a>
     <a
-      class="mb-5 mr-12 text-2xl font-bold lg:mb-0 lg:text-base"
+      class="mb-5 mr-12 text-2xl font-bold xl:mb-0 xl:text-base"
       href="/statistics"
     >
       <span
@@ -104,7 +104,7 @@ exports[`Navigation Component > renders correctly when statistics link is active
       </span>
     </a>
     <a
-      class="mb-5 mr-12 text-lg lg:mb-0 lg:text-base"
+      class="mb-5 mr-12 text-lg xl:mb-0 xl:text-base"
       href="/about-me"
     >
       <span

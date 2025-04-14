@@ -19,10 +19,10 @@ function Navbar() {
   return (
     <Header>
       <div className="navbar-start">
-        <div className="hidden lg:flex">
+        <div className="hidden xl:flex">
           <Navigation />
         </div>
-        <div className="lg:hidden">
+        <div className="xl:hidden">
           <Drawer toggleRef={drawerToggleRef} icon={<FiMenu size={38} />}>
             <Navigation onClick={drawerToggleHandler} />
             <PromptCounter />

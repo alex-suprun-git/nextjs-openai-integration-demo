@@ -7,6 +7,13 @@ export const pageQuery = `#graphql
         content {
           json
         }
+        hasImage
+        image {
+          width
+          height
+          url
+          description
+        }
       }
     }
   }

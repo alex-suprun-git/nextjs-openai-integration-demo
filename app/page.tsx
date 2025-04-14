@@ -16,10 +16,7 @@ const Home = async () => {
     return null;
   }
 
-  console.log(componentData);
-
-  const headline = componentData.homepageHeroBannerCollection.items[0].homepageHeadline;
-  const description = componentData.homepageHeroBannerCollection.items[0].homepageDescription.json;
+  const component = componentData.homepageHeroBannerCollection.items[0];
 
   return (
     <>
@@ -27,7 +24,11 @@ const Home = async () => {
         <LanguageSwitcher />
       </div>
 
-      <Hero headline={headline} description={description} isAuthorized={!!userId} />
+      <Hero
+        headline={component.homepageHeadline}
+        description={component.homepageDescription.json}
+        isAuthorized={!!userId}
+      />
     </>
   );
 };
