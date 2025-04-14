@@ -3,20 +3,20 @@ import { createTranslator, useTranslations } from 'next-intl';
 import { Mock, vi } from 'vitest';
 import { auth } from '@clerk/nextjs/server';
 import Home from '@/app/page';
-import { getContentForHero } from '@/content/queries';
+import { getContentFromCMS } from '@/content/utils';
 import heroContentMock from '@/app/__tests__/__mocks__/heroContentMock.json';
 
 vi.mock('@clerk/nextjs/server', () => ({
   auth: vi.fn(),
 }));
 
-vi.mock('@/content/queries', () => ({
-  getContentForHero: vi.fn(),
+vi.mock('@/content/utils', () => ({
+  getContentFromCMS: vi.fn(),
 }));
 
 describe('Home', () => {
   beforeEach(() => {
-    vi.mocked(getContentForHero as Mock).mockResolvedValue(heroContentMock);
+    vi.mocked(getContentFromCMS as Mock).mockResolvedValue(heroContentMock);
   });
 
   beforeAll(async () => {
