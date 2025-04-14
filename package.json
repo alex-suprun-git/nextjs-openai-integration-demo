@@ -29,6 +29,7 @@
     "@radix-ui/react-dropdown-menu": "2.1.7",
     "@sentry/nextjs": "^8.1.0",
     "@testing-library/dom": "^10.4.0",
+    "@vercel/speed-insights": "^1.2.0",
     "cookies-next": "5.1.0",
     "langchain": "^0.2.7",
     "lodash": "4.17.21",
