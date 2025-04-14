@@ -19,7 +19,8 @@
     },
     "navigation": {
       "journal": "Journal",
-      "statistics": "Statistiken"
+      "statistics": "Statistiken",
+      "aboutMe": "Über mich"
     }
   },
   "JournalList": {

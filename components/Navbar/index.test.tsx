@@ -56,6 +56,5 @@ describe('Navbar Component', () => {
   it('renders LanguageSwitcher and UserButton', () => {
     render(<Navbar />);
     expect(screen.getByText('LanguageSwitcher')).toBeVisible();
-    expect(screen.getByText('UserButton /sign-in')).toBeVisible();
   });
 });

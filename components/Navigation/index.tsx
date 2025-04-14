@@ -1,9 +1,9 @@
 'use client';
 
+import { MouseEventHandler } from 'react';
 import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { MouseEventHandler } from 'react';
 
 const Navigation = ({ onClick = () => {} }: { onClick?: MouseEventHandler<HTMLAnchorElement> }) => {
   const path = usePathname();
@@ -14,6 +14,7 @@ const Navigation = ({ onClick = () => {} }: { onClick?: MouseEventHandler<HTMLAn
   const navigationLinks = [
     { label: t('navigation.journal'), href: '/journal' },
     { label: t('navigation.statistics'), href: '/statistics' },
+    { label: t('navigation.aboutMe'), href: '/about-me' },
   ];
 
   return (
