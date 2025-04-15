@@ -1,22 +1,22 @@
 import { Metadata } from 'next';
-import { getLocale } from 'next-intl/server';
+import { ReactNode } from 'react';
+import Image from 'next/image';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { Block, BLOCKS, Inline, MARKS } from '@contentful/rich-text-types';
 import { Heading } from '@/ui-lib';
 import { pageQuery } from '@/content/queries';
 import { PageSchema } from '@/content/types';
 import { getContentFromCMS } from '@/content/utils';
-import { ReactNode } from 'react';
-import Image from 'next/image';
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'About me | OpenAI Daily Journal',
   description: 'A Brief info about Alex Suprun - the developer of this project.',
 };
 
-const AboutMePage = async () => {
-  const locale = await getLocale();
-  const componentData = (await getContentFromCMS(pageQuery, locale, {
+export default async function AboutMePage() {
+  const componentData = (await getContentFromCMS(pageQuery, 'de', {
     slug: 'about-me',
   })) as PageSchema;
 
@@ -53,6 +53,7 @@ const AboutMePage = async () => {
           height={image.height / 1.5}
           src={image.url}
           alt={image.description}
+          priority={true}
         />
         {documentToReactComponents(description, renderOptions)}
       </div>
@@ -68,6 +69,4 @@ const AboutMePage = async () => {
       )}
     </div>
   );
-};
-
-export default AboutMePage;
+}

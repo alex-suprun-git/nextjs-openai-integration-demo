@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import PageNotFound from '@/app/not-found';
+import PageNotFound from '@/app/(public-pages)/not-found';
 import { createTranslator, useTranslations } from 'next-intl';
 import { Mock } from 'vitest';
 

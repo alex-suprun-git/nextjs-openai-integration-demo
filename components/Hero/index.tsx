@@ -1,8 +1,5 @@
-'use client';
-
 import Link from 'next/link';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { useTranslations } from 'next-intl';
 
 function Hero({
   isAuthorized,
@@ -13,10 +10,10 @@ function Hero({
   headline: string;
   description: any;
 }) {
-  const t = useTranslations('HomePage');
+  // const t = useTranslations('HomePage');
 
   let href = isAuthorized ? '/journal' : '/new-user';
-  let buttonLabel = isAuthorized ? t('buttons.authorized') : t('buttons.unauthorized');
+  // let buttonLabel = isAuthorized ? t('buttons.authorized') : t('buttons.unauthorized');
 
   return (
     <div className="flex items-center justify-center px-10 pb-24 text-stone-300 md:py-0">
@@ -30,7 +27,7 @@ function Hero({
         <div>
           <Link href={href}>
             <button className="btn btn-lg mb-5 border-0 bg-yellow-200 text-gray-900 hover:bg-yellow-300">
-              {buttonLabel}
+              Continue
             </button>
           </Link>
         </div>
