@@ -1,0 +1,109 @@
+import { getLocale } from 'next-intl/server';
+import { ChatOpenAI, OpenAI, OpenAIEmbeddings } from '@langchain/openai';
+import { OutputFixingParser, StructuredOutputParser } from 'langchain/output_parsers';
+import { PromptTemplate } from '@langchain/core/prompts';
+import { Document } from 'langchain/document';
+import { loadQARefineChain } from 'langchain/chains';
+import { MemoryVectorStore } from 'langchain/vectorstores/memory';
+import z from 'zod';
+
+const parser = StructuredOutputParser.fromZodSchema(
+  z.object({
+    mood: z.string().describe('the mood of the person who wrote the journal entry.'),
+    subject: z.string().describe('the subject of the journal entry.'),
+    negative: z
+      .boolean()
+      .describe('is the journal entry negative? (i.e. does it contain negative emotions?).'),
+    summary: z.string().describe('quick summary of the entire entry.'),
+    color: z
+      .string()
+      .describe(
+        'a hexidecimal color code that represents the mood of the entry. Example #0101fe for blue representing happiness.',
+      ),
+    sentimentScore: z
+      .number()
+      .describe(
+        'sentiment of the text and rated on a scale from -10 to 10, where -10 is extremely negative, 0 is neutral, and 10 is extremely positive.',
+      ),
+  }) as any,
+);
+
+const getPrompt = async (content: string, language: UserLocale) => {
+  const formatInstructions = parser.getFormatInstructions();
+
+  const templates = {
+    de: 'Analysiere den folgenden Tagebucheintrag und antworte in derselben Sprache wie der Eingang. Übersetze die Formatierungsanweisungen ins Deutsche und befolge sie unbedingt! \n{formatInstructions}\n{entry}',
+    en: 'Analyze the following journal entry and respond in the same language as the input. Follow the instructions and format your response to match the format instructions, no matter what! \n{formatInstructions}\n{entry}',
+  };
+
+  const prompt = new PromptTemplate({
+    template: templates[language],
+    inputVariables: ['entry'],
+    partialVariables: { formatInstructions },
+  });
+
+  const input = await prompt.format({
+    entry: content,
+  });
+
+  return input;
+};
+
+export const analyzeEntry = async (content: string) => {
+  const locale = await getLocale();
+
+  const input = await getPrompt(content, locale as UserLocale);
+  const model = new ChatOpenAI({
+    temperature: 0,
+    model: 'gpt-4o',
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+  const output = await model.invoke(input);
+
+  try {
+    return await parser.parse(output.content as string);
+  } catch (e) {
+    const fixParser = OutputFixingParser.fromLLM(
+      new OpenAI({ temperature: 0, model: 'gpt-4o' }),
+      parser,
+    );
+    const fix = await fixParser.parse(output.content as string);
+    return fix;
+  }
+};
+
+export const analysisFeedback = async (question: string, entries: BaseEntry[]) => {
+  if (!entries.length) {
+    return undefined;
+  }
+
+  const docs = entries.map(
+    (entry) =>
+      new Document({
+        pageContent: entry.content as string,
+        metadata: { source: entry.id, date: entry.createdAt },
+      }),
+  );
+  const model = new OpenAI({ temperature: 0, model: 'gpt-4o' });
+  const chain = loadQARefineChain(model);
+  const embeddings = new OpenAIEmbeddings();
+  const store = await MemoryVectorStore.fromDocuments(docs, embeddings);
+  const relevantDocs = await store.similaritySearch(question);
+
+  const promptTemplate = new PromptTemplate({
+    template:
+      "Answer the following question focusing exclusively on the person's mood and feelings based on the given documents. If the question touches on any other topic or if the context is unclear, please respond with a polite request to rephrase the question. Ensure your answer is in the same language as the input.\n\nQuestion: {question}",
+    inputVariables: ['question'],
+  });
+
+  const input = await promptTemplate.format({
+    question: question,
+  });
+
+  const res = await chain.invoke({
+    input_documents: relevantDocs,
+    question: input,
+  });
+
+  return res.output_text;
+};

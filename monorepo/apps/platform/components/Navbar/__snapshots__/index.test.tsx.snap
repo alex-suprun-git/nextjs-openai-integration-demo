@@ -1,0 +1,65 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Navbar Component > renders correctly 1`] = `
+<div>
+  <div>
+    Header 
+    <div
+      class="navbar-start"
+    >
+      <div
+        class="hidden xl:flex"
+      >
+        <div>
+          Navigation
+        </div>
+      </div>
+      <div
+        class="xl:hidden"
+      >
+        <div>
+          Drawer 
+          <div>
+            FiMenu Icon
+          </div>
+          <div>
+            Navigation
+          </div>
+          <div>
+            PromptCounter
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="navbar-center"
+    >
+      <div
+        class="hidden lg:block"
+      >
+        <div>
+          PromptCounter
+        </div>
+      </div>
+    </div>
+    <div
+      class="navbar-end"
+    >
+      <div
+        class="mr-8 md:mr-10"
+      >
+        <div>
+          LanguageSwitcher
+        </div>
+      </div>
+      <div
+        class="pt-2 text-center"
+      >
+        <div>
+          UserButton 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

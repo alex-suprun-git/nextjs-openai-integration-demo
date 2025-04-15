@@ -1,41 +1,41 @@
 {
-  "name": "monorepo",
-  "private": true,
-  "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint"
-  },
-  "devDependencies": {
-    "prettier": "^3.5.3",
-    "turbo": "^2.5.0",
-    "typescript": "5.8.2",
-    "@types/node": "^20.10.0",
-    "@typescript-eslint/eslint-plugin": "^7.15.0",
-    "eslint": "^8",
-    "eslint-config-prettier": "8.0.0",
-    "eslint-plugin-import": "2.25.2",
-    "eslint-plugin-jsx-a11y": "6.7.0",
-    "eslint-plugin-react": "7.28.0",
-    "eslint-plugin-testing-library": "6.2.2",
-    "husky": "^9.0.11",
-    "lint-staged": "^15.2.7",
-    "tailwindcss": "^3.4.1",
-    "vitest": "3.1.0",
-    "postcss": "^8",
-    "prettier-plugin-tailwindcss": "^0.6.5"
-  },
-  "engines": {
-    "node": ">=22"
-  },
-  "lint-staged": {
-    "*.{test.ts,test.tsx}": [
-      "vitest run --coverage --changed --update"
-    ]
-  },
-  "packageManager": "yarn@1.22.22",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ]
+	"name": "monorepo",
+	"private": true,
+	"scripts": {
+		"build": "turbo run build",
+		"dev": "turbo run dev",
+		"lint": "turbo run lint"
+	},
+	"devDependencies": {
+		"prettier": "^3.5.3",
+		"turbo": "^2.5.0",
+		"typescript": "5.8.2",
+		"@types/node": "^20.10.0",
+		"@typescript-eslint/eslint-plugin": "^7.15.0",
+		"eslint": "^8",
+		"eslint-config-prettier": "8.0.0",
+		"eslint-plugin-import": "2.25.2",
+		"eslint-plugin-jsx-a11y": "6.7.0",
+		"eslint-plugin-react": "7.28.0",
+		"eslint-plugin-testing-library": "6.2.2",
+		"husky": "^9.0.11",
+		"lint-staged": "^15.2.7",
+		"tailwindcss": "^3.4.1",
+		"vitest": "3.1.0",
+		"postcss": "^8",
+		"prettier-plugin-tailwindcss": "^0.6.5"
+	},
+	"engines": {
+		"node": ">=22"
+	},
+	"lint-staged": {
+		"*.{test.ts,test.tsx}": [
+			"vitest run --coverage --changed --update"
+		]
+	},
+	"packageManager": "yarn@1.22.22",
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	]
 }

@@ -8,7 +8,7 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "types": ["@testing-library/jest-dom", "vite/client", "vitest/globals"],
+    "types": ["vite/client", "vitest/globals"],
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -33,7 +33,7 @@
     "./contexts/**/*",
     "./ui-lib/**/*",
     ".next/types/**/*.ts",
-    "config/**/*",
+    "./config/**/*",
     "types.d.ts"
   ],
   "exclude": ["node_modules"]

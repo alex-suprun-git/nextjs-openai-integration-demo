@@ -16,7 +16,7 @@ export default defineConfig({
         'middlewares/**/*.ts',
         'content/**/*.ts',
         'middleware.ts',
-        'next.config.mjs',
+        'next.config.js',
         'postcss.config.mjs',
         'tailwind.config.ts',
         'utils/db.ts',
