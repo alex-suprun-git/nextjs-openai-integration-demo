@@ -1,18 +1,8 @@
 import Link from 'next/link';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
-function Hero({
-  isAuthorized,
-  headline,
-  description,
-}: {
-  isAuthorized: boolean;
-  headline: string;
-  description: any;
-}) {
+function Hero({ headline, description }: { headline: string; description: any }) {
   // const t = useTranslations('HomePage');
-
-  let href = isAuthorized ? '/journal' : '/new-user';
   // let buttonLabel = isAuthorized ? t('buttons.authorized') : t('buttons.unauthorized');
 
   return (
@@ -25,7 +15,8 @@ function Hero({
           {documentToReactComponents(description)}
         </div>
         <div>
-          <Link href={href}>
+          {/* TODO */}
+          <Link href={'/'}>
             <button className="btn btn-lg mb-5 border-0 bg-yellow-200 text-gray-900 hover:bg-yellow-300">
               Continue
             </button>
