@@ -1,3 +1,4 @@
+import { routing } from './i18n/routing';
 import { chainMiddlewares } from './middlewares/chainMiddlewares';
 import { authMiddleware } from './middlewares/clerk-middleware';
 

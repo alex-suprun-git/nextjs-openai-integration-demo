@@ -15,6 +15,7 @@ const Home = async () => {
 
   return (
     <>
+      <div className="mb-12 flex w-full px-10 pt-5">{/* lang switcher */}</div>
       <Hero
         headline={component.homepageHeadline}
         description={component.homepageDescription.json}

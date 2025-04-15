@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
-import RootLayout from '@/app/(public-pages)/layout';
+import RootLayout from '@/app/(public-pages)/[locale]/layout';
 
 vi.mock('@/app/(public-pages)/layout', async () => ({
   __esModule: true,

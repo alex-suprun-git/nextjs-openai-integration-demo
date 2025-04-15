@@ -1,6 +1,6 @@
 import { describe, it, expect, Mock } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import PageNotFound from '@/app/(platform)/journal/[id]/not-found';
+import PageNotFound from '@/app/platform/journal/[id]/not-found';
 import { createTranslator, useTranslations } from 'next-intl';
 
 describe('PageNotFound', () => {

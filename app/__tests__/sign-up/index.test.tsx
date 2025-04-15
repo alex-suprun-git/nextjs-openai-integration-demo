@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
-import SignUpPage from '@/app/(platform)/sign-up/[[...sign-up]]/page';
+import SignUpPage from '@/app/platform/sign-up/[[...sign-up]]/page';
 
 // Mock the SignUp component from @clerk/nextjs
 vi.mock('@clerk/nextjs', () => ({
