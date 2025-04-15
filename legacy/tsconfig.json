@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "types": [
+      "@testing-library/jest-dom",
+      "vite/client",
+      "vitest/globals",
+      "@contentful/rich-text-types"
+    ],
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "target": "ES2022"
+  },
+  "include": [
+    "legacy/app/**/*",
+    "legacy/middlewares/**/*",
+    "legacy/components/**/*",
+    "legacy/content/**/*",
+    "./utils/**/*",
+    "legacy/hooks/**/*",
+    "legacy/contexts/**/*",
+    "./ui-lib/**/*",
+    "legacy/.next/types/**/*.ts",
+    "legacy/config/**/*",
+    "types.d.ts"
+  ],
+  "exclude": ["node_modules"]
+}
