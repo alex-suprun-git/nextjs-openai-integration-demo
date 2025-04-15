@@ -7,14 +7,13 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: './config/setupTests.tsx',
+    setupFiles: ['vitest.setup.ts'],
     exclude: [...defaultExclude, 'middleware.ts'],
     coverage: {
       reporter: ['text', 'json', 'html'],
       exclude: [
         ...coverageConfigDefaults.exclude,
         'middlewares/**/*.ts',
-        'content/**/*.ts',
         'middleware.ts',
         'next.config.js',
         'postcss.config.mjs',

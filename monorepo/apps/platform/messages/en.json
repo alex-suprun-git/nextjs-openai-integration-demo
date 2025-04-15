@@ -1,10 +1,4 @@
 {
-  "HomePage": {
-    "buttons": {
-      "authorized": "Go to Journal",
-      "unauthorized": "Get Started"
-    }
-  },
   "StatisticsPage": {
     "headline": "Statistics",
     "labels": {
