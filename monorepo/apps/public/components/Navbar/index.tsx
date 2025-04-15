@@ -5,7 +5,7 @@ import { UserButton } from '@clerk/nextjs';
 import { FiMenu } from 'react-icons/fi';
 import LanguageSwitcher from '../LanguageSwitcher';
 import Navigation from '../Navigation';
-import { Drawer, Header, PromptCounter } from '@/ui-lib';
+import { Drawer, Header } from '@/ui-lib';
 
 function Navbar({ publicPages }: { publicPages?: boolean }) {
   const drawerToggleRef = useRef<HTMLInputElement>(null);
@@ -25,17 +25,10 @@ function Navbar({ publicPages }: { publicPages?: boolean }) {
         <div className="xl:hidden">
           <Drawer toggleRef={drawerToggleRef} icon={<FiMenu size={38} />}>
             <Navigation onClick={drawerToggleHandler} />
-            {!publicPages && <PromptCounter />}
           </Drawer>
         </div>
       </div>
-      <div className="navbar-center">
-        {!publicPages && (
-          <div className="hidden lg:block">
-            <PromptCounter />
-          </div>
-        )}
-      </div>
+      <div className="navbar-center"></div>
       <div className="navbar-end">
         {!publicPages && (
           <div className="mr-8 md:mr-10">

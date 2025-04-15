@@ -15,7 +15,7 @@ const Drawer = ({
   children,
 }: {
   icon: ReactElement;
-  toggleRef: RefObject<HTMLInputElement>;
+  toggleRef: RefObject<HTMLInputElement | null>;
   children: ReactNode;
 }) => (
   <div className="drawer">
