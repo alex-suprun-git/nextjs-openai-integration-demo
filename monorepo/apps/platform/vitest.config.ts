@@ -7,7 +7,6 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: ['vitest.setup.ts'],
     exclude: [...defaultExclude, 'middleware.ts'],
     coverage: {
       reporter: ['text', 'json', 'html'],

@@ -3,6 +3,10 @@ import { useTranslations } from 'next-intl';
 import { createTranslator } from 'next-intl';
 import { describe, it, expect, afterEach, vi, Mock } from 'vitest';
 import NotFound from '.';
+import messages from '@/messages/en.json';
+
+type Messages = typeof messages;
+type Namespace = keyof Messages;
 
 vi.mock('next/link', () => ({
   default: ({ href, children }: { href: string; children: React.ReactNode }) => (
@@ -10,7 +14,7 @@ vi.mock('next/link', () => ({
   ),
 }));
 
-const setupTranslations = async (namespace: string = 'E404Homepage') => {
+const setupTranslations = async (namespace: Namespace = 'E404Homepage') => {
   const translate = createTranslator({
     locale: 'en',
     namespace,
