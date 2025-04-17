@@ -22,7 +22,7 @@ describe('Home', () => {
   beforeAll(async () => {
     const translate = createTranslator({
       locale: 'en',
-      namespace: 'HomePage',
+      namespace: 'Header',
       messages: (await import('@/messages/en.json')).default,
     });
 

@@ -12,8 +12,7 @@ const Navigation = ({ onClick = () => {} }: { onClick?: MouseEventHandler<HTMLAn
   const t = useTranslations('Header');
 
   const navigationLinks = [
-    { label: t('navigation.journal'), href: '/' },
-    { label: t('navigation.statistics'), href: '/statistics' },
+    { label: t('navigation.homePage'), href: '/' },
     { label: t('navigation.aboutMe'), href: '/about-me' },
   ];
 

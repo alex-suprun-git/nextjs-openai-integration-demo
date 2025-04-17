@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import Navbar from '@/components/Navbar';
 import { Inter } from 'next/font/google';
 import './globals.css';
 
@@ -24,7 +25,10 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body className={`min-h-dvh bg-slate-900/25 ${inter.className}`}>
-        <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider messages={messages}>
+          <Navbar />
+          <div className="mt-20">{children}</div>
+        </NextIntlClientProvider>
         <SpeedInsights />
       </body>
     </html>

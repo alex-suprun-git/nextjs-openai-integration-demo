@@ -17,12 +17,6 @@ const Home = async () => {
   const headline = component?.homepageHeadline;
   const description = component?.homepageDescription.json;
 
-  return (
-    <>
-      <div className="mb-12 flex w-full px-10 pt-5">{/* TODO: LANG SWITCHER */}</div>
-
-      {headline && description && <Hero headline={headline} description={description} />}
-    </>
-  );
+  return <>{headline && description && <Hero headline={headline} description={description} />}</>;
 };
 export default Home;

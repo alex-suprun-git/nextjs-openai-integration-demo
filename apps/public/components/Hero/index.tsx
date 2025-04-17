@@ -4,9 +4,6 @@ import { Document } from '@contentful/rich-text-types';
 import { PLATFORM_BASE_URL } from '@/constants';
 
 function Hero({ headline, description }: { headline: string; description: Document }) {
-  // const t = useTranslations('HomePage');
-  // let buttonLabel = isAuthorized ? t('buttons.authorized') : t('buttons.unauthorized');
-
   return (
     <div className="flex items-center justify-center px-10 pb-24 text-stone-300 md:py-0">
       <div className="mx-auto max-w-screen-md">
