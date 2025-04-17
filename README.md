@@ -5,8 +5,6 @@
 This is a Turborepo-based monorepo setup for building AI-enhanced mood analysis applications using modern web technologies.
 This monorepo contains two Next.js applications — `platform` and `public` — and shared packages managed with [Turborepo](https://turbo.build/). The project integrates tools like OpenAI, Clerk, Prisma, and Contentful to deliver a rich and interactive user experience.
 
-https://github.com/user-attachments/assets/edafa667-9318-417d-b86d-11438f1aaf1c
-
 ## 📦 Apps & Packages Structure
 
 ```
