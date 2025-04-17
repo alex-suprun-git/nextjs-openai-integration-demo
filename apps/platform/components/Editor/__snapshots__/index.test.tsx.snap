@@ -1,0 +1,165 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Editor > renders correctly and matches snapshot 1`] = `
+<div>
+  <div
+    class="grid gap-10 pt-12 md:grid-cols-3 lg:min-h-svh"
+  >
+    <div
+      class="relative px-5 pb-12 text-stone-300 md:col-span-2 md:pl-10"
+    >
+      <a
+        href="/"
+      >
+        <div
+          class="btn mb-8 border-0 bg-slate-900 text-stone-300 hover:bg-slate-900"
+        >
+          <svg
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 512 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m112 160-64 64 64 64"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="32"
+            />
+            <path
+              d="M64 224h294c58.76 0 106 49.33 106 108v20"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="32"
+            />
+          </svg>
+        </div>
+      </a>
+      <textarea
+        class="textarea min-h-72 w-full resize-none bg-gray-900 p-10 text-xl outline-none md:min-h-svh"
+        data-testid="entry-content-field"
+        maxlength="2500"
+        placeholder="Please write your thoughts here..."
+        required=""
+      >
+        This is a sufficiently long updated entry content to meet the minimum content length requirement
+      </textarea>
+    </div>
+    <div
+      class="border-l border-black/10 bg-gray-800 md:pr-10"
+    >
+      <div
+        class="relative px-6 py-10"
+        style="background: url(/assets/analysis/positive.jpg);"
+      >
+        <h2
+          class="relative z-10 w-fit bg-gray-800 p-6 text-2xl font-bold text-stone-300"
+        >
+          Analysis
+        </h2>
+        <div
+          class="absolute left-0 top-0 h-full w-full"
+          style="background: rgba(255, 0, 0, 0.25);"
+        />
+      </div>
+      <ul
+        class="mb-10 mt-5"
+      >
+        <li
+          class="flex flex-col items-start justify-between border-b-2 border-white/10 px-6 py-3 xl:flex-row xl:items-center"
+          data-testid="analysis-item"
+        >
+          <h3
+            class="mb-2 mr-10 font-semibold text-stone-300"
+          >
+            Summary
+            :
+          </h3>
+          <span
+            class="text-start text-stone-300 xl:text-end"
+          >
+            summary
+          </span>
+        </li>
+        <li
+          class="flex flex-col items-start justify-between border-b-2 border-white/10 px-6 py-3 xl:flex-row xl:items-center"
+          data-testid="analysis-item"
+        >
+          <h3
+            class="mb-2 mr-10 font-semibold text-stone-300"
+          >
+            Subject
+            :
+          </h3>
+          <span
+            class="text-start text-stone-300 xl:text-end"
+          >
+            subject
+          </span>
+        </li>
+        <li
+          class="flex flex-col items-start justify-between border-b-2 border-white/10 px-6 py-3 xl:flex-row xl:items-center"
+          data-testid="analysis-item"
+        >
+          <h3
+            class="mb-2 mr-10 font-semibold text-stone-300"
+          >
+            Mood
+            :
+          </h3>
+          <span
+            class="text-start text-stone-300 xl:text-end"
+          >
+            happy
+          </span>
+        </li>
+        <li
+          class="flex flex-col items-start justify-between border-b-2 border-white/10 px-6 py-3 xl:flex-row xl:items-center"
+          data-testid="analysis-item"
+        >
+          <h3
+            class="mb-2 mr-10 font-semibold text-stone-300"
+          >
+            Negative
+            :
+          </h3>
+          <span
+            class="text-start text-stone-300 xl:text-end"
+          >
+            false
+          </span>
+        </li>
+      </ul>
+      <div
+        class="mt-12 flex justify-end pb-10 pr-5 md:pb-0 md:pr-0"
+      >
+        <button
+          class="md:max-lg:mb-10 btn border-0 bg-red-800 text-stone-300 hover:bg-red-900"
+          data-testid="delete-entry-button"
+        >
+          Delete this note
+           
+          <svg
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 448 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M268 416h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12zM432 80h-82.41l-34-56.7A48 48 0 0 0 274.41 0H173.59a48 48 0 0 0-41.16 23.3L98.41 80H16A16 16 0 0 0 0 96v16a16 16 0 0 0 16 16h16v336a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128h16a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16zM171.84 50.91A6 6 0 0 1 177 48h94a6 6 0 0 1 5.15 2.91L293.61 80H154.39zM368 464H80V128h288zm-212-48h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

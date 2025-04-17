@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Heading > renders correctly with children 1`] = `
+<div>
+  <h1
+    class="mb-12 text-5xl font-bold text-stone-300"
+  >
+    Sample heading text
+  </h1>
+</div>
+`;
