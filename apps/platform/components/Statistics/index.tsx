@@ -20,9 +20,9 @@ function StatisticsData({
         <p className="text-xl text-stone-300">{t('labels.noEntries')}</p>
       ) : (
         <>
-          <p className="mb-12 text-xl text-stone-300">
-            {averageSentiment && t('labels.averageSentiment', { averageSentiment })}
-          </p>
+          {!!averageSentiment && <p className="mb-12 text-xl text-stone-300">
+            {t('labels.averageSentiment', { averageSentiment })}
+          </p>}
           <HistoryChart data={analyses as AnalysisEntry[]} />
         </>
       )}

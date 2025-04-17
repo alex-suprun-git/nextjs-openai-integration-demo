@@ -33,7 +33,7 @@ export const createNewEntry = async (content: string) => {
 };
 
 export const updateEntry = async (id: string, content: string) => {
-  const url = createUrl(`/api//${id}`);
+  const url = createUrl(`/api/journal/${id}`);
 
   const rest = await fetch(
     new Request(url, {
@@ -49,7 +49,7 @@ export const updateEntry = async (id: string, content: string) => {
 };
 
 export const deleteEntry = async (id: string) => {
-  const url = createUrl(`/api//${id}`);
+  const url = createUrl(`/api/journal/${id}`);
 
   const res = await fetch(
     new Request(url, {

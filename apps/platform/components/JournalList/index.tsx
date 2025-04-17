@@ -19,7 +19,7 @@ const JournalList = ({ entries }: { entries: Required<AnalysisSubEntry[]> | [] }
         {entries?.map((entry) => {
           const analysisEntry = entry as Required<AnalysisSubEntry>;
           return (
-            <Link key={analysisEntry.id} href={`//${analysisEntry.id}`}>
+            <Link key={analysisEntry.id} href={`/${analysisEntry.id}`}>
               <EntryCard
                 id={analysisEntry.id}
                 createdAt={analysisEntry.createdAt}
