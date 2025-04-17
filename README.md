@@ -1,84 +1,75 @@
-# Turborepo starter
+# NextJS OpenAI Integration Monorepo (WIP)
 
-This Turborepo starter is maintained by the Turborepo core team.
+> **Status**: 🏗️ Work in Progress
 
-## Using this example
+This is a Turborepo-based monorepo setup for building AI-enhanced mood analysis applications using modern web technologies.
+This monorepo contains two Next.js applications — `platform` and `public` — and shared packages managed with [Turborepo](https://turbo.build/). The project integrates tools like OpenAI, Clerk, Prisma, and Contentful to deliver a rich and interactive user experience.
 
-Run the following command:
+https://github.com/user-attachments/assets/edafa667-9318-417d-b86d-11438f1aaf1c
 
-```sh
-npx create-turbo@latest
-```
-
-## What's inside?
-
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
+## 📦 Apps & Packages Structure
 
 ```
-cd my-turborepo
-pnpm build
+apps/
+  ├── platform/   # Authenticated, AI-enhanced journaling platform
+  └── public/     # Public-facing PWA with content from Contentful
+
+packages/
+  └── ui/         # Shared UI components
 ```
 
-### Develop
+## ✨ Features
 
-To develop all apps and packages, run the following command:
+- AI-powered mood analysis from journal entries
+- Detailed mood statistics displayed in charts
+- User authentication and management with Clerk
+- Integration with Prisma for database management
+- Integration with Contentful Headless CMS
+- Progressive Web App (PWA) support
+- Monorepo structure with shared UI components
 
+## 🧰 Technologies
+
+- **Next.js** (App Router, Turbopack)
+- **Turborepo** — high-performance monorepo management
+- **TypeScript** — strict typing
+- **Tailwind CSS** — modern utility-first CSS
+- **Clerk** — user authentication and management
+- **Prisma** — ORM and DB schema
+- **OpenAI / LangChain** — mood analysis via AI
+- **Contentful** — headless CMS
+- **Next-PWA** — for offline-first capabilities
+- **Vitest & Cypress** — unit and E2E testing
+
+## 📦 Scripts (root)
+
+```bash
+yarn dev         # Run all dev servers
+yarn build       # Build all apps/packages
+yarn lint        # Lint all apps/packages
 ```
-cd my-turborepo
-pnpm dev
+
+Each app has its own set of scripts inside `apps/platform` and `apps/public`.
+
+## 🚀 Getting Started
+
+```bash
+git clone https://github.com/yourusername/nextjs-openai-integration-demo.git
+cd nextjs-openai-integration-demo
+yarn install
+yarn dev
 ```
 
-### Remote Caching
+## 📁 Environment Variables
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+Environment variables are managed via `.env` files and/or Vercel dashboard.
+Refer to `turbo.json` for `globalEnv` configuration used during builds.
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+## 🧑‍💻 Author
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+Oleksii Suprun  
+Email: oleksii.suprun.email@gmail.com
 
-```
-cd my-turborepo
-npx turbo login
-```
+## 📄 License
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/docs/reference/command-line-reference)
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
