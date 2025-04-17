@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
-import EntryPage from '@/app/[id]/page';
+import EntryPage from '@/app/(pages)/[id]/page';
 import { getUserByClerkId } from '@/utils/auth';
 import { prisma } from '@/utils/db';
 import { notFound } from 'next/navigation';

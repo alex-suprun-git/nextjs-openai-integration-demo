@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import NewEntryPage from '@/app/new-entry/page';
+import NewEntryPage from '@/app/(pages)/new-entry/page';
 
 // Mock the Editor component
 vi.mock('@/components/Editor', () => ({

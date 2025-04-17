@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import JournalPage from '@/app/(dashboard)/page';
+import JournalPage from '@/app/(pages)/page';
 import { getUserByClerkId } from '@/utils/auth';
 import { prisma } from '@/utils/db';
 import { redirect } from 'next/navigation';

@@ -17,7 +17,7 @@ export const updateUserPromptUsage = async (promptContentLength: number) => {
 };
 
 export const createNewEntry = async (content: string) => {
-  const url = createUrl('/api/');
+  const url = createUrl('/api/journal');
 
   const res = await fetch(
     new Request(url, {

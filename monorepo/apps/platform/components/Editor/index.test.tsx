@@ -57,7 +57,7 @@ describe('Editor', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    (usePathname as Mock).mockReturnValue('//new-entry');
+    (usePathname as Mock).mockReturnValue('/new-entry');
     (useRouter as Mock).mockReturnValue({
       push: mockRouterPush,
       refresh: mockRouterRefresh,

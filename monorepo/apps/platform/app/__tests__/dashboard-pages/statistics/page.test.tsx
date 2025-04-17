@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { createTranslator, useTranslations } from 'next-intl';
-import StatisticsPage from '@/app/statistics/page';
+import StatisticsPage from '@/app/(pages)/statistics/page';
 import { getUserByClerkId } from '@/utils/auth';
 import { prisma } from '@/utils/db';
 
