@@ -4,6 +4,7 @@ import { MouseEventHandler } from 'react';
 import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { PUBLIC_BASE_URL } from '@/constants';
 
 const Navigation = ({ onClick = () => {} }: { onClick?: MouseEventHandler<HTMLAnchorElement> }) => {
   const path = usePathname();
@@ -14,7 +15,7 @@ const Navigation = ({ onClick = () => {} }: { onClick?: MouseEventHandler<HTMLAn
   const navigationLinks = [
     { label: t('navigation.journal'), href: '/' },
     { label: t('navigation.statistics'), href: '/statistics' },
-    { label: t('navigation.aboutMe'), href: '/about-me' },
+    { label: t('navigation.aboutMe'), href: `${PUBLIC_BASE_URL}/about-me` },
   ];
 
   return (

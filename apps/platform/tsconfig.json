@@ -35,6 +35,7 @@
     ".next/types/**/*.ts",
     "./config/**/*",
     "types.d.ts",
+    "constants.ts",
     "ui-lib"
   ],
   "exclude": ["node_modules"]

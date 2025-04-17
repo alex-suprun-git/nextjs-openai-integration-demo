@@ -45,7 +45,7 @@ export default async function RootLayout({
 
   return (
     <PromptProvider value={{ symbolsUsed, symbolsLimit, limitRenewalDate }}>
-      <div className="relative min-h-svh bg-gray-800">
+      <div className={`relative min-h-svh bg-gray-800 ${inter.className}`}>
         <Navbar />
         <div className="min-h-svh">{children}</div>
       </div>

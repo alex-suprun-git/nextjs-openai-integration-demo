@@ -67,8 +67,8 @@ Refer to `turbo.json` for `globalEnv` configuration used during builds.
 
 ## 🧑‍💻 Author
 
-Oleksii Suprun  
-Email: oleksii.suprun.email@gmail.com
+Alex Suprun  
+Email: alex.suprun.email@gmail.com
 
 ## 📄 License
 

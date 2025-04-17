@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { Document } from '@contentful/rich-text-types';
+import { PLATFORM_BASE_URL } from '@/constants';
 
 function Hero({ headline, description }: { headline: string; description: Document }) {
   // const t = useTranslations('HomePage');
@@ -16,10 +17,9 @@ function Hero({ headline, description }: { headline: string; description: Docume
           {documentToReactComponents(description)}
         </div>
         <div>
-          {/* TODO  */}
-          <Link href={'/sign-in'}>
+          <Link href={PLATFORM_BASE_URL}>
             <button className="btn btn-lg mb-5 border-0 bg-yellow-200 text-gray-900 hover:bg-yellow-300">
-              Continue
+              Continue on the platform
             </button>
           </Link>
         </div>
