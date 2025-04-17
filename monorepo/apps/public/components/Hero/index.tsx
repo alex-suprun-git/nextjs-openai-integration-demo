@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { Document } from '@contentful/rich-text-types';
 
-function Hero({ headline, description }: { headline: string; description: any }) {
+function Hero({ headline, description }: { headline: string; description: Document }) {
   // const t = useTranslations('HomePage');
   // let buttonLabel = isAuthorized ? t('buttons.authorized') : t('buttons.unauthorized');
 
@@ -15,8 +16,8 @@ function Hero({ headline, description }: { headline: string; description: any })
           {documentToReactComponents(description)}
         </div>
         <div>
-          {/* TODO */}
-          <Link href={'/'}>
+          {/* TODO  */}
+          <Link href={'/sign-in'}>
             <button className="btn btn-lg mb-5 border-0 bg-yellow-200 text-gray-900 hover:bg-yellow-300">
               Continue
             </button>

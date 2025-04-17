@@ -34,12 +34,13 @@ const JournalPage = async () => {
   const { entries, user } = await getEntries();
 
   if (!user) {
-    redirect('/');
+    redirect('/sign-in');
   }
 
   return (
     <div className="min-h-svh p-10">
-      <JournalList entries={entries as Required<AnalysisSubEntry[]> | []} />
+      {/* <JournalList entries={entries as Required<AnalysisSubEntry[]> | []} /> */}
+      hello world!
     </div>
   );
 };

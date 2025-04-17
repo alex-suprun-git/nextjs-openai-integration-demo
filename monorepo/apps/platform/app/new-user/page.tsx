@@ -9,6 +9,7 @@ export const metadata: Metadata = {
 
 const createNewUser = async () => {
   const user = await currentUser();
+
   const match = await prisma.user.findUnique({ where: { clerkId: user?.id as string } });
 
   if (!match) {

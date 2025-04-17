@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { ClerkProvider } from '@clerk/nextjs';
+import { ClerkProvider, SignIn } from '@clerk/nextjs';
 import { deDE, enUS } from '@clerk/localizations';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
@@ -10,6 +10,7 @@ import { getUserByClerkId } from '@/utils/auth';
 import { formatPromptData } from '@/utils/helpers';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import { redirect } from 'next/navigation';
 
 /* istanbul ignore next */
 const inter = Inter({ subsets: ['latin'] });
@@ -21,14 +22,16 @@ export const metadata: Metadata = {
 
 const getUserInfo = async () => {
   const user = await getUserByClerkId();
+
   if (user) {
     return {
       promptSymbolsLimit: user.promptSymbolsLimit,
       promptSymbolsUsed: user.promptSymbolsUsed,
       promptSymbolsLimitRenewal: user.promptSymbolsLimitRenewal,
     };
+  } else {
+    redirect('/sign-in');
   }
-  return null;
 };
 
 export default async function RootLayout({
@@ -43,7 +46,7 @@ export default async function RootLayout({
   const userInfo = await getUserInfo();
 
   if (!userInfo) {
-    return null;
+    redirect('/sign-in');
   }
 
   const { symbolsUsed, symbolsLimit, limitRenewalDate } = formatPromptData(userInfo, locale);

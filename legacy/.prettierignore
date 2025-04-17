@@ -1,9 +1,0 @@
-build/
-dist/
-node_modules/
-coverage
-.next/
-cypress/
-package-lock.json
-yarn.lock
-CHANGELOG.md
