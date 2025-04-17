@@ -43,7 +43,7 @@ describe('useEditor', () => {
   const mockUsePrompt = { promptSymbolsUsed: 0, promptSymbolsLimit: 100 };
 
   beforeEach(() => {
-    (usePathname as Mock).mockReturnValue('/journal/new-entry');
+    (usePathname as Mock).mockReturnValue('//new-entry');
     (useRouter as Mock).mockReturnValue(mockRouter);
     (usePrompt as Mock).mockReturnValue(mockUsePrompt);
   });

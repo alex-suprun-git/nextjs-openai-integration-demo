@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
-import { PATCH, DELETE } from '@/app/api/journal/[id]/route';
+import { PATCH, DELETE } from '@/app/api//[id]/route';
 import { getUserByClerkId } from '@/utils/auth';
 import { prisma } from '@/utils/db';
 import { analyzeEntry } from '@/utils/ai';
@@ -200,7 +200,7 @@ describe('DELETE handler', () => {
         },
       },
     });
-    expect(update).toHaveBeenCalledWith(['/journal']);
+    expect(update).toHaveBeenCalledWith(['/']);
     expect(jsonMock).toHaveBeenCalledWith(jsonResponse);
     expect(response).toEqual(jsonResponse);
   });

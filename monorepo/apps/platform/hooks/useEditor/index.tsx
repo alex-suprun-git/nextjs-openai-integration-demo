@@ -30,12 +30,12 @@ export const useEditor = (entry: EditorEntry) => {
     async (_contentValue: string) => {
       setIsLoading(true);
       if (_contentValue.length >= MINIMUM_CONTENT_LENGTH) {
-        if (pathname === '/journal/new-entry') {
+        if (pathname === '//new-entry') {
           if (!entryCreatedRef.current) {
             entryCreatedRef.current = true;
             const { id } = await createNewEntry(_contentValue);
             await updateUserPromptUsage(_contentValue.length);
-            router.push(`/journal/${id}`);
+            router.push(`//${id}`);
             router.refresh();
           }
         } else if (entry.id && entry.content !== _contentValue) {

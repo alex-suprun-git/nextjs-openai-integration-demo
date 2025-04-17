@@ -73,7 +73,7 @@ export const DELETE = async (
       },
     });
 
-    await update(['/journal']);
+    await update(['/']);
 
     return NextResponse.json({ data: { id } });
   } catch (error) {

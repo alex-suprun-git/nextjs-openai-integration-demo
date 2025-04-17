@@ -7,12 +7,12 @@ exports[`Navigation Component > renders correctly when journal link is active 1`
   >
     <a
       class="mb-5 mr-12 text-2xl font-bold xl:mb-0 xl:text-base"
-      href="/journal"
+      href="/"
     >
       <span
         class="text-stone-300"
       >
-        Journal
+        Dashboard
       </span>
     </a>
     <a
@@ -46,12 +46,12 @@ exports[`Navigation Component > renders correctly when no link is active 1`] = `
   >
     <a
       class="mb-5 mr-12 text-lg xl:mb-0 xl:text-base"
-      href="/journal"
+      href="/"
     >
       <span
         class="text-stone-300"
       >
-        Journal
+        Dashboard
       </span>
     </a>
     <a
@@ -85,12 +85,12 @@ exports[`Navigation Component > renders correctly when statistics link is active
   >
     <a
       class="mb-5 mr-12 text-lg xl:mb-0 xl:text-base"
-      href="/journal"
+      href="/"
     >
       <span
         class="text-stone-300"
       >
-        Journal
+        Dashboard
       </span>
     </a>
     <a

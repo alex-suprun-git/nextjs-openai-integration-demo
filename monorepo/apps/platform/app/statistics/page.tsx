@@ -4,8 +4,8 @@ import { getUserByClerkId } from '@/utils/auth';
 import { prisma } from '@/utils/db';
 
 export const metadata: Metadata = {
-  title: 'Statistics | OpenAI Daily Journal',
-  description: 'Statistics page for OpenAI Daily Journal',
+  title: 'Statistics | OpenAI Daily Dashboard',
+  description: 'Statistics page for OpenAI Daily Dashboard',
 };
 
 const getData = async () => {

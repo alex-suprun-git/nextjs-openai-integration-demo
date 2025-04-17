@@ -49,7 +49,7 @@ describe('NotFound Component', () => {
     render(<NotFound link="/" homepage={false} />);
     expect(screen.getByText('Page Not Found')).toBeInTheDocument();
     expect(screen.getByText('Sorry, we can`t find that note.')).toBeInTheDocument();
-    expect(screen.getByText('Back to Journal page')).toBeInTheDocument();
+    expect(screen.getByText('Back to Dashboard page')).toBeInTheDocument();
   });
 
   it('renders the correct link href', async () => {

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import JournalPage from '@/app/page';
+import JournalPage from '@/app/(dashboard)/page';
 import { getUserByClerkId } from '@/utils/auth';
 import { prisma } from '@/utils/db';
 import { redirect } from 'next/navigation';
@@ -88,7 +88,7 @@ describe('JournalPage', () => {
     render(<div>{await JournalPage()}</div>);
 
     // Assert
-    expect(await screen.findByText('Journal')).toBeInTheDocument();
+    expect(await screen.findByText('Dashboard')).toBeInTheDocument();
     expect(await screen.findByTestId('question')).toBeInTheDocument();
     expect(await screen.findByTestId('new-entry-card')).toBeInTheDocument();
     expect(screen.getByText('Entry 1 content')).toBeInTheDocument();
@@ -105,7 +105,7 @@ describe('JournalPage', () => {
     render(<div>{await JournalPage()}</div>);
 
     // Assert
-    expect(await screen.findByText('Journal')).toBeInTheDocument();
+    expect(await screen.findByText('Dashboard')).toBeInTheDocument();
     expect(screen.queryByTestId('question')).not.toBeInTheDocument();
     expect(await screen.findByTestId('new-entry-card')).toBeInTheDocument();
     expect(screen.queryByTestId('entry-card')).not.toBeInTheDocument();

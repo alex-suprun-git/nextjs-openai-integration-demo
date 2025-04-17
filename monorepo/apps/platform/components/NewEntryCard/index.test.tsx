@@ -42,6 +42,6 @@ describe('NewEntryCard', () => {
   it('navigates to the correct path on click', () => {
     render(<NewEntryCard />);
     fireEvent.click(screen.getByText('Write a new memo'));
-    expect(mockPush).toHaveBeenCalledWith('/journal/new-entry');
+    expect(mockPush).toHaveBeenCalledWith('//new-entry');
   });
 });

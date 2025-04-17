@@ -59,7 +59,7 @@ describe.skip('Hero Component', () => {
     const link = screen.getByRole('link');
 
     expect(button).toBeInTheDocument();
-    expect(link).toHaveAttribute('href', '/journal');
+    expect(link).toHaveAttribute('href', '/');
   });
 
   it('renders the unauthorized button and link', async () => {

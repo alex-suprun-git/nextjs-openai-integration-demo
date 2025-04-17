@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
 export const metadata: Metadata = {
-  title: 'New User Creation | OpenAI Daily Journal',
+  title: 'New User Creation | OpenAI Daily Dashboard',
 };
 
 const createNewUser = async () => {
@@ -26,7 +26,7 @@ const createNewUser = async () => {
   }
 
   if (user) {
-    redirect('/journal');
+    redirect('/');
   }
 };
 

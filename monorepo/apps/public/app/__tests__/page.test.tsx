@@ -33,14 +33,14 @@ describe('Home', () => {
     vi.clearAllMocks();
   });
 
-  it('renders the Home page with a link to /journal if user is authenticated', async () => {
+  it('renders the Home page with a link to / if user is authenticated', async () => {
     vi.mocked(auth).mockResolvedValueOnce({ userId: 'test-user-id' } as any);
 
     render(await Home());
 
     await waitFor(() => {
       const linkElement = screen.getByRole('link', { name: /go to journal/i });
-      expect(linkElement).toHaveAttribute('href', '/journal');
+      expect(linkElement).toHaveAttribute('href', '/');
     });
   });
 

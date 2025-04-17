@@ -37,14 +37,14 @@
       "sizes": "1920x886",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "Journal Page"
+      "label": "Dashboard Page"
     },
     {
       "src": "/assets/screenshots/desktop/screenshot3.png",
       "sizes": "1920x886",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "Journal Entry"
+      "label": "Dashboard Entry"
     },
     {
       "src": "/assets/screenshots/desktop/screenshot4.png",
@@ -63,13 +63,13 @@
       "src": "/assets/screenshots/mobile/screenshot2.png",
       "sizes": "640x1224",
       "type": "image/png",
-      "label": "Journal Page"
+      "label": "Dashboard Page"
     },
     {
       "src": "/assets/screenshots/mobile/screenshot3.png",
       "sizes": "640x1224",
       "type": "image/png",
-      "label": "Journal Entry"
+      "label": "Dashboard Entry"
     },
     {
       "src": "/assets/screenshots/mobile/screenshot4.png",

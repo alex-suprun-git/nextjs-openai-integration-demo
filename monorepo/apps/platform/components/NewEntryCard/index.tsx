@@ -9,7 +9,7 @@ export const NewEntryCard = () => {
   const t = useTranslations('JournalList');
 
   const handleOnClick = async () => {
-    router.push('/journal/new-entry');
+    router.push('//new-entry');
   };
 
   return (

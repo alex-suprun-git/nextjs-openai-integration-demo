@@ -74,7 +74,7 @@ describe('AnalysisSidebar', () => {
 
     expect(deleteEntry).toHaveBeenCalledWith(mockEntryId);
     await waitFor(() => {
-      expect(mockRouter.push).toHaveBeenCalledWith('/journal');
+      expect(mockRouter.push).toHaveBeenCalledWith('/');
     });
     await waitFor(() => {
       expect(mockRouter.refresh).toHaveBeenCalled();

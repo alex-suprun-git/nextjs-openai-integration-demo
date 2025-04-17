@@ -5,8 +5,8 @@ import { prisma } from '@/utils/db';
 import JournalList from '@/components/JournalList';
 
 export const metadata: Metadata = {
-  title: 'Dashboard | OpenAI Daily Journal',
-  description: 'Dashboard page for OpenAI Daily Journal',
+  title: 'Dashboard | OpenAI Daily Dashboard',
+  description: 'Dashboard page for OpenAI Daily Dashboard',
 };
 
 const getEntries = async () => {
@@ -39,8 +39,7 @@ const JournalPage = async () => {
 
   return (
     <div className="min-h-svh p-10">
-      {/* <JournalList entries={entries as Required<AnalysisSubEntry[]> | []} /> */}
-      hello world!
+      <JournalList entries={entries as Required<AnalysisSubEntry[]> | []} />
     </div>
   );
 };

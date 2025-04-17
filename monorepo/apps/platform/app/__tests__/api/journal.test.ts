@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
-import { POST } from '@/app/api/journal/route';
+import { POST } from '@/app/api//route';
 import { getUserByClerkId } from '@/utils/auth';
 import { prisma } from '@/utils/db';
 import { analyzeEntry } from '@/utils/ai';
@@ -83,7 +83,7 @@ describe('POST handler', () => {
         ...analysis,
       },
     });
-    expect(update).toHaveBeenCalledWith(['/journal']);
+    expect(update).toHaveBeenCalledWith(['/']);
     expect(jsonMock).toHaveBeenCalledWith(jsonResponse);
     expect(response).toEqual(jsonResponse);
   });

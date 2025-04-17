@@ -106,7 +106,7 @@ describe('EntryCard', () => {
     });
 
     await waitFor(() => {
-      expect(mockRouterPush).toHaveBeenCalledWith('/journal');
+      expect(mockRouterPush).toHaveBeenCalledWith('/');
     });
 
     await waitFor(() => {

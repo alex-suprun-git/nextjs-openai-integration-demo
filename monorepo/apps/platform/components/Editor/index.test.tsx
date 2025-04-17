@@ -57,7 +57,7 @@ describe('Editor', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    (usePathname as Mock).mockReturnValue('/journal/new-entry');
+    (usePathname as Mock).mockReturnValue('//new-entry');
     (useRouter as Mock).mockReturnValue({
       push: mockRouterPush,
       refresh: mockRouterRefresh,
@@ -97,7 +97,7 @@ describe('Editor', () => {
     });
 
     await waitFor(() => {
-      expect(mockRouterPush).toHaveBeenCalledWith('/journal/new-id');
+      expect(mockRouterPush).toHaveBeenCalledWith('//new-id');
     });
 
     await waitFor(() => {

@@ -7,9 +7,9 @@ exports[`Header > renders navigation links correctly 1`] = `
     data-testid="header"
   >
     <a
-      href="/journal"
+      href="/"
     >
-      Journal
+      Dashboard
     </a>
     <a
       href="/statistics"

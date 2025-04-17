@@ -17,7 +17,7 @@ export const updateUserPromptUsage = async (promptContentLength: number) => {
 };
 
 export const createNewEntry = async (content: string) => {
-  const url = createUrl('/api/journal');
+  const url = createUrl('/api/');
 
   const res = await fetch(
     new Request(url, {
@@ -33,7 +33,7 @@ export const createNewEntry = async (content: string) => {
 };
 
 export const updateEntry = async (id: string, content: string) => {
-  const url = createUrl(`/api/journal/${id}`);
+  const url = createUrl(`/api//${id}`);
 
   const rest = await fetch(
     new Request(url, {
@@ -49,7 +49,7 @@ export const updateEntry = async (id: string, content: string) => {
 };
 
 export const deleteEntry = async (id: string) => {
-  const url = createUrl(`/api/journal/${id}`);
+  const url = createUrl(`/api//${id}`);
 
   const res = await fetch(
     new Request(url, {

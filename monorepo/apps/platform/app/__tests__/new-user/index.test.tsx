@@ -59,18 +59,18 @@ describe('NewUserPage', () => {
 
   const mockClerkUser = { id: '123', emailAddresses: [{ emailAddress: 'test@example.com' }] };
 
-  it('redirects to /journal if the user already exists', async () => {
+  it('redirects to / if the user already exists', async () => {
     vi.mocked(currentUser).mockResolvedValueOnce(mockClerkUser as any);
     vi.mocked(prisma.user.findUnique).mockResolvedValueOnce(mockPrismaUser);
 
     render(await NewUserPage());
 
     await waitFor(() => {
-      expect(redirect).toHaveBeenCalledWith('/journal');
+      expect(redirect).toHaveBeenCalledWith('/');
     });
   });
 
-  it('creates a new user and redirects to /journal if the user does not exist', async () => {
+  it('creates a new user and redirects to / if the user does not exist', async () => {
     vi.mocked(currentUser).mockResolvedValueOnce(mockClerkUser as any);
     vi.mocked(prisma.user.findUnique).mockResolvedValueOnce(null);
     vi.mocked(prisma.user.create).mockResolvedValueOnce(mockPrismaUser);
@@ -97,7 +97,7 @@ describe('NewUserPage', () => {
     });
 
     await waitFor(() => {
-      expect(redirect).toHaveBeenCalledWith('/journal');
+      expect(redirect).toHaveBeenCalledWith('/');
     });
   });
 });

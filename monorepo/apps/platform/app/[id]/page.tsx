@@ -5,8 +5,8 @@ import { prisma } from '@/utils/db';
 import Editor from '@/components/Editor';
 
 export const metadata: Metadata = {
-  title: 'Entry | OpenAI Daily Journal',
-  description: 'Entry page for OpenAI Daily Journal',
+  title: 'Entry | OpenAI Daily Dashboard',
+  description: 'Entry page for OpenAI Daily Dashboard',
 };
 
 const getEntry = async (id: string) => {

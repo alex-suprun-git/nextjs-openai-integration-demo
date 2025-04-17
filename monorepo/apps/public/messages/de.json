@@ -1,7 +1,7 @@
 {
   "HomePage": {
     "buttons": {
-      "authorized": "Zum Journal gehen",
+      "authorized": "Zum Dashboard gehen",
       "unauthorized": "Loslegen"
     }
   },
@@ -18,13 +18,13 @@
       "promptSymbolsRenewalDate": "Nächste Begrenzungserneuerung am {limitRenewalDate}"
     },
     "navigation": {
-      "journal": "Journal",
+      "journal": "Dashboard",
       "statistics": "Statistiken",
       "aboutMe": "Über mich"
     }
   },
   "JournalList": {
-    "headline": "Journal",
+    "headline": "Dashboard",
     "buttons": {
       "newEntry": "Neuen Eintrag schreiben"
     },

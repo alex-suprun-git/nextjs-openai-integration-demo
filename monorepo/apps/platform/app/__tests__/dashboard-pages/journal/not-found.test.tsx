@@ -28,6 +28,6 @@ describe('PageNotFound', () => {
     expect(screen.getByText('Sorry, we can`t find that note.')).toBeInTheDocument();
     const link = screen.getByRole('link', { name: /back to journal page/i });
     expect(link).toBeInTheDocument();
-    expect(link).toHaveAttribute('href', '/journal');
+    expect(link).toHaveAttribute('href', '/');
   });
 });

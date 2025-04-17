@@ -24,31 +24,31 @@ describe('Header', () => {
   });
 
   it('renders navigation links correctly', () => {
-    (usePathname as Mock).mockReturnValue('/journal');
+    (usePathname as Mock).mockReturnValue('/');
     const { container } = render(
       <Header>
-        <a href="/journal">Journal</a>
+        <a href="/">Dashboard</a>
         <a href="/statistics">Statistics</a>
       </Header>,
     );
     expect(container).toMatchSnapshot();
 
-    expect(screen.getByText('Journal')).toBeInTheDocument();
+    expect(screen.getByText('Dashboard')).toBeInTheDocument();
     expect(screen.getByText('Statistics')).toBeInTheDocument();
   });
 
   it('applies active class to the current path link', () => {
-    (usePathname as Mock).mockReturnValue('/journal');
+    (usePathname as Mock).mockReturnValue('/');
     render(
       <Header>
-        <a href="/journal" className="font-bold">
-          Journal
+        <a href="/" className="font-bold">
+          Dashboard
         </a>
         <a href="/statistics">Statistics</a>
       </Header>,
     );
 
-    expect(screen.getByRole('link', { name: 'Journal' })).toHaveClass('font-bold');
+    expect(screen.getByRole('link', { name: 'Dashboard' })).toHaveClass('font-bold');
     expect(screen.getByRole('link', { name: 'Statistics' })).not.toHaveClass('font-bold');
   });
 });

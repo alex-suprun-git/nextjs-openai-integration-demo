@@ -54,7 +54,7 @@ const EntryCard = ({ id, createdAt, updatedAt, content, color }: EntryCardProps)
     setIsLoading(true);
     await deleteEntry(id);
     setIsLoading(false);
-    router.push('/journal');
+    router.push('/');
     router.refresh();
   };
 

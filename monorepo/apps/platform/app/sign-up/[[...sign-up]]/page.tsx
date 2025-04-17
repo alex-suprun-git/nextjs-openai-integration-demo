@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import { SignUp } from '@clerk/nextjs';
 
 export const metadata: Metadata = {
-  title: 'Sign Up | OpenAI Daily Journal',
-  description: 'Sign up page for OpenAI Daily Journal',
+  title: 'Sign Up | OpenAI Daily Dashboard',
+  description: 'Sign up page for OpenAI Daily Dashboard',
 };
 
 function SignUpPage() {

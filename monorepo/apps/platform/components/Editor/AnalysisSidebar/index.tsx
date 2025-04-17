@@ -24,7 +24,7 @@ function AnalysisSidebar({
     setIsLoading(true);
     await deleteEntry(id);
     setIsLoading(false);
-    router.push('/journal');
+    router.push('/');
     router.refresh();
   };
 

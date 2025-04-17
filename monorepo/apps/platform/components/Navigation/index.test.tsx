@@ -20,7 +20,7 @@ describe('Navigation Component', () => {
     (useTranslations as Mock).mockReturnValue((key: string) => {
       switch (key) {
         case 'navigation.journal':
-          return 'Journal';
+          return 'Dashboard';
         case 'navigation.statistics':
           return 'Statistics';
         default:
@@ -33,11 +33,11 @@ describe('Navigation Component', () => {
   });
 
   it('renders correctly when journal link is active', () => {
-    (usePathname as Mock).mockReturnValue('/journal');
+    (usePathname as Mock).mockReturnValue('/');
     (useTranslations as Mock).mockReturnValue((key: string) => {
       switch (key) {
         case 'navigation.journal':
-          return 'Journal';
+          return 'Dashboard';
         case 'navigation.statistics':
           return 'Statistics';
         default:
@@ -54,7 +54,7 @@ describe('Navigation Component', () => {
     (useTranslations as Mock).mockReturnValue((key: string) => {
       switch (key) {
         case 'navigation.journal':
-          return 'Journal';
+          return 'Dashboard';
         case 'navigation.statistics':
           return 'Statistics';
         default:
