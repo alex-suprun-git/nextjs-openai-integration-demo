@@ -1,21 +1,35 @@
 {
-  "$schema": "https://turbo.build/schema.json",
-  "ui": "tui",
-  "tasks": {
-    "build": {
-      "dependsOn": ["^build"],
-      "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": [".next/**", "!.next/cache/**"]
-    },
-    "lint": {
-      "dependsOn": ["^lint"]
-    },
-    "check-types": {
-      "dependsOn": ["^check-types"]
-    },
-    "dev": {
-      "cache": false,
-      "persistent": true
-    }
-  }
+	"$schema": "https://turbo.build/schema.json",
+	"ui": "tui",
+	"globalEnv": [
+		"CONTENTFUL_PREVIEW_SECRET",
+		"CONTENTFUL_PREVIEW_ACCESS_TOKEN",
+		"CONTENTFUL_ACCESS_TOKEN",
+		"CONTENTFUL_SPACE_ID",
+		"NEXT_PUBLIC_CLERK_SIGN_UP_FORCE_REDIRECT_URL",
+		"NEXT_PUBLIC_CLERK_SIGN_IN_FORCE_REDIRECT_URL",
+		"NEXT_PUBLIC_CLERK_SIGN_UP_URL",
+		"NEXT_PUBLIC_CLERK_SIGN_IN_URL",
+		"OPENAI_API_KEY",
+		"DATABASE_URL",
+		"CLERK_SECRET_KEY",
+		"NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY"
+	],
+	"tasks": {
+		"build": {
+			"dependsOn": ["^build"],
+			"inputs": ["$TURBO_DEFAULT$", ".env*"],
+			"outputs": [".next/**", "!.next/cache/**"]
+		},
+		"lint": {
+			"dependsOn": ["^lint"]
+		},
+		"check-types": {
+			"dependsOn": ["^check-types"]
+		},
+		"dev": {
+			"cache": false,
+			"persistent": true
+		}
+	}
 }
