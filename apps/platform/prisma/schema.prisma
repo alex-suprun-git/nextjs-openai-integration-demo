@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["driverAdapters"]
@@ -15,54 +9,44 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  clerkId String @unique
-  email   String @unique
-
-  entries  JournalEntry[]
-  analyses Analysis[]
-
-  promptSymbolsUsed         Int      @default(0)
-  promptSymbolsLimit        Int      @default(10000)
+  id                        String         @id @default(uuid())
+  createdAt                 DateTime       @default(now())
+  updatedAt                 DateTime       @updatedAt
+  clerkId                   String         @unique
+  email                     String         @unique
+  promptSymbolsLimit        Int            @default(10000)
+  promptSymbolsUsed         Int            @default(0)
   promptSymbolsLimitRenewal DateTime
+  analyses                  Analysis[]
+  entries                   JournalEntry[]
 }
 
 model JournalEntry {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  userId String
-  user   User   @relation(fields: [userId], references: [id])
-
-  content String @db.Text
-
-  analysis Analysis?
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  userId    String
+  content   String
+  analysis  Analysis?
+  user      User      @relation(fields: [userId], references: [id])
 
   @@unique([userId, id])
 }
 
 model Analysis {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  entryId String
-  entry   JournalEntry @relation(fields: [entryId], references: [id], onDelete: Cascade)
-
-  userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-
+  id             String       @id @default(uuid())
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  entryId        String       @unique
+  userId         String
   mood           String
-  summary        String  @db.Text()
+  summary        String
   color          String
-  sentimentScore Float   @default(0)
+  sentimentScore Float        @default(0)
   negative       Boolean
   subject        String
+  entry          JournalEntry @relation(fields: [entryId], references: [id], onDelete: Cascade)
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([entryId])
   @@index([userId])
 }
