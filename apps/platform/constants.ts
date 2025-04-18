@@ -1,1 +1,1 @@
-export const PUBLIC_BASE_URL = 'https://nextjs-openai-integration-demo-public.vercel.app';
+export const PUBLIC_BASE_URL = 'https://nextjs-ai-platform.site/';
