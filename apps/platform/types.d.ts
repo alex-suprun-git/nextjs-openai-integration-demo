@@ -4,6 +4,7 @@ type BaseEntry = {
   updatedAt?: Date;
   userId?: string;
   content?: string;
+  title?: string;
 };
 
 type UserEntry = BaseEntry & {

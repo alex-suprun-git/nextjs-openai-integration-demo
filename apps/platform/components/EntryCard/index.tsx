@@ -16,11 +16,11 @@ type EntryCardProps = {
   id: string;
   createdAt: Date;
   updatedAt: Date;
-  content: string;
+  title?: string;
   color: string;
 };
 
-const EntryCard = ({ id, createdAt, updatedAt, content, color }: EntryCardProps) => {
+const EntryCard = ({ id, createdAt, updatedAt, title, color }: EntryCardProps) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [creationDate, setCreationDate] = useState<string>('');
@@ -79,7 +79,7 @@ const EntryCard = ({ id, createdAt, updatedAt, content, color }: EntryCardProps)
             style={{ backgroundColor: color }}
             className="absolute right-4 top-4 ml-auto h-2 w-2 rounded"
           ></div>
-          <h2 className="card-title overflow-hidden">{getExcerpt(content)}</h2>
+          <h2 className="card-title overflow-hidden">{title || `Memo [${creationDate}]`}</h2>
           <div className="flex justify-between">
             <div className="flex flex-col 2xl:flex-row">
               <small className="flex items-center text-[12px] 2xl:mr-3">
