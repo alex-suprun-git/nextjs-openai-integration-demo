@@ -1,11 +1,22 @@
 import { getLocale } from 'next-intl/server';
-import { ChatOpenAI, OpenAI, OpenAIEmbeddings } from '@langchain/openai';
+import { ChatOpenAI, OpenAIEmbeddings } from '@langchain/openai';
 import { OutputFixingParser, StructuredOutputParser } from 'langchain/output_parsers';
 import { PromptTemplate } from '@langchain/core/prompts';
 import { Document } from 'langchain/document';
 import { loadQARefineChain } from 'langchain/chains';
 import { MemoryVectorStore } from 'langchain/vectorstores/memory';
 import z from 'zod';
+
+const reasoning = {
+  effort: 'medium', // 'low', 'medium', or 'high'
+  summary: 'detailed',
+};
+
+const modelParams = {
+  model: 'o4-mini',
+  useResponsesApi: true,
+  modelKwargs: { reasoning: reasoning },
+};
 
 const parser = StructuredOutputParser.fromZodSchema(
   z.object({
@@ -54,8 +65,7 @@ export const analyzeEntry = async (content: string) => {
 
   const input = await getPrompt(content, locale as UserLocale);
   const model = new ChatOpenAI({
-    temperature: 0,
-    model: 'gpt-4o',
+    ...modelParams,
     apiKey: process.env.OPENAI_API_KEY,
   });
   const output = await model.invoke(input);
@@ -63,10 +73,7 @@ export const analyzeEntry = async (content: string) => {
   try {
     return await parser.parse(output.content as string);
   } catch (e) {
-    const fixParser = OutputFixingParser.fromLLM(
-      new OpenAI({ temperature: 0, model: 'gpt-4o' }),
-      parser,
-    );
+    const fixParser = OutputFixingParser.fromLLM(new ChatOpenAI(modelParams), parser);
     const fix = await fixParser.parse(output.content as string);
     return fix;
   }
@@ -84,7 +91,7 @@ export const analysisFeedback = async (question: string, entries: BaseEntry[]) =
         metadata: { source: entry.id, date: entry.createdAt },
       }),
   );
-  const model = new OpenAI({ temperature: 0, model: 'gpt-4o' });
+  const model = new ChatOpenAI(modelParams);
   const chain = loadQARefineChain(model);
   const embeddings = new OpenAIEmbeddings();
   const store = await MemoryVectorStore.fromDocuments(docs, embeddings);
