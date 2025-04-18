@@ -7,7 +7,7 @@ import { Drawer, Header } from '@/ui-lib';
 import { PLATFORM_BASE_URL } from '@/constants';
 import Link from 'next/link';
 
-function Navbar({ publicPages }: { publicPages?: boolean }) {
+function Navbar() {
   const drawerToggleRef = useRef<HTMLInputElement>(null);
 
   const drawerToggleHandler = () => {
