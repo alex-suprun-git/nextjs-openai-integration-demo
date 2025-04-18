@@ -1,24 +1,23 @@
 'use client';
 
-import { MouseEvent } from 'react';
+import { usePathname } from 'next/navigation';
 import { GrLanguage } from 'react-icons/gr';
+import Link from 'next/link';
+import { useLocale } from 'next-intl';
+import { getPageURL } from '@/app/utils';
 
 const LanguageSwitcher = () => {
+  const pathname = usePathname();
+  const locale = useLocale();
+  const slug = getPageURL(pathname);
+
   const languages = [
-    { label: 'English', value: 'en' },
-    { label: 'Deutsch', value: 'de' },
+    { id: 'en', label: 'English', value: `/en/${slug}` },
+    { id: 'de', label: 'Deutsch', value: `/de/${slug}` },
   ];
 
-  const handleLanguageChange = (e: MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const elem = document.activeElement as HTMLElement;
-    if (elem) {
-      elem?.blur();
-    }
-  };
-
   return (
-    <div className="dropdown dropdown-hover dropdown-left ml-auto">
+    <div className="dropdown dropdown-hover dropdown-bottom ml-auto sm:dropdown-left">
       <div
         tabIndex={0}
         role="button"
@@ -28,15 +27,19 @@ const LanguageSwitcher = () => {
       </div>
       <ul
         tabIndex={0}
-        className="dropdown-content menu z-[1] w-52 rounded-box bg-slate-800 p-2 shadow"
+        className="dropdown-content menu z-[1] w-36 rounded-box bg-slate-800 p-2 shadow sm:w-40"
       >
-        {languages.map((language, index) => (
-          <li key={index}>
-            <a href="#" className="text-stone-300" onClick={(e) => handleLanguageChange(e)}>
-              {language.label}
-            </a>
-          </li>
-        ))}
+        {languages.map((language) => {
+          let isCurrentPage = language.value === `/${locale}/${slug}`;
+
+          return (
+            <li key={language.id}>
+              <Link href={language.value} className="text-stone-300">
+                {isCurrentPage ? <strong>{language.label}</strong> : language.label}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

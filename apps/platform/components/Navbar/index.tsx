@@ -7,7 +7,7 @@ import LanguageSwitcher from '../LanguageSwitcher';
 import Navigation from '../Navigation';
 import { Drawer, Header, PromptCounter } from '@/ui-lib';
 
-function Navbar({ publicPages }: { publicPages?: boolean }) {
+function Navbar() {
   const drawerToggleRef = useRef<HTMLInputElement>(null);
 
   const drawerToggleHandler = () => {
@@ -25,23 +25,20 @@ function Navbar({ publicPages }: { publicPages?: boolean }) {
         <div className="xl:hidden">
           <Drawer toggleRef={drawerToggleRef} icon={<FiMenu size={38} />}>
             <Navigation onClick={drawerToggleHandler} />
-            {!publicPages && <PromptCounter />}
+            <PromptCounter />
           </Drawer>
         </div>
       </div>
       <div className="navbar-center">
-        {!publicPages && (
-          <div className="hidden lg:block">
-            <PromptCounter />
-          </div>
-        )}
+        <div className="hidden lg:block">
+          <PromptCounter />
+        </div>
       </div>
       <div className="navbar-end">
-        {!publicPages && (
-          <div className="mr-8 md:mr-10">
-            <LanguageSwitcher />
-          </div>
-        )}
+        <div className="mr-6 md:mr-12">
+          <LanguageSwitcher />
+        </div>
+
         <div className="pt-2 text-center">
           <UserButton />
         </div>

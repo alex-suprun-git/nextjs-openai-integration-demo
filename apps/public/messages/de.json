@@ -6,8 +6,12 @@
     },
     "navigation": {
       "homePage": "Hauptseite",
-      "aboutMe": "Über mich"
+      "aboutMe": "Über mich",
+      "logIn": "Anmelden"
     }
+  },
+  "Homepage": {
+    "linkText": "Weiter auf der Webplattform"
   },
   "E404Homepage": {
     "description1": "Seite nicht gefunden",
