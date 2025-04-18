@@ -30,7 +30,7 @@ const LanguageSwitcher = () => {
         className="dropdown-content menu z-[1] w-36 rounded-box bg-slate-800 p-2 shadow sm:w-40"
       >
         {languages.map((language) => {
-          let isCurrentPage = language.value === `/${locale}/${slug}`;
+          const isCurrentPage = language.value === `/${locale}/${slug}`;
 
           return (
             <li key={language.id}>

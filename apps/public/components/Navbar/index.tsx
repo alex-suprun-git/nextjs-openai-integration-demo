@@ -1,17 +1,27 @@
 'use client';
 
 import { useRef } from 'react';
-import { FiMenu } from 'react-icons/fi';
+import useSWR from 'swr';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
+import { FiMenu } from 'react-icons/fi';
 import LanguageSwitcher from '../LanguageSwitcher';
 import Navigation from '../Navigation';
 import { Drawer, Header } from '@/ui-lib';
 import { PLATFORM_BASE_URL } from '@/constants';
+import { fetcher } from '@/app/utils';
 
 function Navbar() {
   const drawerToggleRef = useRef<HTMLInputElement>(null);
   const t = useTranslations('Header');
+
+  const { data, error } = useSWR('/api/auth/status', fetcher, {
+    revalidateOnFocus: true,
+  });
+
+  if (!data || error) return null;
+
+  const { isSignedIn } = data;
 
   const drawerToggleHandler = () => {
     if (drawerToggleRef.current) {
@@ -41,7 +51,7 @@ function Navbar() {
             className="btn bg-yellow-200 text-lg font-bold text-gray-900 hover:bg-yellow-300"
             href={PLATFORM_BASE_URL}
           >
-            {t('navigation.logIn')}
+            {isSignedIn ? t('navigation.toPlatform') : t('navigation.logIn')}
           </Link>
         </div>
       </div>
