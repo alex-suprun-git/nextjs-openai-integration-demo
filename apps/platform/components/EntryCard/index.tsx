@@ -8,7 +8,7 @@ import { FaRegTrashAlt } from 'react-icons/fa';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { IoDocumentTextOutline } from 'react-icons/io5';
 import { Loading } from '@/ui-lib';
-import { formatDate, getExcerpt } from '@/utils/helpers';
+import { formatDate } from '@/utils/helpers';
 import { deleteEntry } from '@/utils/api';
 import useKeyPress from '@/hooks/useKeyPress';
 

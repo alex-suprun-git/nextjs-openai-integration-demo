@@ -32,6 +32,7 @@ const Question = () => {
       setQuestion('');
     } catch (error) {
       setAnswer(t('labels.responseError'));
+      console.log(error);
     } finally {
       setLoading(false);
     }

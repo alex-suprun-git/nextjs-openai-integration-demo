@@ -24,7 +24,7 @@ const JournalList = ({ entries }: { entries: Required<AnalysisSubEntry[]> | [] }
                 id={analysisEntry.id}
                 createdAt={analysisEntry.createdAt}
                 updatedAt={analysisEntry.updatedAt}
-                title={analysisEntry.title}
+                title={analysisEntry.analysis.title}
                 color={analysisEntry.analysis.color}
               />
             </Link>

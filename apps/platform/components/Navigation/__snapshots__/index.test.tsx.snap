@@ -27,7 +27,7 @@ exports[`Navigation Component > renders correctly when journal link is active 1`
     </a>
     <a
       class="mb-5 mr-12 text-lg xl:mb-0 xl:text-base"
-      href="/about-me"
+      href="https://nextjs-openai-integration-demo-public.vercel.app/about-me"
     >
       <span
         class="text-stone-300"
@@ -45,7 +45,7 @@ exports[`Navigation Component > renders correctly when no link is active 1`] = `
     class="mb-12 mt-5 flex flex-col xl:mb-0 xl:mt-0 xl:flex-row"
   >
     <a
-      class="mb-5 mr-12 text-lg xl:mb-0 xl:text-base"
+      class="mb-5 mr-12 text-2xl font-bold xl:mb-0 xl:text-base"
       href="/"
     >
       <span
@@ -66,7 +66,7 @@ exports[`Navigation Component > renders correctly when no link is active 1`] = `
     </a>
     <a
       class="mb-5 mr-12 text-lg xl:mb-0 xl:text-base"
-      href="/about-me"
+      href="https://nextjs-openai-integration-demo-public.vercel.app/about-me"
     >
       <span
         class="text-stone-300"
@@ -105,7 +105,7 @@ exports[`Navigation Component > renders correctly when statistics link is active
     </a>
     <a
       class="mb-5 mr-12 text-lg xl:mb-0 xl:text-base"
-      href="/about-me"
+      href="https://nextjs-openai-integration-demo-public.vercel.app/about-me"
     >
       <span
         class="text-stone-300"

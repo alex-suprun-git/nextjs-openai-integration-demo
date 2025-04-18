@@ -16,7 +16,7 @@ exports[`EntryCard > renders correctly and matches snapshot 1`] = `
       <h2
         class="card-title overflow-hidden"
       >
-        This is a test entry
+        Memo [2023-01-01]
       </h2>
       <div
         class="flex justify-between"
