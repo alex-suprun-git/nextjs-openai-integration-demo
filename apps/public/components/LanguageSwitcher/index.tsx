@@ -2,20 +2,22 @@
 
 import { usePathname } from 'next/navigation';
 import { GrLanguage } from 'react-icons/gr';
-import { getPageURL } from '@/app/utils';
 import Link from 'next/link';
+import { useLocale } from 'next-intl';
+import { getPageURL } from '@/app/utils';
 
 const LanguageSwitcher = () => {
   const pathname = usePathname();
+  const locale = useLocale();
   const slug = getPageURL(pathname);
 
   const languages = [
-    { label: 'English', value: `/en/${slug}` },
-    { label: 'Deutsch', value: `/de/${slug}` },
+    { id: 'en', label: 'English', value: `/en/${slug}` },
+    { id: 'de', label: 'Deutsch', value: `/de/${slug}` },
   ];
 
   return (
-    <div className="dropdown dropdown-hover dropdown-left ml-auto">
+    <div className="dropdown dropdown-hover dropdown-bottom ml-auto sm:dropdown-left">
       <div
         tabIndex={0}
         role="button"
@@ -25,15 +27,19 @@ const LanguageSwitcher = () => {
       </div>
       <ul
         tabIndex={0}
-        className="dropdown-content menu z-[1] w-52 rounded-box bg-slate-800 p-2 shadow"
+        className="dropdown-content menu z-[1] w-36 rounded-box bg-slate-800 p-2 shadow sm:w-40"
       >
-        {languages.map((language, index) => (
-          <li key={index}>
-            <Link href={language.value} className="text-stone-300">
-              {language.label}
-            </Link>
-          </li>
-        ))}
+        {languages.map((language) => {
+          let isCurrentPage = language.value === `/${locale}/${slug}`;
+
+          return (
+            <li key={language.id}>
+              <Link href={language.value} className="text-stone-300">
+                {isCurrentPage ? <strong>{language.label}</strong> : language.label}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

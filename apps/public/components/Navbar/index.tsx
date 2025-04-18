@@ -33,8 +33,8 @@ function Navbar() {
       </div>
       <div className="navbar-center"></div>
       <div className="navbar-end">
-        <div className="flex items-center pt-2 text-center">
-          <div className="mr-12">
+        <div className="flex items-center text-center">
+          <div className="mr-6 md:mr-12">
             <LanguageSwitcher />
           </div>
           <Link

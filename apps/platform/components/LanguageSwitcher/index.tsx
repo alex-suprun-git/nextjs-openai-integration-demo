@@ -30,7 +30,7 @@ const LanguageSwitcher = () => {
       </div>
       <ul
         tabIndex={0}
-        className="dropdown-content menu z-[1] w-52 rounded-box bg-slate-800 p-2 shadow"
+        className="dropdown-content menu z-[1] w-36 rounded-box bg-slate-800 p-2 shadow sm:w-40"
       >
         {languages.map((language, index) => (
           <li key={index}>

@@ -35,7 +35,7 @@ function Navbar() {
         </div>
       </div>
       <div className="navbar-end">
-        <div className="mr-8 md:mr-10">
+        <div className="mr-6 md:mr-12">
           <LanguageSwitcher />
         </div>
 
