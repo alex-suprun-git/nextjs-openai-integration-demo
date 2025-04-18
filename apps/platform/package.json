@@ -19,7 +19,6 @@
     "cy:open": "cypress open"
   },
   "dependencies": {
-    "clsx": "^2.1.1",
     "@clerk/localizations": "3.13.9",
     "@clerk/nextjs": "^6.0.0",
     "@langchain/core": "0.3.45",
@@ -31,6 +30,7 @@
     "@repo/ui": "*",
     "@sentry/nextjs": "^9.12.0",
     "@vercel/speed-insights": "^1.2.0",
+    "clsx": "^2.1.1",
     "cookies-next": "5.1.0",
     "daisyui": "5.0.19",
     "langchain": "0.3.22",
@@ -49,8 +49,8 @@
     "@cypress/code-coverage": "^3.13.0",
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
-    "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
     "@types/lodash": "^4.17.7",
     "@types/node": "^22.14.0",
@@ -61,12 +61,12 @@
     "@vitest/coverage-v8": "3.1.1",
     "@vitest/ui": "^2.0.2",
     "cypress": "^13.13.0",
+    "eslint": "^9.24.0",
     "jsdom": "^24.1.0",
     "prisma": "^5.17.0",
     "react-icons": "^5.2.1",
     "typescript": "5.8.2",
-    "vite-tsconfig-paths": "^4.3.2",
-    "eslint": "^9.24.0"
+    "vite-tsconfig-paths": "^4.3.2"
   },
   "engines": {
     "node": ">=22"
