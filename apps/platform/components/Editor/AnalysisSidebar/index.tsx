@@ -53,16 +53,35 @@ function AnalysisSidebar({
         ></div>
       </div>
       <ul className="mb-10 mt-5">
-        {analysisData.map((item) => (
-          <li
-            data-testid={'analysis-item'}
-            key={item.label}
-            className="flex flex-col items-start justify-between border-b-2 border-white/10 px-6 py-3 xl:flex-row xl:items-center"
-          >
-            <h3 className="mb-2 mr-10 font-semibold text-stone-300">{item.label}:</h3>
-            <span className="text-start text-stone-300 xl:text-end">{item.value?.toString()}</span>
-          </li>
-        ))}
+        {analysisData.map((item) => {
+          if (item.value === summary && isEntryCanBeDeleted) {
+            return (
+              <li
+                data-testid={`analysis-item analysis-item-${item.value}`}
+                key={item.label}
+                className="mb-6 flex flex-col border-b-2 border-white/10 px-6 pb-6"
+              >
+                <h3 className="mb-2 mr-10 text-center font-semibold text-stone-300">
+                  {item.label}:
+                </h3>
+                <span className="text-center text-stone-300">{item.value?.toString()}</span>
+              </li>
+            );
+          } else {
+            return (
+              <li
+                data-testid={`analysis-item analysis-item-${item.value}`}
+                key={item.label}
+                className="flex flex-col items-start justify-between border-b-2 border-white/10 px-6 py-3 xl:flex-row xl:items-center"
+              >
+                <h3 className="mb-2 mr-10 font-semibold text-stone-300">{item.label}:</h3>
+                <span className="text-start text-stone-300 xl:text-end">
+                  {item.value?.toString()}
+                </span>
+              </li>
+            );
+          }
+        })}
       </ul>
       {isEntryCanBeDeleted && (
         <div className="mt-12 flex justify-end pb-10 pr-5 md:pb-0 md:pr-0">

@@ -75,6 +75,7 @@ describe('getMoodImage', () => {
     subject: 'some subject',
     color: 'green',
     sentimentScore: 8,
+    title: 'some title',
   };
 
   it('should return the correct image URL for positive mood', () => {

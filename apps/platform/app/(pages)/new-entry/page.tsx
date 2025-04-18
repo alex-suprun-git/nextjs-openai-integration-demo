@@ -16,6 +16,7 @@ function NewEntryPage() {
       color: '#4B5563',
       negative: false,
       sentimentScore: 0,
+      title: '',
     },
   };
 

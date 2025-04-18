@@ -74,14 +74,14 @@ describe('analyzeEntry', () => {
 
 describe('analysisFeedback', () => {
   it('returns expected output for a question and single entry', async () => {
-    const result = await analysisFeedback('test question', [
+    const result = await analysisFeedback('en', 'test question', [
       { content: 'test content', id: '1', createdAt: new Date('2023-01-01') },
     ]);
     expect(result).toBe('refined output');
   });
 
   it('returns expected output for a question and multiple entries', async () => {
-    const result = await analysisFeedback('test question', [
+    const result = await analysisFeedback('en', 'test question', [
       { content: 'test content 1', id: '1', createdAt: new Date('2023-01-01') },
       { content: 'test content 2', id: '2', createdAt: new Date('2023-01-02') },
     ]);
@@ -94,14 +94,14 @@ describe('analysisFeedback', () => {
   });
 
   it('handles empty question gracefully in analysisFeedback', async () => {
-    const result = await analysisFeedback('', [
+    const result = await analysisFeedback('en', '', [
       { content: 'test content', id: '1', createdAt: new Date('2023-01-01') },
     ]);
     expect(result).toBe('refined output');
   });
 
   it('handles empty entries array in analysisFeedback', async () => {
-    const result = await analysisFeedback('test question', []);
+    const result = await analysisFeedback('en', 'test question', []);
     expect(result).toBeUndefined();
   });
 });

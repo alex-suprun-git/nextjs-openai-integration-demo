@@ -38,7 +38,7 @@
     "alerts": {
       "symbolsLimitExceeded": "Sie haben das Limit von 5.000 Zeichen erreicht und können keine neuen Anfragen stellen.",
       "contentTooShort": "Bitte geben Sie mindestens 30 Zeichen ein. Änderungen werden für Einträge mit weniger als 30 Zeichen nicht gespeichert.",
-      "entryCreated": "EiEin neuer Datensatz wurde erstellt. Analysieren....",
+      "entryCreated": "Ein neuer Datensatz wurde erstellt. Analysieren....",
       "entryUpdated": "Die Notiz wurde erfolgreich aktualisiert."
     },
     "analysis": {

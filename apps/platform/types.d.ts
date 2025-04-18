@@ -4,7 +4,6 @@ type BaseEntry = {
   updatedAt?: Date;
   userId?: string;
   content?: string;
-  title?: string;
 };
 
 type UserEntry = BaseEntry & {
@@ -23,6 +22,7 @@ type AnalysisData = {
   sentimentScore: number;
   negative: boolean;
   subject: string;
+  title: string;
 };
 
 type AnalysisEntry = BaseEntry &

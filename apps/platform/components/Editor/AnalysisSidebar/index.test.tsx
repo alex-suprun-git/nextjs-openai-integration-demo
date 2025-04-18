@@ -35,6 +35,7 @@ describe('AnalysisSidebar', () => {
     color: 'green',
     negative: false,
     sentimentScore: 8,
+    title: 'Test Summary',
   };
 
   const mockEntryId = '12345';

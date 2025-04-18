@@ -5,6 +5,9 @@ import { getUserByClerkId } from '@/utils/auth';
 import { prisma } from '@/utils/db';
 import { isDynamicServerError } from 'next/dist/client/components/hooks-server-context';
 
+/* @deprecated
+ * Reason: editing of existing records has been disabled
+ */
 export const PATCH = async (request: Request, { params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
   const { content } = await request.json();

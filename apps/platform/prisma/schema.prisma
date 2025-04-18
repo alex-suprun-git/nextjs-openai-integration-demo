@@ -14,7 +14,7 @@ model User {
   updatedAt                 DateTime       @updatedAt
   clerkId                   String         @unique
   email                     String         @unique
-  promptSymbolsLimit        Int            @default(10000)
+  promptSymbolsLimit        Int            @default(5000)
   promptSymbolsUsed         Int            @default(0)
   promptSymbolsLimitRenewal DateTime
   analyses                  Analysis[]
@@ -45,6 +45,7 @@ model Analysis {
   sentimentScore Float        @default(0)
   negative       Boolean
   subject        String
+  title          String
   entry          JournalEntry @relation(fields: [entryId], references: [id], onDelete: Cascade)
   user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
 

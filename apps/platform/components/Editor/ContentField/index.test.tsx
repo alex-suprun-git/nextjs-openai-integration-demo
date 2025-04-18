@@ -32,7 +32,8 @@ describe('Content', () => {
       <Content
         isLoading={false}
         contentValue=""
-        contentChangeHandler={mockSetContentValue}
+        changeContentHandler={mockSetContentValue}
+        saveContentHandler={mockSetContentValue}
         entryCreatedRef={mockEntryCreatedRef}
         isPromptSymbolsExceeded={false}
         isContentEntryUpdated={false}
@@ -46,7 +47,8 @@ describe('Content', () => {
       <Content
         isLoading={false}
         contentValue="Some content"
-        contentChangeHandler={mockSetContentValue}
+        changeContentHandler={mockSetContentValue}
+        saveContentHandler={mockSetContentValue}
         entryCreatedRef={mockEntryCreatedRef}
         isPromptSymbolsExceeded={true}
         isContentEntryUpdated={false}
@@ -63,7 +65,8 @@ describe('Content', () => {
       <Content
         isLoading={false}
         contentValue="Short"
-        contentChangeHandler={mockSetContentValue}
+        changeContentHandler={mockSetContentValue}
+        saveContentHandler={mockSetContentValue}
         entryCreatedRef={mockEntryCreatedRef}
         isPromptSymbolsExceeded={false}
         isContentEntryUpdated={false}
@@ -82,7 +85,8 @@ describe('Content', () => {
       <Content
         isLoading={false}
         contentValue="Some content"
-        contentChangeHandler={mockSetContentValue}
+        changeContentHandler={mockSetContentValue}
+        saveContentHandler={mockSetContentValue}
         entryCreatedRef={mockEntryCreatedRef}
         isPromptSymbolsExceeded={false}
         isContentEntryUpdated={false}
@@ -99,7 +103,8 @@ describe('Content', () => {
       <Content
         isLoading={true}
         contentValue="Some content"
-        contentChangeHandler={mockSetContentValue}
+        changeContentHandler={mockSetContentValue}
+        saveContentHandler={mockSetContentValue}
         entryCreatedRef={mockEntryCreatedRef}
         isPromptSymbolsExceeded={false}
         isContentEntryUpdated={false}
@@ -114,7 +119,8 @@ describe('Content', () => {
       <Content
         isLoading={false}
         contentValue="Initial content"
-        contentChangeHandler={mockSetContentValue}
+        changeContentHandler={mockSetContentValue}
+        saveContentHandler={mockSetContentValue}
         entryCreatedRef={mockEntryCreatedRef}
         isPromptSymbolsExceeded={true}
         isContentEntryUpdated={false}
@@ -133,7 +139,8 @@ describe('Content', () => {
       <Content
         isLoading={true}
         contentValue="Initial content"
-        contentChangeHandler={mockSetContentValue}
+        changeContentHandler={mockSetContentValue}
+        saveContentHandler={mockSetContentValue}
         entryCreatedRef={mockEntryCreatedRef}
         isPromptSymbolsExceeded={false}
         isContentEntryUpdated={false}
@@ -152,7 +159,8 @@ describe('Content', () => {
       <Content
         isLoading={true}
         contentValue="Initial content"
-        contentChangeHandler={mockSetContentValue}
+        changeContentHandler={mockSetContentValue}
+        saveContentHandler={mockSetContentValue}
         entryCreatedRef={mockEntryCreatedRef}
         isPromptSymbolsExceeded={true}
         isContentEntryUpdated={false}

@@ -1,5 +1,6 @@
 'use client';
 
+import clsx from 'clsx';
 import { MouseEventHandler, RefObject } from 'react';
 import { useTranslations } from 'next-intl';
 import { Alert, Loading } from '@/ui-lib';
@@ -43,11 +44,14 @@ function Content({
       {isLoading && <Loading customClasses="absolute inset-x-2/4 inset-y-2/4" />}
       <textarea
         data-testid="entry-content-field"
-        className="textarea min-h-80 w-full resize-none bg-gray-900 p-10 text-xl outline-none"
+        className={clsx(
+          'textarea min-h-80 w-full resize-none bg-gray-900 p-10 text-xl outline-none',
+          !isNewEntry && 'sm:min-h-lvh',
+        )}
         value={contentValue}
         onChange={(e) => changeContentHandler(e)}
         placeholder={t('contentFieldPlaceholder')}
-        maxLength={2500}
+        maxLength={500}
         disabled={isPromptSymbolsExceeded || isLoading || !isNewEntry}
         required
       />

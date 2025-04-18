@@ -3,8 +3,10 @@ import { getUserByClerkId } from '@/utils/auth';
 import { prisma } from '@/utils/db';
 import { NextResponse } from 'next/server';
 import { isDynamicServerError } from 'next/dist/client/components/hooks-server-context';
+import { getLocale } from 'next-intl/server';
 
 export const POST = async (request: Request) => {
+  const language = await getLocale();
   const { question } = await request.json();
   const user = await getUserByClerkId();
 
@@ -24,7 +26,7 @@ export const POST = async (request: Request) => {
       },
     });
 
-    const answer = await analysisFeedback(question, entries);
+    const answer = await analysisFeedback(language as UserLocale, question, entries);
 
     return NextResponse.json({ data: answer });
   } catch (error) {
