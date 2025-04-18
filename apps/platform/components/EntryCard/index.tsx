@@ -7,7 +7,7 @@ import { FiEdit } from 'react-icons/fi';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { IoDocumentTextOutline } from 'react-icons/io5';
-import { Loading } from '@/ui-lib';
+import { Loading } from '@repo/ui/index';
 import { formatDate } from '@/utils/helpers';
 import { deleteEntry } from '@/utils/api';
 import useKeyPress from '@/hooks/useKeyPress';

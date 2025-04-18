@@ -41,7 +41,7 @@ export default async function RootLocaleLayout({
       <body className={`min-h-dvh bg-slate-900/25 ${inter.className}`}>
         <NextIntlClientProvider messages={messages}>
           <Navbar />
-          <div className="mt-20">{children}</div>
+          {children}
         </NextIntlClientProvider>
         <SpeedInsights />
       </body>

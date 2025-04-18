@@ -1,6 +1,6 @@
 'use client';
 
-import { Heading } from '@/ui-lib';
+import { Heading } from '@repo/ui/index';
 import Link from 'next/link';
 import EntryCard from '../EntryCard';
 import NewEntryCard from '../NewEntryCard';

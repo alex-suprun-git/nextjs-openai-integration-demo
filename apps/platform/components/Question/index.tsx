@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { HiMiniChevronDoubleRight } from 'react-icons/hi2';
 import { askQuestion, updateUserPromptUsage } from '@/utils/api';
 import { usePrompt } from '@/contexts/PromptContext';
-import { Loading } from '@/ui-lib';
+import { Loading } from '@repo/ui/index';
 
 const Question = () => {
   const [question, setQuestion] = useState('');

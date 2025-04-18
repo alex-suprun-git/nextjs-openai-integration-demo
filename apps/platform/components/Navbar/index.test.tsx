@@ -23,7 +23,7 @@ vi.mock('../Navigation', () => ({
   default: () => <div>Navigation</div>,
 }));
 
-vi.mock('@/ui-lib', () => ({
+vi.mock('@repo/ui/index', () => ({
   Drawer: ({ icon, children }: { icon: React.JSX.Element; children: React.JSX.Element[] }) => (
     <div>
       Drawer {icon}

@@ -1,4 +1,4 @@
-import { Loading as Spinner } from '@/ui-lib';
+import { Loading as Spinner } from '@repo/ui/index';
 
 const Loading = () => (
   <div className="flex h-screen w-screen items-center justify-center">

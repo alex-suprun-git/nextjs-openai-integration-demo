@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl';
 import { FiMenu } from 'react-icons/fi';
 import LanguageSwitcher from '../LanguageSwitcher';
 import Navigation from '../Navigation';
-import { Drawer, Header } from '@/ui-lib';
+import { Drawer, Header } from '@repo/ui/index';
 import { PLATFORM_BASE_URL } from '@/constants';
 import { fetcher } from '@/app/utils';
 

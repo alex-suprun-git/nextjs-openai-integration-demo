@@ -46,7 +46,7 @@ exports[`Navbar Component > renders correctly 1`] = `
       class="navbar-end"
     >
       <div
-        class="mr-8 md:mr-10"
+        class="mr-6 md:mr-12"
       >
         <div>
           LanguageSwitcher

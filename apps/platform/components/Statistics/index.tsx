@@ -1,6 +1,6 @@
 'use client';
 
-import { Heading } from '@/ui-lib';
+import { Heading } from '@repo/ui/index';
 import HistoryChart from './HistoryChart';
 import { useTranslations } from 'next-intl';
 
@@ -20,9 +20,11 @@ function StatisticsData({
         <p className="text-xl text-stone-300">{t('labels.noEntries')}</p>
       ) : (
         <>
-          {!!averageSentiment && <p className="mb-12 text-xl text-stone-300">
-            {t('labels.averageSentiment', { averageSentiment })}
-          </p>}
+          {!!averageSentiment && (
+            <p className="mb-12 text-xl text-stone-300">
+              {t('labels.averageSentiment', { averageSentiment })}
+            </p>
+          )}
           <HistoryChart data={analyses as AnalysisEntry[]} />
         </>
       )}

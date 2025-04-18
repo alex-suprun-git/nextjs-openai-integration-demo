@@ -5,7 +5,8 @@ import { UserButton } from '@clerk/nextjs';
 import { FiMenu } from 'react-icons/fi';
 import LanguageSwitcher from '../LanguageSwitcher';
 import Navigation from '../Navigation';
-import { Drawer, Header, PromptCounter } from '@/ui-lib';
+import { Drawer, Header } from '@repo/ui/index';
+import PromptCounter from '@/ui-lib/PromptCounter';
 
 function Navbar() {
   const drawerToggleRef = useRef<HTMLInputElement>(null);
