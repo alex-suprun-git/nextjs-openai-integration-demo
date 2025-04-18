@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { IoReturnUpBack } from 'react-icons/io5';
 import AnalysisSidebar from './AnalysisSidebar';
 import ContentField from './ContentField';
-import { useEditor } from '@/hooks/useEditor';
 import { useRouter } from 'next/navigation';
+import { useEditor } from '@/hooks/useEditor';
 
 const Editor = ({ entry }: { entry: EditorEntry }) => {
   const {
@@ -13,9 +13,8 @@ const Editor = ({ entry }: { entry: EditorEntry }) => {
     isLoading,
     isContentEntryUpdated,
     analysis,
-    autoSaveTimerValue,
-    isShowAutoSaveTimer,
-    contentChangeHandler,
+    changeContentHandler,
+    saveContentHandler,
     isPromptSymbolsExceeded,
     entryCreatedRef,
   } = useEditor(entry);
@@ -30,18 +29,12 @@ const Editor = ({ entry }: { entry: EditorEntry }) => {
           </div>
         </Link>
 
-        {isShowAutoSaveTimer && (
-          <progress
-            className="progress mb-2 w-full"
-            value={autoSaveTimerValue}
-            max="100"
-          ></progress>
-        )}
         <ContentField
           isLoading={isLoading}
           isContentEntryUpdated={isContentEntryUpdated}
           contentValue={contentValue as string}
-          contentChangeHandler={contentChangeHandler}
+          changeContentHandler={changeContentHandler}
+          saveContentHandler={() => saveContentHandler(contentValue)}
           entryCreatedRef={entryCreatedRef}
           isPromptSymbolsExceeded={isPromptSymbolsExceeded}
         />

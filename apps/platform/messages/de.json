@@ -36,9 +36,9 @@
   },
   "Editor": {
     "alerts": {
-      "symbolsLimitExceeded": "Sie haben das Limit von 10.000 Zeichen erreicht und können keine neuen Anfragen stellen.",
+      "symbolsLimitExceeded": "Sie haben das Limit von 5.000 Zeichen erreicht und können keine neuen Anfragen stellen.",
       "contentTooShort": "Bitte geben Sie mindestens 30 Zeichen ein. Änderungen werden für Einträge mit weniger als 30 Zeichen nicht gespeichert.",
-      "entryCreated": "Eine neue Notiz wurde erstellt. Umleiten....",
+      "entryCreated": "EiEin neuer Datensatz wurde erstellt. Analysieren....",
       "entryUpdated": "Die Notiz wurde erfolgreich aktualisiert."
     },
     "analysis": {

@@ -8439,11 +8439,6 @@ rc@^1.0.1, rc@^1.1.6:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-autosave@0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/react-autosave/-/react-autosave-0.5.0.tgz#5075c5e0ab0f006c68f4b5f817f059b81c9b314a"
-  integrity sha512-Pp4R4K5uz5i7ggccrxNiGYvQPQMeHDrG98iCXMSi0QA9BQSVzopwRa3Zs/0VQHwdtYrbk33O23sBhHu2JdfNWA==
-
 react-dom@^19.1.0:
   version "19.1.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-19.1.0.tgz#133558deca37fa1d682708df8904b25186793623"

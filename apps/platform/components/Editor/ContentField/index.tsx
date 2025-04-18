@@ -1,25 +1,30 @@
 'use client';
 
-import { MutableRefObject } from 'react';
+import { MouseEventHandler, RefObject } from 'react';
 import { useTranslations } from 'next-intl';
 import { Alert, Loading } from '@/ui-lib';
 import { MINIMUM_CONTENT_LENGTH } from '@/utils/constants';
+import { usePathname } from 'next/navigation';
 
 function Content({
   isLoading,
   isContentEntryUpdated,
   contentValue,
-  contentChangeHandler,
+  changeContentHandler,
+  saveContentHandler,
   entryCreatedRef,
   isPromptSymbolsExceeded,
 }: {
   isLoading: boolean;
   isContentEntryUpdated: boolean;
   contentValue: string;
-  contentChangeHandler: Function;
-  entryCreatedRef: MutableRefObject<boolean>;
+  changeContentHandler: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  saveContentHandler: MouseEventHandler<HTMLButtonElement>;
+  entryCreatedRef: RefObject<boolean>;
   isPromptSymbolsExceeded: boolean;
 }) {
+  const pathname = usePathname();
+  const isNewEntry = pathname === '/new-entry';
   const isContentTooShort = contentValue.length < MINIMUM_CONTENT_LENGTH;
   const isContentEntryCreated = entryCreatedRef.current;
 
@@ -38,14 +43,25 @@ function Content({
       {isLoading && <Loading customClasses="absolute inset-x-2/4 inset-y-2/4" />}
       <textarea
         data-testid="entry-content-field"
-        className="textarea min-h-72 w-full resize-none bg-gray-900 p-10 text-xl outline-none md:min-h-svh"
+        className="textarea min-h-80 w-full resize-none bg-gray-900 p-10 text-xl outline-none"
         value={contentValue}
-        onChange={(e) => contentChangeHandler(e)}
+        onChange={(e) => changeContentHandler(e)}
         placeholder={t('contentFieldPlaceholder')}
         maxLength={2500}
-        disabled={isPromptSymbolsExceeded || isLoading}
+        disabled={isPromptSymbolsExceeded || isLoading || !isNewEntry}
         required
       />
+      {isNewEntry && (
+        <div className="mt-6 flex justify-end">
+          <button
+            disabled={!!isContentTooShort || isLoading}
+            onClick={saveContentHandler}
+            className="btn bg-blue-900"
+          >
+            Submit
+          </button>
+        </div>
+      )}
     </>
   );
 }
