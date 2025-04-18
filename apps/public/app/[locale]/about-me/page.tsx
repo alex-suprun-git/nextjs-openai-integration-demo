@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 import { ReactNode } from 'react';
 import Image from 'next/image';
-import { getLocale } from 'next-intl/server';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { Block, BLOCKS, Inline, MARKS } from '@contentful/rich-text-types';
+import { setRequestLocale } from 'next-intl/server';
 import { Heading } from '@/ui-lib';
 import { pageQuery } from '@/content/queries';
 import { PageSchema } from '@/content/types';
@@ -14,8 +14,10 @@ export const metadata: Metadata = {
   description: 'A Brief info about Alex Suprun - the developer of this project.',
 };
 
-const AboutMePage = async () => {
-  const locale = await getLocale();
+const AboutMePage = async ({ params }: { params: Promise<{ locale: string }> }) => {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   const componentData = (await getContentFromCMS(pageQuery, locale, {
     slug: 'about-me',
   })) as PageSchema;

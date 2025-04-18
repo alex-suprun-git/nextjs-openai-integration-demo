@@ -1,19 +1,20 @@
 'use client';
 
 import { MouseEventHandler } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
 const Navigation = ({ onClick = () => {} }: { onClick?: MouseEventHandler<HTMLAnchorElement> }) => {
   const path = usePathname();
+  const locale = useLocale();
   const isActiveLink = (href: string) => path === href;
 
   const t = useTranslations('Header');
 
   const navigationLinks = [
-    { label: t('navigation.homePage'), href: '/' },
-    { label: t('navigation.aboutMe'), href: '/about-me' },
+    { label: t('navigation.homePage'), href: `/${locale}` },
+    { label: t('navigation.aboutMe'), href: `/${locale}/about-me` },
   ];
 
   return (

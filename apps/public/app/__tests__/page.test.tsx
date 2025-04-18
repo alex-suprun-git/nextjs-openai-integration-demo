@@ -2,7 +2,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { createTranslator, useTranslations } from 'next-intl';
 import { Mock, vi } from 'vitest';
 import { auth } from '@clerk/nextjs/server';
-import Home from '@/app/page';
+import Home from '@/app/[locale]/page';
 import { getContentFromCMS } from '@/content/utils';
 import heroContentMock from '@/app/__tests__/__mocks__/heroContentMock.json';
 

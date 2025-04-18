@@ -1,9 +1,12 @@
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { Document } from '@contentful/rich-text-types';
 import { PLATFORM_BASE_URL } from '@/constants';
 
 function Hero({ headline, description }: { headline: string; description: Document }) {
+  const t = useTranslations('Homepage');
+
   return (
     <div className="flex items-center justify-center px-10 pb-24 text-stone-300 md:py-0">
       <div className="mx-auto max-w-screen-md">
@@ -16,7 +19,7 @@ function Hero({ headline, description }: { headline: string; description: Docume
         <div>
           <Link href={PLATFORM_BASE_URL}>
             <button className="btn btn-lg mb-5 border-0 bg-yellow-200 text-gray-900 hover:bg-yellow-300">
-              Continue on the platform
+              {t('linkText')}
             </button>
           </Link>
         </div>

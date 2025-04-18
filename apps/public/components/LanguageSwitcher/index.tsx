@@ -1,21 +1,18 @@
 'use client';
 
-import { MouseEvent } from 'react';
+import { usePathname } from 'next/navigation';
 import { GrLanguage } from 'react-icons/gr';
+import { getPageURL } from '@/app/utils';
+import Link from 'next/link';
 
 const LanguageSwitcher = () => {
-  const languages = [
-    { label: 'English', value: 'en' },
-    { label: 'Deutsch', value: 'de' },
-  ];
+  const pathname = usePathname();
+  const slug = getPageURL(pathname);
 
-  const handleLanguageChange = (e: MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const elem = document.activeElement as HTMLElement;
-    if (elem) {
-      elem?.blur();
-    }
-  };
+  const languages = [
+    { label: 'English', value: `/en/${slug}` },
+    { label: 'Deutsch', value: `/de/${slug}` },
+  ];
 
   return (
     <div className="dropdown dropdown-hover dropdown-left ml-auto">
@@ -32,9 +29,9 @@ const LanguageSwitcher = () => {
       >
         {languages.map((language, index) => (
           <li key={index}>
-            <a href="#" className="text-stone-300" onClick={(e) => handleLanguageChange(e)}>
+            <Link href={language.value} className="text-stone-300">
               {language.label}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

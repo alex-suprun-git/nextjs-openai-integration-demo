@@ -2,13 +2,16 @@
 
 import { useRef } from 'react';
 import { FiMenu } from 'react-icons/fi';
+import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import LanguageSwitcher from '../LanguageSwitcher';
 import Navigation from '../Navigation';
 import { Drawer, Header } from '@/ui-lib';
 import { PLATFORM_BASE_URL } from '@/constants';
-import Link from 'next/link';
 
 function Navbar() {
   const drawerToggleRef = useRef<HTMLInputElement>(null);
+  const t = useTranslations('Header');
 
   const drawerToggleHandler = () => {
     if (drawerToggleRef.current) {
@@ -30,12 +33,15 @@ function Navbar() {
       </div>
       <div className="navbar-center"></div>
       <div className="navbar-end">
-        <div className="pt-2 text-center">
+        <div className="flex items-center pt-2 text-center">
+          <div className="mr-12">
+            <LanguageSwitcher />
+          </div>
           <Link
             className="btn bg-yellow-200 text-lg font-bold text-gray-900 hover:bg-yellow-300"
             href={PLATFORM_BASE_URL}
           >
-            Log in
+            {t('navigation.logIn')}
           </Link>
         </div>
       </div>
