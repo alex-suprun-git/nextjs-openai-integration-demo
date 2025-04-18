@@ -15,13 +15,11 @@ function Navbar() {
   const drawerToggleRef = useRef<HTMLInputElement>(null);
   const t = useTranslations('Header');
 
-  const { data, error } = useSWR('/api/auth/status', fetcher, {
+  const { data } = useSWR('/api/auth/status', fetcher, {
     revalidateOnFocus: true,
   });
 
-  if (!data || error) return null;
-
-  const { isSignedIn } = data;
+  const isSignedIn = data?.isSignedIn;
 
   const drawerToggleHandler = () => {
     if (drawerToggleRef.current) {
