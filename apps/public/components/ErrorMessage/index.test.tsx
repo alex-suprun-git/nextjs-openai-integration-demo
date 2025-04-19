@@ -14,7 +14,7 @@ vi.mock('next-intl', () => ({
   },
 }));
 
-describe.skip('ErrorMessage Component', () => {
+describe('ErrorMessage Component', () => {
   it('renders the headline and button with translations', () => {
     const error = new Error('Test error message');
     const reset = vi.fn();

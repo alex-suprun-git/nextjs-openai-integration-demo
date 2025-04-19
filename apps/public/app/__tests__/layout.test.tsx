@@ -1,47 +1,54 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
-import RootLayout from '@/app/[locale]/layout';
+import RootLocaleLayout from '@/app/[locale]/layout';
 
-vi.mock('@/app/layout', async () => ({
-  __esModule: true,
-  default: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="layout">{children}</div>
-  ),
+vi.mock('next/navigation', () => ({
+  notFound: vi.fn(),
 }));
 
-// Mock the Inter function
-vi.mock('next/font/google', () => ({
-  Inter: () => ({
-    className: 'inter-class',
-  }),
-}));
-
-// Mock the ClerkProvider from @clerk/nextjs
-vi.mock('@clerk/nextjs', () => ({
-  ClerkProvider: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="clerkProvider">{children}</div>
-  ),
-}));
-
-// Mock the NextIntlClientProvider from next-intl
 vi.mock('next-intl', () => ({
-  NextIntlClientProvider: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
-  useTranslations: () => (key: string) => key, // mock useTranslations hook
+  hasLocale: (_locales: string[], _locale: string) => true,
+  NextIntlClientProvider: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="intl">{children}</div>
+  ),
 }));
 
-// Mock the async functions getLocale and getMessages from next-intl/server
 vi.mock('next-intl/server', () => ({
-  getLocale: vi.fn(async () => 'en'),
-  getMessages: vi.fn(async () => ({ message: 'test message' })),
+  setRequestLocale: vi.fn(),
 }));
 
-describe('RootLayout (mocked)', () => {
-  it('renders children correctly', () => {
+vi.mock('@/i18n/routing', () => ({
+  routing: { locales: ['en'] },
+}));
+
+vi.mock('@/components/Navbar', () => ({
+  __esModule: true,
+  default: () => <div data-testid="navbar" />,
+}));
+
+vi.mock('@vercel/speed-insights/next', () => ({
+  SpeedInsights: () => <div data-testid="speedinsights" />,
+}));
+
+vi.mock('next/font/google', () => ({
+  Inter: () => ({ className: 'inter-class' }),
+}));
+
+describe('RootLocaleLayout (mocked)', () => {
+  it('renders children, Navbar и SpeedInsights', async () => {
     const mockChildren = <div data-testid="mock-children">Mock Children</div>;
 
-    render(<RootLayout>{mockChildren}</RootLayout>);
+    const element = await RootLocaleLayout({
+      children: mockChildren,
+      params: Promise.resolve({ locale: 'en' }),
+    });
 
+    render(element);
+
+    expect(screen.getByTestId('intl')).toBeInTheDocument();
+    expect(screen.getByTestId('navbar')).toBeInTheDocument();
     expect(screen.getByTestId('mock-children')).toBeInTheDocument();
-    expect(screen.getByTestId('layout')).toBeInTheDocument();
+    expect(screen.getByTestId('speedinsights')).toBeInTheDocument();
   });
 });

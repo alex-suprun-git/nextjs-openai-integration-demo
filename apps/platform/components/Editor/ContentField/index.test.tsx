@@ -56,7 +56,7 @@ describe('Content', () => {
     );
 
     expect(screen.getByTestId('alert-error')).toHaveTextContent(
-      'You have reached the 10,000 symbol limit and cannot make new requests.',
+      'You have reached the 5,000 symbol limit and cannot make new requests.',
     );
   });
 
@@ -94,7 +94,7 @@ describe('Content', () => {
     );
 
     expect(screen.getByTestId('alert-success')).toHaveTextContent(
-      'A new note was created. Redirecting....',
+      'A new record was created. Analyzing....',
     );
   });
 
@@ -168,7 +168,7 @@ describe('Content', () => {
     );
 
     expect(screen.getByTestId('alert-error')).toHaveTextContent(
-      'You have reached the 10,000 symbol limit and cannot make new requests.',
+      'You have reached the 5,000 symbol limit and cannot make new requests.',
     );
     expect(screen.getByTestId('loading')).toBeInTheDocument();
   });

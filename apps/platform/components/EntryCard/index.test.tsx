@@ -1,24 +1,21 @@
+import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { useTranslations, useLocale, IntlProvider } from 'next-intl';
-import { useRouter } from 'next/navigation';
-import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
-import EntryCard from '.';
-import { formatDate, getExcerpt } from '@/utils/helpers';
+import { describe, it, expect, vi, beforeEach, afterEach, Mock } from 'vitest';
+import EntryCard from '../EntryCard';
+import { formatDate } from '@/utils/helpers';
 import { deleteEntry } from '@/utils/api';
+import { useRouter } from 'next/navigation';
+import { useTranslations, useLocale, IntlProvider } from 'next-intl';
 
 vi.mock('@/utils/helpers', () => ({
   formatDate: vi.fn(),
-  getExcerpt: vi.fn(),
 }));
-
 vi.mock('@/utils/api', () => ({
   deleteEntry: vi.fn(),
 }));
-
 vi.mock('next/navigation', () => ({
   useRouter: vi.fn(),
 }));
-
 vi.mock('next-intl', async (importOriginal) => {
   const actual = (await importOriginal()) as any;
   return {
@@ -33,11 +30,12 @@ describe('EntryCard', () => {
   const mockRouterPush = vi.fn();
   const mockRouterRefresh = vi.fn();
 
+  // 3. Передаём title вместо content
   const mockEntry = {
     id: '1',
-    createdAt: new Date('2023-01-01T00:00:00Z'),
-    updatedAt: new Date('2023-01-02T00:00:00Z'),
-    content: 'This is a test entry',
+    createdAt: new Date('2025-01-01T00:00:00Z'),
+    updatedAt: new Date('2025-01-02T00:00:00Z'),
+    title: 'This is a test entry',
     color: '#ff0000',
   };
 
@@ -52,7 +50,6 @@ describe('EntryCard', () => {
     (useTranslations as Mock).mockImplementation(() => translate);
     (useLocale as Mock).mockReturnValue('en');
     (formatDate as Mock).mockImplementation((date: Date) => date.toISOString().split('T')[0]);
-    (getExcerpt as Mock).mockImplementation((content: string) => content.slice(0, 100));
     (useRouter as Mock).mockReturnValue({
       push: mockRouterPush,
       refresh: mockRouterRefresh,
@@ -78,8 +75,8 @@ describe('EntryCard', () => {
   it('renders with correct text and date', () => {
     renderWithProvider(<EntryCard {...mockEntry} />);
     expect(screen.getByText('This is a test entry')).toBeInTheDocument();
-    expect(screen.getByText('2023-01-01')).toBeInTheDocument();
-    expect(screen.getByText('2023-01-02')).toBeInTheDocument();
+    expect(screen.getByText('2025-01-01')).toBeInTheDocument();
+    expect(screen.getByText('2025-01-02')).toBeInTheDocument();
   });
 
   it('opens and closes context menu on right click and outside click', async () => {
@@ -103,13 +100,7 @@ describe('EntryCard', () => {
 
     await waitFor(() => {
       expect(deleteEntry).toHaveBeenCalledWith(mockEntry.id);
-    });
-
-    await waitFor(() => {
       expect(mockRouterPush).toHaveBeenCalledWith('/');
-    });
-
-    await waitFor(() => {
       expect(mockRouterRefresh).toHaveBeenCalled();
     });
   });

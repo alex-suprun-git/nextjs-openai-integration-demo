@@ -16,7 +16,7 @@ exports[`EntryCard > renders correctly and matches snapshot 1`] = `
       <h2
         class="card-title overflow-hidden"
       >
-        Memo [2023-01-01]
+        This is a test entry
       </h2>
       <div
         class="flex justify-between"
@@ -54,7 +54,7 @@ exports[`EntryCard > renders correctly and matches snapshot 1`] = `
             <span
               class="pl-1"
             >
-              2023-01-01
+              2025-01-01
             </span>
           </small>
           <small
@@ -82,7 +82,7 @@ exports[`EntryCard > renders correctly and matches snapshot 1`] = `
             <span
               class="pl-1"
             >
-              2023-01-02
+              2025-01-02
             </span>
           </small>
         </div>

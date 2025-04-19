@@ -1,71 +1,70 @@
-import { render, screen, waitFor } from '@testing-library/react';
-import { createTranslator, useTranslations } from 'next-intl';
-import { Mock, vi } from 'vitest';
-import { auth } from '@clerk/nextjs/server';
-import Home from '@/app/[locale]/page';
+// app/__tests__/HomePage.test.tsx
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import { vi } from 'vitest';
+import HomePage from '@/app/[locale]/page';
 import { getContentFromCMS } from '@/content/utils';
-import heroContentMock from '@/app/__tests__/__mocks__/heroContentMock.json';
+import { homePageHeroQuery } from '@/content/queries';
+import { setRequestLocale } from 'next-intl/server';
 
-vi.mock('@clerk/nextjs/server', () => ({
-  auth: vi.fn(),
+vi.mock('next-intl/server', () => ({
+  setRequestLocale: vi.fn(),
 }));
 
 vi.mock('@/content/utils', () => ({
   getContentFromCMS: vi.fn(),
 }));
 
-describe('Home', () => {
+vi.mock('@/components/Hero', () => ({
+  __esModule: true,
+  default: ({ headline, description }: { headline: string; description: any }) => (
+    <div data-testid="hero">
+      <h1>{headline}</h1>
+      <div>{JSON.stringify(description)}</div>
+    </div>
+  ),
+}));
+
+describe('HomePage (mocked)', () => {
+  const fakeData = {
+    homepageHeroBannerCollection: {
+      items: [
+        {
+          homepageHeadline: 'Test Headline',
+          homepageDescription: { json: [{ type: 'p', children: [{ text: 'Test' }] }] },
+        },
+      ],
+    },
+  };
+
   beforeEach(() => {
-    vi.mocked(getContentFromCMS as Mock).mockResolvedValue(heroContentMock);
-  });
-
-  beforeAll(async () => {
-    const translate = createTranslator({
-      locale: 'en',
-      namespace: 'Header',
-      messages: (await import('@/messages/en.json')).default,
-    });
-
-    (useTranslations as Mock).mockImplementation(() => translate);
-  });
-
-  afterEach(() => {
     vi.clearAllMocks();
   });
 
-  it('renders the Home page with a link to / if user is authenticated', async () => {
-    vi.mocked(auth).mockResolvedValueOnce({ userId: 'test-user-id' } as any);
+  it('renders <Hero> with fetched data', async () => {
+    (getContentFromCMS as any).mockResolvedValue(fakeData);
 
-    render(await Home());
-
-    await waitFor(() => {
-      const linkElement = screen.getByRole('link', { name: /go to journal/i });
-      expect(linkElement).toHaveAttribute('href', '/');
+    const element = await HomePage({
+      params: Promise.resolve({ locale: 'en' }),
     });
+
+    render(element!);
+
+    expect(setRequestLocale).toHaveBeenCalledWith('en');
+    expect(getContentFromCMS).toHaveBeenCalledWith(homePageHeroQuery, 'en');
+    expect(screen.getByTestId('hero')).toBeInTheDocument();
+    expect(screen.getByText('Test Headline')).toBeInTheDocument();
   });
 
-  it('renders the Home page with a link to /new-user if user is not authenticated', async () => {
-    vi.mocked(auth).mockResolvedValueOnce({ userId: null } as any);
+  it('returns null and logs errors without fetched data', async () => {
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    (getContentFromCMS as any).mockResolvedValue(null);
 
-    render(await Home());
-
-    await waitFor(() => {
-      const linkElement = screen.getByRole('link', { name: /get started/i });
-      expect(linkElement).toHaveAttribute('href', '/new-user');
-    });
-  });
-
-  it('renders the main elements correctly', async () => {
-    vi.mocked(auth).mockResolvedValueOnce({ userId: null } as any);
-
-    render(await Home());
-
-    await waitFor(() => {
-      expect(screen.getByText('AI-Powered Mood Analysis')).toBeInTheDocument();
+    const element = await HomePage({
+      params: Promise.resolve({ locale: 'en' }),
     });
 
-    await waitFor(() => {
-      expect(screen.getByText(/This demo application, built with NextJS/i)).toBeInTheDocument();
-    });
+    expect(element).toBeNull();
+    expect(errorSpy).toHaveBeenCalledWith('Hero component data could not be fetched');
   });
 });

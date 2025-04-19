@@ -1,32 +1,34 @@
+import React from 'react';
 import { vi } from 'vitest';
-import { screen, render, fireEvent } from '@testing-library/react';
-import { setUserLocale } from '@/utils/locales';
-import LanguageSwitcher from '.';
+import { render, screen, fireEvent } from '@testing-library/react';
 
-// Mock setUserLocale
 vi.mock('@/utils/locales', () => ({
   setUserLocale: vi.fn(),
 }));
+vi.mock('next-intl', () => ({
+  useLocale: () => 'en',
+}));
 
-describe('LanguageSwitcher Component', () => {
+import LanguageSwitcher from '../LanguageSwitcher';
+import { setUserLocale } from '@/utils/locales';
+
+describe('LanguageSwitcher', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  it('renders correctly', () => {
+  it('renders component correctly', () => {
     const { container } = render(<LanguageSwitcher />);
     expect(container).toMatchSnapshot();
   });
 
-  it('calls setUserLocale with the correct language when a language is clicked', () => {
+  it('calls setUserLocale with the correct lang', () => {
     render(<LanguageSwitcher />);
 
-    const englishLink = screen.getByText('English');
-    fireEvent.click(englishLink);
+    fireEvent.click(screen.getByText('English'));
     expect(setUserLocale).toHaveBeenCalledWith('en');
 
-    const germanLink = screen.getByText('Deutsch');
-    fireEvent.click(germanLink);
+    fireEvent.click(screen.getByText('Deutsch'));
     expect(setUserLocale).toHaveBeenCalledWith('de');
   });
 });

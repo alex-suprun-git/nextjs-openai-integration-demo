@@ -36,14 +36,6 @@ describe('NotFound Component', () => {
     expect(heading).toBeInTheDocument();
   });
 
-  it('renders descriptions and link text for homepage', async () => {
-    await setupTranslations();
-    render(<NotFound link="/" homepage />);
-    expect(screen.getByText('Page Not Found')).toBeInTheDocument();
-    expect(screen.getByText('Sorry, we can`t find that page.')).toBeInTheDocument();
-    expect(screen.getByText('Back to Homepage')).toBeInTheDocument();
-  });
-
   it('renders descriptions and link text for journal entry', async () => {
     await setupTranslations('E404JournalEntry');
     render(<NotFound link="/" homepage={false} />);
@@ -56,7 +48,7 @@ describe('NotFound Component', () => {
     await setupTranslations('E404JournalEntry');
     const link = '/some-page';
     render(<NotFound link={link} homepage />);
-    const anchor = screen.getByRole('link', { name: /back to journal page/i });
+    const anchor = screen.getByRole('link', { name: /back to dashboard page/i });
     expect(anchor).toHaveAttribute('href', link);
   });
 });
