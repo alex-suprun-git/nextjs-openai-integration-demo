@@ -17,6 +17,7 @@ function Navbar() {
 
   const { data } = useSWR('/api/auth/status', fetcher, {
     revalidateOnFocus: true,
+    refreshInterval: 300000,
   });
 
   const isSignedIn = data?.isSignedIn;
