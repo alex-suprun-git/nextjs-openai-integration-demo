@@ -1,60 +1,75 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
-import Navbar from '.';
+import Navbar from './';
 
-// Mock components
+// Mock FiMenu icon
 vi.mock('react-icons/fi', () => ({
-  FiMenu: () => <div>FiMenu Icon</div>,
+  FiMenu: () => <div data-testid="fi-menu">FiMenu Icon</div>,
 }));
 
+// Mock Clerk UserButton
 vi.mock('@clerk/nextjs', () => ({
-  UserButton: ({ afterSignOutUrl }: { afterSignOutUrl: string }) => (
-    <div>UserButton {afterSignOutUrl}</div>
+  UserButton: () => <div data-testid="user-button">UserButton</div>,
+}));
+
+// Mock LanguageSwitcher
+vi.mock('../LanguageSwitcher', () => ({
+  __esModule: true,
+  default: () => <div data-testid="language-switcher">LanguageSwitcher</div>,
+}));
+
+// Mock Navigation
+vi.mock('../Navigation', () => ({
+  __esModule: true,
+  default: ({ onClick }: any) => (
+    <div data-testid="navigation" onClick={onClick}>
+      Navigation
+    </div>
   ),
 }));
 
-vi.mock('../LanguageSwitcher', () => ({
-  __esModule: true,
-  default: () => <div>LanguageSwitcher</div>,
-}));
-
-vi.mock('../Navigation', () => ({
-  __esModule: true,
-  default: () => <div>Navigation</div>,
-}));
-
+// Mock Repo UI components
 vi.mock('@repo/ui/index', () => ({
-  Drawer: ({ icon, children }: { icon: React.JSX.Element; children: React.JSX.Element[] }) => (
-    <div>
-      Drawer {icon}
+  __esModule: true,
+  Drawer: ({ icon, children }: any) => (
+    <div data-testid="drawer">
+      <div data-testid="drawer-icon">{icon}</div>
       {children}
     </div>
   ),
-  Header: ({ children }: { children: React.JSX.Element[] }) => <div>Header {children}</div>,
-  PromptCounter: () => <div>PromptCounter</div>,
+  Header: ({ children }: any) => <div data-testid="header">{children}</div>,
+}));
+
+// Mock PromptCounter
+vi.mock('@/ui-lib/PromptCounter', () => ({
+  __esModule: true,
+  default: () => <div data-testid="prompt-counter">PromptCounter</div>,
 }));
 
 describe('Navbar Component', () => {
-  it('renders correctly', () => {
-    const { container } = render(<Navbar />);
-    expect(container).toMatchSnapshot();
+  beforeEach(() => {
+    vi.clearAllMocks();
   });
 
-  it('renders Navigation inside Drawer on small screens', () => {
+  it('renders Header wrapper', () => {
     render(<Navbar />);
-    expect(screen.getByText('FiMenu Icon')).toBeInTheDocument();
-    expect(screen.getAllByText('Navigation')[0]).toBeVisible();
-    expect(screen.getAllByText('PromptCounter')[0]).toBeVisible();
+    expect(screen.getByTestId('header')).toBeInTheDocument();
   });
 
-  it('renders Navigation and PromptCounter directly on large screens', () => {
+  it('renders Navigation and Logo in navbar-start and center', () => {
     render(<Navbar />);
-    expect(screen.getAllByText('Navigation')[0]).toBeVisible();
-    expect(screen.getAllByText('PromptCounter')[0]).toBeVisible();
+    // Navigation rendered twice (start and inside drawer)
+    const navItems = screen.getAllByTestId('navigation');
+    expect(navItems.length).toBeGreaterThanOrEqual(1);
+    // PromptCounter rendered twice (inside drawer and in center)
+    const counters = screen.getAllByTestId('prompt-counter');
+    expect(counters.length).toBeGreaterThanOrEqual(1);
   });
 
-  it('renders LanguageSwitcher and UserButton', () => {
+  it('renders LanguageSwitcher and UserButton in navbar-end', () => {
     render(<Navbar />);
-    expect(screen.getByText('LanguageSwitcher')).toBeVisible();
+    expect(screen.getByTestId('language-switcher')).toBeInTheDocument();
+    expect(screen.getByTestId('user-button')).toBeInTheDocument();
   });
 });

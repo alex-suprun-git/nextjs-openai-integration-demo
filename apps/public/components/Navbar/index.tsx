@@ -10,6 +10,7 @@ import Navigation from '../Navigation';
 import { Drawer, Header } from '@repo/ui/index';
 import { PLATFORM_BASE_URL } from '@/constants';
 import { fetcher } from '@/app/utils';
+import Logo from '../Logo';
 
 function Navbar() {
   const drawerToggleRef = useRef<HTMLInputElement>(null);
@@ -36,11 +37,14 @@ function Navbar() {
         </div>
         <div className="xl:hidden">
           <Drawer toggleRef={drawerToggleRef} icon={<FiMenu size={38} />}>
+            <Logo className={'mb-5 mt-2 lg:hidden'} />
             <Navigation onClick={drawerToggleHandler} />
           </Drawer>
         </div>
       </div>
-      <div className="navbar-center"></div>
+      <div className="navbar-center">
+        <Logo className={'hidden lg:block xl:hidden'} />
+      </div>
       <div className="navbar-end">
         <div className="flex items-center text-center">
           <div className="mr-6 md:mr-12">

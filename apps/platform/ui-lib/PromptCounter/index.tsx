@@ -11,7 +11,7 @@ function PromptCounter() {
 
   return (
     <div data-testid="promptCounter" className="flex items-center">
-      <p className="leading-6">
+      <p className="leading-6 text-stone-200">
         {t.rich('labels.promptSymbolsRemaining', {
           symbolsUsed,
           symbolsLimit,

@@ -1,12 +1,8 @@
 {
   "Header": {
-    "labels": {
-      "promptSymbolsRemaining": "You have <strong>{symbolsUsed} / {symbolsLimit}</strong> prompt symbols remaining",
-      "promptSymbolsRenewalDate": "Next limits renewal on {limitRenewalDate}"
-    },
     "navigation": {
-      "homePage": "Homepage",
       "aboutMe": "About me",
+      "gitHub": "GitHub repo",
       "logIn": "Log in",
       "toPlatform": "Platform"
     }

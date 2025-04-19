@@ -11817,7 +11817,7 @@ __metadata:
     prisma: "npm:^5.17.0"
     react: "npm:^19.1.0"
     react-dom: "npm:^19.1.0"
-    react-icons: "npm:^5.2.1"
+    react-icons: "npm:5.5.0"
     recharts: "npm:^2.13.0"
     typescript: "npm:5.8.2"
     ws: "npm:^8.18.0"
@@ -12220,6 +12220,7 @@ __metadata:
     next-pwa: "npm:5.6.0"
     react: "npm:^19.1.0"
     react-dom: "npm:^19.1.0"
+    react-icons: "npm:5.5.0"
     swr: "npm:^2.3.3"
     typescript: "npm:5.8.2"
     ws: "npm:^8.18.0"
@@ -12300,7 +12301,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-icons@npm:^5.2.1":
+"react-icons@npm:5.5.0":
   version: 5.5.0
   resolution: "react-icons@npm:5.5.0"
   peerDependencies:
