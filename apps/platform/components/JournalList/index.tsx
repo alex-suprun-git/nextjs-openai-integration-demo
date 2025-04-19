@@ -1,6 +1,6 @@
 'use client';
 
-import { Heading } from '@repo/ui/index';
+import { Heading } from '@repo/global-ui/index';
 import Link from 'next/link';
 import EntryCard from '../EntryCard';
 import NewEntryCard from '../NewEntryCard';
@@ -24,8 +24,8 @@ const JournalList = ({ entries }: { entries: Required<AnalysisSubEntry[]> | [] }
                 id={analysisEntry.id}
                 createdAt={analysisEntry.createdAt}
                 updatedAt={analysisEntry.updatedAt}
-                title={analysisEntry.analysis.title}
-                color={analysisEntry.analysis.color}
+                title={analysisEntry.analysis?.title}
+                color={analysisEntry.analysis?.color}
               />
             </Link>
           );

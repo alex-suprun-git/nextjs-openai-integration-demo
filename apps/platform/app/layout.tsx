@@ -5,6 +5,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Inter } from 'next/font/google';
+import { getCurrentEnv } from '@repo/global-utils/helpers';
 import { PUBLIC_BASE_URL } from '@/constants';
 import './globals.css';
 
@@ -26,7 +27,10 @@ export default async function RootLayout({
   const clerkLocalization = locale === 'de' ? deDE : enUS;
 
   return (
-    <ClerkProvider afterSignOutUrl={PUBLIC_BASE_URL} localization={clerkLocalization}>
+    <ClerkProvider
+      afterSignOutUrl={PUBLIC_BASE_URL[getCurrentEnv()]}
+      localization={clerkLocalization}
+    >
       <html lang={locale}>
         <body className={`min-h-dvh bg-slate-900/25 ${inter.className}`}>
           <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>

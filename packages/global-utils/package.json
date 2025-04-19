@@ -1,0 +1,21 @@
+{
+	"name": "@repo/global-utils",
+	"version": "0.0.0",
+	"private": true,
+	"exports": {
+		"./*": "./src/*.ts"
+	},
+	"scripts": {
+		"lint": "eslint .",
+		"check-types": "tsc --noEmit"
+	},
+	"devDependencies": {
+		"@repo/eslint-config": "*",
+		"@repo/typescript-config": "workspace:*",
+		"@types/node": "^22.14.0",
+		"@types/react": "19.1.0",
+		"@types/react-dom": "19.1.1",
+		"eslint": "^9.24.0",
+		"typescript": "5.8.2"
+	}
+}

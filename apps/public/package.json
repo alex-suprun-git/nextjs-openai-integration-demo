@@ -17,7 +17,8 @@
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "16.0.1",
-    "@repo/ui": "*",
+    "@repo/global-ui": "*",
+    "@repo/global-utils": "*",
     "@sentry/nextjs": "^9.12.0",
     "daisyui": "5.0.19",
     "jsonwebtoken": "^9.0.2",

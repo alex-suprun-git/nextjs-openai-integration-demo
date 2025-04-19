@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { Block, BLOCKS, Inline, MARKS } from '@contentful/rich-text-types';
 import { setRequestLocale } from 'next-intl/server';
-import { Heading } from '@repo/ui/index';
+import { Heading } from '@repo/global-ui/index';
 import { pageQuery } from '@/content/queries';
 import { PageSchema } from '@/content/types';
 import { getContentFromCMS } from '@/content/utils';

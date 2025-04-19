@@ -1340,26 +1340,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@csstools/css-calc@npm:^2.1.2":
-  version: 2.1.2
-  resolution: "@csstools/css-calc@npm:2.1.2"
+"@csstools/css-calc@npm:^2.1.2, @csstools/css-calc@npm:^2.1.3":
+  version: 2.1.3
+  resolution: "@csstools/css-calc@npm:2.1.3"
   peerDependencies:
     "@csstools/css-parser-algorithms": ^3.0.4
     "@csstools/css-tokenizer": ^3.0.3
-  checksum: 10c0/34ced30553968ef5d5f9e00e3b90b48c47480cf130e282e99d57ec9b09f803aab8bc06325683e72a1518b5e7180a3da8b533f1b462062757c21989a53b482e1a
+  checksum: 10c0/85f5b4f96d60f395d5f0108056b0ddee037b22d6deba448d74324b50f1c554de284f84715ebfac7b2888b78e09d20d02a7cd213ee7bdaa71011ea9b4eee3a251
   languageName: node
   linkType: hard
 
 "@csstools/css-color-parser@npm:^3.0.8":
-  version: 3.0.8
-  resolution: "@csstools/css-color-parser@npm:3.0.8"
+  version: 3.0.9
+  resolution: "@csstools/css-color-parser@npm:3.0.9"
   dependencies:
     "@csstools/color-helpers": "npm:^5.0.2"
-    "@csstools/css-calc": "npm:^2.1.2"
+    "@csstools/css-calc": "npm:^2.1.3"
   peerDependencies:
     "@csstools/css-parser-algorithms": ^3.0.4
     "@csstools/css-tokenizer": ^3.0.3
-  checksum: 10c0/90722c5a62ca94e9d578ddf59be604a76400b932bd3d4bd23cb1ae9b7ace8fcf83c06995d2b31f96f4afef24a7cefba79beb11ed7ee4999d7ecfec3869368359
+  checksum: 10c0/acc026a6bd6d8c4c641fa5f9b4d77cd5dfa54c57c3278ae52329d96b5837723428dcb93c34db4062bbea2f45a98451119df06eaf39fd196aaf6368c59d799f20
   languageName: node
   linkType: hard
 
@@ -3344,15 +3344,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@repo/typescript-config@npm:*, @repo/typescript-config@workspace:packages/typescript-config":
+"@repo/global-ui@npm:*, @repo/global-ui@workspace:packages/global-ui":
   version: 0.0.0-use.local
-  resolution: "@repo/typescript-config@workspace:packages/typescript-config"
-  languageName: unknown
-  linkType: soft
-
-"@repo/ui@npm:*, @repo/ui@workspace:packages/ui":
-  version: 0.0.0-use.local
-  resolution: "@repo/ui@workspace:packages/ui"
+  resolution: "@repo/global-ui@workspace:packages/global-ui"
   dependencies:
     "@repo/eslint-config": "npm:*"
     "@repo/typescript-config": "npm:*"
@@ -3364,6 +3358,26 @@ __metadata:
     react: "npm:^19.1.0"
     react-dom: "npm:^19.1.0"
     typescript: "npm:5.8.2"
+  languageName: unknown
+  linkType: soft
+
+"@repo/global-utils@npm:*, @repo/global-utils@workspace:packages/global-utils":
+  version: 0.0.0-use.local
+  resolution: "@repo/global-utils@workspace:packages/global-utils"
+  dependencies:
+    "@repo/eslint-config": "npm:*"
+    "@repo/typescript-config": "workspace:*"
+    "@types/node": "npm:^22.14.0"
+    "@types/react": "npm:19.1.0"
+    "@types/react-dom": "npm:19.1.1"
+    eslint: "npm:^9.24.0"
+    typescript: "npm:5.8.2"
+  languageName: unknown
+  linkType: soft
+
+"@repo/typescript-config@npm:*, @repo/typescript-config@workspace:*, @repo/typescript-config@workspace:packages/typescript-config":
+  version: 0.0.0-use.local
+  resolution: "@repo/typescript-config@workspace:packages/typescript-config"
   languageName: unknown
   linkType: soft
 
@@ -5946,9 +5960,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001579, caniuse-lite@npm:^1.0.30001688":
-  version: 1.0.30001714
-  resolution: "caniuse-lite@npm:1.0.30001714"
-  checksum: 10c0/b0e3372f018c5c177912f0282af98049057d83c80846293a4e3df728644a622db42a9e8971d6b7708d76e0fd4e9f6d5ce93802cf4e6818de80fdf371dc0f6a06
+  version: 1.0.30001715
+  resolution: "caniuse-lite@npm:1.0.30001715"
+  checksum: 10c0/0109a7da797ffbe1aa197baa5242b205011098eecec1087ef3d0c58ceea19be325ab6679b2751a78660adc3051a9f77e99d5789938fd1eb1235e6fdf6a1dbf8e
   languageName: node
   linkType: hard
 
@@ -8063,7 +8077,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fdir@npm:^6.2.0, fdir@npm:^6.4.3":
+"fdir@npm:^6.2.0, fdir@npm:^6.4.3, fdir@npm:^6.4.4":
   version: 6.4.4
   resolution: "fdir@npm:6.4.4"
   peerDependencies:
@@ -10035,8 +10049,8 @@ __metadata:
   linkType: hard
 
 "langsmith@npm:^0.3.16":
-  version: 0.3.19
-  resolution: "langsmith@npm:0.3.19"
+  version: 0.3.20
+  resolution: "langsmith@npm:0.3.20"
   dependencies:
     "@types/uuid": "npm:^10.0.0"
     chalk: "npm:^4.1.2"
@@ -10050,7 +10064,7 @@ __metadata:
   peerDependenciesMeta:
     openai:
       optional: true
-  checksum: 10c0/4cc5c24ee3364d50ec6b276a2fa04a5a22cff9266eddf861273287ad3a57ac80095abd65573e9c41e0276fbe6969d73d8072575022051d2e1182fb7a839a9b05
+  checksum: 10c0/440b7cc84f8076d7823bcf9f84af7b3f8727ac12e8790135b9cfb1fb9d627985088cc8a3fa9e7dc85e98eee6ffeea786dc36fd08443066428645b79de2fe6b6d
   languageName: node
   linkType: hard
 
@@ -11791,8 +11805,9 @@ __metadata:
     "@prisma/client": "npm:^5.17.0"
     "@radix-ui/react-dropdown-menu": "npm:2.1.7"
     "@repo/eslint-config": "npm:*"
+    "@repo/global-ui": "npm:*"
+    "@repo/global-utils": "npm:*"
     "@repo/typescript-config": "npm:*"
-    "@repo/ui": "npm:*"
     "@sentry/nextjs": "npm:^9.12.0"
     "@testing-library/dom": "npm:^10.4.0"
     "@testing-library/jest-dom": "npm:^6.6.3"
@@ -12201,8 +12216,9 @@ __metadata:
   dependencies:
     "@contentful/rich-text-react-renderer": "npm:16.0.1"
     "@repo/eslint-config": "npm:*"
+    "@repo/global-ui": "npm:*"
+    "@repo/global-utils": "npm:*"
     "@repo/typescript-config": "npm:*"
-    "@repo/ui": "npm:*"
     "@sentry/nextjs": "npm:^9.12.0"
     "@testing-library/dom": "npm:^10.4.0"
     "@testing-library/jest-dom": "npm:^6.6.3"
@@ -14167,12 +14183,12 @@ __metadata:
   linkType: hard
 
 "tinyglobby@npm:^0.2.10, tinyglobby@npm:^0.2.12":
-  version: 0.2.12
-  resolution: "tinyglobby@npm:0.2.12"
+  version: 0.2.13
+  resolution: "tinyglobby@npm:0.2.13"
   dependencies:
-    fdir: "npm:^6.4.3"
+    fdir: "npm:^6.4.4"
     picomatch: "npm:^4.0.2"
-  checksum: 10c0/7c9be4fd3625630e262dcb19015302aad3b4ba7fc620f269313e688f2161ea8724d6cb4444baab5ef2826eb6bed72647b169a33ec8eea37501832a2526ff540f
+  checksum: 10c0/ef07dfaa7b26936601d3f6d999f7928a4d1c6234c5eb36896bb88681947c0d459b7ebe797022400e555fe4b894db06e922b95d0ce60cb05fd827a0a66326b18c
   languageName: node
   linkType: hard
 

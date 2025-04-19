@@ -2,7 +2,7 @@ import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
-    '../../packages/ui/src/**/*.{js,ts,jsx,tsx}',
+    '../../packages/global-ui/src/**/*.{js,ts,jsx,tsx}',
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './ui-lib/**/*.{js,ts,jsx,tsx,mdx}',

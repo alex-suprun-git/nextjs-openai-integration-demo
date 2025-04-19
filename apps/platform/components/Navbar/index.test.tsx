@@ -30,7 +30,7 @@ vi.mock('../Navigation', () => ({
 }));
 
 // Mock Repo UI components
-vi.mock('@repo/ui/index', () => ({
+vi.mock('@repo/global-ui/index', () => ({
   __esModule: true,
   Drawer: ({ icon, children }: any) => (
     <div data-testid="drawer">

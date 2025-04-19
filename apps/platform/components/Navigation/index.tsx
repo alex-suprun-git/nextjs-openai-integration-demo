@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Logo from '../Logo';
+import { getCurrentEnv } from '@repo/global-utils/helpers';
 import { PUBLIC_BASE_URL } from '@/constants';
 
 type NavLinkType = {
@@ -23,7 +24,11 @@ const Navigation = ({ onClick = () => {} }: { onClick?: MouseEventHandler<HTMLAn
 
   const navigationLinks = [
     { id: 'statistics', label: t('navigation.statistics'), href: '/statistics' },
-    { id: 'aboutMe', label: t('navigation.aboutMe'), href: `${PUBLIC_BASE_URL}/about-me` },
+    {
+      id: 'aboutMe',
+      label: t('navigation.aboutMe'),
+      href: `${PUBLIC_BASE_URL[getCurrentEnv()]}/about-me`,
+    },
   ] as NavLinkType[];
 
   return (

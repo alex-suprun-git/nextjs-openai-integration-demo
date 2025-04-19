@@ -6,7 +6,7 @@ import { FiMenu } from 'react-icons/fi';
 import LanguageSwitcher from '../LanguageSwitcher';
 import Logo from '../Logo';
 import Navigation from '../Navigation';
-import { Drawer, Header } from '@repo/ui/index';
+import { Drawer, Header } from '@repo/global-ui/index';
 import PromptCounter from '@/ui-lib/PromptCounter';
 
 function Navbar() {

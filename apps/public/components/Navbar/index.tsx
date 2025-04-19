@@ -6,11 +6,12 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { FiMenu } from 'react-icons/fi';
 import LanguageSwitcher from '../LanguageSwitcher';
+import Logo from '../Logo';
 import Navigation from '../Navigation';
-import { Drawer, Header } from '@repo/ui/index';
+import { Drawer, Header } from '@repo/global-ui/index';
+import { getCurrentEnv } from '@repo/global-utils/helpers';
 import { PLATFORM_BASE_URL } from '@/constants';
 import { fetcher } from '@/app/utils';
-import Logo from '../Logo';
 
 function Navbar() {
   const drawerToggleRef = useRef<HTMLInputElement>(null);
@@ -52,7 +53,7 @@ function Navbar() {
           </div>
           <Link
             className="btn bg-yellow-200 text-lg font-bold text-gray-900 hover:bg-yellow-300"
-            href={PLATFORM_BASE_URL}
+            href={PLATFORM_BASE_URL[getCurrentEnv()]}
           >
             {isSignedIn ? t('navigation.toPlatform') : t('navigation.logIn')}
           </Link>

@@ -1,6 +1,6 @@
 'use client';
 
-import { Heading } from '@repo/ui/index';
+import { Heading } from '@repo/global-ui/index';
 import HistoryChart from './HistoryChart';
 import { useTranslations } from 'next-intl';
 
