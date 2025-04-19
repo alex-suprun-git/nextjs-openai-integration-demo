@@ -10,7 +10,7 @@ function PromptCounter() {
   const { symbolsUsed, symbolsLimit, limitRenewalDate } = usePrompt();
 
   return (
-    <div className="flex items-center">
+    <div data-testid="promptCounter" className="flex items-center">
       <p className="leading-6">
         {t.rich('labels.promptSymbolsRemaining', {
           symbolsUsed,
