@@ -34,12 +34,10 @@ describe('Navigation', () => {
     usePathname.mockReturnValue('/en/about-me');
     render(<Navigation onClick={onClickMock} />);
 
-    // Проверяем ссылку "About Me"
     const aboutLink = screen.getByRole('link', { name: /About Me/i });
     expect(aboutLink).toHaveAttribute('href', '/en/about-me');
     expect(aboutLink).toHaveAttribute('target', '_self');
 
-    // Проверяем ссылку "GitHub"
     const githubLink = screen.getByRole('link', { name: /GitHub/i });
     expect(githubLink).toHaveAttribute(
       'href',
@@ -55,7 +53,6 @@ describe('Navigation', () => {
     const aboutLink = screen.getByRole('link', { name: /About Me/i });
     const githubLink = screen.getByRole('link', { name: /GitHub/i });
 
-    // Активная ссылка должна иметь bold класс
     expect(aboutLink).toHaveClass('font-bold');
     expect(githubLink).not.toHaveClass('font-bold');
   });

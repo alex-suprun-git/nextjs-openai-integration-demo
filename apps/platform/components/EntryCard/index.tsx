@@ -72,9 +72,9 @@ const EntryCard = ({ id, createdAt, updatedAt, title, color }: EntryCardProps) =
         data-testid="entryCard"
         ref={cardRef}
         onContextMenu={(e) => contextMenuHandler(e)}
-        className="card relative bg-white text-primary-content shadow-md"
+        className="card relative h-[128px] bg-white text-primary-content shadow-md"
       >
-        <div className="card-body text-black">
+        <div className="card-body justify-between text-black">
           <div
             style={{ backgroundColor: color }}
             className="absolute right-4 top-4 ml-auto h-2 w-2 rounded"

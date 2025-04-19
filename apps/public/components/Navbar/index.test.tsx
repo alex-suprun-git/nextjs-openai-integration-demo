@@ -19,6 +19,10 @@ vi.mock('next-intl', () => ({
   },
 }));
 
+vi.mock('@repo/global-utils/helpers', () => ({
+  getCurrentEnv: () => 'development',
+}));
+
 // Mock next/navigation
 vi.mock('next/navigation', () => ({
   usePathname: vi.fn(),
@@ -33,9 +37,9 @@ mockedUseSWR.mockImplementation(() => ({ data: { isSignedIn: true } }) as any);
 
 // Mock repo constants and components
 vi.mock('@/constants', () => ({
-  PUBLIC_BASE_URL: 'http://localhost:3000',
-  PLATFORM_BASE_URL: 'https://platform.test',
+  PLATFORM_BASE_URL: { development: 'http://localhost:3001' },
 }));
+
 vi.mock('../Navigation', () => ({
   __esModule: true,
   default: ({ onClick }: any) => (
@@ -72,14 +76,14 @@ describe('Navbar Component', () => {
   it('renders Go to Platform when signed in', () => {
     render(<Navbar />);
     const link = screen.getByRole('link', { name: /Go to Platform/i });
-    expect(link).toHaveAttribute('href', 'https://platform.test');
+    expect(link).toHaveAttribute('href', 'http://localhost:3001');
   });
 
   it('renders Log In when not signed in', () => {
     mockedUseSWR.mockImplementationOnce(() => ({ data: { isSignedIn: false } }) as any);
     render(<Navbar />);
     const link = screen.getByRole('link', { name: /Log In/i });
-    expect(link).toHaveAttribute('href', 'https://platform.test');
+    expect(link).toHaveAttribute('href', 'http://localhost:3001');
   });
 
   it('drawerToggleHandler closes drawer without errors', () => {

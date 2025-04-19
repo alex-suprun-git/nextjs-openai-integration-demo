@@ -18,7 +18,7 @@ vi.mock('next/link', () => ({
   ),
 }));
 vi.mock('@/constants', () => ({
-  PLATFORM_BASE_URL: 'https://example.com',
+  PLATFORM_BASE_URL: { development: 'http://localhost:3001' },
 }));
 
 describe('Hero Component', () => {
@@ -48,7 +48,7 @@ describe('Hero Component', () => {
     render(<Hero headline="H" description={{ nodeType: 'document', content: [] } as any} />);
 
     const link = screen.getByRole('link');
-    expect(link).toHaveAttribute('href', 'https://example.com');
+    expect(link).toHaveAttribute('href', 'http://localhost:3001');
 
     expect(screen.getByText('translated-linkText')).toBeInTheDocument();
   });

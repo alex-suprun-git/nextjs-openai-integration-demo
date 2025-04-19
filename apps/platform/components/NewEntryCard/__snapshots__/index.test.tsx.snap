@@ -3,7 +3,7 @@
 exports[`NewEntryCard > renders correctly and matches snapshot 1`] = `
 <div>
   <div
-    class="card cursor-pointer bg-yellow-200 text-primary-content"
+    class="card h-[128px] cursor-pointer bg-yellow-200 text-primary-content"
   >
     <div
       class="card-body"

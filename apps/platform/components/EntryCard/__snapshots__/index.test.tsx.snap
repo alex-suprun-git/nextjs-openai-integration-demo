@@ -3,11 +3,11 @@
 exports[`EntryCard > renders correctly and matches snapshot 1`] = `
 <div>
   <div
-    class="card relative bg-white text-primary-content shadow-md"
+    class="card relative h-[128px] bg-white text-primary-content shadow-md"
     data-testid="entryCard"
   >
     <div
-      class="card-body text-black"
+      class="card-body justify-between text-black"
     >
       <div
         class="absolute right-4 top-4 ml-auto h-2 w-2 rounded"

@@ -13,7 +13,10 @@ export const NewEntryCard = () => {
   };
 
   return (
-    <div onClick={handleOnClick} className="card cursor-pointer bg-yellow-200 text-primary-content">
+    <div
+      onClick={handleOnClick}
+      className="card h-[128px] cursor-pointer bg-yellow-200 text-primary-content"
+    >
       <div className="card-body">
         <span data-testid="new-entry-button" className="min-h-20 text-2xl font-bold text-gray-900">
           {t('buttons.newEntry')}

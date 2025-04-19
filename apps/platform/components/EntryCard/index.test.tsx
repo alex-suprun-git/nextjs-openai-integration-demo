@@ -30,7 +30,6 @@ describe('EntryCard', () => {
   const mockRouterPush = vi.fn();
   const mockRouterRefresh = vi.fn();
 
-  // 3. Передаём title вместо content
   const mockEntry = {
     id: '1',
     createdAt: new Date('2025-01-01T00:00:00Z'),

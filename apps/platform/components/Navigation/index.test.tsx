@@ -14,13 +14,18 @@ vi.mock('next-intl', () => ({
   },
 }));
 
+vi.mock('@repo/global-utils/helpers', () => ({
+  getCurrentEnv: () => 'development',
+}));
+
 vi.mock('next/navigation', () => ({
   usePathname: vi.fn(),
 }));
 
 vi.mock('@/constants', () => ({
-  PUBLIC_BASE_URL: 'http://localhost:3000',
+  PUBLIC_BASE_URL: { development: 'http://localhost:3000' },
 }));
+
 vi.mock('../Logo', () => ({ default: () => <div data-testid="logo" /> }));
 
 describe('Navigation', () => {
