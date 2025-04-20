@@ -1,11 +1,12 @@
 'use client';
 
-import { Heading } from '@repo/global-ui/index';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import EntryCard from '../EntryCard';
 import NewEntryCard from '../NewEntryCard';
 import Question from '../Question';
-import { useTranslations } from 'next-intl';
+import { Heading } from '@repo/global-ui/index';
+import { ENTRIES_BASE_PATH } from '@/utils/constants';
 
 const JournalList = ({ entries }: { entries: Required<AnalysisSubEntry[]> | [] }) => {
   const t = useTranslations('JournalList');
@@ -19,7 +20,7 @@ const JournalList = ({ entries }: { entries: Required<AnalysisSubEntry[]> | [] }
         {entries?.map((entry) => {
           const analysisEntry = entry as Required<AnalysisSubEntry>;
           return (
-            <Link key={analysisEntry.id} href={`/${analysisEntry.id}`}>
+            <Link key={analysisEntry.id} href={`${ENTRIES_BASE_PATH}/${analysisEntry.id}`}>
               <EntryCard
                 id={analysisEntry.id}
                 createdAt={analysisEntry.createdAt}

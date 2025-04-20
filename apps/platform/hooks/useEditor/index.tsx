@@ -2,7 +2,7 @@ import { useCallback, useRef, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { usePrompt } from '@/contexts/PromptContext';
 import { updateEntry, createNewEntry, updateUserPromptUsage } from '@/utils/api';
-import { MINIMUM_CONTENT_LENGTH } from '@/utils/constants';
+import { ENTRIES_BASE_PATH, MINIMUM_CONTENT_LENGTH } from '@/utils/constants';
 
 export const useEditor = (entry: EditorEntry) => {
   const pathname = usePathname();
@@ -31,7 +31,7 @@ export const useEditor = (entry: EditorEntry) => {
             entryCreatedRef.current = true;
             const { id } = await createNewEntry(_contentValue);
             await updateUserPromptUsage(_contentValue.length);
-            router.push(`/${id}`);
+            router.push(`${ENTRIES_BASE_PATH}/${id}`);
             router.refresh();
           }
         } else if (entry.id && entry.content !== _contentValue) {
