@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
-import { FiEdit } from 'react-icons/fi';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { IoDocumentTextOutline } from 'react-icons/io5';
@@ -15,32 +14,26 @@ import useKeyPress from '@/hooks/useKeyPress';
 type EntryCardProps = {
   id: string;
   createdAt: Date;
-  updatedAt: Date;
+  updatedAt?: Date;
   title?: string;
   color: string;
 };
 
-const EntryCard = ({ id, createdAt, updatedAt, title, color }: EntryCardProps) => {
+const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const [creationDate, setCreationDate] = useState<string>('');
-  const [updatedDate, setUpdatedDate] = useState<string>('');
   const [isContextMenuOpen, setIsContextMenuOpen] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
+  const locale = useLocale();
 
   const t = useTranslations('JournalList');
-  const locale = useLocale();
+  const creationDate = formatDate(new Date(createdAt), locale as UserLocale);
 
   const handleOuterClick = (event: MouseEvent) => {
     if (cardRef.current && !cardRef.current.contains(event.target as HTMLElement)) {
       setIsContextMenuOpen(false);
     }
   };
-
-  useEffect(() => {
-    setCreationDate(formatDate(new Date(createdAt), locale as UserLocale));
-    setUpdatedDate(formatDate(new Date(updatedAt), locale as UserLocale));
-  }, [createdAt, updatedAt, locale]);
 
   useEffect(() => {
     document.addEventListener('mousedown', handleOuterClick);
@@ -85,11 +78,6 @@ const EntryCard = ({ id, createdAt, updatedAt, title, color }: EntryCardProps) =
               <small className="flex items-center text-[12px] 2xl:mr-3">
                 <IoDocumentTextOutline /> <span className="pl-1">{creationDate}</span>
               </small>
-              {updatedDate !== creationDate && (
-                <small className="flex items-center text-[12px]">
-                  <FiEdit /> <span className="pl-1">{updatedDate}</span>
-                </small>
-              )}
             </div>
 
             <button

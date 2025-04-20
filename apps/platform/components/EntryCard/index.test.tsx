@@ -75,7 +75,6 @@ describe('EntryCard', () => {
     renderWithProvider(<EntryCard {...mockEntry} />);
     expect(screen.getByText('This is a test entry')).toBeInTheDocument();
     expect(screen.getByText('2025-01-01')).toBeInTheDocument();
-    expect(screen.getByText('2025-01-02')).toBeInTheDocument();
   });
 
   it('opens and closes context menu on right click and outside click', async () => {
