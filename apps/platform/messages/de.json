@@ -1,9 +1,12 @@
 {
   "StatisticsPage": {
     "headline": "Statistiken",
-    "labels": {
-      "averageSentiment": "Durchschnittliche Stimmung: {averageSentiment}",
-      "noEntries": "Es gibt noch keine Daten anzuzeigen."
+    "description": "Dieses Dashboard liefert ein klares Bild von den Stimmungstrends der Nutzer und hebt Stimmungsänderungen im Laufe der Zeit, wichtige emotionale Themen und das Gleichgewicht zwischen positivem und negativem Feedback hervor.",
+    "noEntries": "Es gibt noch keine Daten anzuzeigen.",
+    "charts": {
+      "sentimentOverTime": "Sentiment im Zeitverlauf",
+      "moodDistribution": "Stimmungsverteilung",
+      "positiveNegativeRatio": "Positiv vs. Negativ"
     }
   },
   "Header": {

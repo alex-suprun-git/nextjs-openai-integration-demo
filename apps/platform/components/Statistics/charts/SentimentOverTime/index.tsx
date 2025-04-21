@@ -1,7 +1,8 @@
 'use client';
 
-import { formatDate } from '@/utils/helpers';
 import { ReactElement } from 'react';
+import { useTranslations } from 'next-intl';
+import { formatDate } from '@/utils/helpers';
 import { ResponsiveContainer, LineChart, Line, XAxis, Tooltip, TooltipProps } from 'recharts';
 
 const CustomTooltip = ({
@@ -27,7 +28,9 @@ const CustomTooltip = ({
   return null;
 };
 
-const HistoryChart = ({ data }: { data: AnalysisEntry[] }) => {
+const SentimentOverTimeChart = ({ data }: { data: AnalysisEntry[] }) => {
+  const t = useTranslations('StatisticsPage');
+
   const formattedData = data.map((entry) => ({
     ...entry,
     updatedAt: formatDate(new Date(entry.updatedAt)),
@@ -35,6 +38,7 @@ const HistoryChart = ({ data }: { data: AnalysisEntry[] }) => {
 
   return (
     <div className="h-full w-full">
+      <h2 className="mb-4 text-xl font-medium text-stone-200">{t('charts.sentimentOverTime')}</h2>
       <ResponsiveContainer aspect={3}>
         <LineChart width={300} height={100} data={formattedData}>
           <Line
@@ -52,4 +56,4 @@ const HistoryChart = ({ data }: { data: AnalysisEntry[] }) => {
   );
 };
 
-export default HistoryChart;
+export default SentimentOverTimeChart;

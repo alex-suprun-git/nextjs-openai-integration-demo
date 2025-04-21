@@ -1,9 +1,12 @@
 {
   "StatisticsPage": {
     "headline": "Statistics",
-    "labels": {
-      "averageSentiment": "Average sentiment: {averageSentiment}",
-      "noEntries": "There is no data to display yet."
+    "description": "This dashboard offers a clear overview of user sentiment trends, highlighting mood shifts over time, key emotional themes, and the balance between positive and negative feedback.",
+    "noEntries": "There is no data to display yet.",
+    "charts": {
+      "sentimentOverTime": "Sentiment Over Time",
+      "moodDistribution": "Mood Distribution",
+      "positiveNegativeRatio": " Positive vs Negative"
     }
   },
   "Header": {
