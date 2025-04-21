@@ -6,7 +6,11 @@
     "charts": {
       "sentimentOverTime": "Sentiment Over Time",
       "moodDistribution": "Mood Distribution",
-      "positiveNegativeRatio": " Positive vs Negative"
+      "positiveNegativeRatio": {
+        "headline": "Positive vs. Negative",
+        "positive": "positive",
+        "negative": "negative"
+      }
     }
   },
   "Header": {

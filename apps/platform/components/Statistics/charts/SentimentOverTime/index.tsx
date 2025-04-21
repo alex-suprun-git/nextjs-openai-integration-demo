@@ -37,10 +37,12 @@ const SentimentOverTimeChart = ({ data }: { data: AnalysisEntry[] }) => {
   }));
 
   return (
-    <div className="h-full w-full">
-      <h2 className="mb-4 text-xl font-medium text-stone-200">{t('charts.sentimentOverTime')}</h2>
-      <ResponsiveContainer aspect={3}>
-        <LineChart width={300} height={100} data={formattedData}>
+    <div className="border-2 border-dashed border-gray-900 bg-slate-800 p-6 sm:p-12">
+      <h2 className="mb-12 text-center text-xl font-medium text-stone-200">
+        {t('charts.sentimentOverTime')}
+      </h2>
+      <ResponsiveContainer aspect={2}>
+        <LineChart width={300} height={200} data={formattedData}>
           <Line
             type="monotone"
             dataKey="sentimentScore"

@@ -23,12 +23,12 @@ function StatisticsData({
   }
 
   return (
-    <div data-testid="statisticsPage" className="p-10">
+    <div data-testid="statisticsPage" className="container mx-auto p-10 pb-32">
       <Heading>{t('headline')}</Heading>
       <p className="mb-20 max-w-screen-sm text-lg leading-relaxed text-stone-200">
         {t('description')}
       </p>
-      <div className="grid grid-cols-1 gap-16 md:grid-cols-2 md:gap-32">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <SentimentOverTimeChart data={analyses as AnalysisEntry[]} />
         <MoodDistribution data={analyses as AnalysisEntry[]} />
         <PositiveNegativeRatio data={analyses as AnalysisEntry[]} />
