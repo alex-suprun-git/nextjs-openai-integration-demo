@@ -1,8 +1,10 @@
 'use client';
 
-import { formatDate } from '@/utils/helpers';
 import { ReactElement } from 'react';
+import { useTranslations } from 'next-intl';
 import { ResponsiveContainer, LineChart, Line, XAxis, Tooltip, TooltipProps } from 'recharts';
+import { FaRegQuestionCircle } from 'react-icons/fa';
+import { formatDate } from '@/utils/helpers';
 
 const CustomTooltip = ({
   active,
@@ -27,16 +29,24 @@ const CustomTooltip = ({
   return null;
 };
 
-const HistoryChart = ({ data }: { data: AnalysisEntry[] }) => {
+const SentimentOverTimeChart = ({ data }: { data: AnalysisEntry[] }) => {
+  const t = useTranslations('StatisticsPage');
+
   const formattedData = data.map((entry) => ({
     ...entry,
     updatedAt: formatDate(new Date(entry.updatedAt)),
   }));
 
   return (
-    <div className="h-full w-full">
-      <ResponsiveContainer aspect={3}>
-        <LineChart width={300} height={100} data={formattedData}>
+    <div className="border-2 border-dashed border-gray-900 bg-slate-800 p-6 sm:p-12">
+      <h2 className="mb-12 text-center text-xl font-medium text-stone-200">
+        {t('charts.sentimentOverTime.title')}
+        <sup className="tooltip ml-1" data-tip={t('charts.sentimentOverTime.description')}>
+          <FaRegQuestionCircle fontSize={14} />
+        </sup>
+      </h2>
+      <ResponsiveContainer aspect={2}>
+        <LineChart width={300} height={200} data={formattedData}>
           <Line
             type="monotone"
             dataKey="sentimentScore"
@@ -52,4 +62,4 @@ const HistoryChart = ({ data }: { data: AnalysisEntry[] }) => {
   );
 };
 
-export default HistoryChart;
+export default SentimentOverTimeChart;
