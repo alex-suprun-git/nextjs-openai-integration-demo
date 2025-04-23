@@ -10,7 +10,11 @@
       },
       "moodDistribution": {
         "title": "Mood Distribution",
-        "description": "Compares the frequency of each mood category"
+        "description": "Compares the frequency of each mood category",
+        "labels": {
+          "count": "Count",
+          "mood": "Mood"
+        }
       },
       "positiveNegativeRatio": {
         "title": "Positive vs. Negative",

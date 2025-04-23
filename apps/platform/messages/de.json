@@ -10,7 +10,11 @@
       },
       "moodDistribution": {
         "title": "Stimmungsverteilung",
-        "description": "Vergleicht die Häufigkeit jeder Stimmungskategorie"
+        "description": "Vergleicht die Häufigkeit jeder Stimmungskategorie",
+        "labels": {
+          "count": "Insgesamt",
+          "mood": "Stimmung"
+        }
       },
       "positiveNegativeRatio": {
         "title": "Positiv vs. Negativ",

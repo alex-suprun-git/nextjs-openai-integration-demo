@@ -49,11 +49,19 @@ const MoodDistribution = ({ data }: MoodDistributionProps) => {
       <ResponsiveContainer width="100%" height={300}>
         <BarChart data={chartData} margin={{ top: 20, right: 20, left: 0, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="mood" />
+          <XAxis dataKey="mood" name={t('charts.moodDistribution.labels.mood')} />
           <YAxis allowDecimals={false} />
-          <Tooltip />
+          <Tooltip
+            contentStyle={{
+              backgroundColor: 'rgba(31, 41, 55, 0.95)',
+              border: 'none',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.5)',
+            }}
+            labelStyle={{ color: '#fff', fontWeight: '500' }}
+            itemStyle={{ color: '#fff' }}
+          />
           <Legend />
-          <Bar dataKey="count" fill="#8884d8" />
+          <Bar dataKey="count" name={t('charts.moodDistribution.labels.count')} fill="#8884d8" />
         </BarChart>
       </ResponsiveContainer>
     </div>
