@@ -12,6 +12,7 @@ import {
   Legend,
   CartesianGrid,
 } from 'recharts';
+import { FaRegQuestionCircle } from 'react-icons/fa';
 
 type AnalysisEntry = {
   mood: string;
@@ -40,7 +41,10 @@ const MoodDistribution = ({ data }: MoodDistributionProps) => {
   return (
     <div className="border-2 border-dashed border-gray-900 bg-slate-800 p-6 sm:p-12">
       <h2 className="mb-4 text-center text-xl font-medium text-stone-200">
-        {t('charts.moodDistribution')}
+        {t('charts.moodDistribution.title')}
+        <sup className="tooltip ml-1" data-tip={t('charts.moodDistribution.description')}>
+          <FaRegQuestionCircle fontSize={14} />
+        </sup>
       </h2>
       <ResponsiveContainer width="100%" height={300}>
         <BarChart data={chartData} margin={{ top: 20, right: 20, left: 0, bottom: 5 }}>

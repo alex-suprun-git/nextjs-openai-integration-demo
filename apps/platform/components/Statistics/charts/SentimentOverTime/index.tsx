@@ -2,8 +2,9 @@
 
 import { ReactElement } from 'react';
 import { useTranslations } from 'next-intl';
-import { formatDate } from '@/utils/helpers';
 import { ResponsiveContainer, LineChart, Line, XAxis, Tooltip, TooltipProps } from 'recharts';
+import { FaRegQuestionCircle } from 'react-icons/fa';
+import { formatDate } from '@/utils/helpers';
 
 const CustomTooltip = ({
   active,
@@ -39,7 +40,10 @@ const SentimentOverTimeChart = ({ data }: { data: AnalysisEntry[] }) => {
   return (
     <div className="border-2 border-dashed border-gray-900 bg-slate-800 p-6 sm:p-12">
       <h2 className="mb-12 text-center text-xl font-medium text-stone-200">
-        {t('charts.sentimentOverTime')}
+        {t('charts.sentimentOverTime.title')}
+        <sup className="tooltip ml-1" data-tip={t('charts.sentimentOverTime.description')}>
+          <FaRegQuestionCircle fontSize={14} />
+        </sup>
       </h2>
       <ResponsiveContainer aspect={2}>
         <LineChart width={300} height={200} data={formattedData}>

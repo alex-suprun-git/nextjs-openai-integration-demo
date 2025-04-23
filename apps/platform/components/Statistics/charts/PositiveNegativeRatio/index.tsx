@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { useMemo } from 'react';
 import { ResponsiveContainer, PieChart, Pie, Tooltip, Legend, Cell } from 'recharts';
+import { FaRegQuestionCircle } from 'react-icons/fa';
 
 type AnalysisEntry = {
   negative: boolean;
@@ -24,12 +25,12 @@ const PositiveNegativeRatio = ({ data }: PositiveNegativeRatioProps) => {
     });
     return [
       {
-        name: t('charts.positiveNegativeRatio.negative'),
+        name: t('charts.positiveNegativeRatio.labels.negative'),
         value: counts.negative,
         color: '#ff595e',
       },
       {
-        name: t('charts.positiveNegativeRatio.positive'),
+        name: t('charts.positiveNegativeRatio.labels.positive'),
         value: counts.positive,
         color: '#1982c4',
       },
@@ -39,7 +40,10 @@ const PositiveNegativeRatio = ({ data }: PositiveNegativeRatioProps) => {
   return (
     <div className="border-2 border-dashed border-gray-900 bg-slate-800 p-6 sm:p-12">
       <h2 className="mb-12 text-center text-xl font-medium text-stone-200">
-        {t('charts.positiveNegativeRatio.headline')}
+        {t('charts.positiveNegativeRatio.title')}
+        <sup className="tooltip ml-1" data-tip={t('charts.positiveNegativeRatio.description')}>
+          <FaRegQuestionCircle fontSize={14} />
+        </sup>
       </h2>
       <ResponsiveContainer width="100%" height={300}>
         <PieChart>

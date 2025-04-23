@@ -4,12 +4,21 @@
     "description": "This dashboard offers a clear overview of user sentiment trends, highlighting mood shifts over time, key emotional themes, and the balance between positive and negative feedback.",
     "noEntries": "There is no data to display yet.",
     "charts": {
-      "sentimentOverTime": "Sentiment Over Time",
-      "moodDistribution": "Mood Distribution",
+      "sentimentOverTime": {
+        "title": "Sentiment Over Time",
+        "description": "Shows how average sentiment scores change over time"
+      },
+      "moodDistribution": {
+        "title": "Mood Distribution",
+        "description": "Compares the frequency of each mood category"
+      },
       "positiveNegativeRatio": {
-        "headline": "Positive vs. Negative",
-        "positive": "positive",
-        "negative": "negative"
+        "title": "Positive vs. Negative",
+        "description": "Displays the proportion of positive versus negative entries",
+        "labels": {
+          "positive": "positive",
+          "negative": "negative"
+        }
       }
     }
   },
