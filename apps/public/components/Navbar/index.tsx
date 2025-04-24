@@ -1,7 +1,6 @@
 'use client';
 
 import { useRef } from 'react';
-import useSWR from 'swr';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { FiMenu } from 'react-icons/fi';
@@ -11,18 +10,10 @@ import Navigation from '../Navigation';
 import { Drawer, Header } from '@repo/global-ui/index';
 import { getCurrentEnv } from '@repo/global-utils/helpers';
 import { PLATFORM_BASE_URL } from '@/constants';
-import { fetcher } from '@/app/utils';
 
 function Navbar() {
   const drawerToggleRef = useRef<HTMLInputElement>(null);
   const t = useTranslations('Header');
-
-  const { data } = useSWR('/api/auth/status', fetcher, {
-    revalidateOnFocus: true,
-    refreshInterval: 300000,
-  });
-
-  const isSignedIn = data?.isSignedIn;
 
   const drawerToggleHandler = () => {
     if (drawerToggleRef.current) {
@@ -55,7 +46,7 @@ function Navbar() {
             className="btn bg-yellow-200 text-lg font-bold text-gray-900 hover:bg-yellow-300"
             href={PLATFORM_BASE_URL[getCurrentEnv()]}
           >
-            {isSignedIn ? t('navigation.toPlatform') : t('navigation.logIn')}
+            {t('navigation.toPlatform')}
           </Link>
         </div>
       </div>
