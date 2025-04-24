@@ -7,15 +7,8 @@ import { loadQARefineChain } from 'langchain/chains';
 import { MemoryVectorStore } from 'langchain/vectorstores/memory';
 import z from 'zod';
 
-const reasoning = {
-  effort: 'medium', // 'low', 'medium', or 'high'
-  summary: 'detailed',
-};
-
 const modelParams = {
   model: 'o4-mini',
-  useResponsesApi: true,
-  modelKwargs: { reasoning: reasoning },
 };
 
 const parser = StructuredOutputParser.fromZodSchema(
