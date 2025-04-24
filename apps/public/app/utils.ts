@@ -11,6 +11,7 @@ export async function fetcher(_url: string) {
   const res = await fetch(
     new Request(url, {
       method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
     }),
   );
 

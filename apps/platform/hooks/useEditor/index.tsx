@@ -1,5 +1,7 @@
+'use client';
+
 import { useCallback, useRef, useState } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { redirect, usePathname, useRouter } from 'next/navigation';
 import { usePrompt } from '@/contexts/PromptContext';
 import { updateEntry, createNewEntry, updateUserPromptUsage } from '@/utils/api';
 import { ENTRIES_BASE_PATH, MINIMUM_CONTENT_LENGTH } from '@/utils/constants';
@@ -29,7 +31,7 @@ export const useEditor = (entry: EditorEntry) => {
         if (pathname === '/new-entry') {
           if (!entryCreatedRef.current) {
             entryCreatedRef.current = true;
-            const { id } = await createNewEntry(_contentValue);
+            const { id } = (await createNewEntry(_contentValue)) as { id: string };
             await updateUserPromptUsage(_contentValue.length);
             router.push(`${ENTRIES_BASE_PATH}/${id}`);
             router.refresh();
@@ -44,6 +46,7 @@ export const useEditor = (entry: EditorEntry) => {
         }
       } catch (error) {
         console.error('Error saving content:', error);
+        router.push('/');
       } finally {
         setIsLoading(false);
       }

@@ -1,73 +1,77 @@
 export const createUrl = (path: string) => window.location.origin + path;
 
 export const updateUserPromptUsage = async (promptContentLength: number) => {
-  const url = createUrl('/api/user');
-
-  const rest = await fetch(
-    new Request(url, {
+  const res = await fetch(
+    new Request('/api/user', {
       method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ promptContentLength }),
     }),
   );
 
-  if (rest.ok) {
-    const data = await rest.json();
-    return data.data;
+  if (!res.ok) {
+    return new Error(res.statusText);
   }
+
+  const data = await res.json();
+  return data.data;
 };
 
 export const createNewEntry = async (content: string) => {
-  const url = createUrl('/api/journal');
-
   const res = await fetch(
-    new Request(url, {
+    new Request('/api/journal', {
       method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ content }),
     }),
   );
 
-  if (res.ok) {
-    const data = await res.json();
-    return data.data;
+  if (!res.ok) {
+    return new Error(res.statusText);
   }
+
+  const data = await res.json();
+  return data.data;
 };
 
+// @Deprecated
 export const updateEntry = async (id: string, content: string) => {
-  const url = createUrl(`/api/journal/${id}`);
-
-  const rest = await fetch(
-    new Request(url, {
+  const res = await fetch(
+    new Request(`/api/journal/${id}`, {
       method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ content }),
     }),
   );
 
-  if (rest.ok) {
-    const data = await rest.json();
-    return data.data;
+  if (!res.ok) {
+    return new Error(res.statusText);
   }
+
+  const data = await res.json();
+  return data.data;
 };
 
 export const deleteEntry = async (id: string) => {
-  const url = createUrl(`/api/journal/${id}`);
-
   const res = await fetch(
-    new Request(url, {
+    new Request(`/api/journal/${id}`, {
       method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
     }),
   );
 
-  if (res.ok) {
-    return;
+  if (!res.ok) {
+    return new Error(res.statusText);
   }
+
+  return;
 };
 
 export const askQuestion = async (question: string) => {
-  const url = createUrl('/api/question');
-
   const res = await fetch(
-    new Request(url, {
+    new Request('/api/question', {
       method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ question }),
     }),
   );
