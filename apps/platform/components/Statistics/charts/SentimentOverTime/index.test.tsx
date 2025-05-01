@@ -9,6 +9,10 @@ class ResizeObserver {
   disconnect() {}
 }
 
+vi.mock('next-intl', () => ({
+  useTranslations: () => (key: string) => key,
+}));
+
 vi.mock('recharts', async (importOriginal) => {
   const originalModule = (await importOriginal()) as Record<string, unknown>;
   return {

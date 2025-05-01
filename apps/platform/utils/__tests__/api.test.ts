@@ -7,25 +7,42 @@ import {
   deleteEntry,
   askQuestion,
 } from '@/utils/api';
+import { URL } from 'url';
 
-// Mock the fetch function globally to intercept all fetch calls
+Object.defineProperty(window, 'location', {
+  value: { origin: 'http://localhost' },
+});
+
+vi.stubGlobal(
+  'Request',
+  class {
+    url: string;
+    method?: string;
+    headers?: any;
+    body?: any;
+    constructor(input: string, init?: any) {
+      this.url = new URL(input, window.location.origin).toString();
+      if (init) {
+        this.method = init.method;
+        this.headers = init.headers;
+        this.body = init.body;
+      }
+    }
+  },
+);
+
 global.fetch = vi.fn();
 
 describe('createUrl', () => {
   it('constructs the correct URL', () => {
-    // Mock the window object and its location property
-    global.window = Object.create(window);
     const origin = 'http://localhost:3000';
     Object.defineProperty(window, 'location', {
-      value: {
-        origin,
-      },
+      value: { origin },
       writable: true,
     });
 
     const path = '/api/test';
     const url = createUrl(path);
-    // Assert that the constructed URL is correct
     expect(url).toBe(`${origin}${path}`);
   });
 });
@@ -33,112 +50,115 @@ describe('createUrl', () => {
 describe('updateUserPromptUsage', () => {
   it('updates user and returns data', async () => {
     const mockData = { data: { id: 1, promptSymbolsUsed: 100 } };
-    // Mock the fetch function to return a successful response
     (fetch as Mock).mockResolvedValueOnce({
       ok: true,
       json: async () => mockData,
     });
 
     const result = await updateUserPromptUsage(100);
-    // Assert that the returned data matches the mock data
     expect(result).toEqual(mockData.data);
   });
 
   it('handles failed fetch', async () => {
-    // Mock the fetch function to return a failed response
-    (fetch as Mock).mockResolvedValueOnce({ ok: false });
+    (fetch as Mock).mockResolvedValueOnce({
+      ok: false,
+      statusText: 'Bad Request',
+    });
+
     const result = await updateUserPromptUsage(100);
-    // Assert that the function returns undefined on failure
-    expect(result).toBeUndefined();
+    expect(result).toBeInstanceOf(Error);
+    expect((result as Error).message).toBe('Bad Request');
   });
 });
 
 describe('createNewEntry', () => {
   it('creates a new entry and returns data', async () => {
     const mockData = { data: { id: '1', content: 'test content' } };
-    // Mock the fetch function to return a successful response
     (fetch as Mock).mockResolvedValueOnce({
       ok: true,
       json: async () => mockData,
     });
 
     const result = await createNewEntry('test content');
-    // Assert that the returned data matches the mock data
     expect(result).toEqual(mockData.data);
   });
 
   it('handles failed fetch', async () => {
-    // Mock the fetch function to return a failed response
-    (fetch as Mock).mockResolvedValueOnce({ ok: false });
+    (fetch as Mock).mockResolvedValueOnce({
+      ok: false,
+      statusText: 'Unauthorized',
+    });
+
     const result = await createNewEntry('test content');
-    // Assert that the function returns undefined on failure
-    expect(result).toBeUndefined();
+    expect(result).toBeInstanceOf(Error);
+    expect((result as Error).message).toBe('Unauthorized');
   });
 });
 
 describe('updateEntry', () => {
   it('updates an entry and returns data', async () => {
     const mockData = { data: { id: '1', content: 'updated content' } };
-    // Mock the fetch function to return a successful response
     (fetch as Mock).mockResolvedValueOnce({
       ok: true,
       json: async () => mockData,
     });
 
     const result = await updateEntry('1', 'updated content');
-    // Assert that the returned data matches the mock data
     expect(result).toEqual(mockData.data);
   });
 
   it('handles failed fetch', async () => {
-    // Mock the fetch function to return a failed response
-    (fetch as Mock).mockResolvedValueOnce({ ok: false });
+    (fetch as Mock).mockResolvedValueOnce({
+      ok: false,
+      statusText: 'Not Found',
+    });
+
     const result = await updateEntry('1', 'updated content');
-    // Assert that the function returns undefined on failure
-    expect(result).toBeUndefined();
+    expect(result).toBeInstanceOf(Error);
+    expect((result as Error).message).toBe('Not Found');
   });
 });
 
 describe('deleteEntry', () => {
   it('deletes an entry successfully', async () => {
-    // Mock the fetch function to return a successful response
     (fetch as Mock).mockResolvedValueOnce({ ok: true });
 
     const result = await deleteEntry('1');
-    // Assert that the function returns undefined on success
     expect(result).toBeUndefined();
   });
 
   it('handles failed fetch', async () => {
-    // Mock the fetch function to return a failed response
-    (fetch as Mock).mockResolvedValueOnce({ ok: false });
+    (fetch as Mock).mockResolvedValueOnce({
+      ok: false,
+      statusText: 'Forbidden',
+    });
 
     const result = await deleteEntry('1');
-    // Assert that the function returns undefined on failure
-    expect(result).toBeUndefined();
+    expect(result).toBeInstanceOf(Error);
+    expect((result as Error).message).toBe('Forbidden');
   });
 });
 
 describe('askQuestion', () => {
   it('asks a question and returns data', async () => {
     const mockData = { answer: 'mocked answer' };
-    // Mock the fetch function to return a successful response
     (fetch as Mock).mockResolvedValueOnce({
       ok: true,
       json: async () => mockData,
     });
 
     const result = await askQuestion('test question');
-    // Assert that the returned data matches the mock data
     expect(result).toEqual(mockData);
   });
 
   it('handles failed fetch', async () => {
-    // Mock the fetch function to return a failed response
-    (fetch as Mock).mockResolvedValueOnce({ ok: false });
+    (fetch as Mock).mockResolvedValueOnce({
+      ok: false,
+      statusText: 'Service Unavailable',
+    });
 
     const result = await askQuestion('test question');
-    // Assert that the function returns undefined on failure
-    expect(result).toBeUndefined();
+    expect(result).toBeInstanceOf(Error);
+    expect((result as Error).message).toBe('Service Unavailable');
   });
 });

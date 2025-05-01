@@ -76,8 +76,10 @@ export const askQuestion = async (question: string) => {
     }),
   );
 
-  if (res.ok) {
-    const data = await res.json();
-    return data;
+  if (!res.ok) {
+    return new Error(res.statusText);
   }
+
+  const data = await res.json();
+  return data;
 };
