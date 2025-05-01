@@ -9,12 +9,12 @@ function Hero({ headline, description }: { headline: string; description: Docume
   const t = useTranslations('Homepage');
 
   return (
-    <div className="flex items-center justify-center bg-brand-pattern px-10 pb-24 pt-20 text-stone-300">
+    <div className="flex items-center justify-center bg-brand-pattern px-10 pb-24 pt-20">
       <div className="mx-auto max-w-screen-md">
         <h1 className="mb-6 break-normal text-4xl font-black leading-relaxed sm:text-6xl sm:leading-[1.25]">
           {headline}
         </h1>
-        <div className="mb-12 text-xl leading-relaxed text-stone-300 sm:text-2xl sm:leading-[1.65]">
+        <div className="mb-12 text-xl leading-relaxed sm:text-2xl sm:leading-[1.65]">
           {documentToReactComponents(description)}
         </div>
         <div>

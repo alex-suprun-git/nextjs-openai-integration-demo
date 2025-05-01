@@ -39,7 +39,7 @@ const PositiveNegativeRatio = ({ data }: PositiveNegativeRatioProps) => {
 
   return (
     <div className="border-2 border-dashed border-gray-900 bg-slate-800 p-6 sm:p-12">
-      <h2 className="mb-12 text-center text-xl font-medium text-stone-200">
+      <h2 className="mb-12 text-center text-xl font-medium">
         {t('charts.positiveNegativeRatio.title')}
         <sup className="tooltip ml-1" data-tip={t('charts.positiveNegativeRatio.description')}>
           <FaRegQuestionCircle fontSize={14} />

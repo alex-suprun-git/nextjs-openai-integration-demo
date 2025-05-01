@@ -18,11 +18,7 @@ const LanguageSwitcher = () => {
 
   return (
     <div className="dropdown dropdown-hover dropdown-bottom ml-auto sm:dropdown-left">
-      <div
-        tabIndex={0}
-        role="button"
-        className="btn m-1 border-0 bg-slate-800 text-stone-300 hover:bg-slate-800"
-      >
+      <div tabIndex={0} role="button" className="btn m-1 border-0 bg-slate-800 hover:bg-slate-800">
         <GrLanguage />
       </div>
       <ul
@@ -34,7 +30,7 @@ const LanguageSwitcher = () => {
 
           return (
             <li key={language.id}>
-              <Link href={language.value} className="text-stone-300">
+              <Link href={language.value} className="">
                 {isCurrentPage ? <strong>{language.label}</strong> : language.label}
               </Link>
             </li>

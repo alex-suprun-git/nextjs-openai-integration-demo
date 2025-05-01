@@ -1,4 +1,10 @@
 @tailwind base;
+
+@layer base {
+  body {
+    @apply text-stone-100;
+  }
+}
+
 @tailwind components;
 @tailwind utilities;
-

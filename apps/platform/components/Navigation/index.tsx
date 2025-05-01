@@ -46,7 +46,7 @@ const Navigation = ({ onClick = () => {} }: { onClick?: MouseEventHandler<HTMLAn
             href={link.href}
             onClick={onClick}
           >
-            <span className="text-stone-200">{link.label}</span>
+            <span className="">{link.label}</span>
           </Link>
         ))}
       </div>

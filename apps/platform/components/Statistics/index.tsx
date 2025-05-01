@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Heading } from '@repo/global-ui/index';
+import { Breadcrumbs, BreadcrumbsItem, Heading } from '@repo/global-ui/index';
 import SentimentOverTimeChart from './charts/SentimentOverTime';
 import MoodDistribution from './charts/MoodDistribution';
 import PositiveNegativeRatio from './charts/PositiveNegativeRatio';
@@ -13,21 +13,25 @@ function StatisticsData({
   averageSentiment?: number | null;
 }) {
   const t = useTranslations('StatisticsPage');
+  const h = useTranslations('Header');
 
   if (analyses.length <= 1) {
     return (
       <div data-testid="statisticsPage" className="p-10">
-        <p className="text-xl text-stone-300">{t('labels.noEntries')}</p>
+        <p className="text-xl">{t('labels.noEntries')}</p>
       </div>
     );
   }
 
   return (
     <div data-testid="statisticsPage" className="container mx-auto p-10 pb-32">
+      <Breadcrumbs>
+        <BreadcrumbsItem href="/">{h('navigation.journal')}</BreadcrumbsItem>
+        <BreadcrumbsItem>{t('headline')}</BreadcrumbsItem>
+      </Breadcrumbs>
+
       <Heading>{t('headline')}</Heading>
-      <p className="mb-20 max-w-screen-sm text-lg leading-relaxed text-stone-200">
-        {t('description')}
-      </p>
+      <p className="mb-20 max-w-screen-sm text-lg leading-relaxed">{t('description')}</p>
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <SentimentOverTimeChart data={analyses as AnalysisEntry[]} />
         <MoodDistribution data={analyses as AnalysisEntry[]} />

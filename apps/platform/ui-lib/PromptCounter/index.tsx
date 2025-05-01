@@ -11,7 +11,7 @@ function PromptCounter() {
 
   return (
     <div data-testid="promptCounter" className="flex items-center">
-      <p className="leading-6 text-stone-200">
+      <p className="leading-6">
         {t.rich('labels.promptSymbolsRemaining', {
           symbolsUsed,
           symbolsLimit,
@@ -20,7 +20,7 @@ function PromptCounter() {
       </p>
 
       <span
-        className="tooltip tooltip-left ml-2 text-stone-300"
+        className="tooltip tooltip-left ml-2"
         data-tip={t('labels.promptSymbolsRenewalDate', { limitRenewalDate })}
       >
         <span className="cursor-pointer">

@@ -6,7 +6,7 @@ exports[`LanguageSwitcher > renders component correctly 1`] = `
     class="dropdown dropdown-hover dropdown-left ml-auto"
   >
     <div
-      class="btn m-1 border-0 bg-slate-800 text-stone-300 hover:bg-slate-800"
+      class="btn m-1 border-0 bg-slate-800 hover:bg-slate-800"
       role="button"
       tabindex="0"
     >
@@ -32,7 +32,7 @@ exports[`LanguageSwitcher > renders component correctly 1`] = `
     >
       <li>
         <a
-          class="text-stone-300"
+          class=""
           href="#"
         >
           <strong>
@@ -42,7 +42,7 @@ exports[`LanguageSwitcher > renders component correctly 1`] = `
       </li>
       <li>
         <a
-          class="text-stone-300"
+          class=""
           href="#"
         >
           Deutsch

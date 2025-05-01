@@ -11,11 +11,11 @@ function ErrorMessage({ error, reset }: { error: Error; reset: () => void }) {
     <section className="flex min-h-screen items-center justify-center bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 py-8 lg:px-6 lg:py-16">
         <div className="mx-auto max-w-screen-sm text-center">
-          <h1 className="mb-10 text-6xl font-extrabold tracking-tight text-stone-300 lg:text-7xl">
+          <h1 className="mb-10 text-6xl font-extrabold tracking-tight lg:text-7xl">
             {t('headline')}
           </h1>
           {error.message && (
-            <p className="mb-12 text-3xl font-bold tracking-tight text-gray-900 md:text-4xl dark:text-stone-300">
+            <p className="dark: mb-12 text-3xl font-bold tracking-tight text-gray-900 md:text-4xl">
               {error.message}
             </p>
           )}

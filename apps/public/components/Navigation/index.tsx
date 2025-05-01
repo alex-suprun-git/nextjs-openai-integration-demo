@@ -52,7 +52,7 @@ const Navigation = ({ onClick = () => {} }: { onClick?: MouseEventHandler<HTMLAn
           >
             <div className="flex items-center">
               {!!link?.icon && <span className="mr-1.5">{link.icon}</span>}
-              <span className="text-stone-200">{link.label}</span>
+              <span className="">{link.label}</span>
             </div>
           </Link>
         ))}

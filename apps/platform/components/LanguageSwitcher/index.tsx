@@ -24,11 +24,7 @@ const LanguageSwitcher = () => {
 
   return (
     <div className="dropdown dropdown-hover dropdown-left ml-auto">
-      <div
-        tabIndex={0}
-        role="button"
-        className="btn m-1 border-0 bg-slate-800 text-stone-300 hover:bg-slate-800"
-      >
+      <div tabIndex={0} role="button" className="btn m-1 border-0 bg-slate-800 hover:bg-slate-800">
         <GrLanguage />
       </div>
       <ul
@@ -41,7 +37,7 @@ const LanguageSwitcher = () => {
             <li key={language.id}>
               <a
                 href="#"
-                className="text-stone-300"
+                className=""
                 onClick={(e) => handleLanguageChange(e, language.value as UserLocale)}
               >
                 {isCurrentLang ? <strong>{language.label}</strong> : language.label}

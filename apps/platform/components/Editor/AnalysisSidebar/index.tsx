@@ -44,7 +44,7 @@ function AnalysisSidebar({
     <>
       {isLoading && <Loading fullscreen />}
       <div className="relative px-6 py-10" style={{ background: getMoodImage(analysis) }}>
-        <h2 className="relative z-10 w-fit bg-gray-800 p-6 text-2xl font-bold text-stone-300">
+        <h2 className="relative z-10 w-fit bg-gray-800 p-6 text-2xl font-bold">
           {t('analysis.headline')}
         </h2>
         <div
@@ -61,10 +61,8 @@ function AnalysisSidebar({
                 key={item.label}
                 className="mb-6 flex flex-col border-b-2 border-white/10 px-6 pb-6"
               >
-                <h3 className="mb-2 mr-10 text-center font-semibold text-stone-300">
-                  {item.label}:
-                </h3>
-                <span className="text-center text-stone-300">{item.value?.toString()}</span>
+                <h3 className="mb-2 mr-10 text-center font-semibold">{item.label}:</h3>
+                <span className="text-center">{item.value?.toString()}</span>
               </li>
             );
           } else {
@@ -74,10 +72,8 @@ function AnalysisSidebar({
                 key={item.label}
                 className="flex flex-col items-start justify-between border-b-2 border-white/10 px-6 py-3 xl:flex-row xl:items-center"
               >
-                <h3 className="mb-2 mr-10 font-semibold text-stone-300">{item.label}:</h3>
-                <span className="text-start text-stone-300 xl:text-end">
-                  {item.value?.toString()}
-                </span>
+                <h3 className="mb-2 mr-10 font-semibold">{item.label}:</h3>
+                <span className="text-start xl:text-end">{item.value?.toString()}</span>
               </li>
             );
           }
@@ -88,7 +84,7 @@ function AnalysisSidebar({
           <button
             onClick={() => deleteEntryHandler(entryId as string)}
             data-testid="delete-entry-button"
-            className="md:max-lg:mb-10 btn border-0 bg-red-800 text-stone-300 hover:bg-red-900"
+            className="md:max-lg:mb-10 btn border-0 bg-red-800 hover:bg-red-900"
           >
             {t('buttons.deleteEntry')} <FaRegTrashAlt />
           </button>

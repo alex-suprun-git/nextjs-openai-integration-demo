@@ -20,8 +20,8 @@ const CustomTooltip = ({
           className="absolute left-2 top-2 z-10 h-2 w-2 rounded-full"
           style={{ background: analysis.color }}
         ></div>
-        <p className="label text-sm text-stone-300">{label}</p>
-        <p className="intro text-xl uppercase text-stone-300">{analysis.mood}</p>
+        <p className="label text-sm">{label}</p>
+        <p className="intro text-xl uppercase">{analysis.mood}</p>
       </div>
     );
   }
@@ -39,7 +39,7 @@ const SentimentOverTimeChart = ({ data }: { data: AnalysisEntry[] }) => {
 
   return (
     <div className="border-2 border-dashed border-gray-900 bg-slate-800 p-6 sm:p-12">
-      <h2 className="mb-12 text-center text-xl font-medium text-stone-200">
+      <h2 className="mb-12 text-center text-xl font-medium">
         {t('charts.sentimentOverTime.title')}
         <sup className="tooltip ml-1" data-tip={t('charts.sentimentOverTime.description')}>
           <FaRegQuestionCircle fontSize={14} />

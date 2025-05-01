@@ -3,4 +3,4 @@ export const PLATFORM_BASE_URL = {
   development: 'http://localhost:3001/',
 };
 
-export const BASE_TEXT_COLOR_HEX = '#E7E5E4';
+export const BASE_TEXT_COLOR_HEX = '#fff';

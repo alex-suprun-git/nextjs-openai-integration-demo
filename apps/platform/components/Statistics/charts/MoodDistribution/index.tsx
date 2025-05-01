@@ -40,7 +40,7 @@ const MoodDistribution = ({ data }: MoodDistributionProps) => {
 
   return (
     <div className="border-2 border-dashed border-gray-900 bg-slate-800 p-6 sm:p-12">
-      <h2 className="mb-4 text-center text-xl font-medium text-stone-200">
+      <h2 className="mb-4 text-center text-xl font-medium">
         {t('charts.moodDistribution.title')}
         <sup className="tooltip ml-1" data-tip={t('charts.moodDistribution.description')}>
           <FaRegQuestionCircle fontSize={14} />

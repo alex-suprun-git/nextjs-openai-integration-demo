@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { Block, BLOCKS, Inline, MARKS } from '@contentful/rich-text-types';
 import { setRequestLocale } from 'next-intl/server';
-import { Heading } from '@repo/global-ui/index';
+import { Breadcrumbs, BreadcrumbsItem, Heading } from '@repo/global-ui/index';
 import { pageQuery } from '@/content/queries';
 import { PageSchema } from '@/content/types';
 import { getContentFromCMS } from '@/content/utils';
@@ -40,38 +40,44 @@ const AboutMePage = async ({ params }: { params: Promise<{ locale: string }> }) 
     },
     renderNode: {
       [BLOCKS.PARAGRAPH]: (_node: Block | Inline, children: React.ReactNode) => (
-        <p className="mb-4 leading-loose text-stone-300">{children}</p>
+        <p className="mb-4 leading-loose">{children}</p>
       ),
     },
   };
 
   return (
-    <div className="container mx-auto flex min-h-svh justify-between gap-28 p-10">
-      <div className="w-full md:w-3/5">
-        <Heading>{headline}</Heading>
-        {image && (
-          <Image
-            className="mb-10 block md:hidden"
-            width={image.width / 1.5}
-            height={image.height / 1.5}
-            src={image.url}
-            alt={image.description}
-          />
-        )}
-        {description && documentToReactComponents(description, renderOptions)}
-      </div>
-      {hasImage && (
-        <div className="hidden md:block md:w-2/5">
+    <div className="container mx-auto p-10">
+      <Breadcrumbs>
+        <BreadcrumbsItem href="/">Home</BreadcrumbsItem>
+        <BreadcrumbsItem>{headline}</BreadcrumbsItem>
+      </Breadcrumbs>
+      <div className="flex min-h-svh justify-between gap-28">
+        <div className="w-full md:w-3/5">
+          <Heading>{headline}</Heading>
           {image && (
             <Image
-              width={image.width}
-              height={image.height}
+              className="mb-10 block md:hidden"
+              width={image.width / 1.5}
+              height={image.height / 1.5}
               src={image.url}
               alt={image.description}
             />
           )}
+          {description && documentToReactComponents(description, renderOptions)}
         </div>
-      )}
+        {hasImage && (
+          <div className="hidden md:block md:w-2/5">
+            {image && (
+              <Image
+                width={image.width}
+                height={image.height}
+                src={image.url}
+                alt={image.description}
+              />
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
