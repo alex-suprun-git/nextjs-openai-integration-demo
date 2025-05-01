@@ -29,7 +29,7 @@ function Navbar() {
         </div>
         <div className="xl:hidden">
           <Drawer toggleRef={drawerToggleRef} icon={<FiMenu size={38} />}>
-            <Logo className={'mb-5 mt-2 lg:hidden'} />
+            <Logo onClick={drawerToggleHandler} className={'mb-5 mt-2 lg:hidden'} />
             <Navigation onClick={drawerToggleHandler} />
           </Drawer>
         </div>

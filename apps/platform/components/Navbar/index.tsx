@@ -26,7 +26,7 @@ function Navbar() {
         </div>
         <div className="xl:hidden">
           <Drawer toggleRef={drawerToggleRef} icon={<FiMenu size={38} />}>
-            <Logo className={'mb-5 mt-2 sm:hidden'} />
+            <Logo onClick={drawerToggleHandler} className={'mb-5 mt-2 sm:hidden'} />
             <Navigation onClick={drawerToggleHandler} />
             <PromptCounter />
           </Drawer>
