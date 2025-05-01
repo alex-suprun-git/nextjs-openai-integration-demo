@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Breadcrumbs, BreadcrumbsItem, Heading } from '@repo/global-ui/index';
+import { Breadcrumbs, BreadcrumbsItem, Heading } from '@repo/global-ui';
 import SentimentOverTimeChart from './charts/SentimentOverTime';
 import MoodDistribution from './charts/MoodDistribution';
 import PositiveNegativeRatio from './charts/PositiveNegativeRatio';

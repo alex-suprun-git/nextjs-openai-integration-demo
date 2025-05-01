@@ -3,7 +3,7 @@
 import clsx from 'clsx';
 import { MouseEventHandler, RefObject } from 'react';
 import { useTranslations } from 'next-intl';
-import { Alert, Loading } from '@repo/global-ui/index';
+import { Alert, Loading } from '@repo/global-ui';
 import { MINIMUM_CONTENT_LENGTH } from '@/utils/constants';
 import { usePathname } from 'next/navigation';
 

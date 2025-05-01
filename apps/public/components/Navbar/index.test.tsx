@@ -49,7 +49,7 @@ vi.mock('../Navigation', () => ({
   ),
 }));
 vi.mock('react-icons/fi', () => ({ FiMenu: () => <div data-testid="fi-menu">Menu Icon</div> }));
-vi.mock('@repo/global-ui/index', () => ({
+vi.mock('@repo/global-ui', () => ({
   __esModule: true,
   Drawer: ({ icon, children, _toggleRef }: any) => (
     <div data-testid="drawer">

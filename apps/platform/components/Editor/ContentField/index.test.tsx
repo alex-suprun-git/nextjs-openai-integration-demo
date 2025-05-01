@@ -4,7 +4,7 @@ import { createTranslator, useTranslations } from 'next-intl';
 import Content from '.';
 
 // Mock the Alert and Loading components
-vi.mock('@repo/global-ui/index', () => ({
+vi.mock('@repo/global-ui', () => ({
   Alert: ({ type, children }: any) => <div data-testid={`alert-${type}`}>{children}</div>,
   Loading: ({ customClasses }: any) => <div data-testid="loading" className={customClasses}></div>,
 }));

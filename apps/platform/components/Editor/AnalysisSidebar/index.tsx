@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { deleteEntry } from '@/utils/api';
 import { FaRegTrashAlt } from 'react-icons/fa';
-import { Loading } from '@repo/global-ui/index';
+import { Loading } from '@repo/global-ui';
 import { convertHexToRGBA, getMoodImage } from '@/utils/helpers';
 
 function AnalysisSidebar({

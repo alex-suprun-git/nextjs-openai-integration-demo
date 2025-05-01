@@ -5,7 +5,7 @@ import Link from 'next/link';
 import EntryCard from '../EntryCard';
 import NewEntryCard from '../NewEntryCard';
 import Question from '../Question';
-import { Heading } from '@repo/global-ui/index';
+import { Heading } from '@repo/global-ui';
 import { ENTRIES_BASE_PATH } from '@/utils/constants';
 
 const JournalList = ({ entries }: { entries: Required<AnalysisSubEntry[]> | [] }) => {

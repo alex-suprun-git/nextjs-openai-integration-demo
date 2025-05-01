@@ -7,7 +7,7 @@ import { FiMenu } from 'react-icons/fi';
 import LanguageSwitcher from '../LanguageSwitcher';
 import Logo from '../Logo';
 import Navigation from '../Navigation';
-import { Drawer, Header } from '@repo/global-ui/index';
+import { Drawer, Header } from '@repo/global-ui';
 import { getCurrentEnv } from '@repo/global-utils/helpers';
 import { PLATFORM_BASE_URL } from '@/constants';
 
