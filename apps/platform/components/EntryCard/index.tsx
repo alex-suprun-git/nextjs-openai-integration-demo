@@ -29,6 +29,7 @@ const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
   const locale = useLocale();
 
   const t = useTranslations('JournalList');
+  const c = useTranslations('Global');
   const creationDate = formatDate(new Date(createdAt), locale as UserLocale);
 
   const handleOuterClick = (event: MouseEvent) => {
@@ -131,10 +132,10 @@ const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
                       data-testid="entryCard-delete-button"
                       onClick={openDeleteModal}
                       className="btn btn-sm items-center gap-2 border-0 bg-gray-50 py-2 text-sm text-red-600 focus:outline-none"
-                      aria-label={t('card.deleteEntry')}
+                      aria-label={c('deleteEntry.actionButton')}
                     >
                       <FaRegTrashAlt />
-                      <span>{t('card.deleteEntry')}</span>
+                      <span>{c('deleteEntry.actionButton')}</span>
                     </button>
                   </li>
                 </ul>
@@ -150,20 +151,20 @@ const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
             className="modal-box relative border border-gray-200 bg-white"
             onClick={handleOnModalClicks}
           >
-            <h3 className="text-lg font-bold text-gray-800">{t('card.deleteEntry')}</h3>
-            <p className="py-4 text-gray-600">{t('card.deleteConfirmation')}</p>
+            <h3 className="text-lg font-bold text-gray-800">{c('deleteEntry.actionButton')}</h3>
+            <p className="py-4 text-gray-600">{c('deleteEntry.confirmationMessage')}</p>
             <div className="modal-action">
               <button
-                className="btn btn-outline border-gray-300 bg-white text-gray-700 shadow-none hover:bg-gray-50 focus:outline-none"
+                className="btn btn-outline border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:outline-none"
                 onClick={closeModal}
               >
-                {t('card.cancel')}
+                {c('deleteEntry.cancelButton')}
               </button>
               <button
-                className="btn border-0 bg-red-800 text-white shadow-none hover:bg-red-900 focus:outline-none"
+                className="btn border-0 bg-red-800 text-white hover:bg-red-900 focus:outline-none"
                 onClick={deleteEntryHandler}
               >
-                {t('card.delete')}
+                {c('deleteEntry.confirmButton')}
               </button>
             </div>
           </div>

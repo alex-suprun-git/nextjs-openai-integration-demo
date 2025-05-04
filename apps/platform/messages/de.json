@@ -37,17 +37,21 @@
       "aboutMe": "Über mich"
     }
   },
+  "Global": {
+    "deleteEntry": {
+      "actionButton": "Diesen Eintrag löschen",
+      "confirmButton": "Löschen",
+      "cancelButton": "Abbrechen",
+      "confirmationMessage": "Sind Sie sicher, dass Sie diesen Eintrag löschen möchten?"
+    }
+  },
   "JournalList": {
     "headline": "Dashboard",
     "buttons": {
       "newEntry": "Neuen Eintrag schreiben"
     },
     "card": {
-      "openContextMenu": "Kontextmenü öffnen",
-      "deleteEntry": "Diesen Eintrag löschen",
-      "deleteConfirmation": "Sind Sie sicher, dass Sie diesen Eintrag löschen möchten?",
-      "cancel": "Abbrechen",
-      "delete": "Löschen"
+      "openContextMenu": "Kontextmenü öffnen"
     }
   },
   "analysisRequest": {
@@ -73,10 +77,7 @@
         "negative": "Negativ"
       }
     },
-    "contentFieldPlaceholder": "Bitte schreiben Sie hier Ihre Gedanken...",
-    "buttons": {
-      "deleteEntry": "Diese Notiz löschen"
-    }
+    "contentFieldPlaceholder": "Bitte schreiben Sie hier Ihre Gedanken..."
   },
   "E404Homepage": {
     "description1": "Seite nicht gefunden",

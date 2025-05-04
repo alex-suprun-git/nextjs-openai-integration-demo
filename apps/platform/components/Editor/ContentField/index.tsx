@@ -41,20 +41,24 @@ function Content({
       )}
       {isContentEntryCreated && <Alert type="success">{t('alerts.entryCreated')}</Alert>}
       {isContentEntryUpdated && <Alert type="success">{t('alerts.entryUpdated')}</Alert>}
-      {isLoading && <Loading customClasses="absolute inset-x-2/4 inset-y-2/4" />}
-      <textarea
-        data-testid="entry-content-field"
-        className={clsx(
-          'textarea min-h-80 w-full resize-none bg-gray-900 p-10 text-xl outline-none',
-          !isNewEntry && 'sm:min-h-lvh',
+      <div className="relative">
+        {isLoading && (
+          <Loading customClasses="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" />
         )}
-        value={contentValue}
-        onChange={(e) => changeContentHandler(e)}
-        placeholder={t('contentFieldPlaceholder')}
-        maxLength={500}
-        disabled={isPromptSymbolsExceeded || isLoading || !isNewEntry}
-        required
-      />
+        <textarea
+          data-testid="entry-content-field"
+          className={clsx(
+            'textarea min-h-80 w-full resize-none bg-gray-900 p-10 text-xl outline-none',
+            !isNewEntry && 'sm:min-h-[500px]',
+          )}
+          value={contentValue}
+          onChange={(e) => changeContentHandler(e)}
+          placeholder={t('contentFieldPlaceholder')}
+          maxLength={500}
+          disabled={isPromptSymbolsExceeded || isLoading || !isNewEntry}
+          required
+        />
+      </div>
       {isNewEntry && (
         <div className="mt-6 flex justify-end">
           <button

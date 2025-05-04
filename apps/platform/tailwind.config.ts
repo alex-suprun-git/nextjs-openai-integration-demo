@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import plugin from 'tailwindcss/plugin';
 
 const config: Config = {
   content: [
@@ -53,6 +54,28 @@ const config: Config = {
       },
     },
   },
-  plugins: [require('daisyui')],
+  plugins: [
+    require('daisyui'),
+    plugin(function ({ addComponents }) {
+      addComponents({
+        '.btn': {
+          boxShadow: 'none !important',
+          '&:hover': {
+            boxShadow: 'none !important',
+          },
+          '&:focus': {
+            boxShadow: 'none !important',
+          },
+          '&:active': {
+            boxShadow: 'none !important',
+          },
+        },
+      });
+    }),
+  ],
+  daisyui: {
+    themes: ['light'],
+  },
 };
+
 export default config;

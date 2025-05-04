@@ -7,6 +7,7 @@ import { deleteEntry } from '@/utils/api';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { Loading } from '@repo/global-ui';
 import { convertHexToRGBA, getMoodImage } from '@/utils/helpers';
+import Modal from '@/components/Modal';
 
 function AnalysisSidebar({
   entryId,
@@ -18,17 +19,32 @@ function AnalysisSidebar({
   router: AppRouterInstance;
 }) {
   const [isLoading, setIsLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const t = useTranslations('Editor');
+  const c = useTranslations('Global');
 
-  const deleteEntryHandler = async (id: string) => {
+  const deleteEntryHandler = async () => {
+    if (!entryId) return;
     setIsLoading(true);
-    await deleteEntry(id);
+    await deleteEntry(entryId);
     setIsLoading(false);
     router.push('/');
     router.refresh();
   };
 
-  const isEntryCanBeDeleted = entryId;
+  const openDeleteModal = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsModalOpen(true);
+  };
+
+  const closeModal = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsModalOpen(false);
+  };
+
+  const isEntryCanBeDeleted = !!entryId;
   const { summary, subject, mood, color, negative } = analysis;
 
   const analysisData = [
@@ -82,14 +98,32 @@ function AnalysisSidebar({
       {isEntryCanBeDeleted && (
         <div className="mt-12 flex justify-end pb-10 pr-5 md:pb-0 md:pr-0">
           <button
-            onClick={() => deleteEntryHandler(entryId as string)}
+            onClick={openDeleteModal}
             data-testid="delete-entry-button"
             className="md:max-lg:mb-10 btn border-0 bg-red-800 hover:bg-red-900"
           >
-            {t('buttons.deleteEntry')} <FaRegTrashAlt />
+            {c('deleteEntry.actionButton')} <FaRegTrashAlt />
           </button>
         </div>
       )}
+
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        title={c('deleteEntry.actionButton')}
+        confirmButton={{
+          label: c('deleteEntry.confirmButton'),
+          onClick: deleteEntryHandler,
+          testId: 'delete-entry-confirm-button',
+        }}
+        cancelButton={{
+          label: c('deleteEntry.cancelButton'),
+          testId: 'delete-entry-cancel-button',
+        }}
+        testId="delete-entry-modal"
+      >
+        {c('deleteEntry.confirmationMessage')}
+      </Modal>
     </>
   );
 }

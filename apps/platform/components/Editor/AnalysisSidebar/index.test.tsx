@@ -4,6 +4,7 @@ import { createTranslator, useTranslations } from 'next-intl';
 import AnalysisSidebar from '.';
 import { deleteEntry } from '@/utils/api';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import { ReactNode } from 'react';
 
 // Mock the dependencies
 vi.mock('@/utils/api', () => ({
@@ -20,6 +21,81 @@ vi.mock('next/dist/shared/lib/app-router-context.shared-runtime', () => ({
 vi.mock('@/utils/helpers', () => ({
   convertHexToRGBA: vi.fn().mockReturnValue('rgba(0, 0, 0, 0.25)'),
   getMoodImage: vi.fn().mockReturnValue('url(/path/to/image.jpg)'),
+}));
+
+// Mock useTranslations for both Editor and Global namespaces
+vi.mock('next-intl', async () => {
+  const actual = await vi.importActual('next-intl');
+  return {
+    ...actual,
+    useTranslations: vi.fn((namespace) => {
+      if (namespace === 'Editor') {
+        return (key: string) => {
+          const keys: { [key: string]: string } = {
+            'analysis.headline': 'Analysis',
+            'analysis.labels.summary': 'Summary',
+            'analysis.labels.subject': 'Subject',
+            'analysis.labels.mood': 'Mood',
+            'analysis.labels.negative': 'Negative',
+          };
+          return keys[key] || key;
+        };
+      } else if (namespace === 'Global') {
+        return (key: string) => {
+          const keys: { [key: string]: string } = {
+            'deleteEntry.actionButton': 'Delete this memo',
+            'deleteEntry.confirmButton': 'Delete',
+            'deleteEntry.cancelButton': 'Cancel',
+            'deleteEntry.confirmationMessage': 'Are you sure you want to delete this memo?',
+          };
+          return keys[key] || key;
+        };
+      }
+      return (key: string) => key;
+    }),
+  };
+});
+
+// Mock Modal component
+vi.mock('@/components/Modal', () => ({
+  default: ({
+    isOpen,
+    confirmButton,
+    onClose,
+    cancelButton,
+    children,
+    title,
+    testId,
+  }: {
+    isOpen: boolean;
+    confirmButton: {
+      testId: string;
+      onClick: () => void;
+      label: string;
+    };
+    onClose: (e: any) => void;
+    cancelButton?: {
+      label: string;
+      testId: string;
+    };
+    title: string;
+    children: ReactNode;
+    testId?: string;
+  }) =>
+    isOpen ? (
+      <div data-testid={testId || 'mock-modal'}>
+        <div>{title}</div>
+        <div>{children}</div>
+        <button data-testid={confirmButton.testId} onClick={confirmButton.onClick}>
+          {confirmButton.label}
+        </button>
+        {cancelButton && (
+          <button data-testid={cancelButton.testId} onClick={onClose}>
+            {cancelButton.label}
+          </button>
+        )}
+      </div>
+    ) : null,
 }));
 
 describe('AnalysisSidebar', () => {
@@ -40,16 +116,6 @@ describe('AnalysisSidebar', () => {
 
   const mockEntryId = '12345';
 
-  beforeEach(async () => {
-    const translate = createTranslator({
-      locale: 'en',
-      namespace: 'Editor',
-      messages: (await import('@/messages/en.json')).default,
-    });
-
-    (useTranslations as Mock).mockImplementation(() => translate);
-  });
-
   afterEach(() => {
     vi.clearAllMocks();
   });
@@ -67,11 +133,25 @@ describe('AnalysisSidebar', () => {
     expect(screen.getByText('false')).toBeInTheDocument();
   });
 
-  it('calls deleteEntryHandler when delete button is clicked', async () => {
+  it('opens confirmation modal when delete button is clicked', () => {
     render(<AnalysisSidebar entryId={mockEntryId} analysis={mockAnalysis} router={mockRouter} />);
 
-    const deleteButton = screen.getByText(/Delete this note/i);
+    const deleteButton = screen.getByTestId('delete-entry-button');
     fireEvent.click(deleteButton);
+
+    expect(screen.getByTestId('delete-entry-modal')).toBeInTheDocument();
+  });
+
+  it('calls deleteEntryHandler when delete is confirmed in modal', async () => {
+    render(<AnalysisSidebar entryId={mockEntryId} analysis={mockAnalysis} router={mockRouter} />);
+
+    // Open the modal
+    const deleteButton = screen.getByTestId('delete-entry-button');
+    fireEvent.click(deleteButton);
+
+    // Confirm deletion in the modal
+    const confirmButton = screen.getByTestId('delete-entry-confirm-button');
+    fireEvent.click(confirmButton);
 
     expect(deleteEntry).toHaveBeenCalledWith(mockEntryId);
     await waitFor(() => {

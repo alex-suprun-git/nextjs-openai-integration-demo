@@ -36,7 +36,7 @@ vi.mock('next/font/google', () => ({
 }));
 
 describe('RootLocaleLayout (mocked)', () => {
-  it('renders children, Navbar и SpeedInsights', async () => {
+  it('renders children, Navbar and SpeedInsights', async () => {
     const mockChildren = <div data-testid="mock-children">Mock Children</div>;
 
     const element = await RootLocaleLayout({

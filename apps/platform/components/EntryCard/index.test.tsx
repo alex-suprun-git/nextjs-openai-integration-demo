@@ -38,17 +38,20 @@ describe('EntryCard', () => {
     color: '#ff0000',
   };
 
-  const mockTranslations = {
-    'card.openContextMenu': 'Open context menu',
-    'card.deleteEntry': 'Delete this memo',
-    'card.deleteConfirmation': 'Are you sure you want to delete this memo?',
-    'card.cancel': 'Cancel',
-    'card.delete': 'Delete',
+  const mockTranslations: { [key: string]: string } = {
+    'JournalList.card.openContextMenu': 'Open context menu',
+    'Global.deleteEntry.actionButton': 'Delete this memo',
+    'Global.deleteEntry.confirmationMessage': 'Are you sure you want to delete this memo?',
+    'Global.deleteEntry.cancelButton': 'Cancel',
+    'Global.deleteEntry.confirmButton': 'Delete',
   };
 
   beforeEach(async () => {
-    (useTranslations as Mock).mockImplementation(() => {
-      return (key: string) => mockTranslations[key as keyof typeof mockTranslations] || key;
+    (useTranslations as Mock).mockImplementation((prefix: string) => {
+      return (key: string) => {
+        const fullKey = prefix ? `${prefix}.${key}` : key;
+        return mockTranslations[fullKey] || key;
+      };
     });
     (useLocale as Mock).mockReturnValue('en');
     (formatDate as Mock).mockImplementation((date: Date) => date.toISOString().split('T')[0]);
@@ -83,11 +86,11 @@ describe('EntryCard', () => {
   it('opens dropdown menu when clicking the three dots button', () => {
     renderWithProvider(<EntryCard {...mockEntry} />);
 
-    // Находим кнопку с тремя точками и кликаем
+    // Find the three dots button and click
     const dotsButton = screen.getByTestId('entryCard-edit-button');
     fireEvent.click(dotsButton);
 
-    // Проверяем, что меню открылось
+    // Check that the menu opened
     expect(screen.getByTestId('entryCard-context-menu')).toBeInTheDocument();
     expect(screen.getByText('Delete this memo')).toBeInTheDocument();
   });
@@ -95,17 +98,17 @@ describe('EntryCard', () => {
   it('closes dropdown when clicking outside', async () => {
     renderWithProvider(<EntryCard {...mockEntry} />);
 
-    // Открываем выпадающее меню
+    // Open the dropdown menu
     const dotsButton = screen.getByTestId('entryCard-edit-button');
     fireEvent.click(dotsButton);
 
-    // Проверяем, что меню открылось
+    // Check that the menu opened
     expect(screen.getByTestId('entryCard-context-menu')).toBeInTheDocument();
 
-    // Кликаем вне меню
+    // Click outside the menu
     fireEvent.mouseDown(document.body);
 
-    // Проверяем, что меню закрылось
+    // Check that the menu closed
     await waitFor(() => {
       expect(screen.queryByTestId('entryCard-context-menu')).not.toBeInTheDocument();
     });
@@ -114,15 +117,15 @@ describe('EntryCard', () => {
   it('opens modal when clicking delete in the dropdown', () => {
     renderWithProvider(<EntryCard {...mockEntry} />);
 
-    // Открываем выпадающее меню
+    // Open the dropdown menu
     const dotsButton = screen.getByTestId('entryCard-edit-button');
     fireEvent.click(dotsButton);
 
-    // Находим и кликаем на кнопку удаления
+    // Find and click the delete button
     const deleteButton = screen.getByTestId('entryCard-delete-button');
     fireEvent.click(deleteButton);
 
-    // Проверяем, что открылось модальное окно
+    // Check that the modal window opened
     expect(screen.getByText('Are you sure you want to delete this memo?')).toBeInTheDocument();
     expect(screen.getByText('Cancel')).toBeInTheDocument();
     expect(screen.getByText('Delete')).toBeInTheDocument();
@@ -131,20 +134,20 @@ describe('EntryCard', () => {
   it('closes modal when clicking cancel button', () => {
     renderWithProvider(<EntryCard {...mockEntry} />);
 
-    // Открываем выпадающее меню и затем модальное окно
+    // Open the dropdown menu and then the modal window
     const dotsButton = screen.getByTestId('entryCard-edit-button');
     fireEvent.click(dotsButton);
     const deleteButton = screen.getByTestId('entryCard-delete-button');
     fireEvent.click(deleteButton);
 
-    // Проверяем, что модальное окно открылось
+    // Check that the modal window opened
     expect(screen.getByText('Are you sure you want to delete this memo?')).toBeInTheDocument();
 
-    // Находим и кликаем на кнопку Cancel
+    // Find and click the Cancel button
     const cancelButton = screen.getByText('Cancel');
     fireEvent.click(cancelButton);
 
-    // Проверяем, что модальное окно закрылось
+    // Check that the modal window closed
     expect(
       screen.queryByText('Are you sure you want to delete this memo?'),
     ).not.toBeInTheDocument();
@@ -154,20 +157,20 @@ describe('EntryCard', () => {
     (deleteEntry as Mock).mockResolvedValueOnce({});
     renderWithProvider(<EntryCard {...mockEntry} />);
 
-    // Открываем выпадающее меню и затем модальное окно
+    // Open the dropdown menu and then the modal window
     const dotsButton = screen.getByTestId('entryCard-edit-button');
     fireEvent.click(dotsButton);
     const deleteButton = screen.getByTestId('entryCard-delete-button');
     fireEvent.click(deleteButton);
 
-    // Проверяем, что модальное окно открылось
+    // Check that the modal window opened
     expect(screen.getByText('Are you sure you want to delete this memo?')).toBeInTheDocument();
 
-    // Нажимаем на кнопку Delete в модальном окне
+    // Click the Delete button in the modal window
     const confirmDeleteButton = screen.getByText('Delete');
     fireEvent.click(confirmDeleteButton);
 
-    // Проверяем, что вызвались нужные функции
+    // Check that the necessary functions were called
     await waitFor(() => {
       expect(deleteEntry).toHaveBeenCalledWith(mockEntry.id);
       expect(mockRouterPush).toHaveBeenCalledWith('/');
@@ -178,33 +181,33 @@ describe('EntryCard', () => {
   it('closes dropdown and modal when pressing Escape key', async () => {
     renderWithProvider(<EntryCard {...mockEntry} />);
 
-    // Открываем выпадающее меню
+    // Open the dropdown menu
     const dotsButton = screen.getByTestId('entryCard-edit-button');
     fireEvent.click(dotsButton);
 
-    // Проверяем, что меню открылось
+    // Check that the menu opened
     expect(screen.getByTestId('entryCard-context-menu')).toBeInTheDocument();
 
-    // Нажимаем Escape
+    // Press Escape
     fireEvent.keyDown(document, { key: 'Escape' });
 
-    // Проверяем, что дропдаун закрылся
+    // Check that the dropdown closed
     await waitFor(() => {
       expect(screen.queryByTestId('entryCard-context-menu')).not.toBeInTheDocument();
     });
 
-    // Открываем выпадающее меню и затем модальное окно
+    // Open the dropdown menu and then the modal window
     fireEvent.click(dotsButton);
     const deleteButton = screen.getByTestId('entryCard-delete-button');
     fireEvent.click(deleteButton);
 
-    // Проверяем, что модальное окно открылось
+    // Check that the modal window opened
     expect(screen.getByText('Are you sure you want to delete this memo?')).toBeInTheDocument();
 
-    // Нажимаем Escape
+    // Press Escape
     fireEvent.keyDown(document, { key: 'Escape' });
 
-    // Проверяем, что модальное окно закрылось
+    // Check that the modal window closed
     await waitFor(() => {
       expect(
         screen.queryByText('Are you sure you want to delete this memo?'),

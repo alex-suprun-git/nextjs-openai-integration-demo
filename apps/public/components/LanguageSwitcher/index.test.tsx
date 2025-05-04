@@ -28,7 +28,7 @@ describe('LanguageSwitcher (pathname variant)', () => {
     vi.clearAllMocks();
   });
 
-  it('рендерит оба языка с правильными ссылками', () => {
+  it('renders both languages with correct links', () => {
     render(<LanguageSwitcher />);
 
     const enLink = screen.getByRole('link', { name: /english/i });
