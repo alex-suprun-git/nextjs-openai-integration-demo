@@ -44,7 +44,10 @@
     },
     "card": {
       "openContextMenu": "Kontextmenü öffnen",
-      "deleteEntry": "Diesen Eintrag löschen"
+      "deleteEntry": "Diesen Eintrag löschen",
+      "deleteConfirmation": "Sind Sie sicher, dass Sie diesen Eintrag löschen möchten?",
+      "cancel": "Abbrechen",
+      "delete": "Löschen"
     }
   },
   "analysisRequest": {

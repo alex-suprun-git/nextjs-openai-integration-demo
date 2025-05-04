@@ -18,7 +18,7 @@ function StatisticsData({
   if (analyses.length <= 1) {
     return (
       <div data-testid="statisticsPage" className="p-10">
-        <p className="text-xl">{t('labels.noEntries')}</p>
+        <p className="text-xl">{t('noEntries')}</p>
       </div>
     );
   }

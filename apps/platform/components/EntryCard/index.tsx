@@ -22,16 +22,18 @@ type EntryCardProps = {
 const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const [isContextMenuOpen, setIsContextMenuOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const locale = useLocale();
 
   const t = useTranslations('JournalList');
   const creationDate = formatDate(new Date(createdAt), locale as UserLocale);
 
   const handleOuterClick = (event: MouseEvent) => {
-    if (cardRef.current && !cardRef.current.contains(event.target as HTMLElement)) {
-      setIsContextMenuOpen(false);
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as HTMLElement)) {
+      setShowDropdown(false);
     }
   };
 
@@ -42,8 +44,9 @@ const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
     };
   }, []);
 
-  const deleteEntryHandler = async (e: React.MouseEvent, id: string) => {
-    e.preventDefault();
+  const deleteEntryHandler = async (e?: React.MouseEvent) => {
+    e?.preventDefault();
+    e?.stopPropagation();
     setIsLoading(true);
     await deleteEntry(id);
     setIsLoading(false);
@@ -51,12 +54,41 @@ const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
     router.refresh();
   };
 
-  const contextMenuHandler = (e: React.MouseEvent) => {
+  const toggleDropdown = (e: React.MouseEvent) => {
     e.preventDefault();
-    setIsContextMenuOpen(!isContextMenuOpen);
+    e.stopPropagation();
+    setShowDropdown(!showDropdown);
   };
 
-  useKeyPress(() => setIsContextMenuOpen(false), ['Escape']);
+  const openDeleteModal = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowDropdown(false);
+    setIsModalOpen(true);
+  };
+
+  const handleCardClick = (e: React.MouseEvent) => {
+    if (dropdownRef.current?.contains(e.target as Node) || isModalOpen) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  };
+
+  const closeModal = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsModalOpen(false);
+  };
+
+  const handleOnModalClicks = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  useKeyPress(() => {
+    setShowDropdown(false);
+    setIsModalOpen(false);
+  }, ['Escape']);
 
   return (
     <>
@@ -64,8 +96,8 @@ const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
       <div
         data-testid="entryCard"
         ref={cardRef}
-        onContextMenu={(e) => contextMenuHandler(e)}
-        className="card relative h-[128px] bg-white text-primary-content shadow-md"
+        onClick={handleCardClick}
+        className="card relative h-[128px] border border-gray-200 bg-white text-primary-content transition-all duration-200"
       >
         <div className="card-body justify-between text-black">
           <div
@@ -80,32 +112,64 @@ const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
               </small>
             </div>
 
-            <button
-              aria-label={t('card.openContextMenu')}
-              data-testid="entryCard-edit-button"
-              onClick={(e) => contextMenuHandler(e)}
-            >
-              <BsThreeDotsVertical />
-            </button>
-          </div>
-          {isContextMenuOpen && (
-            <div
-              data-testid="entryCard-context-menu"
-              className="absolute left-0 top-0 z-10 flex h-full w-full items-end justify-end rounded-xl bg-slate-700 bg-opacity-55"
-            >
+            <div className="dropdown dropdown-end" ref={dropdownRef}>
               <button
-                data-testid="entryCard-delete-button"
-                className="btn h-[30%] w-[100%] items-center justify-center border-0"
-                onClick={(e) => deleteEntryHandler(e, id)}
-                aria-label={t('card.deleteEntry')}
+                aria-label={t('card.openContextMenu')}
+                data-testid="entryCard-edit-button"
+                onClick={toggleDropdown}
+                className="border-1 btn btn-ghost btn-xs btn-circle border-gray-300 p-1 text-gray-600 hover:bg-gray-100 focus:outline-none"
               >
-                <FaRegTrashAlt />
-                <span className="ml-1 font-semibold">{t('card.deleteEntry')}</span>
+                <BsThreeDotsVertical />
               </button>
+              {showDropdown && (
+                <ul
+                  data-testid="entryCard-context-menu"
+                  className="dropdown-content menu menu-sm z-[100] mt-1 w-48 rounded-md border border-gray-200 bg-white p-0 focus:outline-none"
+                >
+                  <li className="rounded-md">
+                    <button
+                      data-testid="entryCard-delete-button"
+                      onClick={openDeleteModal}
+                      className="btn btn-sm items-center gap-2 border-0 bg-gray-50 py-2 text-sm text-red-600 focus:outline-none"
+                      aria-label={t('card.deleteEntry')}
+                    >
+                      <FaRegTrashAlt />
+                      <span>{t('card.deleteEntry')}</span>
+                    </button>
+                  </li>
+                </ul>
+              )}
             </div>
-          )}
+          </div>
         </div>
       </div>
+
+      {isModalOpen && (
+        <div className="modal-open modal cursor-default" onClick={closeModal}>
+          <div
+            className="modal-box relative border border-gray-200 bg-white"
+            onClick={handleOnModalClicks}
+          >
+            <h3 className="text-lg font-bold text-gray-800">{t('card.deleteEntry')}</h3>
+            <p className="py-4 text-gray-600">{t('card.deleteConfirmation')}</p>
+            <div className="modal-action">
+              <button
+                className="btn btn-outline border-gray-300 bg-white text-gray-700 shadow-none hover:bg-gray-50 focus:outline-none"
+                onClick={closeModal}
+              >
+                {t('card.cancel')}
+              </button>
+              <button
+                className="btn border-0 bg-red-800 text-white shadow-none hover:bg-red-900 focus:outline-none"
+                onClick={deleteEntryHandler}
+              >
+                {t('card.delete')}
+              </button>
+            </div>
+          </div>
+          <label className="modal-backdrop" onClick={closeModal}></label>
+        </div>
+      )}
     </>
   );
 };
