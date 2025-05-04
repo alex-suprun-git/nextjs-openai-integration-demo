@@ -23,58 +23,61 @@
   "background_color": "#1d232a",
   "start_url": "/",
   "display": "standalone",
-  "orientation": "landscape",
   "screenshots": [
     {
-      "src": "/assets/screenshots/desktop/screenshot1.png",
-      "sizes": "1920x886",
-      "type": "image/png",
+      "src": "/assets/screenshots/desktop/screenshot1.jpg",
+      "sizes": "1920x550",
+      "type": "image/jpg",
       "form_factor": "wide",
       "label": "Homepage"
     },
     {
-      "src": "/assets/screenshots/desktop/screenshot2.png",
-      "sizes": "1920x886",
-      "type": "image/png",
+      "src": "/assets/screenshots/desktop/screenshot2.jpg",
+      "sizes": "1920x552",
+      "type": "image/jpg",
       "form_factor": "wide",
       "label": "Dashboard Page"
     },
     {
-      "src": "/assets/screenshots/desktop/screenshot3.png",
-      "sizes": "1920x886",
-      "type": "image/png",
+      "src": "/assets/screenshots/desktop/screenshot3.jpg",
+      "sizes": "1920x555",
+      "type": "image/jpg",
       "form_factor": "wide",
       "label": "Dashboard Entry"
     },
     {
-      "src": "/assets/screenshots/desktop/screenshot4.png",
-      "sizes": "1920x886",
-      "type": "image/png",
+      "src": "/assets/screenshots/desktop/screenshot4.jpg",
+      "sizes": "1920x544",
+      "type": "image/jpg",
       "form_factor": "wide",
       "label": "Recent Mood Insights"
     },
     {
-      "src": "/assets/screenshots/mobile/screenshot1.png",
-      "sizes": "640x1224",
-      "type": "image/png",
+      "src": "/assets/screenshots/mobile/screenshot1.jpg",
+      "sizes": "500x703",
+      "type": "image/jpg",
+      "form_factor": "narrow",
       "label": "Homepage"
     },
     {
-      "src": "/assets/screenshots/mobile/screenshot2.png",
-      "sizes": "640x1224",
-      "type": "image/png",
+      "src": "/assets/screenshots/mobile/screenshot2.jpg",
+      "sizes": "453x1000",
+      "type": "image/jpg",
+      "form_factor": "narrow",
       "label": "Dashboard Page"
     },
     {
-      "src": "/assets/screenshots/mobile/screenshot3.png",
-      "sizes": "640x1224",
-      "type": "image/png",
+      "src": "/assets/screenshots/mobile/screenshot3.jpg",
+      "sizes": "467x1000",
+      "type": "image/jpg",
+      "form_factor": "narrow",
       "label": "Dashboard Entry"
     },
     {
-      "src": "/assets/screenshots/mobile/screenshot4.png",
-      "sizes": "640x1224",
-      "type": "image/png",
+      "src": "/assets/screenshots/mobile/screenshot3.jpg",
+      "sizes": "556x1000",
+      "type": "image/jpg",
+      "form_factor": "narrow",
       "label": "Recent Mood Insights"
     }
   ]
