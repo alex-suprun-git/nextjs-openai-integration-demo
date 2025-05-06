@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
-import { GoogleTagManager } from '@next/third-parties/google';
 import { setRequestLocale } from 'next-intl/server';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Inter } from 'next/font/google';
@@ -9,6 +8,7 @@ import { Inter } from 'next/font/google';
 import { routing } from '@/i18n/routing';
 import Navbar from '@/components/Navbar';
 import { LocalizedCookieBanner } from '@repo/global-ui';
+import { AnalyticsManager } from '@repo/global-analytics';
 import '@/app/globals.css';
 
 /* istanbul ignore next */
@@ -42,7 +42,7 @@ export default async function RootLocaleLayout({
   return (
     <html lang={locale}>
       <body className={`min-h-dvh bg-slate-900/25 ${inter.className}`}>
-        <GoogleTagManager gtmId="GTM-N4MLTRT2" />
+        <AnalyticsManager gtmId="GTM-N4MLTRT2" />
         <NextIntlClientProvider messages={messages}>
           <Navbar />
           {children}

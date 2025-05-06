@@ -22,6 +22,14 @@ const LocalizedCookieBanner: React.FC<LocalizedCookieBannerProps> = ({
 		description: t('description'),
 		acceptButton: t('acceptButton'),
 		rejectButton: t('rejectButton'),
+		types: {
+			required: t('types.required'),
+			functional: t('types.functional'),
+			analytics: t('types.analytics'),
+			marketing: t('types.marketing'),
+		},
+		learnMore: t('learnMore'),
+		policyLink: t('policyLink'),
 	};
 
 	return <CookieBanner translations={translations} />;

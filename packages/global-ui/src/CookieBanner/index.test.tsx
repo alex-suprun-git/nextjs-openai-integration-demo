@@ -1,19 +1,11 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi, afterAll } from 'vitest';
+import Cookies from 'js-cookie';
 import CookieBanner from './index';
 
-// Create mock functions for js-cookie
-const mockGet = vi.fn();
-const mockSet = vi.fn();
-
-// Mock js-cookie module
-vi.mock('js-cookie', () => ({
-	default: {
-		get: mockGet,
-		set: mockSet,
-	},
-}));
+// Mock js-cookie module properly for Vitest
+vi.mock('js-cookie');
 
 // Mock window.location
 const originalLocation = window.location;
@@ -38,7 +30,7 @@ describe('CookieBanner', () => {
 	});
 
 	it('renders correctly with provided translations', () => {
-		mockGet.mockReturnValue(null);
+		vi.mocked(Cookies.get).mockReturnValue(null);
 
 		render(<CookieBanner translations={mockTranslations} />);
 
@@ -49,7 +41,7 @@ describe('CookieBanner', () => {
 	});
 
 	it('does not render when cookie consent is already given', () => {
-		mockGet.mockReturnValue('accepted');
+		vi.mocked(Cookies.get).mockReturnValue('accepted');
 
 		const { container } = render(
 			<CookieBanner translations={mockTranslations} />
@@ -59,25 +51,39 @@ describe('CookieBanner', () => {
 	});
 
 	it('sets cookie and hides banner when accepting', () => {
-		mockGet.mockReturnValue(null);
+		vi.mocked(Cookies.get).mockReturnValue(null);
 
 		render(<CookieBanner translations={mockTranslations} />);
 
 		fireEvent.click(screen.getByText(mockTranslations.acceptButton));
 
-		expect(mockSet).toHaveBeenCalledWith('gdpr-consent', 'accepted', {
-			expires: 7,
-		});
+		expect(vi.mocked(Cookies.set)).toHaveBeenCalledWith(
+			'gdpr-consent',
+			'accepted',
+			{
+				expires: 7,
+			}
+		);
 	});
 
-	it('redirects to Google when rejecting', () => {
-		mockGet.mockReturnValue(null);
+	it('sets rejected cookie and calls onReject when rejecting', () => {
+		vi.mocked(Cookies.get).mockReturnValue(null);
+		const mockOnReject = vi.fn();
 
-		render(<CookieBanner translations={mockTranslations} />);
+		render(
+			<CookieBanner translations={mockTranslations} onReject={mockOnReject} />
+		);
 
 		fireEvent.click(screen.getByText(mockTranslations.rejectButton));
 
-		expect(window.location.href).toBe('https://www.google.com');
+		expect(vi.mocked(Cookies.set)).toHaveBeenCalledWith(
+			'gdpr-consent',
+			'rejected',
+			{
+				expires: 7,
+			}
+		);
+		expect(mockOnReject).toHaveBeenCalled();
 	});
 
 	// Restore original window.location after all tests

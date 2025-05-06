@@ -30,6 +30,7 @@
     "@prisma/adapter-neon": "^5.17.0",
     "@prisma/client": "^5.17.0",
     "@radix-ui/react-dropdown-menu": "2.1.7",
+    "@repo/global-analytics": "workspace:^",
     "@repo/global-ui": "*",
     "@repo/global-utils": "*",
     "@sentry/nextjs": "^9.12.0",

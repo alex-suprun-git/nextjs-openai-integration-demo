@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { ClerkProvider } from '@clerk/nextjs';
 import { deDE, enUS } from '@clerk/localizations';
-import { GoogleTagManager } from '@next/third-parties/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 import { SpeedInsights } from '@vercel/speed-insights/next';
@@ -9,6 +8,7 @@ import { Inter } from 'next/font/google';
 
 import { getCurrentEnv } from '@repo/global-utils/helpers';
 import { LocalizedCookieBanner } from '@repo/global-ui';
+import { AnalyticsManager } from '@repo/global-analytics';
 import { PUBLIC_BASE_URL } from '@/constants';
 import './globals.css';
 
@@ -35,7 +35,7 @@ export default async function RootLayout({
       localization={clerkLocalization}
     >
       <html lang={locale}>
-        <GoogleTagManager gtmId="GTM-N4MLTRT2" />
+        <AnalyticsManager gtmId="GTM-N4MLTRT2" />
         <body className={`min-h-dvh bg-slate-900/25 ${inter.className}`}>
           <NextIntlClientProvider messages={messages}>
             {children}

@@ -11,6 +11,34 @@ vi.mock('../CookieBanner', () => ({
 			<div data-testid="description">{translations.description}</div>
 			<div data-testid="accept-button">{translations.acceptButton}</div>
 			<div data-testid="reject-button">{translations.rejectButton}</div>
+			{translations.types && (
+				<div data-testid="types">
+					{translations.types.required && (
+						<div data-testid="type-required">{translations.types.required}</div>
+					)}
+					{translations.types.functional && (
+						<div data-testid="type-functional">
+							{translations.types.functional}
+						</div>
+					)}
+					{translations.types.analytics && (
+						<div data-testid="type-analytics">
+							{translations.types.analytics}
+						</div>
+					)}
+					{translations.types.marketing && (
+						<div data-testid="type-marketing">
+							{translations.types.marketing}
+						</div>
+					)}
+				</div>
+			)}
+			{translations.learnMore && (
+				<div data-testid="learn-more">{translations.learnMore}</div>
+			)}
+			{translations.policyLink && (
+				<div data-testid="policy-link">{translations.policyLink}</div>
+			)}
 		</div>
 	),
 }));
@@ -23,8 +51,14 @@ vi.mock('next-intl', () => ({
 			description: 'Test Description',
 			acceptButton: 'Test Accept',
 			rejectButton: 'Test Reject',
+			'types.required': 'Test Required',
+			'types.functional': 'Test Functional',
+			'types.analytics': 'Test Analytics',
+			'types.marketing': 'Test Marketing',
+			learnMore: 'Test Learn More',
+			policyLink: '/test-privacy',
 		};
-		return translations[key];
+		return translations[key] || key;
 	},
 }));
 
@@ -42,6 +76,28 @@ describe('LocalizedCookieBanner', () => {
 		);
 		expect(screen.getByTestId('reject-button')).toHaveTextContent(
 			'Test Reject'
+		);
+
+		// Check types
+		expect(screen.getByTestId('type-required')).toHaveTextContent(
+			'Test Required'
+		);
+		expect(screen.getByTestId('type-functional')).toHaveTextContent(
+			'Test Functional'
+		);
+		expect(screen.getByTestId('type-analytics')).toHaveTextContent(
+			'Test Analytics'
+		);
+		expect(screen.getByTestId('type-marketing')).toHaveTextContent(
+			'Test Marketing'
+		);
+
+		// Check policy links
+		expect(screen.getByTestId('learn-more')).toHaveTextContent(
+			'Test Learn More'
+		);
+		expect(screen.getByTestId('policy-link')).toHaveTextContent(
+			'/test-privacy'
 		);
 	});
 

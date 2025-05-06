@@ -1,15 +1,24 @@
 import { describe, it, expect, vi, Mock, beforeAll, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { usePathname } from 'next/navigation';
-import { createTranslator, useTranslations } from 'next-intl';
 import Header from '.';
 
 vi.mock('next/navigation', () => ({
 	usePathname: vi.fn(),
 }));
 
+vi.mock('next-intl', async () => {
+	const actual = await vi.importActual('next-intl');
+	return {
+		...actual,
+		useTranslations: vi.fn(),
+	};
+});
+
 describe('Header', () => {
 	beforeAll(async () => {
+		const { createTranslator, useTranslations } = await import('next-intl');
+
 		const translate = createTranslator({
 			locale: 'en',
 			namespace: 'Header',

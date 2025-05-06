@@ -23,8 +23,16 @@
   },
   "CookieBanner": {
     "title": "Cookie-Richtlinie",
-    "description": "Diese Website verwendet Cookies, um Ihnen die bestmögliche Erfahrung auf unserer Website zu gewährleisten. Indem Sie diese Website weiterhin nutzen, stimmen Sie unserer Verwendung von Cookies gemäß unserer Datenschutzrichtlinie zu.",
-    "acceptButton": "Akzeptieren",
-    "rejectButton": "Ablehnen"
+    "description": "Diese Website verwendet Cookies, um Ihnen die bestmögliche Erfahrung zu gewährleisten. Sie können alle Cookies akzeptieren oder ablehnen.",
+    "types": {
+      "required": "Notwendig: Websitefunktionalität",
+      "functional": "Funktional: Benutzererfahrung",
+      "analytics": "Analyse: Nutzungsmuster",
+      "marketing": "Marketing: Personalisierung"
+    },
+    "learnMore": "Mehr erfahren",
+    "policyLink": "/privacy",
+    "acceptButton": "Alle akzeptieren",
+    "rejectButton": "Alle ablehnen"
   }
 }

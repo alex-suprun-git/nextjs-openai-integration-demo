@@ -15,6 +15,5 @@ describe('Heading', () => {
 		expect(h1Element).toHaveClass('mb-12');
 		expect(h1Element).toHaveClass('text-5xl');
 		expect(h1Element).toHaveClass('font-bold');
-		expect(h1Element).toHaveClass('');
 	});
 });
