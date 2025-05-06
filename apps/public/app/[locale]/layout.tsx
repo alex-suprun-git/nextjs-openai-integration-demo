@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
+import { GoogleTagManager } from '@next/third-parties/google';
 import { setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import Navbar from '@/components/Navbar';
@@ -39,6 +40,7 @@ export default async function RootLocaleLayout({
   return (
     <html lang={locale}>
       <body className={`min-h-dvh bg-slate-900/25 ${inter.className}`}>
+        <GoogleTagManager gtmId="GTM-N4MLTRT2" />
         <NextIntlClientProvider messages={messages}>
           <Navbar />
           {children}

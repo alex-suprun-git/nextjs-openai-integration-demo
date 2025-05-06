@@ -26,6 +26,7 @@
     "@langchain/core": "0.3.45",
     "@langchain/openai": "0.5.5",
     "@neondatabase/serverless": "^0.9.5",
+    "@next/third-parties": "^15.3.1",
     "@prisma/adapter-neon": "^5.17.0",
     "@prisma/client": "^5.17.0",
     "@radix-ui/react-dropdown-menu": "2.1.7",
