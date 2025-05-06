@@ -43,7 +43,7 @@ function Navbar() {
             <LanguageSwitcher />
           </div>
           <Link
-            className="btn bg-yellow-200 text-lg font-bold text-gray-900 hover:bg-yellow-300"
+            className="toLogInLink btn bg-yellow-200 text-lg font-bold text-gray-900 hover:bg-yellow-300"
             href={PLATFORM_BASE_URL[getCurrentEnv()]}
           >
             {t('navigation.toPlatform')}

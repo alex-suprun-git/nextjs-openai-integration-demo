@@ -18,7 +18,7 @@ function Hero({ headline, description }: { headline: string; description: Docume
           {documentToReactComponents(description)}
         </div>
         <div>
-          <Link href={PLATFORM_BASE_URL[getCurrentEnv()]}>
+          <Link className="toLogInLink" href={PLATFORM_BASE_URL[getCurrentEnv()]}>
             <button className="btn btn-lg mb-5 border-0 bg-yellow-200 text-gray-900 hover:bg-yellow-300">
               {t('linkText')}
             </button>
