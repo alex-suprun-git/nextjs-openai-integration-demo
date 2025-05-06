@@ -5,3 +5,5 @@ export { default as Header } from './Header';
 export { default as Drawer } from './Drawer';
 export { default as Breadcrumbs } from './Breadcrumbs';
 export { default as BreadcrumbsItem } from './Breadcrumbs/Item';
+export { default as CookieBanner } from './CookieBanner';
+export { default as LocalizedCookieBanner } from './LocalizedCookieBanner';

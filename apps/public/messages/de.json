@@ -16,9 +16,15 @@
     "linkText": "Zurück zur Startseite"
   },
   "ErrorBoundary": {
-    "headline": "Ups! Da ist etwas schiefgegangen",
+    "headline": "Hoppla! Wir sind auf ein Problem gestoßen",
     "buttons": {
       "tryAgain": "Erneut versuchen"
     }
+  },
+  "CookieBanner": {
+    "title": "Cookie-Richtlinie",
+    "description": "Diese Website verwendet Cookies, um Ihnen die bestmögliche Erfahrung auf unserer Website zu gewährleisten. Indem Sie diese Website weiterhin nutzen, stimmen Sie unserer Verwendung von Cookies gemäß unserer Datenschutzrichtlinie zu.",
+    "acceptButton": "Akzeptieren",
+    "rejectButton": "Ablehnen"
   }
 }
