@@ -48,7 +48,7 @@ function Content({
         <textarea
           data-testid="entry-content-field"
           className={clsx(
-            'textarea min-h-80 w-full resize-none bg-gray-900 p-10 text-xl outline-none',
+            'textarea min-h-80 w-full resize-none bg-gray-900 p-10 text-xl outline-none disabled:bg-gray-900 disabled:text-gray-300',
             !isNewEntry && 'sm:min-h-[500px]',
           )}
           value={contentValue}

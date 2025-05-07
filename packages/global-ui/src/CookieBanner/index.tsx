@@ -75,7 +75,7 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
 	const hasTypes = cookieTypes.length > 0;
 
 	return (
-		<div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-base-200 shadow-lg">
+		<div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-gray-900 shadow-lg">
 			<div className="container mx-auto">
 				<div className="flex flex-col sm:flex-row items-start justify-between gap-4">
 					<div className="max-w-2xl">

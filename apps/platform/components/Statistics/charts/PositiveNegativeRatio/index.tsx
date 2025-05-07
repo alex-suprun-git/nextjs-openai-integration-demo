@@ -47,7 +47,7 @@ const PositiveNegativeRatio = ({ data }: PositiveNegativeRatioProps) => {
           <FaRegQuestionCircle fontSize={14} />
         </sup>
       </h2>
-      <ResponsiveContainer aspect={getChartAspectRatio(windowWidth)}>
+      <ResponsiveContainer width="100%" aspect={getChartAspectRatio(windowWidth)}>
         <PieChart
           margin={{
             top: 5,

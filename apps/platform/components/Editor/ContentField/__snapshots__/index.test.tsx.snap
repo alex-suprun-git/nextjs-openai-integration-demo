@@ -11,7 +11,7 @@ exports[`Content > renders correctly and matches snapshot 1`] = `
     class="relative"
   >
     <textarea
-      class="textarea min-h-80 w-full resize-none bg-gray-900 p-10 text-xl outline-none sm:min-h-[500px]"
+      class="textarea min-h-80 w-full resize-none bg-gray-900 p-10 text-xl outline-none disabled:bg-gray-900 disabled:text-gray-300 sm:min-h-[500px]"
       data-testid="entry-content-field"
       disabled=""
       maxlength="500"

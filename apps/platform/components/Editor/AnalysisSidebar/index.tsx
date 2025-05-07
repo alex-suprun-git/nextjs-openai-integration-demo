@@ -100,7 +100,7 @@ function AnalysisSidebar({
           <button
             onClick={openDeleteModal}
             data-testid="delete-entry-button"
-            className="md:max-lg:mb-10 btn border-0 bg-red-800 hover:bg-red-900"
+            className="md:max-lg:mb-10 btn border-0 bg-red-800 text-white hover:bg-red-900"
           >
             {c('deleteEntry.actionButton')} <FaRegTrashAlt />
           </button>

@@ -24,7 +24,7 @@ const Editor = ({ entry }: { entry: EditorEntry }) => {
     <div className="grid gap-10 pt-12 md:grid-cols-3 lg:min-h-svh">
       <div className="relative px-5 pb-12 md:col-span-2 md:pl-10">
         <Link href="/">
-          <div className="btn mb-8 border-0 bg-slate-900 hover:bg-slate-900">
+          <div className="btn mb-8 border-0 bg-slate-900 text-white hover:bg-slate-900">
             <IoReturnUpBack />
           </div>
         </Link>

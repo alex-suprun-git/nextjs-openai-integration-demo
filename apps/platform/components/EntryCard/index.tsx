@@ -118,6 +118,10 @@ const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
                 aria-label={t('card.openContextMenu')}
                 data-testid="entryCard-edit-button"
                 onClick={toggleDropdown}
+                onTouchStart={(e) => {
+                  e.preventDefault();
+                  toggleDropdown(e as any);
+                }}
                 className="border-1 btn btn-ghost btn-xs btn-circle border-gray-300 p-1 text-gray-600 hover:bg-gray-100 focus:outline-none"
               >
                 <BsThreeDotsVertical />
@@ -126,6 +130,7 @@ const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
                 <ul
                   data-testid="entryCard-context-menu"
                   className="dropdown-content menu menu-sm z-[100] mt-1 w-48 rounded-md border border-gray-200 bg-white p-0 focus:outline-none"
+                  style={{ position: 'absolute', right: 0, top: '100%' }}
                 >
                   <li className="rounded-md">
                     <button
@@ -135,7 +140,7 @@ const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
                       aria-label={c('deleteEntry.actionButton')}
                     >
                       <FaRegTrashAlt />
-                      <span>{c('deleteEntry.actionButton')}</span>
+                      <span className="text-xs">{c('deleteEntry.actionButton')}</span>
                     </button>
                   </li>
                 </ul>

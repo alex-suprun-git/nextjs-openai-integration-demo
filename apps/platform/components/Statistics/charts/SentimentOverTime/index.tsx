@@ -7,6 +7,18 @@ import { FaRegQuestionCircle } from 'react-icons/fa';
 import { formatDate } from '@/utils/helpers';
 import { useWindowWidth, getChartAspectRatio } from '@/hooks/useWindowWidth';
 
+// Format date specifically for chart x-axis (compact format)
+const formatChartDate = (dateValue: string | Date): string => {
+  const date = dateValue instanceof Date ? dateValue : new Date(dateValue);
+  if (isNaN(date.getTime())) {
+    return 'Invalid Date';
+  }
+  return new Intl.DateTimeFormat('en-GB', {
+    month: 'short',
+    day: 'numeric',
+  }).format(date);
+};
+
 const CustomTooltip = ({
   active,
   payload,
@@ -21,7 +33,7 @@ const CustomTooltip = ({
           className="absolute left-2 top-2 z-10 h-2 w-2 rounded-full"
           style={{ background: analysis.color }}
         ></div>
-        <p className="label text-sm">{label}</p>
+        <p className="label text-sm">{analysis.fullDate || label}</p>
         <p className="intro text-xl uppercase">{analysis.mood}</p>
       </div>
     );
@@ -40,7 +52,8 @@ const SentimentOverTimeChart = ({ data }: SentimentOverTimeProps) => {
 
   const formattedData = data.map((entry) => ({
     ...entry,
-    createdAt: formatDate(new Date(entry.createdAt)),
+    fullDate: formatDate(new Date(entry.createdAt)), // Keep full date for tooltip
+    createdAt: formatChartDate(entry.createdAt), // Use compact date for x-axis
   }));
 
   return (
@@ -51,7 +64,7 @@ const SentimentOverTimeChart = ({ data }: SentimentOverTimeProps) => {
           <FaRegQuestionCircle fontSize={14} />
         </sup>
       </h2>
-      <ResponsiveContainer aspect={getChartAspectRatio(windowWidth)}>
+      <ResponsiveContainer width="100%" aspect={getChartAspectRatio(windowWidth)}>
         <LineChart
           data={formattedData}
           margin={{
@@ -68,7 +81,13 @@ const SentimentOverTimeChart = ({ data }: SentimentOverTimeProps) => {
             strokeWidth={windowWidth < 576 ? 1.5 : 2}
             activeDot={{ r: windowWidth < 576 ? 6 : 8 }}
           />
-          <XAxis dataKey="createdAt" tick={{ fontSize: windowWidth < 576 ? 14 : 16 }} />
+          <XAxis
+            dataKey="createdAt"
+            tick={{ fontSize: windowWidth < 576 ? 12 : 14 }}
+            angle={windowWidth < 576 ? -45 : 0}
+            textAnchor={windowWidth < 576 ? 'end' : 'middle'}
+            height={windowWidth < 576 ? 60 : 30}
+          />
           <Tooltip content={<CustomTooltip />} />
         </LineChart>
       </ResponsiveContainer>

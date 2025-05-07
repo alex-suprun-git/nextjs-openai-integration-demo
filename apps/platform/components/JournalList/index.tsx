@@ -24,7 +24,6 @@ const JournalList = ({ entries }: { entries: Required<AnalysisSubEntry[]> | [] }
               <EntryCard
                 id={analysisEntry.id}
                 createdAt={analysisEntry.createdAt}
-                updatedAt={analysisEntry.updatedAt}
                 title={analysisEntry.analysis?.title}
                 color={analysisEntry.analysis?.color}
               />
