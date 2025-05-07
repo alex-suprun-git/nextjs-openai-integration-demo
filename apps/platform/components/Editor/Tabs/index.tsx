@@ -1,51 +1,45 @@
 'use client';
 
 import clsx from 'clsx';
-import { MouseEventHandler, RefObject } from 'react';
-import { useTranslations } from 'next-intl';
+import React, { MouseEventHandler, RefObject } from 'react';
 import { Alert, Loading } from '@repo/global-ui';
+import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
-import Tabs from '../Tabs';
 import { MINIMUM_CONTENT_LENGTH } from '@/utils/constants';
 
-function Content({
+function Tabs({
   isLoading,
   isContentEntryUpdated,
+  isContentEntryCreated,
   contentValue,
   changeContentHandler,
   saveContentHandler,
-  entryCreatedRef,
   isPromptSymbolsExceeded,
 }: {
   isLoading: boolean;
   isContentEntryUpdated: boolean;
+  isContentEntryCreated: boolean;
   contentValue: string;
   changeContentHandler: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   saveContentHandler: MouseEventHandler<HTMLButtonElement>;
-  entryCreatedRef: RefObject<boolean>;
   isPromptSymbolsExceeded: boolean;
 }) {
   const pathname = usePathname();
   const isNewEntry = pathname === '/new-entry';
   const isContentTooShort = contentValue.length < MINIMUM_CONTENT_LENGTH;
-  const isContentEntryCreated = entryCreatedRef.current;
-
   const t = useTranslations('Editor');
 
   return (
-    <>
-      {isNewEntry ? (
-        <Tabs
-          isLoading={isLoading}
-          isContentEntryUpdated={isContentEntryUpdated}
-          isContentEntryCreated={isContentEntryCreated}
-          contentValue={contentValue}
-          changeContentHandler={changeContentHandler}
-          saveContentHandler={saveContentHandler}
-          isPromptSymbolsExceeded={isPromptSymbolsExceeded}
-        />
-      ) : (
-        <div className="px-6">
+    <div className="tabs tabs-lift tabs-lg mb-6 p-6">
+      <input
+        type="radio"
+        name="contentFieldTabs"
+        className="tab"
+        aria-label="Text"
+        defaultChecked
+      />
+      <div className="tab-content border-stone-900 p-3 sm:p-6">
+        <>
           {isPromptSymbolsExceeded && (
             <Alert type="error">{t('alerts.symbolsLimitExceeded')}</Alert>
           )}
@@ -67,15 +61,32 @@ function Content({
                 !isNewEntry && 'sm:min-h-[500px]',
               )}
               value={contentValue}
+              onChange={(e) => changeContentHandler(e)}
               placeholder={t('contentFieldPlaceholder')}
-              disabled={true}
+              maxLength={500}
+              disabled={isPromptSymbolsExceeded || isLoading || !isNewEntry}
               required
             />
           </div>
-        </div>
-      )}
-    </>
+          {isNewEntry && (
+            <div className="mt-6 flex justify-end">
+              <button
+                id="GA_createRecordButton"
+                disabled={!!isContentTooShort || isLoading}
+                onClick={saveContentHandler}
+                className="btn bg-blue-900"
+              >
+                Submit
+              </button>
+            </div>
+          )}
+        </>
+      </div>
+
+      <input type="radio" name="contentFieldTabs" className="tab" aria-label="Upload File" />
+      <div className="tab-content border-stone-900 p-3 sm:p-6">Tab content 2</div>
+    </div>
   );
 }
 
-export default Content;
+export default Tabs;

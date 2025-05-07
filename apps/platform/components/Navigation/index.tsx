@@ -27,7 +27,7 @@ const Navigation = ({ onClick = () => {} }: { onClick?: MouseEventHandler<HTMLAn
     {
       id: 'aboutMe',
       label: t('navigation.aboutMe'),
-      href: `${PUBLIC_BASE_URL[getCurrentEnv()]}/about-me`,
+      href: `${PUBLIC_BASE_URL[getCurrentEnv()]}about-me`,
     },
   ] as NavLinkType[];
 

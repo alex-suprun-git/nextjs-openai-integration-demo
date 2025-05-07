@@ -1,5 +1,7 @@
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
+import Link from 'next/link';
+import { IoReturnUpBack } from 'react-icons/io5';
 import { getUserByClerkId } from '@/utils/auth';
 import { prisma } from '@/utils/db';
 import Editor from '@/components/Editor';
@@ -38,7 +40,15 @@ const EntryPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     return notFound();
   }
 
-  return <Editor entry={entry as Required<AnalysisSubEntry>} />;
+  return (
+    <div data-testid="entryPage" className="container mx-auto py-10 pb-32 xl:px-10">
+      <Link href="/" className="px-6">
+        <div className="btn mb-8 border-0 bg-slate-900 px-6 text-white hover:bg-slate-900">
+          <IoReturnUpBack />
+        </div>
+      </Link>
+      <Editor entry={entry as Required<AnalysisSubEntry>} />
+    </div>
+  );
 };
-
 export default EntryPage;

@@ -24,7 +24,7 @@ function StatisticsData({
   }
 
   return (
-    <div data-testid="statisticsPage" className="container mx-auto py-10 pb-32 xl:px-10">
+    <div data-testid="statisticsPage" className="container mx-auto px-6 py-10 pb-32 xl:px-10">
       <Breadcrumbs>
         <BreadcrumbsItem href="/">{h('navigation.journal')}</BreadcrumbsItem>
         <BreadcrumbsItem>{t('headline')}</BreadcrumbsItem>
