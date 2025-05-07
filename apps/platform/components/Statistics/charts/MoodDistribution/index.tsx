@@ -13,6 +13,7 @@ import {
   CartesianGrid,
 } from 'recharts';
 import { FaRegQuestionCircle } from 'react-icons/fa';
+import { useWindowWidth, getChartAspectRatio } from '@/hooks/useWindowWidth';
 
 type AnalysisEntry = {
   mood: string;
@@ -25,6 +26,7 @@ interface MoodDistributionProps {
 
 const MoodDistribution = ({ data }: MoodDistributionProps) => {
   const t = useTranslations('StatisticsPage');
+  const windowWidth = useWindowWidth();
 
   // Aggregate counts by mood
   const chartData = useMemo(() => {
@@ -39,17 +41,29 @@ const MoodDistribution = ({ data }: MoodDistributionProps) => {
   }, [data]);
 
   return (
-    <div className="border-2 border-dashed border-gray-900 bg-slate-800 p-6 sm:p-12">
+    <div className="border-2 border-dashed border-gray-900 bg-slate-800 p-6">
       <h2 className="mb-4 text-center text-xl font-medium">
         {t('charts.moodDistribution.title')}
         <sup className="tooltip ml-1" data-tip={t('charts.moodDistribution.description')}>
           <FaRegQuestionCircle fontSize={14} />
         </sup>
       </h2>
-      <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={chartData} margin={{ top: 20, right: 20, left: 0, bottom: 5 }}>
+      <ResponsiveContainer aspect={getChartAspectRatio(windowWidth)}>
+        <BarChart
+          data={chartData}
+          margin={{
+            top: 20,
+            right: 20,
+            left: windowWidth < 576 ? 5 : 0,
+            bottom: windowWidth < 576 ? 10 : 5,
+          }}
+        >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="mood" name={t('charts.moodDistribution.labels.mood')} />
+          <XAxis
+            dataKey="mood"
+            name={t('charts.moodDistribution.labels.mood')}
+            tick={{ fontSize: windowWidth < 576 ? 14 : 16 }}
+          />
           <YAxis allowDecimals={false} />
           <Tooltip
             contentStyle={{

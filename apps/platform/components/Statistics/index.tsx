@@ -32,7 +32,7 @@ function StatisticsData({
 
       <Heading>{t('headline')}</Heading>
       <p className="mb-20 max-w-screen-sm text-lg leading-relaxed">{t('description')}</p>
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
         <SentimentOverTimeChart data={analyses as AnalysisEntry[]} />
         <MoodDistribution data={analyses as AnalysisEntry[]} />
         <PositiveNegativeRatio data={analyses as AnalysisEntry[]} />

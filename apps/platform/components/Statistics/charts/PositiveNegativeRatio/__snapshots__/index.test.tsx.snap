@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`HistoryChart > renders correctly and matches snapshot 1`] = `
+exports[`PositiveNegativeRatio > renders correctly and matches snapshot 1`] = `
 <div>
   <div
     class="border-2 border-dashed border-gray-900 bg-slate-800 p-6"
@@ -8,10 +8,10 @@ exports[`HistoryChart > renders correctly and matches snapshot 1`] = `
     <h2
       class="mb-12 text-center text-xl font-medium"
     >
-      charts.sentimentOverTime.title
+      charts.positiveNegativeRatio.title
       <sup
         class="tooltip ml-1"
-        data-tip="charts.sentimentOverTime.description"
+        data-tip="charts.positiveNegativeRatio.description"
       >
         <svg
           fill="currentColor"
@@ -34,7 +34,7 @@ exports[`HistoryChart > renders correctly and matches snapshot 1`] = `
 </div>
 `;
 
-exports[`HistoryChart > renders correctly with empty data 1`] = `
+exports[`PositiveNegativeRatio > renders correctly with empty data 1`] = `
 <div>
   <div
     class="border-2 border-dashed border-gray-900 bg-slate-800 p-6"
@@ -42,10 +42,10 @@ exports[`HistoryChart > renders correctly with empty data 1`] = `
     <h2
       class="mb-12 text-center text-xl font-medium"
     >
-      charts.sentimentOverTime.title
+      charts.positiveNegativeRatio.title
       <sup
         class="tooltip ml-1"
-        data-tip="charts.sentimentOverTime.description"
+        data-tip="charts.positiveNegativeRatio.description"
       >
         <svg
           fill="currentColor"

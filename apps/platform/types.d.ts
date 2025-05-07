@@ -1,7 +1,6 @@
 type BaseEntry = {
   id: string;
   createdAt: Date;
-  updatedAt?: Date;
   userId?: string;
   content?: string;
 };
@@ -25,16 +24,12 @@ type AnalysisData = {
   title: string;
 };
 
-type AnalysisEntry = BaseEntry &
-  AnalysisData & {
-    updatedAt: Date;
-  };
+type AnalysisEntry = BaseEntry & AnalysisData;
 
 type AnalysisSubEntry = BaseEntry & {
   analysis: AnalysisData & {
     id: string;
     createdAt: Date;
-    updatedAt: Date;
     entryId: string;
     userId: string;
   };
@@ -46,7 +41,6 @@ type AnalysisSubEntryResponse =
         | (AnalysisData & {
             id: string;
             createdAt: Date;
-            updatedAt: Date;
             entryId: string;
             userId: string;
           })

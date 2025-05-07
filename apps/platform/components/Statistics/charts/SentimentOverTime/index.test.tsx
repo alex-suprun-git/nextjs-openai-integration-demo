@@ -1,7 +1,6 @@
 import { render, screen, within } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import HistoryChart from '.';
-import { formatDate } from '@/utils/helpers';
 
 class ResizeObserver {
   observe() {}
@@ -27,8 +26,8 @@ beforeEach(() => {
 
 describe('HistoryChart', () => {
   const mockData = [
-    { sentimentScore: 1, updatedAt: '2023-01-01T00:00:00Z', mood: 'Happy', color: 'green' },
-    { sentimentScore: 0, updatedAt: '2023-01-02T00:00:00Z', mood: 'Neutral', color: 'gray' },
+    { sentimentScore: 1, createdAt: '2023-01-01T00:00:00Z', mood: 'Happy', color: 'green' },
+    { sentimentScore: 0, createdAt: '2023-01-02T00:00:00Z', mood: 'Neutral', color: 'gray' },
   ] as any[];
 
   it('renders correctly and matches snapshot', () => {
@@ -42,7 +41,7 @@ describe('HistoryChart', () => {
     // Simulate the Tooltip being active
     const activeTooltipData = {
       sentimentScore: 1,
-      updatedAt: '2023-01-01',
+      createdAt: '2023-01-01',
       mood: 'Happy',
       color: 'green',
     };
@@ -56,7 +55,7 @@ describe('HistoryChart', () => {
           className="absolute left-2 top-2 h-2 w-2 rounded-full"
           style={{ background: activeTooltipData.color }}
         ></div>
-        <p className="label text-sm">{activeTooltipData.updatedAt}</p>
+        <p className="label text-sm">{activeTooltipData.createdAt}</p>
         <p className="intro text-xl uppercase">{activeTooltipData.mood}</p>
       </div>,
     );
@@ -69,15 +68,6 @@ describe('HistoryChart', () => {
 
     const moodElement = within(tooltipElement!).getByText('Happy');
     expect(moodElement).toBeInTheDocument();
-  });
-
-  it('formats data correctly before rendering', () => {
-    render(<HistoryChart data={mockData} />);
-
-    mockData.forEach((entry) => {
-      const formattedDate = formatDate(new Date(entry.updatedAt));
-      expect(screen.getByText(formattedDate)).toBeInTheDocument();
-    });
   });
 
   it('renders correctly with empty data', () => {

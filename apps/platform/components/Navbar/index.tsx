@@ -26,7 +26,7 @@ function Navbar() {
         </div>
         <div className="xl:hidden">
           <Drawer toggleRef={drawerToggleRef} icon={<FiMenu size={38} />}>
-            <Logo onClick={drawerToggleHandler} className={'mb-5 mt-2 sm:hidden'} />
+            <Logo onClick={drawerToggleHandler} className={'mb-5 mt-2 xl:hidden'} />
             <Navigation onClick={drawerToggleHandler} />
             <PromptCounter />
           </Drawer>
@@ -36,7 +36,7 @@ function Navbar() {
         <div className="hidden lg:block">
           <PromptCounter />
         </div>
-        <Logo className={'hidden sm:block xl:hidden'} />
+        <Logo className="hidden sm:block lg:hidden" />
       </div>
       <div className="navbar-end">
         <div className="mr-6 md:mr-12">
