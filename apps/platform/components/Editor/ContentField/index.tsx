@@ -62,6 +62,7 @@ function Content({
       {isNewEntry && (
         <div className="mt-6 flex justify-end">
           <button
+            id="GA_createRecordButton"
             disabled={!!isContentTooShort || isLoading}
             onClick={saveContentHandler}
             className="btn bg-blue-900"
