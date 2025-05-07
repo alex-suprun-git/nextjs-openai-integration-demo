@@ -17,8 +17,8 @@ vi.mock('next/link', () => ({
     <a href={href}>{children}</a>
   ),
 }));
-vi.mock('@/constants', () => ({
-  PLATFORM_BASE_URL: { development: 'http://localhost:3001' },
+vi.mock('@repo/global-utils/helpers', () => ({
+  getCurrentEnv: () => 'development',
 }));
 
 describe('Hero Component', () => {
@@ -48,7 +48,7 @@ describe('Hero Component', () => {
     render(<Hero headline="H" description={{ nodeType: 'document', content: [] } as any} />);
 
     const link = screen.getByRole('link');
-    expect(link).toHaveAttribute('href', 'http://localhost:3001');
+    expect(link).toHaveAttribute('href', 'http://localhost:3001/');
 
     expect(screen.getByText('translated-linkText')).toBeInTheDocument();
   });

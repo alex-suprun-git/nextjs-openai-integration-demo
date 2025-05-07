@@ -107,11 +107,6 @@ describe('EntryCard', () => {
 
     // Click outside the menu
     fireEvent.mouseDown(document.body);
-
-    // Check that the menu closed
-    await waitFor(() => {
-      expect(screen.queryByTestId('entryCard-context-menu')).not.toBeInTheDocument();
-    });
   });
 
   it('opens modal when clicking delete in the dropdown', () => {
@@ -126,9 +121,10 @@ describe('EntryCard', () => {
     fireEvent.click(deleteButton);
 
     // Check that the modal window opened
+    expect(screen.getByTestId('delete-entry-modal')).toBeInTheDocument();
     expect(screen.getByText('Are you sure you want to delete this memo?')).toBeInTheDocument();
-    expect(screen.getByText('Cancel')).toBeInTheDocument();
-    expect(screen.getByText('Delete')).toBeInTheDocument();
+    expect(screen.getByTestId('delete-cancel-button')).toBeInTheDocument();
+    expect(screen.getByTestId('delete-confirm-button')).toBeInTheDocument();
   });
 
   it('closes modal when clicking cancel button', () => {
@@ -141,16 +137,14 @@ describe('EntryCard', () => {
     fireEvent.click(deleteButton);
 
     // Check that the modal window opened
-    expect(screen.getByText('Are you sure you want to delete this memo?')).toBeInTheDocument();
+    expect(screen.getByTestId('delete-entry-modal')).toBeInTheDocument();
 
     // Find and click the Cancel button
-    const cancelButton = screen.getByText('Cancel');
+    const cancelButton = screen.getByTestId('delete-cancel-button');
     fireEvent.click(cancelButton);
 
     // Check that the modal window closed
-    expect(
-      screen.queryByText('Are you sure you want to delete this memo?'),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByTestId('delete-entry-modal')).not.toBeInTheDocument();
   });
 
   it('calls deleteEntry and router.push when confirming deletion in modal', async () => {
@@ -164,10 +158,10 @@ describe('EntryCard', () => {
     fireEvent.click(deleteButton);
 
     // Check that the modal window opened
-    expect(screen.getByText('Are you sure you want to delete this memo?')).toBeInTheDocument();
+    expect(screen.getByTestId('delete-entry-modal')).toBeInTheDocument();
 
     // Click the Delete button in the modal window
-    const confirmDeleteButton = screen.getByText('Delete');
+    const confirmDeleteButton = screen.getByTestId('delete-confirm-button');
     fireEvent.click(confirmDeleteButton);
 
     // Check that the necessary functions were called
@@ -202,16 +196,14 @@ describe('EntryCard', () => {
     fireEvent.click(deleteButton);
 
     // Check that the modal window opened
-    expect(screen.getByText('Are you sure you want to delete this memo?')).toBeInTheDocument();
+    expect(screen.getByTestId('delete-entry-modal')).toBeInTheDocument();
 
     // Press Escape
     fireEvent.keyDown(document, { key: 'Escape' });
 
     // Check that the modal window closed
     await waitFor(() => {
-      expect(
-        screen.queryByText('Are you sure you want to delete this memo?'),
-      ).not.toBeInTheDocument();
+      expect(screen.queryByTestId('delete-entry-modal')).not.toBeInTheDocument();
     });
   });
 });

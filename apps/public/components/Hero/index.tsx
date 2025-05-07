@@ -2,8 +2,7 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { Document } from '@contentful/rich-text-types';
-import { getCurrentEnv } from '@repo/global-utils/helpers';
-import { PLATFORM_BASE_URL } from '@/constants';
+import { getPlatformUrl } from '@/constants';
 
 function Hero({ headline, description }: { headline: string; description: Document }) {
   const t = useTranslations('Homepage');
@@ -18,7 +17,7 @@ function Hero({ headline, description }: { headline: string; description: Docume
           {documentToReactComponents(description)}
         </div>
         <div>
-          <Link className="toLogInLink" href={PLATFORM_BASE_URL[getCurrentEnv()]}>
+          <Link className="toLogInLink" href={getPlatformUrl()}>
             <button className="btn btn-lg mb-5 border-0 bg-yellow-200 text-gray-900 hover:bg-yellow-300">
               {t('linkText')}
             </button>

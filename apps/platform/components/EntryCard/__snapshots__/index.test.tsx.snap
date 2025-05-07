@@ -59,7 +59,7 @@ exports[`EntryCard > renders correctly and matches snapshot 1`] = `
           </small>
         </div>
         <div
-          class="dropdown dropdown-end"
+          class="relative"
         >
           <button
             aria-label="Open context menu"

@@ -8,8 +8,7 @@ import LanguageSwitcher from '../LanguageSwitcher';
 import Logo from '../Logo';
 import Navigation from '../Navigation';
 import { Drawer, Header } from '@repo/global-ui';
-import { getCurrentEnv } from '@repo/global-utils/helpers';
-import { PLATFORM_BASE_URL } from '@/constants';
+import { getPlatformUrl } from '@/constants';
 
 function Navbar() {
   const drawerToggleRef = useRef<HTMLInputElement>(null);
@@ -44,7 +43,7 @@ function Navbar() {
           </div>
           <Link
             className="toLogInLink btn bg-yellow-200 text-lg font-bold text-gray-900 hover:bg-yellow-300"
-            href={PLATFORM_BASE_URL[getCurrentEnv()]}
+            href={getPlatformUrl()}
           >
             {t('navigation.toPlatform')}
           </Link>

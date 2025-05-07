@@ -23,27 +23,39 @@ const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [showActionSheet, setShowActionSheet] = useState(false);
+  const [actionSheetVisible, setActionSheetVisible] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
   const locale = useLocale();
 
   const t = useTranslations('JournalList');
   const c = useTranslations('Global');
   const creationDate = formatDate(new Date(createdAt), locale as UserLocale);
 
-  const handleOuterClick = (event: MouseEvent) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target as HTMLElement)) {
-      setShowDropdown(false);
-    }
-  };
-
   useEffect(() => {
-    document.addEventListener('mousedown', handleOuterClick);
+    // Handle animation timing
+    if (showActionSheet) {
+      // Prevent body scrolling
+      document.body.style.overflow = 'hidden';
+
+      // Show sheet with animation
+      setActionSheetVisible(true);
+    } else {
+      // Wait for animation to complete before hiding
+      const timer = setTimeout(() => {
+        setActionSheetVisible(false);
+      }, 300);
+
+      // Enable scrolling
+      document.body.style.overflow = '';
+
+      return () => clearTimeout(timer);
+    }
+
     return () => {
-      document.removeEventListener('mousedown', handleOuterClick);
+      document.body.style.overflow = '';
     };
-  }, []);
+  }, [showActionSheet]);
 
   const deleteEntryHandler = async (e?: React.MouseEvent) => {
     e?.preventDefault();
@@ -55,21 +67,21 @@ const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
     router.refresh();
   };
 
-  const toggleDropdown = (e: React.MouseEvent) => {
+  const toggleActionSheet = (e: React.MouseEvent | React.TouchEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setShowDropdown(!showDropdown);
+    setShowActionSheet(!showActionSheet);
   };
 
-  const openDeleteModal = (e: React.MouseEvent) => {
+  const openDeleteModal = (e: React.MouseEvent | React.TouchEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setShowDropdown(false);
+    setShowActionSheet(false);
     setIsModalOpen(true);
   };
 
   const handleCardClick = (e: React.MouseEvent) => {
-    if (dropdownRef.current?.contains(e.target as Node) || isModalOpen) {
+    if (isModalOpen || showActionSheet) {
       e.preventDefault();
       e.stopPropagation();
     }
@@ -87,7 +99,7 @@ const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
   };
 
   useKeyPress(() => {
-    setShowDropdown(false);
+    setShowActionSheet(false);
     setIsModalOpen(false);
   }, ['Escape']);
 
@@ -113,45 +125,102 @@ const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
               </small>
             </div>
 
-            <div className="dropdown dropdown-end" ref={dropdownRef}>
+            <div className="relative">
               <button
                 aria-label={t('card.openContextMenu')}
                 data-testid="entryCard-edit-button"
-                onClick={toggleDropdown}
+                onClick={(e) => toggleActionSheet(e)}
                 onTouchStart={(e) => {
                   e.preventDefault();
-                  toggleDropdown(e as any);
+                }}
+                onTouchEnd={(e) => {
+                  e.preventDefault();
+                  toggleActionSheet(e);
                 }}
                 className="border-1 btn btn-ghost btn-xs btn-circle border-gray-300 p-1 text-gray-600 hover:bg-gray-100 focus:outline-none"
               >
                 <BsThreeDotsVertical />
               </button>
-              {showDropdown && (
-                <ul
-                  data-testid="entryCard-context-menu"
-                  className="dropdown-content menu menu-sm z-[100] mt-1 w-48 rounded-md border border-gray-200 bg-white p-0 focus:outline-none"
-                  style={{ position: 'absolute', right: 0, top: '100%' }}
-                >
-                  <li className="rounded-md">
-                    <button
-                      data-testid="entryCard-delete-button"
-                      onClick={openDeleteModal}
-                      className="btn btn-sm items-center gap-2 border-0 bg-gray-50 py-2 text-sm text-red-600 focus:outline-none"
-                      aria-label={c('deleteEntry.actionButton')}
-                    >
-                      <FaRegTrashAlt />
-                      <span className="text-xs">{c('deleteEntry.actionButton')}</span>
-                    </button>
-                  </li>
-                </ul>
-              )}
             </div>
           </div>
         </div>
       </div>
 
+      {(showActionSheet || actionSheetVisible) && (
+        <div
+          data-testid="entryCard-context-menu"
+          className="fixed inset-0 z-[1000] flex touch-none items-end justify-center"
+          style={{
+            backgroundColor: showActionSheet ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0)',
+            transition: 'background-color 0.3s ease-out',
+            WebkitTapHighlightColor: 'transparent',
+          }}
+          onClick={(e) => {
+            e.preventDefault();
+            if (showActionSheet) toggleActionSheet(e);
+          }}
+          onTouchEnd={(e) => {
+            e.preventDefault();
+            if (showActionSheet) toggleActionSheet(e);
+          }}
+        >
+          <div
+            className="w-full max-w-md rounded-t-xl bg-white p-4 shadow-2xl"
+            style={{
+              transform: showActionSheet ? 'translateY(0)' : 'translateY(100%)',
+              WebkitTransform: showActionSheet ? 'translateY(0)' : 'translateY(100%)',
+              transition: 'transform 0.3s ease-out, -webkit-transform 0.3s ease-out',
+              touchAction: 'manipulation',
+            }}
+            onClick={(e) => e.stopPropagation()}
+            onTouchEnd={(e) => e.stopPropagation()}
+          >
+            <div className="mb-4 flex justify-center">
+              <div className="h-1 w-16 rounded-full bg-gray-300"></div>
+            </div>
+
+            <h3 className="mb-4 text-center text-lg font-medium text-gray-800">
+              {title || `Memo [${creationDate}]`}
+            </h3>
+
+            <div className="flex flex-col gap-3">
+              <button
+                data-testid="entryCard-delete-button"
+                onClick={(e) => openDeleteModal(e)}
+                onTouchEnd={(e) => {
+                  e.preventDefault();
+                  openDeleteModal(e);
+                }}
+                className="flex w-full items-center justify-center gap-2 rounded-md bg-red-50 p-4 text-red-600 focus:outline-none active:bg-red-100"
+                aria-label={c('deleteEntry.actionButton')}
+                style={{ touchAction: 'manipulation' }}
+              >
+                <FaRegTrashAlt />
+                <span>{c('deleteEntry.actionButton')}</span>
+              </button>
+
+              <button
+                onClick={(e) => toggleActionSheet(e)}
+                onTouchEnd={(e) => {
+                  e.preventDefault();
+                  toggleActionSheet(e);
+                }}
+                className="mt-2 flex w-full items-center justify-center rounded-md bg-gray-100 p-4 text-gray-700 focus:outline-none active:bg-gray-200"
+                style={{ touchAction: 'manipulation' }}
+              >
+                {c('deleteEntry.cancelButton')}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {isModalOpen && (
-        <div className="modal-open modal cursor-default" onClick={closeModal}>
+        <div
+          data-testid="delete-entry-modal"
+          className="modal-open modal cursor-default"
+          onClick={closeModal}
+        >
           <div
             className="modal-box relative border border-gray-200 bg-white"
             onClick={handleOnModalClicks}
@@ -160,12 +229,14 @@ const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
             <p className="py-4 text-gray-600">{c('deleteEntry.confirmationMessage')}</p>
             <div className="modal-action">
               <button
+                data-testid="delete-cancel-button"
                 className="btn btn-outline border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:outline-none"
                 onClick={closeModal}
               >
                 {c('deleteEntry.cancelButton')}
               </button>
               <button
+                data-testid="delete-confirm-button"
                 className="btn border-0 bg-red-800 text-white hover:bg-red-900 focus:outline-none"
                 onClick={deleteEntryHandler}
               >
