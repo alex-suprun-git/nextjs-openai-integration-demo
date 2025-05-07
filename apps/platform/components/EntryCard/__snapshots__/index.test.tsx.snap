@@ -3,7 +3,7 @@
 exports[`EntryCard > renders correctly and matches snapshot 1`] = `
 <div>
   <div
-    class="card relative h-[128px] border border-gray-200 bg-white text-primary-content transition-all duration-200"
+    class="card relative h-[128px] border border-gray-200 bg-white text-primary-content transition-all duration-200 "
     data-testid="entryCard"
   >
     <div
@@ -84,5 +84,65 @@ exports[`EntryCard > renders correctly and matches snapshot 1`] = `
       </div>
     </div>
   </div>
+  <dialog
+    class="modal modal-bottom cursor-default "
+    id="action-sheet-1"
+  >
+    <div
+      class="modal-box mx-auto max-w-lg rounded-b-none rounded-t-xl bg-white px-4 py-4"
+    >
+      <div
+        class="mb-4 flex justify-center"
+      >
+        <div
+          class="h-1 w-16 rounded-full bg-gray-300"
+        />
+      </div>
+      <h3
+        class="mb-4 text-center text-lg font-medium text-gray-800"
+      >
+        This is a test entry
+      </h3>
+      <div
+        class="flex flex-col gap-3"
+      >
+        <button
+          aria-label="Delete this memo"
+          class="flex w-full items-center justify-center gap-2 rounded-md bg-red-50 p-4 text-red-600 focus:outline-none active:bg-red-100"
+          data-testid="entryCard-delete-button"
+        >
+          <svg
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 448 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M268 416h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12zM432 80h-82.41l-34-56.7A48 48 0 0 0 274.41 0H173.59a48 48 0 0 0-41.16 23.3L98.41 80H16A16 16 0 0 0 0 96v16a16 16 0 0 0 16 16h16v336a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128h16a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16zM171.84 50.91A6 6 0 0 1 177 48h94a6 6 0 0 1 5.15 2.91L293.61 80H154.39zM368 464H80V128h288zm-212-48h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12z"
+            />
+          </svg>
+          <span>
+            Delete this memo
+          </span>
+        </button>
+        <button
+          class="mt-2 flex w-full items-center justify-center rounded-md bg-gray-100 p-4 text-gray-700 focus:outline-none active:bg-gray-200"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+    <form
+      class="modal-backdrop"
+      method="dialog"
+    >
+      <button>
+        close
+      </button>
+    </form>
+  </dialog>
 </div>
 `;

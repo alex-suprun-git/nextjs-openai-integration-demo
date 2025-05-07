@@ -77,7 +77,7 @@ function AnalysisSidebar({
                 key={item.label}
                 className="mb-6 flex flex-col border-b-2 border-white/10 px-6 pb-6"
               >
-                <h3 className="mb-2 mr-10 text-center font-semibold">{item.label}:</h3>
+                <h3 className="mb-2 text-center font-semibold">{item.label}:</h3>
                 <span className="text-center">{item.value?.toString()}</span>
               </li>
             );

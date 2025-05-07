@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { FaRegTrashAlt } from 'react-icons/fa';
@@ -24,38 +24,12 @@ const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showActionSheet, setShowActionSheet] = useState(false);
-  const [actionSheetVisible, setActionSheetVisible] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const locale = useLocale();
 
   const t = useTranslations('JournalList');
   const c = useTranslations('Global');
   const creationDate = formatDate(new Date(createdAt), locale as UserLocale);
-
-  useEffect(() => {
-    // Handle animation timing
-    if (showActionSheet) {
-      // Prevent body scrolling
-      document.body.style.overflow = 'hidden';
-
-      // Show sheet with animation
-      setActionSheetVisible(true);
-    } else {
-      // Wait for animation to complete before hiding
-      const timer = setTimeout(() => {
-        setActionSheetVisible(false);
-      }, 300);
-
-      // Enable scrolling
-      document.body.style.overflow = '';
-
-      return () => clearTimeout(timer);
-    }
-
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [showActionSheet]);
 
   const deleteEntryHandler = async (e?: React.MouseEvent) => {
     e?.preventDefault();
@@ -84,6 +58,7 @@ const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
     if (isModalOpen || showActionSheet) {
       e.preventDefault();
       e.stopPropagation();
+      return false;
     }
   };
 
@@ -110,7 +85,9 @@ const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
         data-testid="entryCard"
         ref={cardRef}
         onClick={handleCardClick}
-        className="card relative h-[128px] border border-gray-200 bg-white text-primary-content transition-all duration-200"
+        className={`card relative h-[128px] border border-gray-200 bg-white text-primary-content transition-all duration-200 ${
+          showActionSheet ? 'pointer-events-none' : ''
+        }`}
       >
         <div className="card-body justify-between text-black">
           <div
@@ -146,74 +123,61 @@ const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
         </div>
       </div>
 
-      {(showActionSheet || actionSheetVisible) && (
+      <dialog
+        open={showActionSheet}
+        id={`action-sheet-${id}`}
+        className={`modal modal-bottom cursor-default ${showActionSheet ? 'modal-open' : ''}`}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          toggleActionSheet(e);
+        }}
+      >
         <div
-          data-testid="entryCard-context-menu"
-          className="fixed inset-0 z-[1000] flex touch-none items-end justify-center"
-          style={{
-            backgroundColor: showActionSheet ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0)',
-            transition: 'background-color 0.3s ease-out',
-            WebkitTapHighlightColor: 'transparent',
-          }}
-          onClick={(e) => {
-            e.preventDefault();
-            if (showActionSheet) toggleActionSheet(e);
-          }}
-          onTouchEnd={(e) => {
-            e.preventDefault();
-            if (showActionSheet) toggleActionSheet(e);
-          }}
+          className="modal-box mx-auto max-w-lg rounded-b-none rounded-t-xl bg-white px-4 py-4"
+          onClick={(e) => e.stopPropagation()}
         >
-          <div
-            className="w-full max-w-md rounded-t-xl bg-white p-4 shadow-2xl"
-            style={{
-              transform: showActionSheet ? 'translateY(0)' : 'translateY(100%)',
-              WebkitTransform: showActionSheet ? 'translateY(0)' : 'translateY(100%)',
-              transition: 'transform 0.3s ease-out, -webkit-transform 0.3s ease-out',
-              touchAction: 'manipulation',
-            }}
-            onClick={(e) => e.stopPropagation()}
-            onTouchEnd={(e) => e.stopPropagation()}
-          >
-            <div className="mb-4 flex justify-center">
-              <div className="h-1 w-16 rounded-full bg-gray-300"></div>
-            </div>
+          <div className="mb-4 flex justify-center">
+            <div className="h-1 w-16 rounded-full bg-gray-300"></div>
+          </div>
 
-            <h3 className="mb-4 text-center text-lg font-medium text-gray-800">
-              {title || `Memo [${creationDate}]`}
-            </h3>
+          <h3 className="mb-4 text-center text-lg font-medium text-gray-800">
+            {title || `Memo [${creationDate}]`}
+          </h3>
 
-            <div className="flex flex-col gap-3">
-              <button
-                data-testid="entryCard-delete-button"
-                onClick={(e) => openDeleteModal(e)}
-                onTouchEnd={(e) => {
-                  e.preventDefault();
-                  openDeleteModal(e);
-                }}
-                className="flex w-full items-center justify-center gap-2 rounded-md bg-red-50 p-4 text-red-600 focus:outline-none active:bg-red-100"
-                aria-label={c('deleteEntry.actionButton')}
-                style={{ touchAction: 'manipulation' }}
-              >
-                <FaRegTrashAlt />
-                <span>{c('deleteEntry.actionButton')}</span>
-              </button>
+          <div className="flex flex-col gap-3">
+            <button
+              data-testid="entryCard-delete-button"
+              onClick={(e) => openDeleteModal(e)}
+              onTouchEnd={(e) => {
+                e.preventDefault();
+                openDeleteModal(e);
+              }}
+              className="flex w-full items-center justify-center gap-2 rounded-md bg-red-50 p-4 text-red-600 focus:outline-none active:bg-red-100"
+              aria-label={c('deleteEntry.actionButton')}
+              style={{ touchAction: 'manipulation' }}
+            >
+              <FaRegTrashAlt />
+              <span>{c('deleteEntry.actionButton')}</span>
+            </button>
 
-              <button
-                onClick={(e) => toggleActionSheet(e)}
-                onTouchEnd={(e) => {
-                  e.preventDefault();
-                  toggleActionSheet(e);
-                }}
-                className="mt-2 flex w-full items-center justify-center rounded-md bg-gray-100 p-4 text-gray-700 focus:outline-none active:bg-gray-200"
-                style={{ touchAction: 'manipulation' }}
-              >
-                {c('deleteEntry.cancelButton')}
-              </button>
-            </div>
+            <button
+              onClick={(e) => toggleActionSheet(e)}
+              onTouchEnd={(e) => {
+                e.preventDefault();
+                toggleActionSheet(e);
+              }}
+              className="mt-2 flex w-full items-center justify-center rounded-md bg-gray-100 p-4 text-gray-700 focus:outline-none active:bg-gray-200"
+              style={{ touchAction: 'manipulation' }}
+            >
+              {c('deleteEntry.cancelButton')}
+            </button>
           </div>
         </div>
-      )}
+        <form method="dialog" className="modal-backdrop">
+          <button onClick={(e) => toggleActionSheet(e)}>close</button>
+        </form>
+      </dialog>
 
       {isModalOpen && (
         <div

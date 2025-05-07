@@ -79,7 +79,11 @@ describe('EntryCard', () => {
 
   it('renders with correct text and date', () => {
     renderWithProvider(<EntryCard {...mockEntry} />);
-    expect(screen.getByText('This is a test entry')).toBeInTheDocument();
+    let titles = screen.getAllByText('This is a test entry');
+    titles.forEach((title) => {
+      expect(title).toBeInTheDocument();
+    });
+
     expect(screen.getByText('2025-01-01')).toBeInTheDocument();
   });
 
@@ -90,8 +94,10 @@ describe('EntryCard', () => {
     const dotsButton = screen.getByTestId('entryCard-edit-button');
     fireEvent.click(dotsButton);
 
-    // Check that the menu opened
-    expect(screen.getByTestId('entryCard-context-menu')).toBeInTheDocument();
+    // Check that the menu opened (action sheet in the component)
+    const actionSheet = document.getElementById(`action-sheet-${mockEntry.id}`);
+    expect(actionSheet).toBeInTheDocument();
+    expect(actionSheet).toHaveAttribute('open');
     expect(screen.getByText('Delete this memo')).toBeInTheDocument();
   });
 
@@ -103,10 +109,18 @@ describe('EntryCard', () => {
     fireEvent.click(dotsButton);
 
     // Check that the menu opened
-    expect(screen.getByTestId('entryCard-context-menu')).toBeInTheDocument();
+    const actionSheet = document.getElementById(`action-sheet-${mockEntry.id}`);
+    expect(actionSheet).toBeInTheDocument();
+    expect(actionSheet).toHaveAttribute('open');
 
-    // Click outside the menu
-    fireEvent.mouseDown(document.body);
+    // Click the backdrop to close
+    const backdrop = screen.getByText('close');
+    fireEvent.click(backdrop);
+
+    // Verify it's closed
+    await waitFor(() => {
+      expect(actionSheet).not.toHaveAttribute('open');
+    });
   });
 
   it('opens modal when clicking delete in the dropdown', () => {
@@ -127,7 +141,7 @@ describe('EntryCard', () => {
     expect(screen.getByTestId('delete-confirm-button')).toBeInTheDocument();
   });
 
-  it('closes modal when clicking cancel button', () => {
+  it('closes modal when clicking cancel button', async () => {
     renderWithProvider(<EntryCard {...mockEntry} />);
 
     // Open the dropdown menu and then the modal window
@@ -144,7 +158,9 @@ describe('EntryCard', () => {
     fireEvent.click(cancelButton);
 
     // Check that the modal window closed
-    expect(screen.queryByTestId('delete-entry-modal')).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.queryByTestId('delete-entry-modal')).not.toBeInTheDocument();
+    });
   });
 
   it('calls deleteEntry and router.push when confirming deletion in modal', async () => {
@@ -180,14 +196,16 @@ describe('EntryCard', () => {
     fireEvent.click(dotsButton);
 
     // Check that the menu opened
-    expect(screen.getByTestId('entryCard-context-menu')).toBeInTheDocument();
+    const actionSheet = document.getElementById(`action-sheet-${mockEntry.id}`);
+    expect(actionSheet).toBeInTheDocument();
+    expect(actionSheet).toHaveAttribute('open');
 
     // Press Escape
     fireEvent.keyDown(document, { key: 'Escape' });
 
     // Check that the dropdown closed
     await waitFor(() => {
-      expect(screen.queryByTestId('entryCard-context-menu')).not.toBeInTheDocument();
+      expect(actionSheet).not.toHaveAttribute('open');
     });
 
     // Open the dropdown menu and then the modal window
