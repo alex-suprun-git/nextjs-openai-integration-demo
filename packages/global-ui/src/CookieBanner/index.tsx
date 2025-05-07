@@ -39,13 +39,19 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
 
 	const handleAccept = () => {
 		// Save consent in cookies
-		Cookies.set(cookieName, 'accepted', { expires: cookieExpires });
+		Cookies.set(cookieName, 'accepted', {
+			expires: cookieExpires,
+			domain: '.nextjs-ai-platform.site',
+		});
 		setIsVisible(false);
 	};
 
 	const handleReject = () => {
 		// Save rejection in cookies instead of redirecting
-		Cookies.set(cookieName, 'rejected', { expires: cookieExpires });
+		Cookies.set(cookieName, 'rejected', {
+			expires: cookieExpires,
+			domain: '.nextjs-ai-platform.site',
+		});
 		setIsVisible(false);
 
 		// Call the onReject callback if provided

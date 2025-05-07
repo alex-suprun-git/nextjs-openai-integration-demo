@@ -27,11 +27,15 @@ describe('CookieBanner', () => {
 
 	beforeEach(() => {
 		vi.resetAllMocks();
+		vi.mocked(Cookies.get).mockImplementation((name?: string): any => {
+			if (name === undefined) {
+				return {};
+			}
+			return undefined;
+		});
 	});
 
 	it('renders correctly with provided translations', () => {
-		vi.mocked(Cookies.get).mockReturnValue(null);
-
 		render(<CookieBanner translations={mockTranslations} />);
 
 		expect(screen.getByText(mockTranslations.title)).toBeInTheDocument();
@@ -41,7 +45,16 @@ describe('CookieBanner', () => {
 	});
 
 	it('does not render when cookie consent is already given', () => {
-		vi.mocked(Cookies.get).mockReturnValue('accepted');
+		// Redefine moc for this particular test
+		vi.mocked(Cookies.get).mockImplementation((name?: string): any => {
+			if (name === undefined) {
+				return {};
+			}
+			if (name === 'gdpr-consent') {
+				return 'accepted';
+			}
+			return undefined;
+		});
 
 		const { container } = render(
 			<CookieBanner translations={mockTranslations} />
@@ -51,8 +64,6 @@ describe('CookieBanner', () => {
 	});
 
 	it('sets cookie and hides banner when accepting', () => {
-		vi.mocked(Cookies.get).mockReturnValue(null);
-
 		render(<CookieBanner translations={mockTranslations} />);
 
 		fireEvent.click(screen.getByText(mockTranslations.acceptButton));
@@ -62,12 +73,12 @@ describe('CookieBanner', () => {
 			'accepted',
 			{
 				expires: 7,
+				domain: '.nextjs-ai-platform.site',
 			}
 		);
 	});
 
 	it('sets rejected cookie and calls onReject when rejecting', () => {
-		vi.mocked(Cookies.get).mockReturnValue(null);
 		const mockOnReject = vi.fn();
 
 		render(
@@ -81,6 +92,7 @@ describe('CookieBanner', () => {
 			'rejected',
 			{
 				expires: 7,
+				domain: '.nextjs-ai-platform.site',
 			}
 		);
 		expect(mockOnReject).toHaveBeenCalled();
