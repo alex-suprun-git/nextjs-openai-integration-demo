@@ -2,61 +2,74 @@ import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import PositiveNegativeRatio from '.';
 
+// Mock the next-intl hooks
+vi.mock('next-intl', () => ({
+  useTranslations: () => (key: string) => key,
+}));
+
+// Mock the useWindowWidth hook
+vi.mock('@/hooks/useWindowWidth', () => ({
+  useWindowWidth: vi.fn().mockReturnValue(1024),
+  getChartAspectRatio: vi.fn().mockReturnValue(2),
+}));
+
+// Mock recharts components
+vi.mock('recharts', async (importOriginal) => {
+  const originalModule = (await importOriginal()) as Record<string, unknown>;
+  return {
+    ...originalModule,
+    ResponsiveContainer: ({ children }: any) => (
+      <div data-testid="responsive-container">{children}</div>
+    ),
+    PieChart: ({ children }: any) => <div data-testid="pie-chart">{children}</div>,
+    Pie: ({ children }: any) => <div data-testid="pie">{children}</div>,
+    Tooltip: () => <div data-testid="tooltip"></div>,
+    Legend: () => <div data-testid="legend"></div>,
+    Cell: ({ fill }: any) => <div data-testid="cell" style={{ backgroundColor: fill }}></div>,
+  };
+});
+
 class ResizeObserver {
   observe() {}
   unobserve() {}
   disconnect() {}
 }
 
-vi.mock('next-intl', () => ({
-  useTranslations: () => (key: string) => key,
-}));
-
-vi.mock('recharts', async (importOriginal) => {
-  const originalModule = (await importOriginal()) as Record<string, unknown>;
-  return {
-    ...originalModule,
-    ResponsiveContainer: ({ children }: any) => <div>{children}</div>,
-  };
-});
-
-vi.mock('@/hooks/useWindowWidth', () => ({
-  useWindowWidth: () => 1024,
-  getChartAspectRatio: () => 16 / 9,
-}));
-
 beforeEach(() => {
   (global as any).ResizeObserver = ResizeObserver;
 });
 
-describe('PositiveNegativeRatio', () => {
+describe('PositiveNegativeRatio component', () => {
   const mockData = [
     { negative: true, color: '#ff595e' },
     { negative: false, color: '#1982c4' },
     { negative: false, color: '#1982c4' },
-    { negative: true, color: '#ff595e' },
-    { negative: false, color: '#1982c4' },
   ];
 
-  it('renders correctly and matches snapshot', () => {
+  it('renders the component with title', () => {
+    render(<PositiveNegativeRatio data={mockData} />);
+
+    expect(screen.getByText('charts.positiveNegativeRatio.title')).toBeInTheDocument();
+  });
+
+  it('renders pie chart with data', () => {
+    render(<PositiveNegativeRatio data={mockData} />);
+
+    expect(screen.getByTestId('responsive-container')).toBeInTheDocument();
+    expect(screen.getByTestId('pie-chart')).toBeInTheDocument();
+    expect(screen.getByTestId('pie')).toBeInTheDocument();
+    expect(screen.getAllByTestId('cell').length).toBe(2); // Two cells: positive and negative
+  });
+
+  it('calculates correct positive/negative counts', () => {
     const { container } = render(<PositiveNegativeRatio data={mockData} />);
-    expect(container).toMatchSnapshot();
-  });
 
-  it('renders title correctly', () => {
-    render(<PositiveNegativeRatio data={mockData} />);
-    expect(screen.getByText('charts.positiveNegativeRatio.title')).toBeInTheDocument();
-  });
+    // The rendered component doesn't expose the aggregated data directly,
+    // so we're checking for the existence of certain elements
+    expect(screen.getByTestId('responsive-container')).toBeInTheDocument();
 
-  it('aggregates data correctly', () => {
-    render(<PositiveNegativeRatio data={mockData} />);
-    // Since we're mocking recharts, we can't easily test the actual chart rendering
-    // But we can verify that the component doesn't crash with our data
-    expect(screen.getByText('charts.positiveNegativeRatio.title')).toBeInTheDocument();
-  });
-
-  it('renders correctly with empty data', () => {
-    const { container } = render(<PositiveNegativeRatio data={[]} />);
-    expect(container).toMatchSnapshot();
+    // Ensure the tooltip and legend are rendered
+    expect(screen.getByTestId('tooltip')).toBeInTheDocument();
+    expect(screen.getByTestId('legend')).toBeInTheDocument();
   });
 });

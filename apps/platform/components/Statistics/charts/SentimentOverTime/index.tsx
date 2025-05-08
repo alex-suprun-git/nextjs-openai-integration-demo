@@ -60,9 +60,11 @@ const SentimentOverTimeChart = ({ data }: SentimentOverTimeProps) => {
     <div className="border-2 border-dashed border-gray-900 bg-slate-800 p-6">
       <h2 className="mb-12 text-center text-xl font-medium">
         {t('charts.sentimentOverTime.title')}
-        <sup className="tooltip ml-1" data-tip={t('charts.sentimentOverTime.description')}>
-          <FaRegQuestionCircle fontSize={14} />
-        </sup>
+        <span className="hidden sm:inline">
+          <sup className="tooltip ml-1" data-tip={t('charts.sentimentOverTime.description')}>
+            <FaRegQuestionCircle fontSize={14} />
+          </sup>
+        </span>
       </h2>
       <ResponsiveContainer width="100%" aspect={getChartAspectRatio(windowWidth)}>
         <LineChart

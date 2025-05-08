@@ -1,8 +1,8 @@
 'use client';
 
-import clsx from 'clsx';
 import { MouseEventHandler, RefObject } from 'react';
 import { useTranslations } from 'next-intl';
+import clsx from 'clsx';
 import { Alert, Loading } from '@repo/global-ui';
 import { usePathname } from 'next/navigation';
 import Tabs from '../Tabs';
@@ -20,7 +20,9 @@ function Content({
   isLoading: boolean;
   isContentEntryUpdated: boolean;
   contentValue: string;
-  changeContentHandler: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  changeContentHandler: (
+    e: React.ChangeEvent<HTMLTextAreaElement> | { target: { value: string } },
+  ) => void;
   saveContentHandler: MouseEventHandler<HTMLButtonElement>;
   entryCreatedRef: RefObject<boolean>;
   isPromptSymbolsExceeded: boolean;
@@ -46,14 +48,6 @@ function Content({
         />
       ) : (
         <div className="px-6">
-          {isPromptSymbolsExceeded && (
-            <Alert type="error">{t('alerts.symbolsLimitExceeded')}</Alert>
-          )}
-          {!isPromptSymbolsExceeded && isContentTooShort && (
-            <Alert type="warning" testId="alert-content-too-short">
-              {t('alerts.contentTooShort')}
-            </Alert>
-          )}
           {isContentEntryCreated && <Alert type="success">{t('alerts.entryCreated')}</Alert>}
           {isContentEntryUpdated && <Alert type="success">{t('alerts.entryUpdated')}</Alert>}
           <div className="relative">

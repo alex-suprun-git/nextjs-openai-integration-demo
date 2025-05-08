@@ -14,7 +14,7 @@ describe('Alert', () => {
 	it('renders with default info type when no type is provided', () => {
 		const { container } = render(<Alert>Sample alert text</Alert>);
 		expect(container).toMatchSnapshot();
-		expect(screen.getByRole('alert')).toHaveClass('alert alert-info mb-6');
+		expect(screen.getByRole('alert')).toHaveClass('alert alert-info');
 	});
 
 	const types = ['info', 'warning', 'error', 'success'] as AlertTypes[];
@@ -23,8 +23,8 @@ describe('Alert', () => {
 			render(<Alert type={type}>Sample alert text</Alert>);
 			const expectedClass =
 				type === 'error'
-					? 'alert alert-error  bg-red-800 mb-6'
-					: `alert alert-${type} mb-6`;
+					? 'alert alert-error text-white bg-red-800'
+					: `alert alert-${type}`;
 			expect(screen.getByRole('alert')).toHaveClass(expectedClass);
 		});
 	});

@@ -62,11 +62,32 @@
     }
   },
   "Editor": {
+    "tabs": {
+      "textLabel": "Text",
+      "uploadFileLabel": "Upload File"
+    },
+    "labels": {
+      "selectedFilePrompt": "Selected file:",
+      "previewArea": "Preview:",
+      "filePreviewPlaceholder": "File content preview..."
+    },
+    "buttons": {
+      "submitFileContent": "Submit File Content",
+      "submitTextEntry": "Submit Entry",
+      "removeSelectedFile": "Remove selected file",
+      "submitPreviewForAnalysis": "Submit Preview for Analysis"
+    },
     "alerts": {
       "symbolsLimitExceeded": "You have reached the 5,000 symbol limit and cannot make new requests.",
       "contentTooShort": "Please enter at least 30 characters. Changes are not saved for entries with fewer than 30 characters.",
       "entryCreated": "A new record was created. Analyzing....",
-      "entryUpdated": "The note was successfully updated."
+      "entryUpdated": "The note was successfully updated.",
+      "fileUploadActiveNotice": "File upload area is active. Please clear the selection to use the text editor.",
+      "textEditorActiveNotice": "Text editor is active. Please clear the text to use the file upload.",
+      "fileTooLarge": "File is too large. Maximum size is 2MB.",
+      "fileReadError": "Could not read file content.",
+      "fileTypeNoPreview": "Preview for this file type is not supported. Only the file name is shown. Cannot submit.",
+      "filePreviewReady": "Text file content is ready for preview below."
     },
     "analysis": {
       "headline": "Analysis",
@@ -77,7 +98,11 @@
         "negative": "Negative"
       }
     },
-    "contentFieldPlaceholder": "Please write your thoughts here..."
+    "contentFieldPlaceholder": "Please write your thoughts here...",
+    "dropzone": {
+      "promptMain": "Click to upload or drag and drop",
+      "promptDetails": ".TXT, .DOCX files (Max 2MB)"
+    }
   },
   "E404Homepage": {
     "description1": "Page Not Found",

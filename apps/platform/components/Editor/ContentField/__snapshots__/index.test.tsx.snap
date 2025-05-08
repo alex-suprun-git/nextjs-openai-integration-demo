@@ -6,11 +6,6 @@ exports[`Content > renders correctly and matches snapshot 1`] = `
     class="px-6"
   >
     <div
-      data-testid="alert-warning"
-    >
-      Please enter at least 30 characters. Changes are not saved for entries with fewer than 30 characters.
-    </div>
-    <div
       class="relative"
     >
       <textarea
