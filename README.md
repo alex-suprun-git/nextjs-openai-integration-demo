@@ -13,7 +13,11 @@ apps/
   └── public/     # Public-facing PWA with content from Contentful
 
 packages/
-  └── ui/         # Shared UI components
+  ├── global-analytics/  # Analytics utilities
+  ├── global-ui/         # Shared UI components
+  ├── global-utils/      # Common utilities
+  ├── eslint-config/     # Shared ESLint configurations
+  └── typescript-config/ # Shared TypeScript configurations
 ```
 
 ## ✨ Features
@@ -25,6 +29,8 @@ packages/
 - Integration with Contentful Headless CMS
 - Progressive Web App (PWA) support
 - Monorepo structure with shared UI components
+- Error tracking and monitoring with Sentry
+- Internationalization (i18n) support
 
 ## 🧰 Technologies
 
@@ -38,6 +44,8 @@ packages/
 - **Contentful** — headless CMS
 - **Next-PWA** — for offline-first capabilities
 - **Vitest & Cypress** — unit and E2E testing
+- **Sentry** — error tracking and monitoring
+- **i18n** — internationalization
 
 ## 📦 Scripts (root)
 
@@ -45,6 +53,7 @@ packages/
 yarn dev         # Run all dev servers
 yarn build       # Build all apps/packages
 yarn lint        # Lint all apps/packages
+yarn test        # Run all tests
 ```
 
 Each app has its own set of scripts inside `apps/platform` and `apps/public`.
@@ -61,7 +70,13 @@ yarn dev
 ## 📁 Environment Variables
 
 Environment variables are managed via `.env` files and/or Vercel dashboard.
-Refer to `turbo.json` for `globalEnv` configuration used during builds.
+Refer to `turbo.json` for `globalEnv` configuration used during builds:
+
+- Contentful CMS configuration
+- Clerk authentication
+- OpenAI API
+- Database connection
+- Cron job secrets
 
 ## 🧑‍💻 Author
 
