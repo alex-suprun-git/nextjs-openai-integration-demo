@@ -3,7 +3,7 @@
 exports[`Alert > renders with default info type when no type is provided 1`] = `
 <div>
   <div
-    class="alert alert-info mb-6"
+    class="alert alert-info"
     data-testid="alert"
     role="alert"
   >

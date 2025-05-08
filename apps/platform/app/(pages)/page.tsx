@@ -38,7 +38,7 @@ const JournalPage = async () => {
   }
 
   return (
-    <div className="min-h-svh p-10">
+    <div className="min-h-svh">
       <JournalList entries={entries as Required<AnalysisSubEntry[]> | []} />
     </div>
   );

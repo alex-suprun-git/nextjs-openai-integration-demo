@@ -57,7 +57,7 @@ function AnalysisSidebar({
   const analysisBackground = convertHexToRGBA(color, 0.25);
 
   return (
-    <>
+    <div className="border-l border-black/10 bg-gray-800 md:pr-10">
       {isLoading && <Loading fullscreen />}
       <div className="relative px-6 py-10" style={{ background: getMoodImage(analysis) }}>
         <h2 className="relative z-10 w-fit bg-gray-800 p-6 text-2xl font-bold">
@@ -124,7 +124,7 @@ function AnalysisSidebar({
       >
         {c('deleteEntry.confirmationMessage')}
       </Modal>
-    </>
+    </div>
   );
 }
 

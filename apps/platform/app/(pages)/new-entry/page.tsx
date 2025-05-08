@@ -1,4 +1,6 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
+import { IoReturnUpBack } from 'react-icons/io5';
 import Editor from '@/components/Editor';
 
 export const metadata: Metadata = {
@@ -20,7 +22,16 @@ function NewEntryPage() {
     },
   };
 
-  return <Editor entry={initialData} />;
+  return (
+    <div data-testid="newEntryPage" className="container mx-auto py-10 pb-32 xl:px-10">
+      <Link href="/" className="px-6">
+        <div className="btn mb-8 border-0 bg-slate-900 text-white hover:bg-slate-900">
+          <IoReturnUpBack />
+        </div>
+      </Link>
+      <Editor entry={initialData} />
+    </div>
+  );
 }
 
 export default NewEntryPage;

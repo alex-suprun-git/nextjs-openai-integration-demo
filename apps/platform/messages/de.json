@@ -62,11 +62,32 @@
     }
   },
   "Editor": {
+    "tabs": {
+      "textLabel": "Text",
+      "uploadFileLabel": "Datei Hochladen"
+    },
+    "labels": {
+      "selectedFilePrompt": "Ausgewählte Datei:",
+      "previewArea": "Vorschau:",
+      "filePreviewPlaceholder": "Dateiinhaltsvorschau..."
+    },
+    "buttons": {
+      "submitFileContent": "Dateiinhalt Senden",
+      "submitTextEntry": "Eintrag Senden",
+      "removeSelectedFile": "Ausgewählte Datei entfernen",
+      "submitPreviewForAnalysis": "Vorschau zur Analyse Senden"
+    },
     "alerts": {
       "symbolsLimitExceeded": "Sie haben das Limit von 5.000 Zeichen erreicht und können keine neuen Anfragen stellen.",
       "contentTooShort": "Bitte geben Sie mindestens 30 Zeichen ein. Änderungen werden für Einträge mit weniger als 30 Zeichen nicht gespeichert.",
       "entryCreated": "Ein neuer Datensatz wurde erstellt. Analysieren....",
-      "entryUpdated": "Die Notiz wurde erfolgreich aktualisiert."
+      "entryUpdated": "Die Notiz wurde erfolgreich aktualisiert.",
+      "fileUploadActiveNotice": "Der Datei-Upload-Bereich ist aktiv. Bitte löschen Sie die Auswahl, um den Texteditor zu verwenden.",
+      "textEditorActiveNotice": "Der Texteditor ist aktiv. Bitte löschen Sie den Text, um den Datei-Upload zu verwenden.",
+      "fileTooLarge": "Datei ist zu groß. Maximale Größe beträgt 2MB.",
+      "fileReadError": "Dateiinhalt konnte nicht gelesen werden.",
+      "fileTypeNoPreview": "Vorschau für diesen Dateityp wird nicht unterstützt. Nur der Dateiname wird angezeigt. Senden nicht möglich.",
+      "filePreviewReady": "Textdatei-Inhalt ist unten zur Vorschau bereit."
     },
     "analysis": {
       "headline": "Analyse",
@@ -77,7 +98,11 @@
         "negative": "Negativ"
       }
     },
-    "contentFieldPlaceholder": "Bitte schreiben Sie hier Ihre Gedanken..."
+    "contentFieldPlaceholder": "Bitte schreiben Sie hier Ihre Gedanken...",
+    "dropzone": {
+      "promptMain": "Klicken zum Hochladen oder Drag & Drop",
+      "promptDetails": ".TXT, .DOCX Dateien (Max 2MB)"
+    }
   },
   "E404Homepage": {
     "description1": "Seite nicht gefunden",

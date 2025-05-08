@@ -3,7 +3,7 @@
 exports[`Header > renders navigation links correctly 1`] = `
 <div>
   <div
-    class="navbar border-black/10 bg-gray-900 px-5 py-5 md:items-center md:px-10 lg:h-[80px] lg:py-0"
+    class="navbar border-black/10 bg-gray-900 px-5 py-5 md:px-10 lg:h-[80px] lg:py-0"
     data-testid="header"
   >
     <a
