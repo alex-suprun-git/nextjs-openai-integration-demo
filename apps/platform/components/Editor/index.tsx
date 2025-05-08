@@ -1,5 +1,6 @@
 'use client';
 
+import { ChangeEvent } from 'react';
 import AnalysisSidebar from './AnalysisSidebar';
 import ContentField from './ContentField';
 import { useRouter } from 'next/navigation';
@@ -24,7 +25,11 @@ const Editor = ({ entry }: { entry: EditorEntry }) => {
         isLoading={isLoading}
         isContentEntryUpdated={isContentEntryUpdated}
         contentValue={contentValue as string}
-        changeContentHandler={changeContentHandler}
+        changeContentHandler={
+          changeContentHandler as (
+            e: ChangeEvent<HTMLTextAreaElement> | { target: { value: string } },
+          ) => void
+        }
         saveContentHandler={() => saveContentHandler(contentValue)}
         entryCreatedRef={entryCreatedRef}
         isPromptSymbolsExceeded={isPromptSymbolsExceeded}

@@ -30,8 +30,12 @@ const getEntry = cache(async (id: string) => {
 });
 
 // Generate metadata using cached data fetch
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const id = params.id;
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
   const entry = await getEntry(id);
 
   if (!entry || !entry.analysis) {
