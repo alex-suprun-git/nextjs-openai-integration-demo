@@ -28,7 +28,7 @@
   },
   "Header": {
     "labels": {
-      "promptSymbolsRemaining": "You have <strong>{symbolsUsed} / {symbolsLimit}</strong> prompt symbols remaining",
+      "promptSymbolsRemaining": "You have <strong>{symbolsLeft} / {symbolsLimit}</strong> prompt symbols remaining",
       "promptSymbolsRenewalDate": "Next limits renewal on {limitRenewalDate}"
     },
     "navigation": {

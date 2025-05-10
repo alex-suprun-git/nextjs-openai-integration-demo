@@ -7,13 +7,13 @@ import { FaQuestionCircle } from 'react-icons/fa';
 function PromptCounter() {
   const t = useTranslations('Header');
 
-  const { symbolsUsed, symbolsLimit, limitRenewalDate } = usePrompt();
+  const { symbolsLeft, symbolsLimit, limitRenewalDate } = usePrompt();
 
   return (
     <div data-testid="promptCounter" className="flex items-center">
       <p className="leading-6">
         {t.rich('labels.promptSymbolsRemaining', {
-          symbolsUsed,
+          symbolsLeft,
           symbolsLimit,
           strong: (chunks) => <strong>{chunks}</strong>,
         })}

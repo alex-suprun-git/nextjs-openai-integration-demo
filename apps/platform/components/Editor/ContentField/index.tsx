@@ -29,7 +29,6 @@ function Content({
 }) {
   const pathname = usePathname();
   const isNewEntry = pathname === '/new-entry';
-  const isContentTooShort = contentValue.length < MINIMUM_CONTENT_LENGTH;
   const isContentEntryCreated = entryCreatedRef.current;
 
   const t = useTranslations('Editor');

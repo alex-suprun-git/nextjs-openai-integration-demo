@@ -28,7 +28,7 @@
   },
   "Header": {
     "labels": {
-      "promptSymbolsRemaining": "Sie haben <strong>{symbolsUsed} / {symbolsLimit}</strong> verbleibende Symbole für Eingaben",
+      "promptSymbolsRemaining": "Sie haben <strong>{symbolsLeft} / {symbolsLimit}</strong> verbleibende Symbole für Eingaben",
       "promptSymbolsRenewalDate": "Nächste Begrenzungserneuerung am {limitRenewalDate}"
     },
     "navigation": {

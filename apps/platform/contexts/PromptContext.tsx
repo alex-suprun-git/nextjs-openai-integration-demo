@@ -3,8 +3,8 @@
 import React, { createContext, useContext, ReactNode } from 'react';
 
 interface PromptContextProps {
-  symbolsLimit: string;
-  symbolsUsed: string;
+  symbolsLimit: number;
+  symbolsLeft: number;
   limitRenewalDate: string;
 }
 

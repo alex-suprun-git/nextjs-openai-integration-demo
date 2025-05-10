@@ -12,8 +12,8 @@ const Question = () => {
   const [answer, setAnswer] = useState<string | null>(null);
   const [isLoading, setLoading] = useState(false);
 
-  const { symbolsUsed, symbolsLimit } = usePrompt();
-  const isPromptSymbolsExceeded = +symbolsUsed >= +symbolsLimit;
+  const { symbolsLeft } = usePrompt();
+  const isPromptSymbolsExceeded = symbolsLeft <= 0;
 
   const t = useTranslations('analysisRequest');
 

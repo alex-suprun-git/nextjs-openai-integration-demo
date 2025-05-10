@@ -13,7 +13,7 @@ function Alert({
 	const alertTypeClass = {
 		info: 'alert alert-info',
 		warning: 'alert alert-warning',
-		error: 'alert alert-error  text-white bg-red-800',
+		error: 'alert alert-error text-white bg-red-800',
 		success: 'alert alert-success',
 	}[type || 'info'];
 
@@ -21,7 +21,7 @@ function Alert({
 		<div
 			data-testid={testId || 'alert'}
 			role="alert"
-			className={`${alertTypeClass}`}>
+			className={`${alertTypeClass} mb-2`}>
 			{type === 'success' ? <FaCheckCircle /> : <IoWarningOutline />}
 			<span>{children}</span>
 		</div>

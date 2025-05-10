@@ -41,10 +41,10 @@ export default async function RootLayout({
     redirect('/sign-in');
   }
 
-  const { symbolsUsed, symbolsLimit, limitRenewalDate } = formatPromptData(userInfo, locale);
+  const { symbolsLeft, symbolsLimit, limitRenewalDate } = formatPromptData(userInfo, locale);
 
   return (
-    <PromptProvider value={{ symbolsUsed, symbolsLimit, limitRenewalDate }}>
+    <PromptProvider value={{ symbolsLeft, symbolsLimit, limitRenewalDate }}>
       <div className={`relative min-h-svh bg-gray-800 ${inter.className}`}>
         <Navbar />
         <div className="min-h-svh">{children}</div>

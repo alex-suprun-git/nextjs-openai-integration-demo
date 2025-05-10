@@ -23,7 +23,7 @@ export function AlertMessages({
   return (
     <>
       {isPromptSymbolsExceeded && <Alert type="error">{t('alerts.symbolsLimitExceeded')}</Alert>}
-      {isContentTooShort && (
+      {!isPromptSymbolsExceeded && isContentTooShort && (
         <Alert type="warning" testId="alert-content-too-short">
           {t('alerts.contentTooShort')}
         </Alert>

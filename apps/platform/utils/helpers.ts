@@ -61,14 +61,13 @@ export const getMoodImage = (analysis: AnalysisData): string => {
 };
 
 export const formatPromptData = (data: any, locale: string) => {
-  const formattedSymbolsLeft = new Intl.NumberFormat().format(
-    data.promptSymbolsLimit - data.promptSymbolsUsed,
-  );
-  const formattedSymbolsLimit = new Intl.NumberFormat().format(data.promptSymbolsLimit);
+  const formattedSymbolsLeft = data.promptSymbolsLimit - data.promptSymbolsUsed;
+
+  const formattedSymbolsLimit = data.promptSymbolsLimit;
   const userPromptLimitRenewal = formatDate(data.promptSymbolsLimitRenewal, locale as UserLocale);
 
   return {
-    symbolsUsed: formattedSymbolsLeft,
+    symbolsLeft: formattedSymbolsLeft,
     symbolsLimit: formattedSymbolsLimit,
     limitRenewalDate: userPromptLimitRenewal,
   };

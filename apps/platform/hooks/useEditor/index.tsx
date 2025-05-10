@@ -1,24 +1,25 @@
 'use client';
 
 import { useCallback, useRef, useState } from 'react';
-import { redirect, usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { usePrompt } from '@/contexts/PromptContext';
-import { updateEntry, createNewEntry, updateUserPromptUsage } from '@/utils/api';
+import { createNewEntry, updateUserPromptUsage } from '@/utils/api';
 import { ENTRIES_BASE_PATH, MINIMUM_CONTENT_LENGTH } from '@/utils/constants';
 
 export const useEditor = (entry: EditorEntry) => {
   const pathname = usePathname();
   const router = useRouter();
 
-  const { symbolsUsed, symbolsLimit } = usePrompt();
-  const isPromptSymbolsExceeded = +symbolsUsed >= +symbolsLimit;
+  const { symbolsLeft } = usePrompt();
+
+  const isPromptSymbolsExceeded = symbolsLeft <= 0;
 
   const [contentValue, setContentValue] = useState(entry?.content);
   const [_isContentChanged, setIsContentChanged] = useState(false);
-  const [isContentEntryUpdated, setIsContentEntryUpdated] = useState(false);
+  const [isContentEntryUpdated, _setIsContentEntryUpdated] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [analysis, setAnalysis] = useState(entry?.analysis);
+  const [analysis, _setAnalysis] = useState(entry?.analysis);
   const entryCreatedRef = useRef(false);
 
   const saveContentHandler = useCallback(

@@ -90,7 +90,7 @@ function Tabs({
     <div className="tabs tabs-lift tabs-lg mb-6 p-6">
       <TabRadioButton
         active={activeTab === 'text'}
-        disabled={isFileSelectedInUpload}
+        disabled={isPromptSymbolsExceeded || isFileSelectedInUpload}
         onChange={() => {
           if (!isFileSelectedInUpload) {
             setActiveTab('text');
@@ -125,7 +125,7 @@ function Tabs({
 
       <TabRadioButton
         active={activeTab === 'upload'}
-        disabled={isTextContentInTextTab}
+        disabled={isPromptSymbolsExceeded || isTextContentInTextTab}
         onChange={() => {
           if (!isTextContentInTextTab) {
             setActiveTab('upload');
@@ -205,7 +205,9 @@ function TextEditorPanel({
         <div className="mt-6 flex justify-end">
           <button
             id="GA_createRecordButton"
-            disabled={contentValue.length < MINIMUM_CONTENT_LENGTH || isLoading}
+            disabled={
+              contentValue.length < MINIMUM_CONTENT_LENGTH || isLoading || isPromptSymbolsExceeded
+            }
             onClick={saveContentHandler}
             className="btn bg-yellow-200 text-gray-900 hover:bg-yellow-300"
           >
