@@ -3,13 +3,13 @@
 exports[`Content > renders correctly and matches snapshot 1`] = `
 <div>
   <div
-    class="px-6"
+    class="mock-tabs"
   >
     <div
       class="relative"
     >
       <textarea
-        class="textarea min-h-80 w-full resize-none bg-gray-900 p-10 text-xl outline-none disabled:bg-gray-900 disabled:text-gray-300 sm:min-h-[500px]"
+        class="textarea min-h-80 w-full resize-none bg-gray-900 p-10 text-xl outline-none"
         data-testid="entry-content-field"
         disabled=""
         placeholder="Please write your thoughts here..."

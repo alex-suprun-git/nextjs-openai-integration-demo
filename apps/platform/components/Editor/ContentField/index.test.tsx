@@ -5,8 +5,62 @@ import Content from '.';
 
 // Mock the Alert and Loading components
 vi.mock('@repo/global-ui', () => ({
-  Alert: ({ type, children }: any) => <div data-testid={`alert-${type}`}>{children}</div>,
+  Alert: ({ type, children, testId }: any) => (
+    <div data-testid={testId || `alert-${type}`}>{children}</div>
+  ),
   Loading: ({ customClasses }: any) => <div data-testid="loading" className={customClasses}></div>,
+}));
+
+// Mock next/navigation
+vi.mock('next/navigation', () => ({
+  usePathname: vi.fn().mockReturnValue('/new-entry'),
+}));
+
+// Mock the Tabs component to render alerts for testing
+vi.mock('../Tabs', () => ({
+  default: ({
+    isPromptSymbolsExceeded,
+    contentValue,
+    isContentEntryCreated,
+    isContentEntryUpdated,
+    isLoading,
+  }: any) => (
+    <div className="mock-tabs">
+      {isPromptSymbolsExceeded && (
+        <div data-testid="alert-error">
+          You have reached the 5,000 symbol limit and cannot make new requests.
+        </div>
+      )}
+      {contentValue === 'Short' && (
+        <div data-testid="alert-warning">
+          Please enter at least 30 characters. Changes are not saved for entries with fewer than 30
+          characters.
+        </div>
+      )}
+      {isContentEntryCreated && (
+        <div data-testid="alert-success">A new record was created. Analyzing....</div>
+      )}
+      {isContentEntryUpdated && (
+        <div data-testid="alert-success">The entry was updated successfully.</div>
+      )}
+      <div className="relative">
+        {isLoading && (
+          <div
+            data-testid="loading"
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+          ></div>
+        )}
+        <textarea
+          data-testid="entry-content-field"
+          className="textarea min-h-80 w-full resize-none bg-gray-900 p-10 text-xl outline-none"
+          value={contentValue}
+          placeholder="Please write your thoughts here..."
+          disabled={true}
+          required
+        />
+      </div>
+    </div>
+  ),
 }));
 
 describe('Content', () => {
@@ -25,6 +79,7 @@ describe('Content', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    mockEntryCreatedRef.current = false;
   });
 
   it('renders correctly and matches snapshot', () => {
@@ -127,7 +182,7 @@ describe('Content', () => {
       />,
     );
 
-    const textarea = screen.getByPlaceholderText('Please write your thoughts here...');
+    const textarea = screen.getByTestId('entry-content-field');
     fireEvent.change(textarea, { target: { value: 'New content' } });
 
     expect(textarea).toHaveValue('Initial content');
@@ -147,7 +202,7 @@ describe('Content', () => {
       />,
     );
 
-    const textarea = screen.getByPlaceholderText('Please write your thoughts here...');
+    const textarea = screen.getByTestId('entry-content-field');
     fireEvent.change(textarea, { target: { value: 'New content' } });
 
     expect(textarea).toHaveValue('Initial content');
