@@ -1,4 +1,3 @@
-npm run type-check
+set -x
 npm run lint
-npm run format
-npx lint-staged 
+npm run test:commit

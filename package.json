@@ -5,9 +5,13 @@
 		"build": "turbo run build",
 		"dev": "turbo run dev",
 		"lint": "turbo run lint",
-		"test": "turbo run test"
+		"test": "turbo run test",
+		"test:commit": "CI=true turbo run test --no-daemon",
+		"prepare": "husky"
 	},
 	"devDependencies": {
+		"@commitlint/cli": "^19.8.1",
+		"@commitlint/config-conventional": "^19.8.1",
 		"@types/js-cookie": "^3.0.6",
 		"@types/node": "^20.10.0",
 		"@typescript-eslint/eslint-plugin": "^7.15.0",
@@ -28,11 +32,6 @@
 	},
 	"engines": {
 		"node": ">=22"
-	},
-	"lint-staged": {
-		"*.{test.ts,test.tsx}": [
-			"vitest run --coverage --changed --update"
-		]
 	},
 	"packageManager": "yarn@4.9.1",
 	"workspaces": [
