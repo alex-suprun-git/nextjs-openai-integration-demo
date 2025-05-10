@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import { getLocale } from 'next-intl/server';
 import Navbar from '@/components/Navbar';
 import { PromptProvider } from '@/contexts/PromptContext';
@@ -9,11 +8,6 @@ import { redirect } from 'next/navigation';
 
 /* istanbul ignore next */
 const inter = Inter({ subsets: ['latin'] });
-
-export const metadata: Metadata = {
-  title: 'NextJS | TypeScript | Tailwind | Prisma | Clerk | OpenAI',
-  manifest: '/manifest.json',
-};
 
 const getUserInfo = async () => {
   const user = await getUserByClerkId();

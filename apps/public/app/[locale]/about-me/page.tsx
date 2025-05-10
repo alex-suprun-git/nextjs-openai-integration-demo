@@ -10,7 +10,7 @@ import { PageSchema } from '@/content/types';
 import { getContentFromCMS } from '@/content/utils';
 
 export const metadata: Metadata = {
-  title: 'About me | OpenAI Daily Dashboard',
+  title: 'About me | Mood Analysis',
   description: 'A Brief info about Alex Suprun - the developer of this project.',
 };
 

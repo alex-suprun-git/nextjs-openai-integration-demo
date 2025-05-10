@@ -39,14 +39,13 @@ describe('PageNotFound', () => {
     const heading = screen.getByText('404');
     expect(heading).toHaveClass('text-7xl font-extrabold tracking-tight text-red-500 lg:text-9xl');
 
-    // Check if the paragraph has the correct styles
+    // Check if the paragraph has the correct text
     const paragraph = screen.getByText('Sorry, we can`t find that page.');
-    expect(paragraph).toHaveClass('mb-4 text-lg font-light text-gray-500 dark:text-gray-400');
+    expect(paragraph).toBeInTheDocument();
 
-    // Check if the link has the correct styles
+    // Check if the link has the correct text and href
     const linkElement = screen.getByRole('link', { name: /back to homepage/i });
-    expect(linkElement).toHaveClass(
-      'focus:ring-primary-300 dark:focus:ring-primary-900 my-4 inline-flex rounded-lg bg-blue-600 px-5 py-2.5 text-center text-sm font-medium  hover:bg-blue-800 focus:outline-none focus:ring-4',
-    );
+    expect(linkElement).toBeInTheDocument();
+    expect(linkElement).toHaveAttribute('href', '/');
   });
 });

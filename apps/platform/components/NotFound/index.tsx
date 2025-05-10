@@ -14,16 +14,11 @@ const NotFound = ({ link, homepage }: { link: string; homepage?: boolean }) => {
           <h1 className="mb-4 text-7xl font-extrabold tracking-tight text-red-500 lg:text-9xl">
             404
           </h1>
-          <p className="dark: mb-4 text-3xl font-bold tracking-tight text-gray-900 md:text-4xl">
+          <p className="mb-4 text-3xl font-bold tracking-tight text-gray-100 md:text-4xl">
             {t('description1')}
           </p>
-          <p className="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">
-            {t('description2')}
-          </p>
-          <Link
-            href={link}
-            className="focus:ring-primary-300 dark:focus:ring-primary-900 my-4 inline-flex rounded-lg bg-blue-600 px-5 py-2.5 text-center text-sm font-medium hover:bg-blue-800 focus:outline-none focus:ring-4"
-          >
+          <p className="mb-4 text-lg font-light text-gray-100">{t('description2')}</p>
+          <Link href={link} className="btn bg-yellow-200 text-gray-900 hover:bg-yellow-300">
             {t('linkText')}
           </Link>
         </div>

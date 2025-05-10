@@ -40,14 +40,12 @@ export async function generateMetadata({
 
   if (!entry || !entry.analysis) {
     return {
-      title: 'Entry Not Found | OpenAI Daily Dashboard',
-      description: 'Entry page for OpenAI Daily Dashboard',
+      title: 'Entry Not Found',
     };
   }
 
   return {
-    title: `${entry.analysis.title} | OpenAI Daily Dashboard`,
-    description: entry.analysis.summary || 'Entry page for OpenAI Daily Dashboard',
+    title: `${entry.analysis.title}`,
   };
 }
 

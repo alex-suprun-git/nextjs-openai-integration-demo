@@ -72,7 +72,7 @@ describe('updateUserPromptUsage', () => {
 });
 
 describe('createNewEntry', () => {
-  it('creates a new entry and returns data', async () => {
+  it('creates a new memo and returns data', async () => {
     const mockData = { data: { id: '1', content: 'test content' } };
     (fetch as Mock).mockResolvedValueOnce({
       ok: true,

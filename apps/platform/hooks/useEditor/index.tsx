@@ -38,15 +38,6 @@ export const useEditor = (entry: EditorEntry) => {
             router.refresh();
           }
         }
-        /* @Deprecated */
-        // else if (entry.id && entry.content !== _contentValue) {
-        //   const { analysis: updatedAnalysis } = await updateEntry(entry.id, _contentValue);
-        //   setAnalysis(updatedAnalysis);
-        //   setIsContentEntryUpdated(true);
-        //   await updateUserPromptUsage(_contentValue.length);
-        //   router.refresh();
-        //   setTimeout(() => setIsContentEntryUpdated(false), 1500);
-        // }
       } catch (error) {
         console.error('Error saving content:', error);
         router.push('/');

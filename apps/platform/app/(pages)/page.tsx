@@ -1,13 +1,7 @@
-import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { getUserByClerkId } from '@/utils/auth';
 import { prisma } from '@/utils/db';
 import JournalList from '@/components/JournalList';
-
-export const metadata: Metadata = {
-  title: 'Dashboard | OpenAI Daily Dashboard',
-  description: 'Dashboard page for OpenAI Daily Dashboard',
-};
 
 const getEntries = async () => {
   const user = await getUserByClerkId();

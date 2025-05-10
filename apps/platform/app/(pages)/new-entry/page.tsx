@@ -4,8 +4,7 @@ import { IoReturnUpBack } from 'react-icons/io5';
 import Editor from '@/components/Editor';
 
 export const metadata: Metadata = {
-  title: 'New Entry | OpenAI Daily Dashboard',
-  description: 'New entry page for OpenAI Daily Dashboard',
+  title: 'Write a new Memo',
 };
 
 function NewEntryPage() {

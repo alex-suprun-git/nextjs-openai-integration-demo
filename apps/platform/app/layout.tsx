@@ -16,7 +16,10 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'NextJS | TypeScript | Tailwind | Prisma | Clerk | OpenAI',
+  title: {
+    template: '%s | Mood Analysis',
+    default: 'Dashboard | Mood Analysis',
+  },
   manifest: '/manifest.json',
 };
 
