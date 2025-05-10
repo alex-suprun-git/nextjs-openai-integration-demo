@@ -36,7 +36,7 @@ export default async function RootLayout({
     >
       <html lang={locale}>
         <AnalyticsManager gtmId="GTM-N4MLTRT2" />
-        <body className={`min-h-dvh bg-slate-900/25 ${inter.className}`}>
+        <body className={`min-h-dvh bg-slate-900 ${inter.className}`}>
           <NextIntlClientProvider messages={messages}>
             {children}
             <LocalizedCookieBanner />

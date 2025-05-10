@@ -41,7 +41,7 @@ export default async function RootLocaleLayout({
 
   return (
     <html lang={locale}>
-      <body className={`min-h-dvh bg-slate-900/25 ${inter.className}`}>
+      <body className={`min-h-dvh bg-slate-900 ${inter.className}`}>
         <AnalyticsManager gtmId="GTM-N4MLTRT2" />
         <NextIntlClientProvider messages={messages}>
           <Navbar />

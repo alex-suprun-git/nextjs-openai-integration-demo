@@ -132,7 +132,7 @@ function FileDropzone({ onFileChange, t, fileInputRef }: FileDropzoneProps) {
 
 function FileInfoPanel({ fileName, onRemove, t }: FileInfoPanelProps) {
   return (
-    <div className="rounded-md bg-gray-800 p-4 text-center">
+    <div className="rounded-md p-4 text-center">
       <p className="mb-2 text-lg text-gray-300">{t('labels.selectedFilePrompt')}</p>
       <div className="flex items-center justify-center space-x-2">
         <span className="text-xl font-semibold text-white">{fileName}</span>

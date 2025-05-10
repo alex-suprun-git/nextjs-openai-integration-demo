@@ -10,7 +10,6 @@ import FileUploadTabContent from './FileUploadTabContent';
 import { AlertMessages } from './AlertMessages';
 
 interface TabRadioButtonProps {
-  name: string;
   active: boolean;
   disabled: boolean;
   onChange: () => void;
@@ -90,7 +89,6 @@ function Tabs({
   return (
     <div className="tabs tabs-lift tabs-lg mb-6 p-6">
       <TabRadioButton
-        name="text"
         active={activeTab === 'text'}
         disabled={isFileSelectedInUpload}
         onChange={() => {
@@ -101,7 +99,7 @@ function Tabs({
         label={t('tabs.textLabel')}
       />
 
-      <div className="tab-content border-stone-900 p-3 sm:p-6">
+      <div className="tab-content border-stone-900 bg-base-100 p-3 sm:p-6">
         <>
           <AlertMessages
             isPromptSymbolsExceeded={isPromptSymbolsExceeded}
@@ -126,7 +124,6 @@ function Tabs({
       </div>
 
       <TabRadioButton
-        name="upload"
         active={activeTab === 'upload'}
         disabled={isTextContentInTextTab}
         onChange={() => {
@@ -142,32 +139,26 @@ function Tabs({
       />
 
       <div className="tab-content border-base-300 bg-base-100 p-3 sm:p-6">
-        {isTextContentInTextTab ? (
-          <p className="mb-2 rounded border border-black bg-yellow-400 p-2 text-sm text-black">
-            DEBUG: {t('alerts.textEditorActiveNotice')}
-          </p>
-        ) : (
-          <FileUploadTabContent
-            key={uploadTabResetKey}
-            isLoading={isLoading}
-            isNewEntry={isNewEntry}
-            t={t}
-            onFileSelectionChange={handleFileSelectionStateChange}
-            onFileSubmit={handleFileContentSubmit}
-          />
-        )}
+        <FileUploadTabContent
+          key={uploadTabResetKey}
+          isLoading={isLoading}
+          isNewEntry={isNewEntry}
+          t={t}
+          onFileSelectionChange={handleFileSelectionStateChange}
+          onFileSubmit={handleFileContentSubmit}
+        />
       </div>
     </div>
   );
 }
 
 // Extracted sub-components
-function TabRadioButton({ name, active, disabled, onChange, label }: TabRadioButtonProps) {
+function TabRadioButton({ active, disabled, onChange, label }: TabRadioButtonProps) {
   return (
     <input
       type="radio"
       name="contentFieldTabs"
-      className="tab"
+      className="tab bg-transparent [--tab-bg:#1d232a]"
       aria-label={label}
       checked={active}
       disabled={disabled}
