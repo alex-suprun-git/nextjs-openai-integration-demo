@@ -33,8 +33,8 @@ describe('AlertMessages component', () => {
   it('displays warning alert when content is too short', () => {
     render(<AlertMessages {...defaultProps} isContentTooShort={true} />);
 
-    // Should render warning alert
-    const alert = screen.getByTestId('alert-warning');
+    // Should render warning alert with the specific testId
+    const alert = screen.getByTestId('alert-content-too-short');
     expect(alert).toBeInTheDocument();
     expect(alert).toHaveTextContent('alerts.contentTooShort');
   });
@@ -85,8 +85,8 @@ describe('AlertMessages component', () => {
       <AlertMessages {...defaultProps} isContentTooShort={true} isContentEntryCreated={true} />,
     );
 
-    // Should render both alerts
-    expect(screen.getByTestId('alert-warning')).toBeInTheDocument();
+    // Should render both alerts, using the correct testId for the warning
+    expect(screen.getByTestId('alert-content-too-short')).toBeInTheDocument();
     expect(screen.getByTestId('alert-success')).toBeInTheDocument();
   });
 });

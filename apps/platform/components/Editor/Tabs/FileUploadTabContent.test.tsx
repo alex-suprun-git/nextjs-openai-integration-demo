@@ -1,6 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import FileUploadTabContent from './FileUploadTabContent';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 
 // Define a common resetFileSelectionMock to reuse
 const resetFileSelectionMock = vi.fn();
@@ -22,22 +21,32 @@ vi.mock('./AlertMessages', () => ({
   ),
 }));
 
-describe('FileUploadTabContent without file', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
+let FileUploadTabContentComponent: any;
 
-    // Mock with no file selected
-    vi.mock('@/hooks/useFileProcessor', () => ({
-      useFileProcessor: () => ({
+describe('FileUploadTabContent without file', () => {
+  beforeEach(async () => {
+    vi.resetModules(); // Reset modules before setting new mocks
+    vi.doMock('@/hooks/useFileProcessor', () => ({
+      useFileProcessor: vi.fn(() => ({
         selectedFile: null,
         filePreviewContent: '',
         fileReadError: null,
         isContentValid: false,
         isContentTooShort: false,
-        processFile: processFileMock.mockResolvedValue(true),
+        processFile: processFileMock.mockResolvedValue(true), // processFileMock will be used here
         resetFileSelection: resetFileSelectionMock,
-      }),
+      })),
     }));
+    const module = await import('./FileUploadTabContent');
+    FileUploadTabContentComponent = module.default;
+
+    // Clear mocks that are defined in the outer scope
+    processFileMock.mockClear();
+    resetFileSelectionMock.mockClear();
+  });
+
+  afterEach(() => {
+    vi.clearAllMocks();
   });
 
   it('renders the file dropzone when no file is selected', () => {
@@ -49,12 +58,13 @@ describe('FileUploadTabContent without file', () => {
       onFileSubmit: vi.fn(),
     };
 
-    render(<FileUploadTabContent {...props} />);
+    const { container } = render(<FileUploadTabContentComponent {...props} />);
 
-    // Check for dropzone elements
+    expect(screen.getByTestId('upload-icon')).toBeInTheDocument();
     expect(screen.getByText('dropzone.promptMain')).toBeInTheDocument();
     expect(screen.getByText('dropzone.promptDetails')).toBeInTheDocument();
-    expect(screen.getByTestId('upload-icon')).toBeInTheDocument();
+    const fileInput = container.querySelector('#dropzone-file-inner');
+    expect(fileInput).toBeInTheDocument();
   });
 
   it('calls processFile when a file is selected', async () => {
@@ -67,38 +77,47 @@ describe('FileUploadTabContent without file', () => {
       onFileSubmit: vi.fn(),
     };
 
-    const { container } = render(<FileUploadTabContent {...props} />);
+    const { container } = render(<FileUploadTabContentComponent {...props} />);
 
-    // Get the file input (it's hidden so we need to find it by id)
-    const fileInput = container.querySelector('#dropzone-file-inner');
-    expect(fileInput).toBeInTheDocument();
+    const inputElement = container.querySelector('#dropzone-file-inner');
+    expect(inputElement).toBeInTheDocument(); // Make sure the input is rendered
 
-    if (fileInput) {
-      const file = new File(['file content'], 'test.txt', { type: 'text/plain' });
-      await fireEvent.change(fileInput, { target: { files: [file] } });
+    if (!inputElement) throw new Error('File input #dropzone-file-inner not found');
 
-      expect(processFileMock).toHaveBeenCalled();
-      expect(onFileSelectionChangeMock).toHaveBeenCalledWith(true);
-    }
+    const file = new File(['dummy content'], 'test.txt', { type: 'text/plain' });
+    await fireEvent.change(inputElement, { target: { files: [file] } });
+
+    expect(processFileMock).toHaveBeenCalledTimes(1);
+    expect(processFileMock).toHaveBeenCalledWith(file);
+    // Since processFileMock is mocked to resolve to true in this suite's beforeEach
+    expect(onFileSelectionChangeMock).toHaveBeenCalledWith(true);
   });
 });
 
 describe('FileUploadTabContent with file selected', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-
-    // Mock with a file selected
-    vi.mock('@/hooks/useFileProcessor', () => ({
-      useFileProcessor: () => ({
+  beforeEach(async () => {
+    vi.resetModules(); // Reset modules before setting new mocks
+    vi.doMock('@/hooks/useFileProcessor', () => ({
+      useFileProcessor: vi.fn(() => ({
         selectedFile: { name: 'test.txt' },
         filePreviewContent: 'This is a file content preview',
         fileReadError: null,
         isContentValid: true,
         isContentTooShort: false,
-        processFile: processFileMock,
+        processFile: processFileMock, // Re-use global mock, its behavior might be set if needed per test
         resetFileSelection: resetFileSelectionMock,
-      }),
+      })),
     }));
+    const module = await import('./FileUploadTabContent');
+    FileUploadTabContentComponent = module.default;
+
+    // Clear mocks that are defined in the outer scope
+    processFileMock.mockClear();
+    resetFileSelectionMock.mockClear();
+  });
+
+  afterEach(() => {
+    vi.clearAllMocks();
   });
 
   it('displays file info and preview when file is selected', () => {
@@ -110,18 +129,13 @@ describe('FileUploadTabContent with file selected', () => {
       onFileSubmit: vi.fn(),
     };
 
-    render(<FileUploadTabContent {...props} />);
+    render(<FileUploadTabContentComponent {...props} />);
 
-    // Verify file info panel is shown
     expect(screen.getByText('labels.selectedFilePrompt')).toBeInTheDocument();
     expect(screen.getByText('test.txt')).toBeInTheDocument();
-
-    // Verify preview is shown
     expect(screen.getByText('labels.previewArea')).toBeInTheDocument();
     const previewArea = screen.getByDisplayValue('This is a file content preview');
     expect(previewArea).toBeInTheDocument();
-
-    // Verify submit button is shown
     expect(screen.getByText('buttons.submitPreviewForAnalysis')).toBeInTheDocument();
   });
 
@@ -135,12 +149,8 @@ describe('FileUploadTabContent with file selected', () => {
       onFileSubmit: onFileSubmitMock,
     };
 
-    render(<FileUploadTabContent {...props} />);
-
-    // Click submit button
+    render(<FileUploadTabContentComponent {...props} />);
     fireEvent.click(screen.getByText('buttons.submitPreviewForAnalysis'));
-
-    // Verify onFileSubmit was called with file content
     expect(onFileSubmitMock).toHaveBeenCalledWith('This is a file content preview');
   });
 
@@ -154,13 +164,10 @@ describe('FileUploadTabContent with file selected', () => {
       onFileSubmit: vi.fn(),
     };
 
-    render(<FileUploadTabContent {...props} />);
-
-    // Click remove button
+    render(<FileUploadTabContentComponent {...props} />);
+    // Assuming t('buttons.removeSelectedFile') is the label for the button
     fireEvent.click(screen.getByLabelText('buttons.removeSelectedFile'));
-
-    // Verify resetFileSelection and onFileSelectionChange were called
-    expect(resetFileSelectionMock).toHaveBeenCalled();
+    expect(resetFileSelectionMock).toHaveBeenCalledTimes(1);
     expect(onFileSelectionChangeMock).toHaveBeenCalledWith(false);
   });
 
@@ -173,9 +180,7 @@ describe('FileUploadTabContent with file selected', () => {
       onFileSubmit: vi.fn(),
     };
 
-    render(<FileUploadTabContent {...props} />);
-
-    // Verify submit button is disabled
+    render(<FileUploadTabContentComponent {...props} />);
     const submitButton = screen.getByText('buttons.submitPreviewForAnalysis');
     expect(submitButton).toBeDisabled();
   });
