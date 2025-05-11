@@ -7,7 +7,7 @@
 		".": "./src/index.ts"
 	},
 	"scripts": {
-		"lint": "eslint .",
+		"lint": "npx eslint .",
 		"check-types": "tsc --noEmit",
 		"test": "vitest run"
 	},
@@ -25,7 +25,6 @@
 		"@types/react": "19.1.0",
 		"@types/react-dom": "19.1.1",
 		"@vitejs/plugin-react": "4.3.4",
-		"eslint": "^9.24.0",
 		"jsdom": "^24.1.0",
 		"typescript": "5.8.2",
 		"vitest": "3.1.0"

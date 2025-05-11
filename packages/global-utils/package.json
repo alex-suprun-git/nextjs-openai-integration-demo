@@ -6,7 +6,7 @@
 		"./*": "./src/*.ts"
 	},
 	"scripts": {
-		"lint": "eslint .",
+		"lint": "npx eslint .",
 		"check-types": "tsc --noEmit"
 	},
 	"devDependencies": {
@@ -15,7 +15,6 @@
 		"@types/node": "^22.14.0",
 		"@types/react": "19.1.0",
 		"@types/react-dom": "19.1.1",
-		"eslint": "^9.24.0",
 		"typescript": "5.8.2"
 	}
 }

@@ -67,7 +67,6 @@
     "@types/react-dom": "19.1.1",
     "@types/ws": "^8.6.0",
     "cypress": "^13.13.0",
-    "eslint": "^9.24.0",
     "jsdom": "^24.1.0",
     "prisma": "^5.17.0",
     "typescript": "5.8.2"
