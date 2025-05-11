@@ -6,7 +6,6 @@ import clsx from 'clsx';
 import { Alert, Loading } from '@repo/global-ui';
 import { usePathname } from 'next/navigation';
 import Tabs from '../Tabs';
-import { MINIMUM_CONTENT_LENGTH } from '@/utils/constants';
 
 function Content({
   isLoading,

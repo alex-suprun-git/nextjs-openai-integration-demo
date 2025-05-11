@@ -79,7 +79,7 @@ describe('EntryCard', () => {
 
   it('renders with correct text and date', () => {
     renderWithProvider(<EntryCard {...mockEntry} />);
-    let titles = screen.getAllByText('This is a test entry');
+    const titles = screen.getAllByText('This is a test entry');
     titles.forEach((title) => {
       expect(title).toBeInTheDocument();
     });

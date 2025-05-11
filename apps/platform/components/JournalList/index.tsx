@@ -1,6 +1,5 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import EntryCard from '../EntryCard';
 import NewEntryCard from '../NewEntryCard';
@@ -8,8 +7,6 @@ import Question from '../Question';
 import { ENTRIES_BASE_PATH } from '@/utils/constants';
 
 const JournalList = ({ entries }: { entries: Required<AnalysisSubEntry[]> | [] }) => {
-  const t = useTranslations('JournalList');
-
   return (
     <div className="container mx-auto px-6 py-10 xl:px-10">
       {!!entries?.length && <Question />}

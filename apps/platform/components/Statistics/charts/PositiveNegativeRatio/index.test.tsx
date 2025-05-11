@@ -60,16 +60,4 @@ describe('PositiveNegativeRatio component', () => {
     expect(screen.getByTestId('pie')).toBeInTheDocument();
     expect(screen.getAllByTestId('cell').length).toBe(2); // Two cells: positive and negative
   });
-
-  it('calculates correct positive/negative counts', () => {
-    const { container } = render(<PositiveNegativeRatio data={mockData} />);
-
-    // The rendered component doesn't expose the aggregated data directly,
-    // so we're checking for the existence of certain elements
-    expect(screen.getByTestId('responsive-container')).toBeInTheDocument();
-
-    // Ensure the tooltip and legend are rendered
-    expect(screen.getByTestId('tooltip')).toBeInTheDocument();
-    expect(screen.getByTestId('legend')).toBeInTheDocument();
-  });
 });

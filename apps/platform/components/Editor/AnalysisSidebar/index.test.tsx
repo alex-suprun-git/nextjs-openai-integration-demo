@@ -1,6 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { describe, it, expect, vi, Mock } from 'vitest';
-import { createTranslator, useTranslations } from 'next-intl';
+import { describe, it, expect, vi } from 'vitest';
 import AnalysisSidebar from '.';
 import { deleteEntry } from '@/utils/api';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
