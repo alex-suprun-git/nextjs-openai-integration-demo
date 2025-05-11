@@ -158,7 +158,7 @@ function TabRadioButton({ active, disabled, onChange, label }: TabRadioButtonPro
     <input
       type="radio"
       name="contentFieldTabs"
-      className="tab bg-transparent [--tab-bg:#1d232a]"
+      className="tab bg-transparent [--tab-bg:#1d232a] disabled:opacity-100"
       aria-label={label}
       checked={active}
       disabled={disabled}
