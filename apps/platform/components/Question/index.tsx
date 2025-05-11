@@ -3,6 +3,7 @@
 import { FormEvent, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { HiMiniChevronDoubleRight } from 'react-icons/hi2';
+import { useRouter } from 'next/navigation';
 import { askQuestion, updateUserPromptUsage } from '@/utils/api';
 import { usePrompt } from '@/contexts/PromptContext';
 import { Loading } from '@repo/global-ui';
@@ -11,6 +12,7 @@ const Question = () => {
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState<string | null>(null);
   const [isLoading, setLoading] = useState(false);
+  const router = useRouter();
 
   const { symbolsLeft } = usePrompt();
   const isPromptSymbolsExceeded = symbolsLeft <= 0;
@@ -30,6 +32,7 @@ const Question = () => {
       setAnswer(data);
       await updateUserPromptUsage(question.length);
       setQuestion('');
+      router.refresh();
     } catch (error) {
       setAnswer(t('labels.responseError'));
       console.log(error);

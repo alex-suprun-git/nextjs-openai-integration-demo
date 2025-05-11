@@ -3,7 +3,6 @@ import {
   createUrl,
   updateUserPromptUsage,
   createNewEntry,
-  updateEntry,
   deleteEntry,
   askQuestion,
 } from '@/utils/api';
@@ -92,30 +91,6 @@ describe('createNewEntry', () => {
     const result = await createNewEntry('test content');
     expect(result).toBeInstanceOf(Error);
     expect((result as Error).message).toBe('Unauthorized');
-  });
-});
-
-describe('updateEntry', () => {
-  it('updates an entry and returns data', async () => {
-    const mockData = { data: { id: '1', content: 'updated content' } };
-    (fetch as Mock).mockResolvedValueOnce({
-      ok: true,
-      json: async () => mockData,
-    });
-
-    const result = await updateEntry('1', 'updated content');
-    expect(result).toEqual(mockData.data);
-  });
-
-  it('handles failed fetch', async () => {
-    (fetch as Mock).mockResolvedValueOnce({
-      ok: false,
-      statusText: 'Not Found',
-    });
-
-    const result = await updateEntry('1', 'updated content');
-    expect(result).toBeInstanceOf(Error);
-    expect((result as Error).message).toBe('Not Found');
   });
 });
 

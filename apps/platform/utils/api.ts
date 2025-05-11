@@ -34,24 +34,6 @@ export const createNewEntry = async (content: string) => {
   return data.data;
 };
 
-// @Deprecated
-export const updateEntry = async (id: string, content: string) => {
-  const res = await fetch(
-    new Request(`/api/journal/${id}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ content }),
-    }),
-  );
-
-  if (!res.ok) {
-    return new Error(res.statusText);
-  }
-
-  const data = await res.json();
-  return data.data;
-};
-
 export const deleteEntry = async (id: string) => {
   const res = await fetch(
     new Request(`/api/journal/${id}`, {

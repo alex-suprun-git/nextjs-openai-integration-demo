@@ -14,7 +14,7 @@ model User {
   updatedAt                 DateTime       @updatedAt
   clerkId                   String         @unique
   email                     String         @unique
-  promptSymbolsLimit        Int            @default(5000)
+  promptSymbolsLimit        Int            @default(2500)
   promptSymbolsUsed         Int            @default(0)
   promptSymbolsLimitRenewal DateTime
   analyses                  Analysis[]
