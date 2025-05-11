@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
+import JournalList from '@/components/JournalList';
 import { getUserByClerkId } from '@/utils/auth';
 import { prisma } from '@/utils/db';
-import JournalList from '@/components/JournalList';
 
 const getEntries = async () => {
   const user = await getUserByClerkId();

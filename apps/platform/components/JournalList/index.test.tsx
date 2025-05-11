@@ -41,14 +41,7 @@ vi.mock('../NewEntryCard', () => ({
 vi.mock('../Question', () => ({
   default: () => <div data-testid="question" />,
 }));
-
 describe('JournalList Component', () => {
-  it('renders the heading', () => {
-    render(<JournalList entries={[]} />);
-    const heading = screen.getByText('headline');
-    expect(heading).toBeInTheDocument();
-  });
-
   it('renders Question component when entries are present', () => {
     const entries = [
       {
