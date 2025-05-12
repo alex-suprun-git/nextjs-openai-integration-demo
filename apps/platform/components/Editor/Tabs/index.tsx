@@ -99,7 +99,7 @@ function Tabs({
         label={t('tabs.textLabel')}
       />
 
-      <div className="tab-content border-stone-900 bg-base-100 p-3 sm:p-6">
+      <div className="tab-content border-stone-900 bg-[#1d232a] p-3 sm:p-6">
         <>
           <AlertMessages
             isPromptSymbolsExceeded={isPromptSymbolsExceeded}
@@ -138,7 +138,7 @@ function Tabs({
         label={t('tabs.uploadFileLabel')}
       />
 
-      <div className="tab-content border-base-300 bg-base-100 p-3 sm:p-6">
+      <div className="tab-content border-stone-900 bg-[#1d232a] p-3 sm:p-6">
         <FileUploadTabContent
           key={uploadTabResetKey}
           isLoading={isLoading}
