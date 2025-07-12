@@ -3,13 +3,13 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { IoReturnUpBack } from 'react-icons/io5';
-import { getUserByClerkId } from '@/utils/auth';
+import { getCurrentUser } from '@/utils/auth';
 import { prisma } from '@/utils/db';
 import Editor from '@/components/Editor';
 
 // Use React's cache to deduplicate data fetching
 const getEntry = cache(async (id: string) => {
-  const user = await getUserByClerkId();
+  const user = await getCurrentUser();
   if (!user) {
     return null;
   }

@@ -21,11 +21,10 @@
     "postinstall": "npx prisma generate"
   },
   "dependencies": {
-    "@clerk/localizations": "3.13.12",
-    "@clerk/nextjs": "6.16.0",
     "@langchain/core": "0.3.45",
     "@langchain/openai": "0.5.5",
     "@neondatabase/serverless": "^0.9.5",
+    "@next-auth/prisma-adapter": "^1.0.7",
     "@next/third-parties": "^15.3.1",
     "@prisma/adapter-neon": "^5.17.0",
     "@prisma/client": "^5.17.0",
@@ -35,6 +34,7 @@
     "@repo/global-utils": "*",
     "@sentry/nextjs": "^9.12.0",
     "@vercel/speed-insights": "^1.2.0",
+    "bcryptjs": "^2.4.3",
     "clsx": "^2.1.1",
     "cookies-next": "5.1.0",
     "daisyui": "5.0.19",
@@ -44,6 +44,7 @@
     "mammoth": "^1.7.0",
     "nanoid": "^5.1.0",
     "next": "^15.3.0",
+    "next-auth": "^4.24.6",
     "next-intl": "4.0.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
@@ -53,7 +54,6 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@clerk/testing": "^1.2.0",
     "@cypress/code-coverage": "^3.13.0",
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",

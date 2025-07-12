@@ -1,16 +1,18 @@
+'use client';
+import { signIn } from 'next-auth/react';
 import { Metadata } from 'next';
-import { SignIn } from '@clerk/nextjs';
 
 export const metadata: Metadata = {
   title: 'Sign In | OpenAI Daily Dashboard',
   description: 'Sign in page for OpenAI Daily Dashboard',
 };
 
-function SignInPage() {
+export default function SignInPage() {
   return (
     <div className="flex min-h-dvh items-center justify-center">
-      <SignIn />
+      <button className="btn" onClick={() => signIn()}>
+        Sign In
+      </button>
     </div>
   );
 }
-export default SignInPage;

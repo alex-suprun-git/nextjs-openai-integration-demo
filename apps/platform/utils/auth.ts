@@ -1,20 +1,21 @@
-import { auth } from '@clerk/nextjs/server';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { prisma } from './db';
 import { Prisma } from '@prisma/client';
 import { isDynamicServerError } from 'next/dist/client/components/hooks-server-context';
 
-export const getUserByClerkId = async () => {
+export const getCurrentUser = async () => {
   try {
-    const { userId } = await auth();
+    const session = await getServerSession(authOptions);
 
-    if (!userId) {
-      console.warn('User ID is not available. User might be signed out.');
+    if (!session?.user?.email) {
+      console.warn('User email is not available. User might be signed out.');
       return null;
     }
 
     const user = await prisma.user.findFirstOrThrow({
       where: {
-        clerkId: userId as string,
+        email: session.user.email as string,
       },
     });
 
