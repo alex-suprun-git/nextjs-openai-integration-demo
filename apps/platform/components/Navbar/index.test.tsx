@@ -8,9 +8,11 @@ vi.mock('react-icons/fi', () => ({
   FiMenu: () => <div data-testid="fi-menu">FiMenu Icon</div>,
 }));
 
-// Mock Clerk UserButton
-vi.mock('@clerk/nextjs', () => ({
-  UserButton: () => <div data-testid="user-button">UserButton</div>,
+// Mock NextAuth hooks
+vi.mock('next-auth/react', () => ({
+  useSession: () => ({ data: { user: { email: 'test@example.com' } } }),
+  signIn: vi.fn(),
+  signOut: vi.fn(),
 }));
 
 // Mock LanguageSwitcher
@@ -67,9 +69,9 @@ describe('Navbar Component', () => {
     expect(counters.length).toBeGreaterThanOrEqual(1);
   });
 
-  it('renders LanguageSwitcher and UserButton in navbar-end', () => {
+  it('renders LanguageSwitcher and auth button in navbar-end', () => {
     render(<Navbar />);
     expect(screen.getByTestId('language-switcher')).toBeInTheDocument();
-    expect(screen.getByTestId('user-button')).toBeInTheDocument();
+    expect(screen.getByRole('button')).toBeInTheDocument();
   });
 });

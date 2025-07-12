@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
-import { UserButton } from '@clerk/nextjs';
+import { useSession, signIn, signOut } from 'next-auth/react';
 import { FiMenu } from 'react-icons/fi';
 import LanguageSwitcher from '../LanguageSwitcher';
 import Logo from '../Logo';
@@ -10,6 +10,7 @@ import { Drawer, Header } from '@repo/global-ui';
 import PromptCounter from '@/ui-lib/PromptCounter';
 
 function Navbar() {
+  const { data: session } = useSession();
   const drawerToggleRef = useRef<HTMLInputElement>(null);
 
   const drawerToggleHandler = () => {
@@ -45,7 +46,15 @@ function Navbar() {
           </div>
 
           <div className="pt-2 text-center">
-            <UserButton />
+            {session ? (
+              <button className="btn" onClick={() => signOut()}>
+                Sign Out
+              </button>
+            ) : (
+              <button className="btn" onClick={() => signIn()}>
+                Sign In
+              </button>
+            )}
           </div>
         </div>
       </div>

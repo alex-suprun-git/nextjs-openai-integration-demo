@@ -1,8 +1,16 @@
-import { chainMiddlewares } from './middlewares/chainMiddlewares';
-import { authMiddleware } from './middlewares/clerk-middleware';
+import { withAuth } from 'next-auth/middleware';
 
-export default chainMiddlewares([authMiddleware]);
+export default withAuth(
+  function middleware(req) {
+    // Add any custom middleware logic here if needed
+  },
+  {
+    callbacks: {
+      authorized: ({ token }) => !!token,
+    },
+  },
+);
 
 export const config = {
-  matcher: ['/((?!.*\\..*|_next).*)', '/', '/(api|trpc)(.*)'],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|sign-in|sign-up).*)'],
 };

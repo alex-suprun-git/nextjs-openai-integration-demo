@@ -1,5 +1,5 @@
 import { analysisFeedback } from '@/utils/ai';
-import { getUserByClerkId } from '@/utils/auth';
+import { getCurrentUser } from '@/utils/auth';
 import { prisma } from '@/utils/db';
 import { NextResponse } from 'next/server';
 import { isDynamicServerError } from 'next/dist/client/components/hooks-server-context';
@@ -8,7 +8,7 @@ import { getLocale } from 'next-intl/server';
 export const POST = async (request: Request) => {
   const language = await getLocale();
   const { question } = await request.json();
-  const user = await getUserByClerkId();
+  const user = await getCurrentUser();
 
   if (!user) {
     return NextResponse.json({ message: 'User not found' }, { status: 401 });

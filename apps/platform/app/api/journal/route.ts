@@ -1,13 +1,13 @@
 import { NextResponse } from 'next/server';
 import { update } from '@/utils/actions';
 import { analyzeEntry } from '@/utils/ai';
-import { getUserByClerkId } from '@/utils/auth';
+import { getCurrentUser } from '@/utils/auth';
 import { prisma } from '@/utils/db';
 import { isDynamicServerError } from 'next/dist/client/components/hooks-server-context';
 
 export const POST = async (request: Request) => {
   const { content } = await request.json();
-  const user = await getUserByClerkId();
+  const user = await getCurrentUser();
 
   if (!user) {
     return NextResponse.json({ message: 'User not found' }, { status: 401 });
