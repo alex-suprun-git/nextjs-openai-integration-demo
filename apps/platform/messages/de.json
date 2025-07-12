@@ -43,6 +43,12 @@
       "confirmButton": "Löschen",
       "cancelButton": "Abbrechen",
       "confirmationMessage": "Sind Sie sicher, dass Sie diesen Eintrag löschen möchten?"
+    },
+    "logout": {
+      "confirmButton": "Abmelden",
+      "cancelButton": "Abbrechen",
+      "confirmationMessage": "Sind Sie sicher, dass Sie sich abmelden möchten?",
+      "ariaLabel": "Abmelden"
     }
   },
   "JournalList": {

@@ -81,13 +81,17 @@ export default function SignInPage() {
         </div>
         {error && <div className="text-center text-sm text-error">{error}</div>}
         {success && <div className="text-center text-sm text-success">{success}</div>}
-        <button className="btn btn-primary mt-2" type="submit" disabled={loading}>
+        <button
+          className="btn mt-2 bg-yellow-200 text-black hover:bg-yellow-300"
+          type="submit"
+          disabled={loading}
+        >
           {loading ? t('loading') : t('submit')}
         </button>
         <div className="mt-4 text-center">
           <p className="text-sm text-gray-600">
             {t('noAccount')}{' '}
-            <Link href="/sign-up" className="text-blue-600 underline hover:text-blue-800">
+            <Link href="/sign-up" className="border-b-2 text-white">
               {t('signUpLink')}
             </Link>
           </p>

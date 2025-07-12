@@ -43,6 +43,12 @@
       "confirmButton": "Delete",
       "cancelButton": "Cancel",
       "confirmationMessage": "Are you sure you want to delete this memo?"
+    },
+    "logout": {
+      "confirmButton": "Sign Out",
+      "cancelButton": "Cancel",
+      "confirmationMessage": "Are you sure you want to sign out?",
+      "ariaLabel": "Sign out"
     }
   },
   "JournalList": {
