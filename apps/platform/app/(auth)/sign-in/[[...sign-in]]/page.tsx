@@ -30,13 +30,16 @@ export default function SignInPage() {
     const res = await signIn('credentials', {
       email,
       password,
-      redirect: true,
+      redirect: false,
       callbackUrl: '/',
     });
-    // signIn with redirect:true will handle navigation, but if error returned, show it
-    if (res && res.error) {
+
+    if (res?.error) {
       setError(t('invalidCredentials'));
       setLoading(false);
+    } else if (res?.ok) {
+      // Successful sign in - redirect to callback URL
+      window.location.href = '/';
     }
   };
 
