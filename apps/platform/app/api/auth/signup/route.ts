@@ -16,7 +16,7 @@ export const POST = async (req: Request) => {
     data: {
       email,
       password: hashed,
-      promptSymbolsLimitRenewal: new Date(),
+      promptSymbolsLimitRenewal: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days from now
       promptSymbolsLimit: 2500,
     },
   });
