@@ -43,6 +43,12 @@
       "confirmButton": "Delete",
       "cancelButton": "Cancel",
       "confirmationMessage": "Are you sure you want to delete this memo?"
+    },
+    "logout": {
+      "confirmButton": "Sign Out",
+      "cancelButton": "Cancel",
+      "confirmationMessage": "Are you sure you want to sign out?",
+      "ariaLabel": "Sign out"
     }
   },
   "JournalList": {
@@ -133,5 +139,33 @@
     "policyLink": "/privacy",
     "acceptButton": "Accept all",
     "rejectButton": "Reject all"
+  },
+  "Auth": {
+    "signIn": {
+      "title": "Sign In",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign In",
+      "loading": "Signing in...",
+      "noAccount": "Don't have an account?",
+      "signUpLink": "Sign up here",
+      "invalidCredentials": "Invalid email or password"
+    },
+    "signUp": {
+      "title": "Sign Up",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign Up",
+      "loading": "Creating Account...",
+      "hasAccount": "Already have an account?",
+      "signInLink": "Sign in here",
+      "userExists": "User with this email already exists",
+      "missingFields": "Please fill in all fields",
+      "invalidEmailFormat": "Please enter a valid email address",
+      "passwordTooShort": "Password must be at least 6 characters long",
+      "serverError": "Server error occurred. Please try again.",
+      "unexpectedError": "An unexpected error occurred. Please try again.",
+      "accountCreated": "Account created successfully. Please sign in."
+    }
   }
 }

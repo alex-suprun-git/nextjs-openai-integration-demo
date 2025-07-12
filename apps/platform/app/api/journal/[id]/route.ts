@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { update } from '@/utils/actions';
-import { getUserByClerkId } from '@/utils/auth';
+import { getCurrentUser } from '@/utils/auth';
 import { prisma } from '@/utils/db';
 import { isDynamicServerError } from 'next/dist/client/components/hooks-server-context';
 
@@ -8,7 +8,7 @@ export const DELETE = async (
   _request: Request,
   { params }: { params: Promise<{ id: string }> },
 ) => {
-  const user = await getUserByClerkId();
+  const user = await getCurrentUser();
   const { id } = await params;
 
   if (!user) {

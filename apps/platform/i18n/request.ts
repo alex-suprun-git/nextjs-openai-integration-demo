@@ -18,8 +18,12 @@ export default getRequestConfig(async () => {
   const defaultLocale = await getLocaleFromHeaders();
   const locale = (await getUserLocale()) || defaultLocale;
 
+  // Supported locales
+  const supportedLocales = ['en', 'de'];
+  const finalLocale = supportedLocales.includes(locale) ? locale : 'en';
+
   return {
-    locale,
-    messages: (await import(`../messages/${locale}.json`)).default,
+    locale: finalLocale,
+    messages: (await import(`../messages/${finalLocale}.json`)).default,
   };
 });

@@ -1,11 +1,11 @@
-import { getUserByClerkId } from '@/utils/auth';
+import { getCurrentUser } from '@/utils/auth';
 import { prisma } from '@/utils/db';
 import { NextResponse } from 'next/server';
 import { isDynamicServerError } from 'next/dist/client/components/hooks-server-context';
 
 export const PATCH = async (request: Request) => {
   const { promptContentLength } = await request.json();
-  const user = await getUserByClerkId();
+  const user = await getCurrentUser();
 
   if (!user) {
     return NextResponse.json({ message: 'User not found' }, { status: 401 });

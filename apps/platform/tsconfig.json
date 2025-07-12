@@ -36,6 +36,7 @@
     "./ui-lib/**/*",
     ".next/types/**/*.ts",
     "./config/**/*",
+    "./types/**/*",
     "types.d.ts",
     "constants.ts",
     "ui-lib"

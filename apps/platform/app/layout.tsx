@@ -1,15 +1,12 @@
 import type { Metadata } from 'next';
-import { ClerkProvider } from '@clerk/nextjs';
-import { deDE, enUS } from '@clerk/localizations';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Inter } from 'next/font/google';
 
-import { getCurrentEnv } from '@repo/global-utils/helpers';
 import { LocalizedCookieBanner } from '@repo/global-ui';
 import { AnalyticsManager } from '@repo/global-analytics';
-import { PUBLIC_BASE_URL } from '@/constants';
+import Providers from '@/components/Providers';
 import './globals.css';
 
 /* istanbul ignore next */
@@ -30,23 +27,19 @@ export default async function RootLayout({
 }>) {
   const locale = await getLocale();
   const messages = await getMessages();
-  const clerkLocalization = locale === 'de' ? deDE : enUS;
 
   return (
-    <ClerkProvider
-      afterSignOutUrl={PUBLIC_BASE_URL[getCurrentEnv()]}
-      localization={clerkLocalization}
-    >
-      <html lang={locale}>
-        <AnalyticsManager gtmId="GTM-N4MLTRT2" />
-        <body className={`min-h-dvh bg-slate-900 ${inter.className}`}>
-          <NextIntlClientProvider messages={messages}>
+    <html lang={locale}>
+      <AnalyticsManager gtmId="GTM-N4MLTRT2" />
+      <body className={`min-h-dvh bg-slate-900 ${inter.className}`}>
+        <NextIntlClientProvider messages={messages}>
+          <Providers>
             {children}
             <LocalizedCookieBanner />
-          </NextIntlClientProvider>
-          <SpeedInsights />
-        </body>
-      </html>
-    </ClerkProvider>
+          </Providers>
+        </NextIntlClientProvider>
+        <SpeedInsights />
+      </body>
+    </html>
   );
 }

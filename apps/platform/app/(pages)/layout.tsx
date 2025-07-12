@@ -1,7 +1,7 @@
 import { getLocale } from 'next-intl/server';
 import Navbar from '@/components/Navbar';
 import { PromptProvider } from '@/contexts/PromptContext';
-import { getUserByClerkId } from '@/utils/auth';
+import { getCurrentUser } from '@/utils/auth';
 import { formatPromptData } from '@/utils/helpers';
 import { Inter } from 'next/font/google';
 import { redirect } from 'next/navigation';
@@ -10,7 +10,7 @@ import { redirect } from 'next/navigation';
 const inter = Inter({ subsets: ['latin'] });
 
 const getUserInfo = async () => {
-  const user = await getUserByClerkId();
+  const user = await getCurrentUser();
 
   if (user) {
     return {

@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import StatisticsData from '@/components/Statistics';
-import { getUserByClerkId } from '@/utils/auth';
+import { getCurrentUser } from '@/utils/auth';
 import { prisma } from '@/utils/db';
 
 export const metadata: Metadata = {
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 const getData = async () => {
-  const user = await getUserByClerkId();
+  const user = await getCurrentUser();
   if (!user) {
     return { analyses: [], averageSentiment: null };
   }
