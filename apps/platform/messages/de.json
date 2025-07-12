@@ -133,5 +133,33 @@
     "policyLink": "/privacy",
     "acceptButton": "Alle akzeptieren",
     "rejectButton": "Alle ablehnen"
+  },
+  "Auth": {
+    "signIn": {
+      "title": "Anmelden",
+      "email": "E-Mail",
+      "password": "Passwort",
+      "submit": "Anmelden",
+      "loading": "Anmeldung läuft...",
+      "noAccount": "Haben Sie noch kein Konto?",
+      "signUpLink": "Hier registrieren",
+      "invalidCredentials": "Ungültige E-Mail oder Passwort"
+    },
+    "signUp": {
+      "title": "Registrieren",
+      "email": "E-Mail",
+      "password": "Passwort",
+      "submit": "Registrieren",
+      "loading": "Konto wird erstellt...",
+      "hasAccount": "Haben Sie bereits ein Konto?",
+      "signInLink": "Hier anmelden",
+      "userExists": "Benutzer mit dieser E-Mail existiert bereits",
+      "missingFields": "Bitte füllen Sie alle Felder aus",
+      "invalidEmailFormat": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+      "passwordTooShort": "Das Passwort muss mindestens 6 Zeichen lang sein",
+      "serverError": "Serverfehler aufgetreten. Bitte versuchen Sie es erneut.",
+      "unexpectedError": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+      "accountCreated": "Konto erfolgreich erstellt. Bitte melden Sie sich an."
+    }
   }
 }

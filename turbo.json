@@ -6,11 +6,10 @@
 		"CONTENTFUL_PREVIEW_ACCESS_TOKEN",
 		"CONTENTFUL_ACCESS_TOKEN",
 		"CONTENTFUL_SPACE_ID",
-                "OPENAI_API_KEY",
-                "DATABASE_URL",
-                "NEXTAUTH_URL",
-                "NEXTAUTH_SECRET",
-                "CRON_SECRET"
+		"OPENAI_API_KEY",
+		"DATABASE_URL",
+		"NEXTAUTH_URL",
+		"NEXTAUTH_SECRET"
 	],
 	"tasks": {
 		"build": {
