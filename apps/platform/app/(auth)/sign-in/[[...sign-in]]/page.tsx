@@ -1,6 +1,7 @@
 'use client';
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
+import Link from 'next/link';
 
 export default function SignInPage() {
   const [email, setEmail] = useState('');
@@ -43,7 +44,6 @@ export default function SignInPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            autoFocus
           />
         </div>
         <div className="form-control">
@@ -65,10 +65,10 @@ export default function SignInPage() {
         </button>
         <div className="mt-4 text-center">
           <p className="text-sm text-gray-600">
-            Don't have an account?{' '}
-            <a href="/sign-up" className="text-blue-600 underline hover:text-blue-800">
+            Don&apos;t have an account?{' '}
+            <Link href="/sign-up" className="text-blue-600 underline hover:text-blue-800">
               Sign up here
-            </a>
+            </Link>
           </p>
         </div>
       </form>

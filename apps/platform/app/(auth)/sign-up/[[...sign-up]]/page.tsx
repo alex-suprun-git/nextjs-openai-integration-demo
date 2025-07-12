@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function SignUpPage() {
   const [email, setEmail] = useState('');
@@ -30,7 +31,7 @@ export default function SignUpPage() {
 
       // Successful signup
       router.push('/sign-in?message=Account created successfully. Please sign in.');
-    } catch (err) {
+    } catch {
       setError('An unexpected error occurred. Please try again.');
     } finally {
       setIsLoading(false);
@@ -70,9 +71,9 @@ export default function SignUpPage() {
         <div className="mt-4 text-center">
           <p className="text-sm text-gray-600">
             Already have an account?{' '}
-            <a href="/sign-in" className="text-blue-600 underline hover:text-blue-800">
+            <Link href="/sign-in" className="text-blue-600 underline hover:text-blue-800">
               Sign in here
-            </a>
+            </Link>
           </p>
         </div>
       </form>

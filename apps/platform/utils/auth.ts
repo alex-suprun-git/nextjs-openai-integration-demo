@@ -1,5 +1,5 @@
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/app/api/auth/[...nextauth]/auth';
 import { prisma } from './db';
 import { Prisma } from '@prisma/client';
 import { isDynamicServerError } from 'next/dist/client/components/hooks-server-context';
