@@ -39,13 +39,13 @@ const LanguageSwitcher = () => {
           const isCurrentLang = language.value === locale;
           return (
             <li key={language.id}>
-              <a
-                href="#"
-                className=""
-                onClick={(e) => handleLanguageChange(e, language.value as UserLocale)}
+              <button
+                type="button"
+                className="w-full text-left"
+                onClick={(e) => handleLanguageChange(e as any, language.value as UserLocale)}
               >
                 {isCurrentLang ? <strong>{language.label}</strong> : language.label}
-              </a>
+              </button>
             </li>
           );
         })}

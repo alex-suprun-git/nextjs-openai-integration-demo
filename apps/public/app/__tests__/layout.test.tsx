@@ -8,7 +8,7 @@ vi.mock('next/navigation', () => ({
 }));
 
 vi.mock('next-intl', () => ({
-  hasLocale: (_locales: string[], _locale: string) => true,
+  hasLocale: () => true,
   useTranslations: () => (key: string) => key,
   NextIntlClientProvider: ({ children }: { children: React.ReactNode }) => (
     <div data-testid="intl">{children}</div>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { useSession, signIn, signOut } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
 import { FiMenu, FiLogOut } from 'react-icons/fi';
 import { useTranslations } from 'next-intl';
 import LanguageSwitcher from '../LanguageSwitcher';
@@ -12,7 +12,6 @@ import { Drawer, Header } from '@repo/global-ui';
 import PromptCounter from '@/ui-lib/PromptCounter';
 
 function Navbar() {
-  const { data: session } = useSession();
   const drawerToggleRef = useRef<HTMLInputElement>(null);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const t = useTranslations('Global.logout');

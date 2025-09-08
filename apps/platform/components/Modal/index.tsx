@@ -52,12 +52,21 @@ const Modal = ({
   if (!isOpen) return null;
 
   return (
-    <div className="modal-open modal cursor-default" onClick={onClose} data-testid={testId}>
+    <div
+      className="modal-open modal cursor-default"
+      onClick={onClose}
+      data-testid={testId}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
       <div
         className={clsx('modal-box relative border border-gray-200 bg-white', className)}
         onClick={handlePreventPropagation}
       >
-        <h3 className="text-lg font-bold text-gray-800">{title}</h3>
+        <h3 id="modal-title" className="text-lg font-bold text-gray-800">
+          {title}
+        </h3>
         <div className="py-4 text-gray-600">{children}</div>
         <div className="modal-action">
           <button
@@ -84,7 +93,7 @@ const Modal = ({
           )}
         </div>
       </div>
-      <label className="modal-backdrop" onClick={onClose}></label>
+      <button className="modal-backdrop" onClick={onClose} aria-label="Close modal"></button>
     </div>
   );
 };

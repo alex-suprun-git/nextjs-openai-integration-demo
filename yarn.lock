@@ -1591,6 +1591,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@contentful/rich-text-types@npm:^16.6.1":
+  version: 16.8.5
+  resolution: "@contentful/rich-text-types@npm:16.8.5"
+  checksum: 10c0/0af82d501bb26d854fa3bc68136db1f0738428135066876062370637f219cd51f10abecf8e02a72c2cf9eb012523add21f4a3f72af4981a7ad4c95a9bbcb237f
+  languageName: node
+  linkType: hard
+
 "@contentful/rich-text-types@npm:^17.0.0":
   version: 17.0.0
   resolution: "@contentful/rich-text-types@npm:17.0.0"
@@ -2451,6 +2458,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@langchain/core@npm:^0.3.66":
+  version: 0.3.66
+  resolution: "@langchain/core@npm:0.3.66"
+  dependencies:
+    "@cfworker/json-schema": "npm:^4.0.2"
+    ansi-styles: "npm:^5.0.0"
+    camelcase: "npm:6"
+    decamelize: "npm:1.2.0"
+    js-tiktoken: "npm:^1.0.12"
+    langsmith: "npm:^0.3.46"
+    mustache: "npm:^4.2.0"
+    p-queue: "npm:^6.6.2"
+    p-retry: "npm:4"
+    uuid: "npm:^10.0.0"
+    zod: "npm:^3.25.32"
+    zod-to-json-schema: "npm:^3.22.3"
+  checksum: 10c0/c6689e860ac037e799cb41f6ca756086b8673f5c1ae9090db1a060934755c832827f6bb317ec0fe7677505549b1ae40e1bf0bd45778f8bab34bb2e52e87bef11
+  languageName: node
+  linkType: hard
+
 "@langchain/openai@npm:0.5.5":
   version: 0.5.5
   resolution: "@langchain/openai@npm:0.5.5"
@@ -2476,6 +2503,19 @@ __metadata:
   peerDependencies:
     "@langchain/core": ">=0.3.39 <0.4.0"
   checksum: 10c0/ee26829fd194ceba8cd964926ab25bd83d5d02f6fda13dd1ef99b88d3f6c600004caf0c3705f707edd2886b896154d875a3b4d57c4957883d0d94f204a062383
+  languageName: node
+  linkType: hard
+
+"@langchain/openai@npm:^0.6.2":
+  version: 0.6.2
+  resolution: "@langchain/openai@npm:0.6.2"
+  dependencies:
+    js-tiktoken: "npm:^1.0.12"
+    openai: "npm:^5.3.0"
+    zod: "npm:^3.25.32"
+  peerDependencies:
+    "@langchain/core": ">=0.3.58 <0.4.0"
+  checksum: 10c0/23b83987f3277ca852264fb86571ef2d1f6323d6ae019db075fcfd9f0115be4f68d853fdea48269e6d67375967586470fc3e5959da772c724bd904cfffef9ee6
   languageName: node
   linkType: hard
 
@@ -4010,6 +4050,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@rollup/rollup-linux-x64-gnu@npm:^4.18.0":
+  version: 4.45.1
+  resolution: "@rollup/rollup-linux-x64-gnu@npm:4.45.1"
+  conditions: os=linux & cpu=x64 & libc=glibc
+  languageName: node
+  linkType: hard
+
 "@rollup/rollup-linux-x64-musl@npm:4.35.0":
   version: 4.35.0
   resolution: "@rollup/rollup-linux-x64-musl@npm:4.35.0"
@@ -4792,6 +4839,13 @@ __metadata:
   dependencies:
     "@types/node": "npm:*"
   checksum: 10c0/3cf279e7db05d56c0544532a4380b9079f579092379a04c8138bd5cf88dda5b31208ac2d23ce7dbf4e3a3f43aaeed44e72f9f19f726518f308efe95a7435619a
+  languageName: node
+  linkType: hard
+
+"@types/node-cron@npm:^3.0.11":
+  version: 3.0.11
+  resolution: "@types/node-cron@npm:3.0.11"
+  checksum: 10c0/21cd0255988da2935bc8bf010da8b31624911ec10ef5d9a96a59c57193f60b27c1749b2e27c2a292a697d00195da5b8848a707345bb276abc39c96287ee82005
   languageName: node
   linkType: hard
 
@@ -5943,6 +5997,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"axios@npm:^1.8.4":
+  version: 1.10.0
+  resolution: "axios@npm:1.10.0"
+  dependencies:
+    follow-redirects: "npm:^1.15.6"
+    form-data: "npm:^4.0.0"
+    proxy-from-env: "npm:^1.1.0"
+  checksum: 10c0/2239cb269cc789eac22f5d1aabd58e1a83f8f364c92c2caa97b6f5cbb4ab2903d2e557d9dc670b5813e9bcdebfb149e783fb8ab3e45098635cd2f559b06bd5d8
+  languageName: node
+  linkType: hard
+
 "axobject-query@npm:^4.1.0":
   version: 4.1.0
   resolution: "axobject-query@npm:4.1.0"
@@ -6733,6 +6798,36 @@ __metadata:
     snake-case: "npm:^2.1.0"
     upper-case: "npm:^1.1.1"
   checksum: 10c0/795142a64dd61da267e937502a1ce060abdbc42d4f68367d08f1de34fc06a1db240ac09658275122f8e171448b19a4645b023ee8229803def1a11559e80b6132
+  languageName: node
+  linkType: hard
+
+"contentful-management@npm:^11.54.3":
+  version: 11.54.3
+  resolution: "contentful-management@npm:11.54.3"
+  dependencies:
+    "@contentful/rich-text-types": "npm:^16.6.1"
+    axios: "npm:^1.8.4"
+    contentful-sdk-core: "npm:^9.0.1"
+    fast-copy: "npm:^3.0.0"
+    globals: "npm:^15.15.0"
+  checksum: 10c0/2d3d85ef702bbc2087ad6c3bc3ac0eb5de81a51de9846f4bcc685a5362ffa87656d601009498958bc08f24bdc06c4747aad1f7f4291cc6d22f5936fa8681f603
+  languageName: node
+  linkType: hard
+
+"contentful-sdk-core@npm:^9.0.1":
+  version: 9.2.0
+  resolution: "contentful-sdk-core@npm:9.2.0"
+  dependencies:
+    "@rollup/rollup-linux-x64-gnu": "npm:^4.18.0"
+    fast-copy: "npm:^3.0.2"
+    lodash: "npm:^4.17.21"
+    p-throttle: "npm:^6.1.0"
+    process: "npm:^0.11.10"
+    qs: "npm:^6.12.3"
+  dependenciesMeta:
+    "@rollup/rollup-linux-x64-gnu":
+      optional: true
+  checksum: 10c0/6e54fc97318ecd12e9e50801224efd7a41dc1735707a81118ddb009011a78602ac1aa4fb28854f06fa95b122329b20b8a18bcb394359f40548c5f549195e95af
   languageName: node
   linkType: hard
 
@@ -8304,6 +8399,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fast-copy@npm:^3.0.0, fast-copy@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "fast-copy@npm:3.0.2"
+  checksum: 10c0/02e8b9fd03c8c024d2987760ce126456a0e17470850b51e11a1c3254eed6832e4733ded2d93316c82bc0b36aeb991ad1ff48d1ba95effe7add7c3ab8d8eb554a
+  languageName: node
+  linkType: hard
+
 "fast-deep-equal@npm:^3.1.1, fast-deep-equal@npm:^3.1.3":
   version: 3.1.3
   resolution: "fast-deep-equal@npm:3.1.3"
@@ -8494,6 +8596,16 @@ __metadata:
   version: 3.3.3
   resolution: "flatted@npm:3.3.3"
   checksum: 10c0/e957a1c6b0254aa15b8cce8533e24165abd98fadc98575db082b786b5da1b7d72062b81bfdcd1da2f4d46b6ed93bec2434e62333e9b4261d79ef2e75a10dd538
+  languageName: node
+  linkType: hard
+
+"follow-redirects@npm:^1.15.6":
+  version: 1.15.9
+  resolution: "follow-redirects@npm:1.15.9"
+  peerDependenciesMeta:
+    debug:
+      optional: true
+  checksum: 10c0/5829165bd112c3c0e82be6c15b1a58fa9dcfaede3b3c54697a82fe4a62dd5ae5e8222956b448d2f98e331525f05d00404aba7d696de9e761ef6e42fdc780244f
   languageName: node
   linkType: hard
 
@@ -8897,6 +9009,13 @@ __metadata:
   version: 14.0.0
   resolution: "globals@npm:14.0.0"
   checksum: 10c0/b96ff42620c9231ad468d4c58ff42afee7777ee1c963013ff8aabe095a451d0ceeb8dcd8ef4cbd64d2538cef45f787a78ba3a9574f4a634438963e334471302d
+  languageName: node
+  linkType: hard
+
+"globals@npm:^15.15.0":
+  version: 15.15.0
+  resolution: "globals@npm:15.15.0"
+  checksum: 10c0/f9ae80996392ca71316495a39bec88ac43ae3525a438b5626cd9d5ce9d5500d0a98a266409605f8cd7241c7acf57c354a48111ea02a767ba4f374b806d6861fe
   languageName: node
   linkType: hard
 
@@ -10479,6 +10598,35 @@ __metadata:
   languageName: node
   linkType: hard
 
+"langsmith@npm:^0.3.46":
+  version: 0.3.47
+  resolution: "langsmith@npm:0.3.47"
+  dependencies:
+    "@types/uuid": "npm:^10.0.0"
+    chalk: "npm:^4.1.2"
+    console-table-printer: "npm:^2.12.1"
+    p-queue: "npm:^6.6.2"
+    p-retry: "npm:4"
+    semver: "npm:^7.6.3"
+    uuid: "npm:^10.0.0"
+  peerDependencies:
+    "@opentelemetry/api": "*"
+    "@opentelemetry/exporter-trace-otlp-proto": "*"
+    "@opentelemetry/sdk-trace-base": "*"
+    openai: "*"
+  peerDependenciesMeta:
+    "@opentelemetry/api":
+      optional: true
+    "@opentelemetry/exporter-trace-otlp-proto":
+      optional: true
+    "@opentelemetry/sdk-trace-base":
+      optional: true
+    openai:
+      optional: true
+  checksum: 10c0/0ad949074ea2b98b19d53c3acf6f132b35d92da66125799dc1b10706581f13d7fef6a1cc10c6020fc0163b3154922f1f6b60a5fd49befd06a5299adcb795c308
+  languageName: node
+  linkType: hard
+
 "language-subtag-registry@npm:^0.3.20":
   version: 0.3.23
   resolution: "language-subtag-registry@npm:0.3.23"
@@ -11504,6 +11652,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"node-cron@npm:^4.2.1":
+  version: 4.2.1
+  resolution: "node-cron@npm:4.2.1"
+  checksum: 10c0/804df01df230e96fd2f8ffcde004f4d5af953bccdf3ccf993dc450526dd65f553a2f2ad4bc0faf55c90c38cbc99c9ddbb88ee16cba3fc6bc74e606da6efb249e
+  languageName: node
+  linkType: hard
+
 "node-domexception@npm:1.0.0":
   version: 1.0.0
   resolution: "node-domexception@npm:1.0.0"
@@ -11827,6 +11982,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"openai@npm:^5.3.0":
+  version: 5.10.1
+  resolution: "openai@npm:5.10.1"
+  peerDependencies:
+    ws: ^8.18.0
+    zod: ^3.23.8
+  peerDependenciesMeta:
+    ws:
+      optional: true
+    zod:
+      optional: true
+  bin:
+    openai: bin/cli
+  checksum: 10c0/267a843eae4059f86548a6792e00dbb8b0865d712938a04402fa58dcb25b6a3943fa2da04c48b60f1605e90afd131a50c2e535bfbffb997cf161724bf6b78106
+  languageName: node
+  linkType: hard
+
 "openapi-types@npm:^12.1.3":
   version: 12.1.3
   resolution: "openapi-types@npm:12.1.3"
@@ -12035,6 +12207,13 @@ __metadata:
     "@types/retry": "npm:0.12.0"
     retry: "npm:^0.13.1"
   checksum: 10c0/d58512f120f1590cfedb4c2e0c42cb3fa66f3cea8a4646632fcb834c56055bb7a6f138aa57b20cc236fb207c9d694e362e0b5c2b14d9b062f67e8925580c73b0
+  languageName: node
+  linkType: hard
+
+"p-throttle@npm:^6.1.0":
+  version: 6.2.0
+  resolution: "p-throttle@npm:6.2.0"
+  checksum: 10c0/3be65f66eb21137be78b8d18a5240117312b942e3aa788f838ac4be785ab3c40b64ee34b2c393cd948ec7845c0a00241f446395b98ff4754e718fe54fdee0b00
   languageName: node
   linkType: hard
 
@@ -12432,12 +12611,14 @@ __metadata:
     "@types/dompurify": "npm:^3.0.0"
     "@types/lodash": "npm:^4.17.7"
     "@types/node": "npm:^22.14.0"
+    "@types/node-cron": "npm:^3.0.11"
     "@types/react": "npm:19.1.0"
     "@types/react-dom": "npm:19.1.1"
     "@types/ws": "npm:^8.6.0"
     "@vercel/speed-insights": "npm:^1.2.0"
     bcryptjs: "npm:^2.4.3"
     clsx: "npm:^2.1.1"
+    contentful-management: "npm:^11.54.3"
     cookies-next: "npm:5.1.0"
     cypress: "npm:^13.13.0"
     daisyui: "npm:5.0.19"
@@ -12450,6 +12631,7 @@ __metadata:
     next: "npm:^15.3.0"
     next-auth: "npm:^4.24.6"
     next-intl: "npm:4.0.2"
+    node-cron: "npm:^4.2.1"
     prisma: "npm:^5.17.0"
     react: "npm:^19.1.0"
     react-dom: "npm:^19.1.0"
@@ -12868,6 +13050,8 @@ __metadata:
   resolution: "public@workspace:apps/public"
   dependencies:
     "@contentful/rich-text-react-renderer": "npm:16.0.1"
+    "@langchain/core": "npm:^0.3.66"
+    "@langchain/openai": "npm:^0.6.2"
     "@next/third-parties": "npm:^15.3.1"
     "@repo/eslint-config": "npm:*"
     "@repo/global-analytics": "workspace:^"
@@ -12883,12 +13067,14 @@ __metadata:
     "@types/react": "npm:19.1.0"
     "@types/react-dom": "npm:19.1.1"
     "@types/ws": "npm:^8.6.0"
+    contentful-management: "npm:^11.54.3"
     daisyui: "npm:5.0.19"
     jsonwebtoken: "npm:^9.0.2"
     next: "npm:^15.3.0"
     next-intl: "npm:4.0.2"
     next-pwa: "npm:5.6.0"
     next-sitemap: "npm:^4.2.3"
+    node-cron: "npm:^4.2.1"
     react: "npm:^19.1.0"
     react-dom: "npm:^19.1.0"
     react-icons: "npm:5.5.0"
@@ -12915,7 +13101,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qs@npm:6.14.0":
+"qs@npm:6.14.0, qs@npm:^6.12.3":
   version: 6.14.0
   resolution: "qs@npm:6.14.0"
   dependencies:
@@ -16657,5 +16843,12 @@ __metadata:
   version: 3.24.3
   resolution: "zod@npm:3.24.3"
   checksum: 10c0/ab0369810968d0329a1a141e9418e01e5c9c2a4905cbb7cb7f5a131d6e9487596e1400e21eeff24c4a8ee28dacfa5bd6103893765c055b7a98c2006a5a4fc68d
+  languageName: node
+  linkType: hard
+
+"zod@npm:^3.25.32":
+  version: 3.25.76
+  resolution: "zod@npm:3.25.76"
+  checksum: 10c0/5718ec35e3c40b600316c5b4c5e4976f7fee68151bc8f8d90ec18a469be9571f072e1bbaace10f1e85cf8892ea12d90821b200e980ab46916a6166a4260a983c
   languageName: node
   linkType: hard

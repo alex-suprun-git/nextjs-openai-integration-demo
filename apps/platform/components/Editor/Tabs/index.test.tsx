@@ -20,7 +20,7 @@ vi.mock('@/utils/constants', () => ({
 }));
 
 vi.mock('./FileUploadTabContent', () => ({
-  default: ({ onFileSelectionChange, onFileSubmit, t }: any) => (
+  default: ({ onFileSelectionChange, onFileSubmit }: any) => (
     <div data-testid="file-upload-tab-content">
       <button data-testid="mock-file-select" onClick={() => onFileSelectionChange(true)}>
         Select File
@@ -33,7 +33,7 @@ vi.mock('./FileUploadTabContent', () => ({
 }));
 
 vi.mock('./AlertMessages', () => ({
-  AlertMessages: ({ isContentTooShort, isPromptSymbolsExceeded, t }: any) => (
+  AlertMessages: ({ isContentTooShort, isPromptSymbolsExceeded }: any) => (
     <div data-testid="alert-messages">
       {isContentTooShort && <div data-testid="alert-too-short">Content too short</div>}
       {isPromptSymbolsExceeded && <div data-testid="alert-symbols-exceeded">Symbols exceeded</div>}

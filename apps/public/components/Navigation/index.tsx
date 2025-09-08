@@ -47,7 +47,7 @@ const Navigation = ({ onClick = () => {} }: { onClick?: MouseEventHandler<HTMLAn
             }
             key={link.id}
             href={link.href}
-            target={!!link?.external ? '_blank' : '_self'}
+            target={link?.external ? '_blank' : '_self'}
             onClick={onClick}
           >
             <div className="flex items-center">

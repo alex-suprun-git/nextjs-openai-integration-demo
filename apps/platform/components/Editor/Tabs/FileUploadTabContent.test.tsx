@@ -13,7 +13,7 @@ vi.mock('react-icons/fi', () => ({
 
 // Mock alert messages
 vi.mock('./AlertMessages', () => ({
-  AlertMessages: ({ fileReadError, isContentTooShort, t }: any) => (
+  AlertMessages: ({ fileReadError, isContentTooShort }: any) => (
     <div data-testid="alert-messages">
       {fileReadError && <div data-testid="file-error">{fileReadError}</div>}
       {isContentTooShort && <div data-testid="content-too-short">Content too short</div>}
@@ -37,8 +37,8 @@ describe('FileUploadTabContent without file', () => {
         resetFileSelection: resetFileSelectionMock,
       })),
     }));
-    const module = await import('./FileUploadTabContent');
-    FileUploadTabContentComponent = module.default;
+    const importedModule = await import('./FileUploadTabContent');
+    FileUploadTabContentComponent = importedModule.default;
 
     // Clear mocks that are defined in the outer scope
     processFileMock.mockClear();
@@ -108,8 +108,8 @@ describe('FileUploadTabContent with file selected', () => {
         resetFileSelection: resetFileSelectionMock,
       })),
     }));
-    const module = await import('./FileUploadTabContent');
-    FileUploadTabContentComponent = module.default;
+    const importedModule = await import('./FileUploadTabContent');
+    FileUploadTabContentComponent = importedModule.default;
 
     // Clear mocks that are defined in the outer scope
     processFileMock.mockClear();

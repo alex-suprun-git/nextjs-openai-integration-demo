@@ -15,6 +15,15 @@ export const NewEntryCard = () => {
   return (
     <div
       onClick={handleOnClick}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleOnClick();
+        }
+      }}
+      tabIndex={0}
+      role="button"
+      aria-label={t('buttons.newEntry')}
       className="card h-[128px] cursor-pointer bg-yellow-200 text-primary-content"
     >
       <div className="card-body">

@@ -85,6 +85,15 @@ const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
         data-testid="entryCard"
         ref={cardRef}
         onClick={handleCardClick}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            handleCardClick(e as any);
+          }
+        }}
+        tabIndex={0}
+        role="button"
+        aria-label={`Open entry: ${title || `Memo [${creationDate}]`}`}
         className={`card relative h-[128px] border border-gray-200 bg-white text-primary-content transition-all duration-200 ${
           showActionSheet ? 'pointer-events-none' : ''
         }`}
@@ -132,6 +141,12 @@ const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
           e.stopPropagation();
           toggleActionSheet(e);
         }}
+        onKeyDown={(e) => {
+          if (e.key === 'Escape') {
+            e.preventDefault();
+            toggleActionSheet(e as any);
+          }
+        }}
       >
         <div
           className="modal-box mx-auto max-w-lg rounded-b-none rounded-t-xl bg-white px-4 py-4"
@@ -175,7 +190,9 @@ const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
           </div>
         </div>
         <form method="dialog" className="modal-backdrop">
-          <button onClick={(e) => toggleActionSheet(e)}>close</button>
+          <button onClick={(e) => toggleActionSheet(e)} aria-label="Close action menu">
+            close
+          </button>
         </form>
       </dialog>
 
@@ -184,12 +201,23 @@ const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
           data-testid="delete-entry-modal"
           className="modal-open modal cursor-default"
           onClick={closeModal}
+          onKeyDown={(e) => {
+            if (e.key === 'Escape') {
+              e.preventDefault();
+              closeModal(e as any);
+            }
+          }}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="delete-modal-title"
         >
           <div
             className="modal-box relative border border-gray-200 bg-white"
             onClick={handleOnModalClicks}
           >
-            <h3 className="text-lg font-bold text-gray-800">{c('deleteEntry.actionButton')}</h3>
+            <h3 id="delete-modal-title" className="text-lg font-bold text-gray-800">
+              {c('deleteEntry.actionButton')}
+            </h3>
             <p className="py-4 text-gray-600">{c('deleteEntry.confirmationMessage')}</p>
             <div className="modal-action">
               <button
@@ -208,7 +236,6 @@ const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
               </button>
             </div>
           </div>
-          <label className="modal-backdrop" onClick={closeModal}></label>
         </div>
       )}
     </>
