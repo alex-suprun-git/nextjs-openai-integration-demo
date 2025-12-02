@@ -5997,6 +5997,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"axios@npm:^1.12.2":
+  version: 1.13.2
+  resolution: "axios@npm:1.13.2"
+  dependencies:
+    follow-redirects: "npm:^1.15.6"
+    form-data: "npm:^4.0.4"
+    proxy-from-env: "npm:^1.1.0"
+  checksum: 10c0/e8a42e37e5568ae9c7a28c348db0e8cf3e43d06fcbef73f0048669edfe4f71219664da7b6cc991b0c0f01c28a48f037c515263cb79be1f1ae8ff034cd813867b
+  languageName: node
+  linkType: hard
+
 "axios@npm:^1.8.4":
   version: 1.10.0
   resolution: "axios@npm:1.10.0"
@@ -6811,6 +6822,19 @@ __metadata:
     fast-copy: "npm:^3.0.0"
     globals: "npm:^15.15.0"
   checksum: 10c0/2d3d85ef702bbc2087ad6c3bc3ac0eb5de81a51de9846f4bcc685a5362ffa87656d601009498958bc08f24bdc06c4747aad1f7f4291cc6d22f5936fa8681f603
+  languageName: node
+  linkType: hard
+
+"contentful-management@npm:^11.63.1":
+  version: 11.63.1
+  resolution: "contentful-management@npm:11.63.1"
+  dependencies:
+    "@contentful/rich-text-types": "npm:^16.6.1"
+    axios: "npm:^1.12.2"
+    contentful-sdk-core: "npm:^9.0.1"
+    fast-copy: "npm:^3.0.0"
+    globals: "npm:^15.15.0"
+  checksum: 10c0/3c4836a46ac1c8cd458d6f70507693c15ec393af7a78d20c12fbbdc70cb3be79ce6dbd886bc978c25c368e4175579bef70ed2efb370168725cf7dfda12eb28da
   languageName: node
   linkType: hard
 
@@ -8661,6 +8685,19 @@ __metadata:
     es-set-tostringtag: "npm:^2.1.0"
     mime-types: "npm:^2.1.12"
   checksum: 10c0/e534b0cf025c831a0929bf4b9bbe1a9a6b03e273a8161f9947286b9b13bf8fb279c6944aae0070c4c311100c6d6dbb815cd955dc217728caf73fad8dc5b8ee9c
+  languageName: node
+  linkType: hard
+
+"form-data@npm:^4.0.4":
+  version: 4.0.5
+  resolution: "form-data@npm:4.0.5"
+  dependencies:
+    asynckit: "npm:^0.4.0"
+    combined-stream: "npm:^1.0.8"
+    es-set-tostringtag: "npm:^2.1.0"
+    hasown: "npm:^2.0.2"
+    mime-types: "npm:^2.1.12"
+  checksum: 10c0/dd6b767ee0bbd6d84039db12a0fa5a2028160ffbfaba1800695713b46ae974a5f6e08b3356c3195137f8530dcd9dfcb5d5ae1eeff53d0db1e5aad863b619ce3b
   languageName: node
   linkType: hard
 
@@ -11402,6 +11439,7 @@ __metadata:
     "@vitejs/plugin-react": "npm:4.3.4"
     "@vitest/coverage-v8": "npm:3.1.1"
     "@vitest/ui": "npm:^2.0.2"
+    contentful-management: "npm:^11.63.1"
     husky: "npm:^9.0.11"
     jsdom: "npm:^24.1.0"
     lint-staged: "npm:^15.2.7"
