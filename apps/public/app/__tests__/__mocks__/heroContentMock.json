@@ -14,7 +14,7 @@
                 "content": [
                   {
                     "nodeType": "text",
-                    "value": "This demo application, built with NextJS, TypeScript, Tailwind, Clerk, Prisma, and OpenAI, allows users to analyze their mood based on journal entries. The AI interprets users’ thoughts and generates mood statistics, displayed in detailed charts.",
+                    "value": "This demo application, built with NextJS, TypeScript, Tailwind, Prisma, and OpenAI, allows users to analyze their mood based on journal entries. The AI interprets users’ thoughts and generates mood statistics, displayed in detailed charts.",
                     "marks": [],
                     "data": {}
                   }

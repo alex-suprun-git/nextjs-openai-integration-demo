@@ -15,7 +15,7 @@ import '@/app/globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'NextJS | TypeScript | Tailwind | Prisma | Clerk | OpenAI',
+  title: 'NextJS | TypeScript | Tailwind | Prisma | OpenAI',
   manifest: '/manifest.json',
 };
 

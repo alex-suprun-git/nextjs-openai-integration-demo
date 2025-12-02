@@ -12,7 +12,6 @@ model User {
   id                        String         @id @default(uuid())
   createdAt                 DateTime       @default(now())
   updatedAt                 DateTime       @updatedAt
-  clerkId                   String?        @unique
   name                      String?
   email                     String         @unique
   emailVerified             DateTime?

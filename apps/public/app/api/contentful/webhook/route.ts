@@ -1,130 +1,106 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createHmac } from 'crypto';
 
-// Add your Contentful webhook signing secret to environment variables
 const WEBHOOK_SECRET = process.env.CONTENTFUL_WEBHOOK_SECRET;
 
 /**
- * Verifies the webhook signature from Contentful
+ * Verifies Contentful webhook request signature
+ * Based on: https://www.contentful.com/developers/docs/webhooks/request-verification/
  */
-function verifyWebhookSignature(body: string, signature: string | null, secret: string): boolean {
-  if (!signature) {
+function verifyContentfulRequest(
+  request: {
+    method: string;
+    path: string;
+    headers: Record<string, string>;
+    body: string;
+  },
+  signingSecret: string,
+): boolean {
+  const signature = request.headers['x-contentful-signature'];
+  const signedHeaders = request.headers['x-contentful-signed-headers'];
+  const timestamp = request.headers['x-contentful-timestamp'];
+
+  if (!signature || !signedHeaders || !timestamp) {
+    console.warn('Missing signature headers');
     return false;
   }
 
-  // Create HMAC-SHA256 hash of the request body
-  const expectedSignature = createHmac('sha256', secret).update(body).digest('base64');
+  // Check TTL (30 seconds by default, can adjust)
+  const requestTime = Number(timestamp);
+  const currentTime = Date.now();
+  const ttl = 30 * 1000; // 30 seconds
 
-  // Compare signatures (use timing-safe comparison)
+  if (currentTime - requestTime > ttl) {
+    console.warn('Request timestamp too old - potential replay attack');
+    return false;
+  }
+
+  // Build canonical request representation
+  const canonicalHeaders = signedHeaders
+    .split(',')
+    .map((headerName: string) => {
+      const headerValue = request.headers[headerName.toLowerCase()] || '';
+      return `${headerName.toLowerCase()}:${headerValue}`;
+    })
+    .join(';');
+
+  const canonicalRequest = [request.method, request.path, canonicalHeaders, request.body].join(
+    '\n',
+  );
+
+  // Create HMAC-SHA256 signature (hexadecimal, not base64!)
+  const expectedSignature = createHmac('sha256', signingSecret)
+    .update(canonicalRequest)
+    .digest('hex');
+
+  console.log('🔍 Signature verification:');
+  console.log('   Received:', signature);
+  console.log('   Expected:', expectedSignature);
+  console.log('   Match:', signature === expectedSignature);
+
   return signature === expectedSignature;
-}
-
-/**
- * Handle Entry publish events
- */
-async function handleEntryPublish(payload: any, topic: string): Promise<void> {
-  const { sys, fields } = payload;
-  const entryId = sys?.id;
-  const contentType = sys?.contentType?.sys?.id;
-
-  console.log(`📝 Entry Published: ${entryId} (Type: ${contentType})`);
-  console.log('Fields:', JSON.stringify(fields, null, 2));
-
-  // Add your business logic here:
-  // - Revalidate cache for this entry
-  // - Trigger a build
-  // - Send a notification
-  // - Update your database
-  // - Regenerate static pages
-
-  // Dummy example: log specific content types
-  if (contentType === 'page') {
-    console.log('🔄 Page published - consider revalidating cache');
-  } else if (contentType === 'homepageHeroBanner') {
-    console.log('🎨 Hero banner updated - should revalidate homepage');
-  }
-}
-
-/**
- * Handle Entry unpublish events
- */
-async function handleEntryUnpublish(payload: any, topic: string): Promise<void> {
-  const { sys } = payload;
-  const entryId = sys?.id;
-
-  console.log(`🗑️ Entry Unpublished: ${entryId}`);
-}
-
-/**
- * Handle Asset publish events
- */
-async function handleAssetPublish(payload: any, topic: string): Promise<void> {
-  const { sys, fields } = payload;
-  const assetId = sys?.id;
-
-  console.log(`🖼️ Asset Published: ${assetId}`);
-  console.log('Asset Details:', JSON.stringify(fields, null, 2));
-}
-
-/**
- * Route webhook events to appropriate handlers
- */
-async function handleWebhookEvent(topic: string, payload: any): Promise<void> {
-  if (topic === 'ContentManagement.Entry.publish') {
-    await handleEntryPublish(payload, topic);
-  } else if (topic === 'ContentManagement.Entry.unpublish') {
-    await handleEntryUnpublish(payload, topic);
-  } else if (topic === 'ContentManagement.Asset.publish') {
-    await handleAssetPublish(payload, topic);
-  } else {
-    console.log(`⚠️ Unhandled webhook topic: ${topic}`);
-  }
 }
 
 export async function POST(request: NextRequest) {
   try {
-    // Get the raw body as text (important for signature verification)
+    console.log('📨 Webhook request received');
+
     const body = await request.text();
+    const url = new URL(request.url);
 
-    // Get webhook headers
-    const signature = request.headers.get('x-contentful-webhook-signature');
-    const topic = request.headers.get('x-contentful-topic');
-    const webhookName = request.headers.get('x-contentful-webhook-name');
+    const canonicalRequest = {
+      method: request.method,
+      path: url.pathname + (url.search ? url.search : ''),
+      headers: {
+        'x-contentful-signed-headers': request.headers.get('x-contentful-signed-headers') || '',
+        'x-contentful-timestamp': request.headers.get('x-contentful-timestamp') || '',
+        'x-contentful-topic': request.headers.get('x-contentful-topic') || '',
+        'content-type': request.headers.get('content-type') || '',
+        // Add other headers as needed based on x-contentful-signed-headers
+      },
+      body,
+    };
 
-    // Verify webhook signature if secret is configured
     if (WEBHOOK_SECRET) {
-      const isValid = verifyWebhookSignature(body, signature, WEBHOOK_SECRET);
+      const isValid = verifyContentfulRequest(canonicalRequest, WEBHOOK_SECRET);
 
       if (!isValid) {
-        console.error('Invalid webhook signature');
-        return NextResponse.json(
-          {
-            success: false,
-            error: 'Invalid signature',
-          },
-          { status: 401 },
-        );
+        console.error('❌ Invalid webhook signature');
+        return NextResponse.json({ success: false, error: 'Invalid signature' }, { status: 403 });
       }
 
       console.log('✓ Webhook signature verified');
     } else {
-      console.warn('⚠️ Warning: CONTENTFUL_WEBHOOK_SECRET not configured');
+      console.warn('⚠️ CONTENTFUL_WEBHOOK_SECRET not configured');
     }
 
-    // Parse the body after verification
     const payload = JSON.parse(body);
+    const topic = request.headers.get('x-contentful-topic');
 
-    // Log the webhook data
     console.log('=== Contentful Webhook Received ===');
     console.log('Topic:', topic);
-    console.log('Webhook Name:', webhookName);
+    console.log('Entry ID:', payload.sys?.id);
 
-    // Route to appropriate handler
-    if (topic) {
-      await handleWebhookEvent(topic, payload);
-    }
-
-    // Return success response
     return NextResponse.json(
       {
         success: true,
@@ -137,27 +113,15 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Webhook processing error:', error);
     return NextResponse.json(
-      {
-        success: false,
-        error: 'Failed to process webhook',
-      },
+      { success: false, error: 'Failed to process webhook' },
       { status: 500 },
     );
   }
 }
 
-// Optional: GET endpoint to verify webhook is working
 export async function GET() {
   return NextResponse.json({
     message: 'Contentful Webhook Endpoint',
-    description: 'This endpoint receives webhooks from Contentful',
     status: 'active',
-    endpoint: 'POST /api/contentful/webhook',
-    security: WEBHOOK_SECRET ? 'enabled' : 'disabled',
-    handlers: [
-      'ContentManagement.Entry.publish',
-      'ContentManagement.Entry.unpublish',
-      'ContentManagement.Asset.publish',
-    ],
   });
 }

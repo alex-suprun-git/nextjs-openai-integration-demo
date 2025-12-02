@@ -1,7 +1,7 @@
 {
   "name": "AI-Powered Mood Analysis",
   "short_name": "Mood Analysis",
-  "description": "This demo application, built with NextJS, TypeScript, Tailwind, Clerk, Prisma, and OpenAI, allows users to analyze their mood based on journal entries. The AI interprets users’ thoughts and generates mood statistics, displayed in detailed charts.",
+  "description": "This demo application, built with NextJS, TypeScript, Tailwind, Prisma, and OpenAI, allows users to analyze their mood based on journal entries. The AI interprets users’ thoughts and generates mood statistics, displayed in detailed charts.",
   "icons": [
     {
       "src": "/assets/icons/android-chrome-192x192.png",

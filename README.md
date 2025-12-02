@@ -3,7 +3,7 @@
 > **Status**: 🏗️ Work in Progress
 
 This is a Turborepo-based monorepo setup for building AI-enhanced mood analysis applications using modern web technologies.
-This monorepo contains two Next.js applications — `platform` and `public` — and shared packages managed with [Turborepo](https://turbo.build/). The project integrates tools like OpenAI, Clerk, Prisma, and Contentful to deliver a rich and interactive user experience.
+This monorepo contains two Next.js applications — `platform` and `public` — and shared packages managed with [Turborepo](https://turbo.build/). The project integrates tools like OpenAI, Prisma, and Contentful to deliver a rich and interactive user experience.
 
 ## 📦 Apps & Packages Structure
 
@@ -24,7 +24,6 @@ packages/
 
 - AI-powered mood analysis from journal entries
 - Detailed mood statistics displayed in charts
-- User authentication and management with Clerk
 - Integration with Prisma for database management
 - Integration with Contentful Headless CMS
 - Progressive Web App (PWA) support
@@ -38,7 +37,6 @@ packages/
 - **Turborepo** — high-performance monorepo management
 - **TypeScript** — strict typing
 - **Tailwind CSS** — modern utility-first CSS
-- **Clerk** — user authentication and management
 - **Prisma** — ORM and DB schema
 - **OpenAI / LangChain** — mood analysis via AI
 - **Contentful** — headless CMS
@@ -73,7 +71,6 @@ Environment variables are managed via `.env` files and/or Vercel dashboard.
 Refer to `turbo.json` for `globalEnv` configuration used during builds:
 
 - Contentful CMS configuration
-- Clerk authentication
 - OpenAI API
 - Database connection
 - Cron job secrets

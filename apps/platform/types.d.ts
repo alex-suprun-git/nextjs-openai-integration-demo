@@ -6,7 +6,6 @@ type BaseEntry = {
 };
 
 type UserEntry = BaseEntry & {
-  clerkId: string;
   email: string;
 };
 
