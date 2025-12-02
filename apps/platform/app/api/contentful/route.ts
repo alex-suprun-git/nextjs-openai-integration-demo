@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { contentScheduler, createScheduledJob } from '../../../utils/contentScheduler';
-import { createContentGenerationConfigs } from '../../../utils/contentGenerator';
+import { contentScheduler, createScheduledJob } from 'public/utils/contentful/contentScheduler';
+import { createContentGenerationConfigs } from 'public/utils/contentful/contentGenerator';
 
 interface GenerateContentParams {
   spaceId: string;
@@ -78,7 +78,9 @@ async function handleGenerateContent(params: GenerateContentParams) {
   }
 
   try {
-    const { generateContentForContentful } = await import('../../../utils/contentGenerator');
+    const { generateContentForContentful } = await import(
+      'public/utils/contentful/contentGenerator'
+    );
 
     const result = await generateContentForContentful({
       spaceId,

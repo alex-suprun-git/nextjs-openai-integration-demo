@@ -1,11 +1,5 @@
 import { ChatOpenAI } from '@langchain/openai';
-import {
-  getEntries,
-  createEntry,
-  updateEntry,
-  formatFieldsForContentful,
-  extractValuesFromContentful,
-} from './contentful';
+import { getEntries, createEntry, updateEntry, extractValuesFromContentful } from './contentful';
 
 export interface ContentGenerationConfig {
   spaceId: string;
@@ -152,8 +146,25 @@ export async function updateExistingContentWithAI(
   });
 }
 
-// Create content generation configurations
+// Create content generation configurations for multiple content types
 export function createContentGenerationConfigs(
+  spaceId: string,
+  environmentId: string,
+  accessToken: string,
+  contentTypeIds: string[],
+): ContentGenerationConfig[] {
+  return contentTypeIds.map((contentTypeId, index) => ({
+    spaceId,
+    environmentId,
+    accessToken,
+    contentTypeId,
+    prompt: `Generate engaging content for ${contentTypeId} (Entry ${index + 1})`,
+    updateExisting: false,
+  }));
+}
+
+// Create content generation configurations with custom prompts
+export function createContentGenerationConfigsWithPrompts(
   baseConfig: Omit<ContentGenerationConfig, 'prompt'>,
   prompts: string[],
 ): ContentGenerationConfig[] {
