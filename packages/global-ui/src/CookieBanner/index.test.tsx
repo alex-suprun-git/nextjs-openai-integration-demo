@@ -72,8 +72,9 @@ describe('CookieBanner', () => {
 			'gdpr-consent',
 			'accepted',
 			{
-				expires: 7,
-				domain: '.nextjs-ai-platform.site',
+				expires: 365,
+				sameSite: 'strict',
+				secure: false,
 			}
 		);
 	});
@@ -91,8 +92,9 @@ describe('CookieBanner', () => {
 			'gdpr-consent',
 			'rejected',
 			{
-				expires: 7,
-				domain: '.nextjs-ai-platform.site',
+				expires: 365,
+				sameSite: 'strict',
+				secure: false,
 			}
 		);
 		expect(mockOnReject).toHaveBeenCalled();

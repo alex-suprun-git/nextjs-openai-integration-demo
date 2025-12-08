@@ -3,8 +3,11 @@
 exports[`EntryCard > renders correctly and matches snapshot 1`] = `
 <div>
   <div
+    aria-label="Open entry: This is a test entry"
     class="card relative h-[128px] border border-gray-200 bg-white text-primary-content transition-all duration-200 "
     data-testid="entryCard"
+    role="button"
+    tabindex="0"
   >
     <div
       class="card-body justify-between text-black"
@@ -139,7 +142,9 @@ exports[`EntryCard > renders correctly and matches snapshot 1`] = `
       class="modal-backdrop"
       method="dialog"
     >
-      <button>
+      <button
+        aria-label="Close action menu"
+      >
         close
       </button>
     </form>

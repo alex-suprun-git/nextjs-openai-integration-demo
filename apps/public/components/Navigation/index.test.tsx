@@ -19,6 +19,21 @@ vi.mock('next/navigation', () => ({
   usePathname: vi.fn(),
 }));
 
+vi.mock('next/link', () => ({
+  __esModule: true,
+  default: ({ children, ...props }: any) => (
+    <a
+      {...props}
+      onClick={(e) => {
+        e.preventDefault();
+        props.onClick?.(e);
+      }}
+    >
+      {children}
+    </a>
+  ),
+}));
+
 vi.mock('@/constants', () => ({ BASE_TEXT_COLOR_HEX: '#000000' }));
 vi.mock('../Logo', () => ({ default: () => <div data-testid="logo" /> }));
 

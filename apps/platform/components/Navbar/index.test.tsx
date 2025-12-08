@@ -3,9 +3,15 @@ import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 import Navbar from './';
 
+// Mock next-intl
+vi.mock('next-intl', () => ({
+  useTranslations: () => (key: string) => key,
+}));
+
 // Mock FiMenu icon
 vi.mock('react-icons/fi', () => ({
   FiMenu: () => <div data-testid="fi-menu">FiMenu Icon</div>,
+  FiLogOut: () => <div data-testid="fi-logout">FiLogOut Icon</div>,
 }));
 
 // Mock NextAuth hooks

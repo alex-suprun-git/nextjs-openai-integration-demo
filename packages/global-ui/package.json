@@ -11,6 +11,14 @@
 		"check-types": "tsc --noEmit",
 		"test": "vitest run"
 	},
+	"dependencies": {
+		"js-cookie": "^3.0.5",
+		"lodash.debounce": "^4.0.8"
+	},
+	"peerDependencies": {
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0"
+	},
 	"devDependencies": {
 		"@repo/eslint-config": "*",
 		"@repo/typescript-config": "*",
@@ -23,14 +31,10 @@
 		"@types/react-dom": "19.1.1",
 		"@vitejs/plugin-react": "^4.4.1",
 		"jsdom": "^26.1.0",
+		"react": "^19.2.1",
+		"react-dom": "^19.2.1",
 		"typescript": "5.8.2",
 		"vite": "^6.3.5",
 		"vitest": "^3.1.3"
-	},
-	"dependencies": {
-		"js-cookie": "^3.0.5",
-		"lodash.debounce": "^4.0.8",
-		"react": "^19.1.0",
-		"react-dom": "^19.1.0"
 	}
 }

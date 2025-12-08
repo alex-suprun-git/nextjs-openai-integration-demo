@@ -31,22 +31,22 @@ exports[`LanguageSwitcher > renders component correctly 1`] = `
       tabindex="0"
     >
       <li>
-        <a
-          class=""
-          href="#"
+        <button
+          class="w-full text-left"
+          type="button"
         >
           <strong>
             English
           </strong>
-        </a>
+        </button>
       </li>
       <li>
-        <a
-          class=""
-          href="#"
+        <button
+          class="w-full text-left"
+          type="button"
         >
           Deutsch
-        </a>
+        </button>
       </li>
     </ul>
   </div>

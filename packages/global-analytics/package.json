@@ -12,20 +12,24 @@
 		"test": "vitest run"
 	},
 	"dependencies": {
-		"@next/third-parties": "^14.0.0",
-		"js-cookie": "^3.0.5",
-		"react": "^19.1.0",
-		"react-dom": "^19.1.0"
+		"@next/third-parties": "^16.0.0",
+		"js-cookie": "^3.0.5"
+	},
+	"peerDependencies": {
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0"
 	},
 	"devDependencies": {
 		"@repo/eslint-config": "*",
-		"@repo/typescript-config": "workspace:*",
+		"@repo/typescript-config": "*",
 		"@types/js-cookie": "^3.0.6",
 		"@types/node": "^22.14.0",
 		"@types/react": "19.1.0",
 		"@types/react-dom": "19.1.1",
 		"@vitejs/plugin-react": "4.3.4",
 		"jsdom": "^24.1.0",
+		"react": "^19.2.1",
+		"react-dom": "^19.2.1",
 		"typescript": "5.8.2",
 		"vitest": "3.1.0"
 	}

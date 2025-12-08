@@ -3,7 +3,10 @@
 exports[`NewEntryCard > renders correctly and matches snapshot 1`] = `
 <div>
   <div
+    aria-label="Write a new memo"
     class="card h-[128px] cursor-pointer bg-yellow-200 text-primary-content"
+    role="button"
+    tabindex="0"
   >
     <div
       class="card-body"

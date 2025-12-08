@@ -2,6 +2,7 @@
 	"$schema": "https://turbo.build/schema.json",
 	"ui": "tui",
 	"globalEnv": [
+		"NODE_ENV",
 		"CONTENTFUL_PREVIEW_SECRET",
 		"CONTENTFUL_PREVIEW_ACCESS_TOKEN",
 		"CONTENTFUL_ACCESS_TOKEN",
