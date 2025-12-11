@@ -21,6 +21,7 @@
     "postinstall": "npx prisma generate"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^2.0.0",
     "@langchain/core": "0.3.45",
     "@langchain/openai": "0.5.5",
     "@neondatabase/serverless": "^0.9.5",
@@ -34,6 +35,7 @@
     "@repo/global-utils": "*",
     "@sentry/nextjs": "^9.12.0",
     "@vercel/speed-insights": "^1.2.0",
+    "ai": "^5.0.0",
     "bcryptjs": "^2.4.3",
     "clsx": "^2.1.1",
     "contentful-management": "^11.54.3",
@@ -53,7 +55,7 @@
     "react-icons": "5.5.0",
     "recharts": "^2.13.0",
     "ws": "^8.18.0",
-    "zod": "^3.23.8"
+    "zod": "^4.1.0"
   },
   "devDependencies": {
     "@cypress/code-coverage": "^3.13.0",

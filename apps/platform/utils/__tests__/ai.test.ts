@@ -1,40 +1,37 @@
 import { describe, it, expect, vi } from 'vitest';
 import { analyzeEntry, analysisFeedback } from '@/utils/ai';
-import { StructuredOutputParser } from 'langchain/output_parsers';
 
-// Mock adjustment for OpenAI to include _modelType and other methods
+// Mock next-intl
+vi.mock('next-intl/server', () => ({
+  getLocale: vi.fn().mockResolvedValue('en'),
+}));
+
+// Mock Vercel AI SDK
+vi.mock('ai', () => ({
+  generateObject: vi.fn().mockResolvedValue({
+    object: {
+      mood: 'happy',
+      subject: 'test subject',
+      negative: false,
+      summary: 'test summary',
+      color: '#0101fe',
+      sentimentScore: 8,
+      title: 'Test Entry',
+    },
+  }),
+}));
+
+// Mock OpenAI provider
+vi.mock('@ai-sdk/openai', () => ({
+  openai: vi.fn(() => 'mocked-model'),
+}));
+
+// Mock LangChain components (for analysisFeedback)
 vi.mock('@langchain/openai', () => ({
-  // Mock for ChatOpenAI
   ChatOpenAI: vi.fn(() => ({
     invoke: vi.fn().mockResolvedValue({ content: 'mocked output content' }),
   })),
-  // Mock for OpenAI
-  OpenAI: vi.fn(() => ({
-    invoke: vi.fn().mockResolvedValue({ content: 'mocked output content' }),
-  })),
-  // Mock for OpenAIEmbeddings
   OpenAIEmbeddings: vi.fn(() => ({})),
-}));
-
-// Ensure PromptTemplate and its dependencies are correctly mocked
-vi.mock('@langchain/core/prompts', () => ({
-  PromptTemplate: vi.fn(() => ({
-    format: vi.fn().mockResolvedValue('formatted prompt'),
-  })),
-}));
-
-vi.mock('langchain/output_parsers', () => ({
-  StructuredOutputParser: {
-    fromZodSchema: vi.fn().mockReturnValue({
-      getFormatInstructions: vi.fn().mockReturnValue('format instructions'),
-      parse: vi.fn().mockResolvedValue('parsed output'),
-    }),
-  },
-  OutputFixingParser: {
-    fromLLM: vi.fn().mockReturnValue({
-      parse: vi.fn().mockResolvedValue('fixed output'),
-    }),
-  },
 }));
 
 vi.mock('langchain/vectorstores/memory', () => ({
@@ -57,18 +54,30 @@ vi.mock('langchain/chains', () => ({
 }));
 
 describe('analyzeEntry', () => {
-  it('returns parsed output for given content', async () => {
+  it('returns structured analysis for given content', async () => {
     const result = await analyzeEntry('test content');
-    expect(result).toBe('parsed output');
+    expect(result).toEqual({
+      mood: 'happy',
+      subject: 'test subject',
+      negative: false,
+      summary: 'test summary',
+      color: '#0101fe',
+      sentimentScore: 8,
+      title: 'Test Entry',
+    });
   });
 
-  it('returns fixed output when initial parsing fails', async () => {
-    // Adjust the mock to simulate parsing failure
-    const originalParse = vi.mocked(StructuredOutputParser.fromZodSchema({} as any).parse);
-    originalParse.mockRejectedValueOnce(new Error('Parsing Error'));
-
-    const result = await analyzeEntry('test content with parsing error');
-    expect(result).toBe('fixed output');
+  it('handles empty content gracefully', async () => {
+    const result = await analyzeEntry('');
+    expect(result).toEqual({
+      mood: 'happy',
+      subject: 'test subject',
+      negative: false,
+      summary: 'test summary',
+      color: '#0101fe',
+      sentimentScore: 8,
+      title: 'Test Entry',
+    });
   });
 });
 
@@ -86,11 +95,6 @@ describe('analysisFeedback', () => {
       { content: 'test content 2', id: '2', createdAt: new Date('2023-01-02') },
     ]);
     expect(result).toBe('refined output');
-  });
-
-  it('handles empty content gracefully in analyzeEntry', async () => {
-    const result = await analyzeEntry('');
-    expect(result).toBe('parsed output');
   });
 
   it('handles empty question gracefully in analysisFeedback', async () => {

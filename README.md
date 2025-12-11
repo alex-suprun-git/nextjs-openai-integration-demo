@@ -22,8 +22,9 @@ packages/
 
 ## ✨ Features
 
-- AI-powered mood analysis from journal entries
-- Detailed mood statistics displayed in charts
+- **AI-powered mood analysis** from journal entries using Vercel AI SDK with structured outputs
+- **Semantic Q&A** over journal entries using LangChain's RAG capabilities
+- Detailed mood statistics displayed in interactive charts
 - Integration with Prisma for database management
 - Integration with Contentful Headless CMS
 - Progressive Web App (PWA) support
@@ -38,7 +39,8 @@ packages/
 - **TypeScript** — strict typing
 - **Tailwind CSS** — modern utility-first CSS
 - **Prisma** — ORM and DB schema
-- **OpenAI / LangChain** — mood analysis via AI
+- **Vercel AI SDK** — structured AI generation with type-safe outputs
+- **LangChain** — RAG (Retrieval Augmented Generation) and vector embeddings
 - **Contentful** — headless CMS
 - **Next-PWA** — for offline-first capabilities
 - **Vitest & Cypress** — unit and E2E testing
@@ -65,13 +67,30 @@ yarn install
 yarn dev
 ```
 
+## 🤖 AI Architecture
+
+This project uses a **hybrid AI approach**:
+
+- **Vercel AI SDK** (`generateObject`) — For structured journal entry analysis with Zod schemas
+  - Mood detection
+  - Sentiment scoring
+  - Summary generation
+  - Color representation
+- **LangChain** — For advanced RAG operations
+  - Vector embeddings (OpenAIEmbeddings)
+  - Semantic search over journal entries
+  - Q&A refinement chains
+  - In-memory vector store
+
+This separation provides the best of both worlds: simple, type-safe structured generation with Vercel AI SDK, and powerful semantic search with LangChain.
+
 ## 📁 Environment Variables
 
 Environment variables are managed via `.env` files and/or Vercel dashboard.
 Refer to `turbo.json` for `globalEnv` configuration used during builds:
 
 - Contentful CMS configuration
-- OpenAI API
+- OpenAI API key (`OPENAI_API_KEY`)
 - Database connection
 - Cron job secrets
 
