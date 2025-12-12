@@ -39,7 +39,7 @@ export const analyzeEntry = async (content: string) => {
   const language = locale as UserLocale;
 
   const { object } = await generateObject({
-    model: openai('gpt-4o-mini'),
+    model: openai('gpt-5-nano'),
     schema: analysisSchema,
     prompt: prompts[language](content),
   });
@@ -63,7 +63,7 @@ export const analysisFeedback = async (
         metadata: { source: entry.id, date: entry.createdAt },
       }),
   );
-  const model = new ChatOpenAI({ model: 'gpt-4o-mini' });
+  const model = new ChatOpenAI({ model: 'gpt-5-mini' });
   const chain = loadQARefineChain(model);
   const embeddings = new OpenAIEmbeddings();
   const store = await MemoryVectorStore.fromDocuments(docs, embeddings);

@@ -136,7 +136,7 @@ async function generateUpdatedContent(
   additionalPrompt?: string,
 ): Promise<string> {
   const model = new ChatOpenAI({
-    modelName: 'gpt-4o-mini',
+    modelName: 'gpt-5-mini',
     temperature: 0.7,
     openAIApiKey: process.env.OPENAI_API_KEY,
   });

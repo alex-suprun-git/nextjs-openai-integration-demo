@@ -22,7 +22,7 @@ export interface ContentGenerationResult {
 // Generate content using AI
 export async function generateContent(prompt: string, language: string = 'en'): Promise<string> {
   const model = new ChatOpenAI({
-    modelName: 'gpt-4o-mini',
+    modelName: 'gpt-5',
     temperature: 0.7,
     openAIApiKey: process.env.OPENAI_API_KEY,
   });
