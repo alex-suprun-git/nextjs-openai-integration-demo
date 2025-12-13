@@ -38,7 +38,7 @@ describe('Logo', () => {
     render(<Logo className={className} />);
 
     const img = screen.getByTestId('image');
-    expect(img).toHaveAttribute('src', '/assets/logo.png');
+    expect(img).toHaveAttribute('src', '/public/assets/logo.png');
     expect(img).toHaveAttribute('width', '120');
     expect(img).toHaveAttribute('height', '50');
     expect(img).toHaveAttribute('alt', 'logo');

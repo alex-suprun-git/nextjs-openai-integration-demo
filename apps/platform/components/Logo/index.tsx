@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { MouseEventHandler } from 'react';
+import logo from '@/public/assets/logo.png';
 
 function Logo({
   onClick,
@@ -11,14 +12,7 @@ function Logo({
 }) {
   return (
     <Link onClick={onClick} href={'/'} className={className}>
-      <Image
-        src={'/assets/logo.png'}
-        width={120}
-        height={50}
-        quality={100}
-        priority={true}
-        alt="logo"
-      />
+      <Image src={logo} width={120} height={50} priority={true} alt="logo" />
     </Link>
   );
 }
