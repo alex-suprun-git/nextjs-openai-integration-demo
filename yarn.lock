@@ -11908,9 +11908,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mammoth@npm:^1.7.0":
-  version: 1.9.0
-  resolution: "mammoth@npm:1.9.0"
+"mammoth@npm:^1.11.0":
+  version: 1.11.0
+  resolution: "mammoth@npm:1.11.0"
   dependencies:
     "@xmldom/xmldom": "npm:^0.8.6"
     argparse: "npm:~1.0.3"
@@ -11924,7 +11924,7 @@ __metadata:
     xmlbuilder: "npm:^10.0.0"
   bin:
     mammoth: bin/mammoth
-  checksum: 10c0/4cd98a39d6afcf88f8801764c3c2572acf5c8f3f9e24d0e00dee4fd24cc3fa16ae6bb7409cd53e92d7d41c16c99fa24ce461f0499a68a9e8ccae81a9c9472553
+  checksum: 10c0/20fa5b902a9ec3ed4b86d247f45cf08e9dedb22ad175a156839e921280211b40fbd9db4cabdeb25368fe1fc038dd385deaddfa997e1779e45d663790f80fdff7
   languageName: node
   linkType: hard
 
@@ -13401,7 +13401,7 @@ __metadata:
     jsdom: "npm:^24.1.0"
     langchain: "npm:^0.3.22"
     lodash: "npm:^4.17.21"
-    mammoth: "npm:^1.7.0"
+    mammoth: "npm:^1.11.0"
     nanoid: "npm:^5.1.0"
     next: "npm:^16.0.10"
     next-auth: "npm:^4.24.6"
