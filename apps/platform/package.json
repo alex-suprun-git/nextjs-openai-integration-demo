@@ -42,7 +42,7 @@
     "cookies-next": "^5.1.0",
     "daisyui": "^5.0.19",
     "dompurify": "^3.0.0",
-    "langchain": "^0.3.22",
+    "langchain": "^0.3.37",
     "lodash": "^4.17.21",
     "mammoth": "^1.11.0",
     "nanoid": "^5.1.0",
