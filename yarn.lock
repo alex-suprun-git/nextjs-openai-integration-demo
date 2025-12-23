@@ -2857,26 +2857,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/core@npm:^0.3.45":
-  version: 0.3.79
-  resolution: "@langchain/core@npm:0.3.79"
-  dependencies:
-    "@cfworker/json-schema": "npm:^4.0.2"
-    ansi-styles: "npm:^5.0.0"
-    camelcase: "npm:6"
-    decamelize: "npm:1.2.0"
-    js-tiktoken: "npm:^1.0.12"
-    langsmith: "npm:^0.3.67"
-    mustache: "npm:^4.2.0"
-    p-queue: "npm:^6.6.2"
-    p-retry: "npm:4"
-    uuid: "npm:^10.0.0"
-    zod: "npm:^3.25.32"
-    zod-to-json-schema: "npm:^3.22.3"
-  checksum: 10c0/82176ad95fd96e12187b38248dcbe474eeccf6bb1cc15d149d268305b8dc18f6b719e2b343be3ac7295eec62f09eb69b49a3dc201b0273476749d6ee05271d62
-  languageName: node
-  linkType: hard
-
 "@langchain/core@npm:^0.3.66":
   version: 0.3.66
   resolution: "@langchain/core@npm:0.3.66"
@@ -2894,6 +2874,26 @@ __metadata:
     zod: "npm:^3.25.32"
     zod-to-json-schema: "npm:^3.22.3"
   checksum: 10c0/c6689e860ac037e799cb41f6ca756086b8673f5c1ae9090db1a060934755c832827f6bb317ec0fe7677505549b1ae40e1bf0bd45778f8bab34bb2e52e87bef11
+  languageName: node
+  linkType: hard
+
+"@langchain/core@npm:^0.3.80":
+  version: 0.3.80
+  resolution: "@langchain/core@npm:0.3.80"
+  dependencies:
+    "@cfworker/json-schema": "npm:^4.0.2"
+    ansi-styles: "npm:^5.0.0"
+    camelcase: "npm:6"
+    decamelize: "npm:1.2.0"
+    js-tiktoken: "npm:^1.0.12"
+    langsmith: "npm:^0.3.67"
+    mustache: "npm:^4.2.0"
+    p-queue: "npm:^6.6.2"
+    p-retry: "npm:4"
+    uuid: "npm:^10.0.0"
+    zod: "npm:^3.25.32"
+    zod-to-json-schema: "npm:^3.22.3"
+  checksum: 10c0/c24a4641c11ddda77f89109800e59bdcd68b48f3dc0c485e6594e79ec494fc4b28e7c7b4013937e40e4edf12435dc09f7d5c0b3de5e63c8641fe81f6b17d7698
   languageName: node
   linkType: hard
 
@@ -13351,7 +13351,7 @@ __metadata:
   dependencies:
     "@ai-sdk/openai": "npm:^2.0.0"
     "@cypress/code-coverage": "npm:^3.13.0"
-    "@langchain/core": "npm:^0.3.45"
+    "@langchain/core": "npm:^0.3.80"
     "@langchain/openai": "npm:^0.5.5"
     "@neondatabase/serverless": "npm:^0.9.5"
     "@next-auth/prisma-adapter": "npm:^1.0.7"
