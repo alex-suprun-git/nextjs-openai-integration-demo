@@ -11251,9 +11251,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"langchain@npm:^0.3.22":
-  version: 0.3.36
-  resolution: "langchain@npm:0.3.36"
+"langchain@npm:^0.3.37":
+  version: 0.3.37
+  resolution: "langchain@npm:0.3.37"
   dependencies:
     "@langchain/openai": "npm:>=0.1.0 <0.7.0"
     "@langchain/textsplitters": "npm:>=0.0.0 <0.2.0"
@@ -11320,7 +11320,7 @@ __metadata:
       optional: true
     typeorm:
       optional: true
-  checksum: 10c0/e6ce9a9babb12999935bc5998de8d0e9b2986b20ba3f322014a730e6d3dd60b4e12b0f8aed87b6b6ecb881abb03d5ea7615facd31a95c537141adefcce40eb65
+  checksum: 10c0/3330a9a80fb5cdd2a9cadebef24b05852dacc989712fdfd2560167d5dbd720696eb311e985e2e60a2660ad96778563bdd2d0cfe77e36a7bf5acad36940b12016
   languageName: node
   linkType: hard
 
@@ -13387,7 +13387,7 @@ __metadata:
     dompurify: "npm:^3.0.0"
     eslint: "npm:^9.39.1"
     jsdom: "npm:^24.1.0"
-    langchain: "npm:^0.3.22"
+    langchain: "npm:^0.3.37"
     lodash: "npm:^4.17.21"
     mammoth: "npm:^1.11.0"
     nanoid: "npm:^5.1.0"
