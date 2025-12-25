@@ -17,3 +17,8 @@ output "cloudfront_url" {
   value       = "https://${aws_cloudfront_distribution.nextjs_cdn.domain_name}"
   description = "CloudFront URL"
 }
+
+output "api_gateway_url" {
+  value       = aws_apigatewayv2_stage.lambda_stage.invoke_url
+  description = "API Gateway URL"
+}
