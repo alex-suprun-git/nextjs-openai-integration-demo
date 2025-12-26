@@ -17,10 +17,11 @@ function Hero({ headline, description }: { headline: string; description: Docume
           {documentToReactComponents(description)}
         </div>
         <div>
-          <Link className="toLogInLink" href={getPlatformUrl()}>
-            <button className="btn btn-lg mb-5 border-0 bg-yellow-200 text-gray-900 hover:bg-yellow-300">
-              {t('linkText')}
-            </button>
+          <Link
+            className="toLogInLink btn btn-lg mb-5 border-0 bg-yellow-200 font-bold text-gray-900 hover:bg-yellow-300"
+            href={getPlatformUrl()}
+          >
+            {t('linkText')}
           </Link>
         </div>
       </div>

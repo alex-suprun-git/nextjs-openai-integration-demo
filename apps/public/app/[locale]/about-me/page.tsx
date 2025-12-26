@@ -46,7 +46,7 @@ const AboutMePage = async ({ params }: { params: Promise<{ locale: string }> }) 
   };
 
   return (
-    <div className="container mx-auto p-10">
+    <div className="container mx-auto mt-12 sm:mt-6 sm:p-10">
       <Breadcrumbs>
         <BreadcrumbsItem href="/">Home</BreadcrumbsItem>
         <BreadcrumbsItem>{headline}</BreadcrumbsItem>
