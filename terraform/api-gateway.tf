@@ -14,14 +14,7 @@ resource "aws_apigatewayv2_integration" "lambda" {
   payload_format_version = "2.0"
 }
 
-# Route: ANY /{proxy+} (catch all routes)
-resource "aws_apigatewayv2_route" "lambda_route" {
-  api_id    = aws_apigatewayv2_api.lambda_api.id
-  route_key = "ANY /{proxy+}"
-  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
-}
-
-# Default route: /
+# Route: Catch all routes
 resource "aws_apigatewayv2_route" "lambda_default" {
   api_id    = aws_apigatewayv2_api.lambda_api.id
   route_key = "$default"

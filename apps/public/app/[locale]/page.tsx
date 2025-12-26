@@ -4,8 +4,6 @@ import { homePageHeroQuery } from '@/content/queries';
 import { HomepageHeroSchema } from '@/content/types';
 import { setRequestLocale } from 'next-intl/server';
 
-export const revalidate = 60;
-
 const HomePage = async ({ params }: { params: Promise<{ locale: string }> }) => {
   const { locale } = await params;
   setRequestLocale(locale);

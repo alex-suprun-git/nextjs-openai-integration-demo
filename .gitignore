@@ -44,7 +44,7 @@ yarn-error.log*
 
 # Terraform
 .terraform/
-.terraform.lock.hcl
-terraform.tfstate
-terraform.tfstate.backup
+.terraform.*
+*.tfstate
+*.tfstate.backup
 *.tfvars
