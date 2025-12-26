@@ -9,8 +9,7 @@ resource "aws_cloudfront_origin_access_control" "s3_oac" {
 
 # CloudFront distribution
 resource "aws_cloudfront_distribution" "nextjs_cdn" {
-  enabled             = true
-  default_root_object = "index.html"
+  enabled = true
 
   # Origin 1: S3 for static assets
   origin {
@@ -32,9 +31,9 @@ resource "aws_cloudfront_distribution" "nextjs_cdn" {
     }
   }
 
-  # Behavior 1: Static assets from S3
+  # Behavior: Next static assets from S3 (narrowed to avoid breaking SSR)
   ordered_cache_behavior {
-    path_pattern     = "/_next/*"
+    path_pattern     = "/_next/static/*"
     target_origin_id = "S3-nextjs"
 
     viewer_protocol_policy = "redirect-to-https"
@@ -54,7 +53,29 @@ resource "aws_cloudfront_distribution" "nextjs_cdn" {
     max_ttl     = 31536000
   }
 
-  # Behavior 2: API routes to Lambda
+  # Behavior: public assets [favicons, logo, etc]
+  ordered_cache_behavior {
+    path_pattern     = "/assets/*"
+    target_origin_id = "S3-nextjs"
+
+    viewer_protocol_policy = "redirect-to-https"
+    allowed_methods        = ["GET", "HEAD"]
+    cached_methods         = ["GET", "HEAD"]
+    compress               = true
+
+    forwarded_values {
+      query_string = false
+      cookies {
+        forward = "none"
+      }
+    }
+
+    min_ttl     = 0
+    default_ttl = 86400    # Cache for 1 day
+    max_ttl     = 31536000 # Max 1 year
+  }
+
+  # Behavior: API routes to Lambda
   ordered_cache_behavior {
     path_pattern     = "/api/*"
     target_origin_id = "APIGateway-nextjs"

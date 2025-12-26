@@ -17,6 +17,10 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'NextJS | TypeScript | Tailwind | Prisma | OpenAI',
   manifest: '/manifest.json',
+  icons: {
+    icon: '/assets/icons/favicon.ico',
+    apple: '/assets/icons/apple-touch-icon.png',
+  },
 };
 
 export function generateStaticParams() {
