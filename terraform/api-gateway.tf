@@ -8,9 +8,9 @@ resource "aws_apigatewayv2_api" "lambda_api" {
 resource "aws_apigatewayv2_integration" "lambda" {
   api_id           = aws_apigatewayv2_api.lambda_api.id
   integration_type = "AWS_PROXY"
-  
-  integration_uri    = aws_lambda_function.test_api.invoke_arn
-  integration_method = "POST"
+
+  integration_uri        = aws_lambda_function.nextjs_public_app.invoke_arn
+  integration_method     = "POST"
   payload_format_version = "2.0"
 }
 
@@ -32,7 +32,7 @@ resource "aws_apigatewayv2_stage" "lambda_stage" {
 resource "aws_lambda_permission" "api_gateway" {
   statement_id  = "AllowAPIGatewayInvoke"
   action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.test_api.function_name
+  function_name = aws_lambda_function.nextjs_public_app.function_name
   principal     = "apigateway.amazonaws.com"
   source_arn    = "${aws_apigatewayv2_api.lambda_api.execution_arn}/*/*"
 }

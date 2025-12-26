@@ -22,15 +22,16 @@ resource "aws_iam_role_policy_attachment" "lambda_basic" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
-# Test Lambda function
-resource "aws_lambda_function" "test_api" {
-  filename         = "lambda-test.zip"
-  function_name    = "nextjs-test-api"
-  role            = aws_iam_role.lambda_role.arn
-  handler         = "index.handler"
-  source_code_hash = filebase64sha256("lambda-test.zip")
-  runtime         = "nodejs20.x"
-  timeout         = 30
+# Public App Lambda function
+resource "aws_lambda_function" "nextjs_public_app" {
+  filename         = "lambda-nextjs-public.zip"
+  function_name    = "nextjs-public-app"
+  role             = aws_iam_role.lambda_role.arn
+  handler          = "handler.handler"
+  source_code_hash = filebase64sha256("lambda-nextjs-public.zip")
+  runtime          = "nodejs20.x"
+  memory_size      = 1024
+  timeout          = 30
 
   environment {
     variables = {

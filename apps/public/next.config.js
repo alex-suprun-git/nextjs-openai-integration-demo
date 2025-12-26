@@ -8,6 +8,7 @@ const withPWAConfig = withPWA({ dest: 'public' });
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'standalone', // Enable standalone mode for Lambda
+  compress: false,
   productionBrowserSourceMaps: true,
   images: {
     remotePatterns: [new URL('https://images.ctfassets.net/**')],

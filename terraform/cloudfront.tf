@@ -11,7 +11,7 @@ resource "aws_cloudfront_origin_access_control" "s3_oac" {
 resource "aws_cloudfront_distribution" "nextjs_cdn" {
   enabled             = true
   default_root_object = "index.html"
-  
+
   # Origin 1: S3 for static assets
   origin {
     domain_name              = aws_s3_bucket.nextjs_static.bucket_regional_domain_name
@@ -23,7 +23,7 @@ resource "aws_cloudfront_distribution" "nextjs_cdn" {
   origin {
     domain_name = "${aws_apigatewayv2_api.lambda_api.id}.execute-api.eu-central-1.amazonaws.com"
     origin_id   = "APIGateway-nextjs"
-    
+
     custom_origin_config {
       http_port              = 80
       https_port             = 443
@@ -36,7 +36,7 @@ resource "aws_cloudfront_distribution" "nextjs_cdn" {
   ordered_cache_behavior {
     path_pattern     = "/_next/*"
     target_origin_id = "S3-nextjs"
-    
+
     viewer_protocol_policy = "redirect-to-https"
     allowed_methods        = ["GET", "HEAD"]
     cached_methods         = ["GET", "HEAD"]
@@ -58,7 +58,7 @@ resource "aws_cloudfront_distribution" "nextjs_cdn" {
   ordered_cache_behavior {
     path_pattern     = "/api/*"
     target_origin_id = "APIGateway-nextjs"
-    
+
     viewer_protocol_policy = "redirect-to-https"
     allowed_methods        = ["GET", "HEAD", "OPTIONS", "PUT", "POST", "PATCH", "DELETE"]
     cached_methods         = ["GET", "HEAD"]
@@ -67,7 +67,7 @@ resource "aws_cloudfront_distribution" "nextjs_cdn" {
     forwarded_values {
       query_string = true
       headers      = ["Authorization", "Content-Type"]
-      
+
       cookies {
         forward = "all"
       }
@@ -78,7 +78,7 @@ resource "aws_cloudfront_distribution" "nextjs_cdn" {
     max_ttl     = 0
   }
 
-    # Default behavior: Route to Lambda (SSR pages)
+  # Default behavior: Route to Lambda (SSR pages)
   default_cache_behavior {
     target_origin_id       = "APIGateway-nextjs"
     viewer_protocol_policy = "redirect-to-https"
@@ -88,16 +88,16 @@ resource "aws_cloudfront_distribution" "nextjs_cdn" {
 
     forwarded_values {
       query_string = true
-      headers      = []  # Don't forward Host header to API Gateway
-      
+      headers      = [] # Don't forward Host header to API Gateway
+
       cookies {
         forward = "all"
       }
     }
 
     min_ttl     = 0
-    default_ttl = 3600    # Cache Contentful pages for 1 hour
-    max_ttl     = 3600    # Maximum 1 hour
+    default_ttl = 3600 # Cache Contentful pages for 1 hour
+    max_ttl     = 3600 # Maximum 1 hour
   }
 
   restrictions {
