@@ -13,6 +13,11 @@ output "cloudfront_domain" {
   description = "CloudFront distribution domain name"
 }
 
+output "cloudfront_distribution_id" {
+  value       = aws_cloudfront_distribution.nextjs_cdn.id
+  description = "CloudFront distribution ID (for invalidations)"
+}
+
 output "cloudfront_url" {
   value       = "https://${aws_cloudfront_distribution.nextjs_cdn.domain_name}"
   description = "CloudFront URL"

@@ -7,7 +7,8 @@
 		"lint": "turbo run lint",
 		"test": "turbo run test",
 		"test:commit": "CI=true turbo run test --no-daemon",
-		"prepare": "husky"
+		"prepare": "husky",
+		"deploy": "terraform/deploy-lambda.sh --apply"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^19.8.1",
