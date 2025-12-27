@@ -29,7 +29,7 @@ resource "aws_lambda_function" "nextjs_public_app" {
   role             = aws_iam_role.lambda_role.arn
   handler          = "handler.handler"
   source_code_hash = filebase64sha256("lambda-nextjs-public.zip")
-  runtime          = "nodejs20.x"
+  runtime          = "nodejs22.x"
   memory_size      = 1024
   timeout          = 30
 
