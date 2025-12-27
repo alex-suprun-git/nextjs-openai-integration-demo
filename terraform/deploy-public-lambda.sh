@@ -35,6 +35,19 @@ aws s3 sync \
   --exclude "*.map" \
   --cache-control "public,max-age=31536000,immutable"
 
+echo ""
+echo "0️⃣ Uploading public assets/ to S3 (CloudFront routes /assets/* to S3)..."
+if [ -d "$PROJECT_ROOT/apps/public/public/assets" ]; then
+  aws s3 sync \
+    "$PROJECT_ROOT/apps/public/public/assets" \
+    "s3://${BUCKET_NAME}/assets" \
+    --delete \
+    --exclude "*.map" \
+    --cache-control "public,max-age=86400"
+else
+  echo "ℹ️  No public/assets folder found at apps/public/public/assets (skipping)."
+fi
+
 echo "1️⃣ Building Lambda package..."
 "$TERRAFORM_DIR/build-lambda.sh"
 
