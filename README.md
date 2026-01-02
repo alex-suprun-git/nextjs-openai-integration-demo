@@ -67,6 +67,18 @@ yarn install
 yarn dev
 ```
 
+## 🧩 Contributing
+
+- **Keep commits small and focused**: Prefer scoped changes (docs, refactors, fixes) to make reviews easy.
+- **Run checks before pushing**:
+
+```bash
+yarn lint
+yarn test
+```
+
+If you’re working on a single app, you can also run scripts from `apps/platform` or `apps/public`.
+
 ## 🤖 AI Architecture
 
 This project uses a **hybrid AI approach**:
