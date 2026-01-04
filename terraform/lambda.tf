@@ -24,14 +24,21 @@ resource "aws_iam_role_policy_attachment" "lambda_basic" {
 
 # Public App Lambda function
 resource "aws_lambda_function" "nextjs_public_app" {
-  filename         = "lambda-nextjs-public.zip"
+  filename         = "bootstrap-lambda.zip"
   function_name    = "nextjs-public-app"
   role             = aws_iam_role.lambda_role.arn
   handler          = "handler.handler"
-  source_code_hash = filebase64sha256("lambda-nextjs-public.zip")
+  source_code_hash = filebase64sha256("bootstrap-lambda.zip")
   runtime          = "nodejs22.x"
   memory_size      = 1024
   timeout          = 30
+
+  lifecycle {
+    ignore_changes = [
+      filename,
+      source_code_hash,
+    ]
+  }
 
   environment {
     variables = {

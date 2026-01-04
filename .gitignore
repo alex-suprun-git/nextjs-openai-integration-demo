@@ -44,10 +44,10 @@ yarn-error.log*
 
 # Terraform
 terraform/lambda-nextjs-public/
-terraform/lambda-nextjs-public.zip
 .terraform/
 .terraform.*
 *.tfstate
 *.tfstate.backup
 *.tfvars
 *.zip
+!bootstrap-lambda.zip
