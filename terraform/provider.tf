@@ -2,6 +2,13 @@
 terraform {
   required_version = ">= 1.0"
 
+  cloud {
+    organization = "IDK-io"
+    workspaces {
+      name = "nextjs-openai-integration-demo"
+    }
+  }
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
