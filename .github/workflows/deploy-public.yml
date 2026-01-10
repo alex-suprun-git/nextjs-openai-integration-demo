@@ -1,0 +1,99 @@
+name: Deploy (public)
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-public
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    env:
+      AWS_REGION: ${{ vars.AWS_REGION }}
+      ARTIFACTS_BUCKET: ${{ vars.AWS_ARTIFACTS_BUCKET }}
+      STATIC_BUCKET: ${{ vars.AWS_STATIC_BUCKET }}
+      LAMBDA_FUNCTION_NAME: ${{ vars.LAMBDA_FUNCTION_NAME }}
+      CLOUDFRONT_DISTRIBUTION_ID: ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: yarn
+
+      - name: Enable Corepack (Yarn 4)
+        run: corepack enable
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Build apps/public
+        run: yarn workspace public build
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Package Lambda zip (public)
+        run: bash terraform/build-lambda.sh
+
+      - name: Upload Lambda zip to artifacts bucket
+        run: |
+          set -euo pipefail
+          KEY="public/${GITHUB_SHA}.zip"
+
+          aws s3api put-object \
+            --bucket "${ARTIFACTS_BUCKET}" \
+            --key "${KEY}" \
+            --body "terraform/lambda-nextjs-public.zip" \
+            --content-type "application/zip" \
+            --tagging "app=public&git_sha=${GITHUB_SHA}&run_id=${GITHUB_RUN_ID}"
+
+          echo "LAMBDA_ZIP_KEY=${KEY}" >> "$GITHUB_ENV"
+
+      - name: Update Lambda code from S3
+        run: |
+          set -euo pipefail
+          aws lambda update-function-code \
+            --function-name "${LAMBDA_FUNCTION_NAME}" \
+            --s3-bucket "${ARTIFACTS_BUCKET}" \
+            --s3-key "${LAMBDA_ZIP_KEY}" \
+            --publish
+
+      - name: Sync Next static assets to S3
+        run: |
+          set -euo pipefail
+          aws s3 sync "apps/public/.next/static" "s3://${STATIC_BUCKET}/_next/static" \
+            --delete \
+            --exclude "*.map" \
+            --cache-control "public,max-age=31536000,immutable"
+
+      - name: Sync public assets/ to S3 (if present)
+        run: |
+          set -euo pipefail
+          if [ -d "apps/public/public/assets" ]; then
+            aws s3 sync "apps/public/public/assets" "s3://${STATIC_BUCKET}/assets" \
+              --delete \
+              --exclude "*.map" \
+              --cache-control "public,max-age=86400"
+          fi
+
+      - name: Invalidate CloudFront
+        run: |
+          set -euo pipefail
+          aws cloudfront create-invalidation \
+            --distribution-id "${CLOUDFRONT_DISTRIBUTION_ID}" \
+            --paths "/*"
