@@ -27,3 +27,8 @@ output "api_gateway_url" {
   value       = aws_apigatewayv2_stage.lambda_stage.invoke_url
   description = "API Gateway URL"
 }
+
+output "artifacts_bucket_name" {
+  value       = aws_s3_bucket.artifacts.id
+  description = "The name of the artifacts S3 bucket (Lambda zips)"
+}
