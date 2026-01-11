@@ -28,16 +28,12 @@ vi.mock('@/components/Navbar', () => ({
   default: () => <div data-testid="navbar" />,
 }));
 
-vi.mock('@vercel/speed-insights/next', () => ({
-  SpeedInsights: () => <div data-testid="speedinsights" />,
-}));
-
 vi.mock('next/font/google', () => ({
   Inter: () => ({ className: 'inter-class' }),
 }));
 
 describe('RootLocaleLayout (mocked)', () => {
-  it('renders children, Navbar and SpeedInsights', async () => {
+  it('renders children, Navbar', async () => {
     const mockChildren = <div data-testid="mock-children">Mock Children</div>;
 
     const element = await RootLocaleLayout({
@@ -50,6 +46,5 @@ describe('RootLocaleLayout (mocked)', () => {
     expect(screen.getByTestId('intl')).toBeInTheDocument();
     expect(screen.getByTestId('navbar')).toBeInTheDocument();
     expect(screen.getByTestId('mock-children')).toBeInTheDocument();
-    expect(screen.getByTestId('speedinsights')).toBeInTheDocument();
   });
 });

@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Inter } from 'next/font/google';
 
 import { LocalizedCookieBanner } from '@repo/global-ui';
@@ -38,7 +37,6 @@ export default async function RootLayout({
             <LocalizedCookieBanner />
           </Providers>
         </NextIntlClientProvider>
-        <SpeedInsights />
       </body>
     </html>
   );
