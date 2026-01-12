@@ -109,7 +109,17 @@ resource "aws_cloudfront_distribution" "nextjs_cdn" {
 
     forwarded_values {
       query_string = true
-      headers      = [] # Don't forward Host header to API Gateway
+
+      headers = [
+        "accept",
+        "accept-language",
+        "content-type",
+        "rsc",
+        "next-router-prefetch",
+        "next-router-state-tree",
+        "next-router-segment-prefetch",
+        "next-url",
+      ]
 
       cookies {
         forward = "all"
@@ -117,8 +127,8 @@ resource "aws_cloudfront_distribution" "nextjs_cdn" {
     }
 
     min_ttl     = 0
-    default_ttl = 3600 # Cache Contentful pages for 1 hour
-    max_ttl     = 3600 # Maximum 1 hour
+    default_ttl = 0
+    max_ttl     = 0
   }
 
   restrictions {
