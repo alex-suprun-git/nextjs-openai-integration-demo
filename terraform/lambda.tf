@@ -42,7 +42,13 @@ resource "aws_lambda_function" "nextjs_public_app" {
 
   environment {
     variables = {
-      NODE_ENV = "production"
+      NODE_ENV                        = "production"
+      CONTENTFUL_SPACE_ID             = var.contentful_space_id
+      CONTENTFUL_ACCESS_TOKEN         = var.contentful_access_token
+      CONTENTFUL_MANAGEMENT_TOKEN     = var.contentful_management_token
+      CONTENTFUL_PREVIEW_ACCESS_TOKEN = var.contentful_preview_access_token
+      CONTENTFUL_PREVIEW_SECRET       = var.contentful_preview_secret
+      CONTENTFUL_WEBHOOK_SECRET       = var.contentful_webhook_secret
     }
   }
 }
