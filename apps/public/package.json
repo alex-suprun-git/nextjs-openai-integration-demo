@@ -26,7 +26,7 @@
     "@repo/global-utils": "workspace:*",
     "@sentry/nextjs": "^9.12.0",
     "contentful-management": "^11.63.1",
-    "daisyui": "^5.0.19",
+    "daisyui": "^5.5.0",
     "jsonwebtoken": "^9.0.2",
     "next": "^16.0.10",
     "next-intl": "^4.5.8",
