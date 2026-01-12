@@ -5,7 +5,7 @@ import { createHmac } from 'crypto';
 const SPACE_ID = process.env.CONTENTFUL_SPACE_ID || '';
 const ENVIRONMENT_ID = process.env.CONTENTFUL_ENVIRONMENT_ID || 'master';
 const MANAGEMENT_TOKEN = process.env.CONTENTFUL_MANAGEMENT_TOKEN;
-const WEBHOOK_SIGNING_SECRET = process.env.CONTENTFUL_WEBHOOK_SIGNING_SECRET;
+const WEBHOOK_SIGNING_SECRET = process.env.CONTENTFUL_WEBHOOK_SECRET;
 
 const TAGS_LIST = ['webhookTriggered'];
 

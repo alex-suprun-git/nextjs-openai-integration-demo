@@ -10,6 +10,7 @@ const HomePage = async ({ params }: { params: Promise<{ locale: string }> }) => 
 
   const componentData = (await getContentFromCMS(homePageHeroQuery, locale)) as HomepageHeroSchema;
 
+  console.log(componentData);
   if (!componentData) {
     console.error('Hero component data could not be fetched');
     return null;
@@ -19,6 +20,11 @@ const HomePage = async ({ params }: { params: Promise<{ locale: string }> }) => 
   const headline = component?.homepageHeadline;
   const description = component?.homepageDescription.json;
 
-  return <>{headline && description && <Hero headline={headline} description={description} />}</>;
+  return (
+    <>
+      hello world!!!
+      {headline && description && <Hero headline={headline} description={description} />}
+    </>
+  );
 };
 export default HomePage;
