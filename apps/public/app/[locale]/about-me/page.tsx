@@ -23,7 +23,9 @@ const AboutMePage = async ({ params }: { params: Promise<{ locale: string }> }) 
   })) as PageSchema;
 
   if (!componentData) {
-    console.error('About-Me page data could not be fetched');
+    const msg = 'About-Me page data could not be fetched (Contentful).';
+    console.error(msg);
+    if (process.env.CI) throw new Error(msg);
     return null;
   }
 

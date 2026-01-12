@@ -56,15 +56,19 @@ describe('HomePage (mocked)', () => {
     expect(screen.getByText('Test Headline')).toBeInTheDocument();
   });
 
-  it('returns null and logs errors without fetched data', async () => {
+  it('throws in CI and logs errors without fetched data', async () => {
+    const msg = 'Hero component data could not be fetched (Contentful).';
     const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const originalCI = process.env.CI;
+
+    process.env.CI = 'true';
     (getContentFromCMS as any).mockResolvedValue(null);
 
-    const element = await HomePage({
-      params: Promise.resolve({ locale: 'en' }),
-    });
+    await expect(HomePage({ params: Promise.resolve({ locale: 'en' }) })).rejects.toThrow(msg);
 
-    expect(element).toBeNull();
-    expect(errorSpy).toHaveBeenCalledWith('Hero component data could not be fetched');
+    expect(errorSpy).toHaveBeenCalledWith(msg);
+
+    if (typeof originalCI === 'undefined') delete process.env.CI;
+    else process.env.CI = originalCI;
   });
 });

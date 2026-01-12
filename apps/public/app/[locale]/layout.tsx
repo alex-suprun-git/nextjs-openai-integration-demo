@@ -49,7 +49,6 @@ export default async function RootLocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <Navbar />
           {children}
-          hello world again!!!
           <LocalizedCookieBanner />
         </NextIntlClientProvider>
       </body>

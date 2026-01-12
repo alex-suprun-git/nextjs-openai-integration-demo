@@ -12,7 +12,9 @@ const HomePage = async ({ params }: { params: Promise<{ locale: string }> }) => 
 
   console.log(componentData);
   if (!componentData) {
-    console.error('Hero component data could not be fetched');
+    const msg = 'Hero component data could not be fetched (Contentful).';
+    console.error(msg);
+    if (process.env.CI) throw new Error(msg);
     return null;
   }
 
@@ -20,11 +22,6 @@ const HomePage = async ({ params }: { params: Promise<{ locale: string }> }) => 
   const headline = component?.homepageHeadline;
   const description = component?.homepageDescription.json;
 
-  return (
-    <>
-      hello world!!!
-      {headline && description && <Hero headline={headline} description={description} />}
-    </>
-  );
+  return <>{headline && description && <Hero headline={headline} description={description} />}</>;
 };
 export default HomePage;
