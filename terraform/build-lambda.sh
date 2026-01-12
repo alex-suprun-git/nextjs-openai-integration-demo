@@ -46,6 +46,11 @@ if [ ! -d "$BUILD_DIR/server" ]; then
   exit 1
 fi
 
+# Static assets (so API Gateway URL can serve /_next/static/* too)
+if [ -d "$BUILD_DIR/static" ]; then
+  cp -R "$BUILD_DIR/static" "$LAMBDA_DIR/.next/static"
+fi
+
 # Ensure Next's compiled output stays CommonJS where required.
 # Next writes `.next/package.json` with `{ "type": "commonjs" }` so that `.next/server/*.js`
 # (including `instrumentation.js`) can use `require(...)` even if the app itself is ESM.
@@ -119,6 +124,27 @@ async function startNextServer() {
   });
 }
 
+function shouldBase64Encode(contentType) {
+  if (!contentType) return false;
+  const ct = String(contentType).toLowerCase();
+
+  // Treat common textual types as UTF-8; everything else as binary.
+  if (ct.startsWith('text/')) return false;
+  if (
+    ct.includes('application/json') ||
+    ct.includes('application/javascript') ||
+    ct.includes('application/x-javascript') ||
+    ct.includes('application/xml') ||
+    ct.includes('application/xhtml+xml') ||
+    ct.includes('application/manifest+json') ||
+    ct.includes('image/svg+xml')
+  ) {
+    return false;
+  }
+
+  return true;
+}
+
 function proxyRequest(path, method, headers, body) {
   return new Promise((resolve, reject) => {
     const req = http.request(
@@ -136,7 +162,7 @@ function proxyRequest(path, method, headers, body) {
           resolve({
             statusCode: res.statusCode ?? 502,
             headers: res.headers,
-            body: Buffer.concat(chunks).toString('utf8'),
+            body: Buffer.concat(chunks),
           });
         });
       }
@@ -152,7 +178,9 @@ export const handler = async (event) => {
   try {
     if (!serverReady) await startNextServer();
 
-    const path = event.rawPath || event.path || '/';
+    const rawPath = event.rawPath || event.path || '/';
+    const rawQueryString = event.rawQueryString || '';
+    const path = rawQueryString ? `${rawPath}?${rawQueryString}` : rawPath;
     const method = event.requestContext?.http?.method || event.httpMethod || 'GET';
 
     const headers = {};
@@ -188,11 +216,19 @@ export const handler = async (event) => {
       cleanHeaders[normalized] = value;
     }
 
+    const contentType = response.headers?.['content-type'] ?? response.headers?.['Content-Type'];
+    const isBase64Encoded = shouldBase64Encode(contentType);
+
+    // If we're base64-encoding, drop Content-Length (it's for the raw bytes).
+    if (isBase64Encoded) {
+      delete cleanHeaders['Content-Length'];
+    }
+
     const result = {
       statusCode: response.statusCode,
       headers: cleanHeaders,
-      body: response.body || '',
-      isBase64Encoded: false,
+      body: isBase64Encoded ? response.body.toString('base64') : response.body.toString('utf8'),
+      isBase64Encoded,
     };
 
     if (cookies.length > 0) result.cookies = cookies;
