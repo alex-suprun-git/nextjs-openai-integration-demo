@@ -4,7 +4,7 @@ exports[`EntryCard > renders correctly and matches snapshot 1`] = `
 <div>
   <div
     aria-label="Open entry: This is a test entry"
-    class="card relative h-[128px] border border-gray-200 bg-white text-primary-content transition-all duration-200 "
+    class="card text-primary-content relative h-[128px] border border-gray-200 bg-white transition-all duration-200 "
     data-testid="entryCard"
     role="button"
     tabindex="0"
@@ -13,7 +13,7 @@ exports[`EntryCard > renders correctly and matches snapshot 1`] = `
       class="card-body justify-between text-black"
     >
       <div
-        class="absolute right-4 top-4 ml-auto h-2 w-2 rounded"
+        class="absolute top-4 right-4 ml-auto h-2 w-2 rounded"
         style="background-color: rgb(255, 0, 0);"
       />
       <h2
@@ -66,7 +66,7 @@ exports[`EntryCard > renders correctly and matches snapshot 1`] = `
         >
           <button
             aria-label="Open context menu"
-            class="border-1 btn btn-ghost btn-xs btn-circle border-gray-300 p-1 text-gray-600 hover:bg-gray-100 focus:outline-none"
+            class="btn btn-ghost btn-xs btn-circle border-1 border-gray-300 p-1 text-gray-600 hover:bg-gray-100 focus:outline-none"
             data-testid="entryCard-edit-button"
           >
             <svg
@@ -92,7 +92,7 @@ exports[`EntryCard > renders correctly and matches snapshot 1`] = `
     id="action-sheet-1"
   >
     <div
-      class="modal-box mx-auto max-w-lg rounded-b-none rounded-t-xl bg-white px-4 py-4"
+      class="modal-box mx-auto max-w-lg rounded-t-xl rounded-b-none bg-white px-4 py-4"
     >
       <div
         class="mb-4 flex justify-center"
