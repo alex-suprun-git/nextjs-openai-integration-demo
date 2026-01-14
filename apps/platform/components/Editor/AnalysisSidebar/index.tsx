@@ -64,11 +64,11 @@ function AnalysisSidebar({
           {t('analysis.headline')}
         </h2>
         <div
-          className="absolute left-0 top-0 h-full w-full"
+          className="absolute top-0 left-0 h-full w-full"
           style={{ background: analysisBackground }}
         ></div>
       </div>
-      <ul className="mb-10 mt-5">
+      <ul className="mt-5 mb-10">
         {analysisData.map((item) => {
           if (item.value === summary && isEntryCanBeDeleted) {
             return (
@@ -88,7 +88,7 @@ function AnalysisSidebar({
                 key={item.label}
                 className="flex flex-col items-start justify-between border-b-2 border-white/10 px-6 py-3 xl:flex-row xl:items-center"
               >
-                <h3 className="mb-2 mr-10 font-semibold">{item.label}:</h3>
+                <h3 className="mr-10 mb-2 font-semibold">{item.label}:</h3>
                 <span className="text-start xl:text-end">{item.value?.toString()}</span>
               </li>
             );
@@ -96,11 +96,11 @@ function AnalysisSidebar({
         })}
       </ul>
       {isEntryCanBeDeleted && (
-        <div className="mt-12 flex justify-end pb-10 pr-5 md:pb-0 md:pr-0">
+        <div className="mt-12 flex justify-end pr-5 pb-10 md:pr-0 md:pb-0">
           <button
             onClick={openDeleteModal}
             data-testid="delete-entry-button"
-            className="md:max-lg:mb-10 btn border-0 bg-red-800 text-white hover:bg-red-900"
+            className="btn border-0 bg-red-800 hover:bg-red-900 md:max-lg:mb-10"
           >
             {c('deleteEntry.actionButton')} <FaRegTrashAlt />
           </button>

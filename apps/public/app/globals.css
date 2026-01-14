@@ -1,10 +1,19 @@
-@tailwind base;
-
-@layer base {
-  body {
-    @apply text-stone-100;
-  }
+@config "../tailwind.config.ts";
+@import 'tailwindcss';
+@plugin "daisyui" {
+  themes: dark --default;
 }
 
-@tailwind components;
-@tailwind utilities;
+/* Ensure Tailwind scans shared workspace packages (monorepo). */
+@source "../../../packages/global-ui/src";
+
+@source inline("alert alert-{info,warning,error,success}");
+
+@layer base {
+  html {
+    @apply overscroll-none scroll-auto;
+  }
+  body {
+    @apply overscroll-none text-stone-100;
+  }
+}

@@ -9,7 +9,6 @@ const config: Config = {
     './ui-lib/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  safelist: [{ pattern: /alert-+/ }],
   theme: {
     screens: {
       xs: '320px',
@@ -55,7 +54,6 @@ const config: Config = {
     },
   },
   plugins: [
-    require('daisyui'),
     plugin(function ({ addComponents }) {
       addComponents({
         '.btn': {
@@ -73,9 +71,6 @@ const config: Config = {
       });
     }),
   ],
-  daisyui: {
-    themes: ['light'],
-  },
 };
 
 export default config;

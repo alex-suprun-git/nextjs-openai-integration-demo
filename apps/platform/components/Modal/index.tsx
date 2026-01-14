@@ -83,7 +83,7 @@ const Modal = ({
             <button
               className={clsx(
                 'btn border-0 focus:outline-none',
-                confirmButton.className || 'bg-red-800 text-white hover:bg-red-900',
+                confirmButton.className || 'bg-red-800 hover:bg-red-900',
               )}
               onClick={confirmButton.onClick}
               data-testid={confirmButton.testId || 'modal-confirm-button'}

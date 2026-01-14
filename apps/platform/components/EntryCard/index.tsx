@@ -94,14 +94,14 @@ const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
         tabIndex={0}
         role="button"
         aria-label={`Open entry: ${title || `Memo [${creationDate}]`}`}
-        className={`card relative h-[128px] border border-gray-200 bg-white text-primary-content transition-all duration-200 ${
+        className={`card text-primary-content relative h-[128px] border border-gray-200 bg-white transition-all duration-200 ${
           showActionSheet ? 'pointer-events-none' : ''
         }`}
       >
         <div className="card-body justify-between text-black">
           <div
             style={{ backgroundColor: color }}
-            className="absolute right-4 top-4 ml-auto h-2 w-2 rounded"
+            className="absolute top-4 right-4 ml-auto h-2 w-2 rounded"
           ></div>
           <h2 className="card-title overflow-hidden">{title || `Memo [${creationDate}]`}</h2>
           <div className="flex justify-between">
@@ -123,7 +123,7 @@ const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
                   e.preventDefault();
                   toggleActionSheet(e);
                 }}
-                className="border-1 btn btn-ghost btn-xs btn-circle border-gray-300 p-1 text-gray-600 hover:bg-gray-100 focus:outline-none"
+                className="btn btn-ghost btn-xs btn-circle border-1 border-gray-300 p-1 text-gray-600 hover:bg-gray-100 focus:outline-none"
               >
                 <BsThreeDotsVertical />
               </button>
@@ -149,7 +149,7 @@ const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
         }}
       >
         <div
-          className="modal-box mx-auto max-w-lg rounded-b-none rounded-t-xl bg-white px-4 py-4"
+          className="modal-box mx-auto max-w-lg rounded-t-xl rounded-b-none bg-white px-4 py-4"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="mb-4 flex justify-center">
@@ -229,7 +229,7 @@ const EntryCard = ({ id, createdAt, title, color }: EntryCardProps) => {
               </button>
               <button
                 data-testid="delete-confirm-button"
-                className="btn border-0 bg-red-800 text-white hover:bg-red-900 focus:outline-none"
+                className="btn border-0 bg-red-800 hover:bg-red-900 focus:outline-none"
                 onClick={deleteEntryHandler}
               >
                 {c('deleteEntry.confirmButton')}
