@@ -1,6 +1,8 @@
 @config "../tailwind.config.ts";
 @import 'tailwindcss';
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: dark --default;
+}
 
 /* Ensure Tailwind scans shared workspace packages (monorepo). */
 @source "../../../packages/global-ui/src";
@@ -8,7 +10,10 @@
 @source inline("alert alert-{info,warning,error,success}");
 
 @layer base {
+  html {
+    @apply overscroll-none scroll-auto;
+  }
   body {
-    @apply text-stone-100;
+    @apply overscroll-none text-stone-100;
   }
 }

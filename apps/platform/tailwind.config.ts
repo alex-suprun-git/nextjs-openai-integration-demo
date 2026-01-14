@@ -54,7 +54,6 @@ const config: Config = {
     },
   },
   plugins: [
-    require('daisyui'),
     plugin(function ({ addComponents }) {
       addComponents({
         '.btn': {
@@ -72,9 +71,6 @@ const config: Config = {
       });
     }),
   ],
-  daisyui: {
-    themes: ['light'],
-  },
 };
 
 export default config;
