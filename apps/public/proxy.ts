@@ -62,5 +62,5 @@ export function proxy(request: NextRequest) {
 // - /_next/* (Next.js static files)
 // - Files with extensions (*.jpg, *.css, etc.)
 export const config = {
-  matcher: '/((?!api|trpc|_next|_vercel|.*\\..*).*)',
+  matcher: '/((?!api|trpc|_next|.*\\..*).*)',
 };
