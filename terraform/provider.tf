@@ -17,9 +17,16 @@ terraform {
   }
 }
 
-# Configure AWS Provider
+# Configure AWS Providers 
+
 provider "aws" {
   region = "eu-central-1"
+}
+
+# Will be needed for CloudFront setup
+provider "aws" {
+  alias  = "use1"
+  region = "us-east-1"
 }
 
 # Get current AWS account ID (for unique bucket name)
