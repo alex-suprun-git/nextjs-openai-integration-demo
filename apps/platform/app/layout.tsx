@@ -3,7 +3,6 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 import { Inter } from 'next/font/google';
 
-import { LocalizedCookieBanner } from '@repo/global-ui';
 import { AnalyticsManager } from '@repo/global-analytics';
 import Providers from '@/components/Providers';
 import './globals.css';
@@ -34,7 +33,6 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           <Providers>
             {children}
-            <LocalizedCookieBanner />
           </Providers>
         </NextIntlClientProvider>
       </body>

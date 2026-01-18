@@ -6,7 +6,6 @@ import { Inter } from 'next/font/google';
 
 import { routing } from '@/i18n/routing';
 import Navbar from '@/components/Navbar';
-import { LocalizedCookieBanner } from '@repo/global-ui';
 import { AnalyticsManager } from '@repo/global-analytics';
 import '@/app/globals.css';
 
@@ -49,7 +48,6 @@ export default async function RootLocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <Navbar />
           {children}
-          <LocalizedCookieBanner />
         </NextIntlClientProvider>
       </body>
     </html>

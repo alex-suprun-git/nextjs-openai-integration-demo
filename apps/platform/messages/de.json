@@ -126,20 +126,6 @@
       "tryAgain": "Erneut versuchen"
     }
   },
-  "CookieBanner": {
-    "title": "Cookie-Richtlinie",
-    "description": "Diese Website verwendet Cookies, um Ihnen die bestmögliche Erfahrung zu gewährleisten. Sie können alle Cookies akzeptieren oder ablehnen.",
-    "types": {
-      "required": "Notwendig: Websitefunktionalität",
-      "functional": "Funktional: Benutzererfahrung",
-      "analytics": "Analyse: Nutzungsmuster",
-      "marketing": "Marketing: Personalisierung"
-    },
-    "learnMore": "Mehr erfahren",
-    "policyLink": "/privacy",
-    "acceptButton": "Alle akzeptieren",
-    "rejectButton": "Alle ablehnen"
-  },
   "Auth": {
     "signIn": {
       "title": "Anmelden",
