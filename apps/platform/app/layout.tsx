@@ -33,7 +33,7 @@ export default async function RootLayout({
         <Script strategy="beforeInteractive" id="usercentrics-cmp" src="https://web.cmp.usercentrics.eu/ui/loader.js" data-settings-id="P8QhQYR7HIFVvh" async></Script>
       </head>
       <body className={`min-h-dvh bg-slate-900 ${inter.className}`}>
-        <AnalyticsManager gtmId="GTM-N4MLTRT2" />
+        <AnalyticsManager gtmId="GTM-N4MLTRT2" usercentricsServiceId="BJ59EidsWQ" />
         <NextIntlClientProvider messages={messages}>
           <Providers>
             {children}

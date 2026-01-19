@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import Cookies from 'js-cookie';
+import React from 'react';
 import { GoogleTagManager } from '@next/third-parties/google';
+
+import { useUsercentricsConsent } from './useUsercentricsConsent';
 
 export interface AnalyticsManagerProps {
 	/**
@@ -11,43 +12,48 @@ export interface AnalyticsManagerProps {
 	gtmId: string;
 
 	/**
-	 * Cookie name to check for consent status
-	 * @default "gdpr-consent"
+	 * Usercentrics service/template ID to check for consent.
+	 *
+	 * Prefer this over `usercentricsServiceName` because names can be localized/renamed.
 	 */
-	cookieName?: string;
+	usercentricsServiceId?: string;
 
 	/**
-	 * Value in the cookie that indicates consent was given
-	 * @default "accepted"
+	 * Optional Usercentrics service name to check for consent.
+	 * Use only if you can't provide `usercentricsServiceId`.
 	 */
-	acceptedValue?: string;
+	usercentricsServiceName?: string;
+
+	/**
+	 * Usercentrics "Window Event Name" (configured in the UC admin UI).
+	 * @default "ucEvent"
+	 */
+	usercentricsEventName?: string;
+
+	/**
+	 * Max time (ms) to wait for Usercentrics init before reading consent.
+	 * @default 3000
+	 */
+	usercentricsTimeoutMs?: number;
 }
 
 /**
  * Analytics Manager component that conditionally renders Google Tag Manager
- * based on the user's cookie consent status.
+ * based on the user's Usercentrics consent status.
  */
 const AnalyticsManager: React.FC<AnalyticsManagerProps> = ({
 	gtmId,
-	cookieName = 'gdpr-consent',
-	acceptedValue = 'accepted',
+	usercentricsServiceId,
+	usercentricsServiceName,
+	usercentricsEventName = 'ucEvent',
+	usercentricsTimeoutMs = 3000,
 }) => {
-	const [enabled, setEnabled] = useState(false);
-
-	useEffect(() => {
-		// Check consent status from cookies
-		const consent = Cookies.get(cookieName);
-
-		// Enable analytics only if consent is explicitly accepted
-		setEnabled(consent === acceptedValue);
-
-		// Disable Google Analytics if consent is not given
-		if (consent !== acceptedValue && typeof window !== 'undefined') {
-			// Disable GA for all measurement IDs
-			// This is a fallback in case GTM has already loaded
-			window[`ga-disable-${gtmId}`] = true;
-		}
-	}, [cookieName, acceptedValue, gtmId]);
+	const enabled = useUsercentricsConsent({
+		serviceId: usercentricsServiceId,
+		serviceName: usercentricsServiceName,
+		eventName: usercentricsEventName,
+		timeoutMs: usercentricsTimeoutMs,
+	});
 
 	// Don't render GTM if consent not given
 	if (!enabled) return null;
