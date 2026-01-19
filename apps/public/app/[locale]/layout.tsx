@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
@@ -6,7 +7,6 @@ import { Inter } from 'next/font/google';
 
 import { routing } from '@/i18n/routing';
 import Navbar from '@/components/Navbar';
-import { LocalizedCookieBanner } from '@repo/global-ui';
 import { AnalyticsManager } from '@repo/global-analytics';
 import '@/app/globals.css';
 
@@ -44,12 +44,14 @@ export default async function RootLocaleLayout({
 
   return (
     <html lang={locale}>
+      <head>
+        <Script strategy="beforeInteractive" id="usercentrics-cmp" src="https://web.cmp.usercentrics.eu/ui/loader.js" data-settings-id="P8QhQYR7HIFVvh" async />
+      </head>
       <body className={`min-h-dvh bg-slate-900 ${inter.className}`}>
-        <AnalyticsManager gtmId="GTM-N4MLTRT2" />
+        <AnalyticsManager gtmId="GTM-N4MLTRT2" usercentricsServiceId="BJ59EidsWQ" />
         <NextIntlClientProvider messages={messages}>
           <Navbar />
           {children}
-          <LocalizedCookieBanner />
         </NextIntlClientProvider>
       </body>
     </html>

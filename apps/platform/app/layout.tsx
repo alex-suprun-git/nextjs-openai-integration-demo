@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 import { Inter } from 'next/font/google';
 
-import { LocalizedCookieBanner } from '@repo/global-ui';
 import { AnalyticsManager } from '@repo/global-analytics';
 import Providers from '@/components/Providers';
 import './globals.css';
@@ -29,12 +29,14 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <AnalyticsManager gtmId="GTM-N4MLTRT2" />
+      <head>
+        <Script strategy="beforeInteractive" id="usercentrics-cmp" src="https://web.cmp.usercentrics.eu/ui/loader.js" data-settings-id="P8QhQYR7HIFVvh" async></Script>
+      </head>
       <body className={`min-h-dvh bg-slate-900 ${inter.className}`}>
+        <AnalyticsManager gtmId="GTM-N4MLTRT2" usercentricsServiceId="BJ59EidsWQ" />
         <NextIntlClientProvider messages={messages}>
           <Providers>
             {children}
-            <LocalizedCookieBanner />
           </Providers>
         </NextIntlClientProvider>
       </body>

@@ -20,19 +20,5 @@
     "buttons": {
       "tryAgain": "Try Again"
     }
-  },
-  "CookieBanner": {
-    "title": "Cookie Policy",
-    "description": "This website uses cookies to ensure you get the best experience. You can accept all or reject all cookies.",
-    "types": {
-      "required": "Necessary: site functionality",
-      "functional": "Functional: enhanced experience",
-      "analytics": "Analytics: usage patterns",
-      "marketing": "Marketing: personalized content"
-    },
-    "learnMore": "Learn more",
-    "policyLink": "/privacy",
-    "acceptButton": "Accept all",
-    "rejectButton": "Reject all"
   }
 }
