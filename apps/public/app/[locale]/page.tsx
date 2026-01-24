@@ -10,8 +10,7 @@ const HomePage = async ({ params }: { params: Promise<{ locale: string }> }) => 
 
   const componentData = (await getContentFromCMS(homePageHeroQuery, locale)) as HomepageHeroSchema;
 
-  console.log(componentData);
-  if (!componentData) {
+  if (!componentData?.homepageHeroBannerCollection?.items?.length) {
     const msg = 'Hero component data could not be fetched (Contentful).';
     console.error(msg);
     if (process.env.CI) throw new Error(msg);
@@ -20,7 +19,7 @@ const HomePage = async ({ params }: { params: Promise<{ locale: string }> }) => 
 
   const component = componentData.homepageHeroBannerCollection.items[0];
   const headline = component?.homepageHeadline;
-  const description = component?.homepageDescription.json;
+  const description = component?.homepageDescription?.json;
 
   return <>{headline && description && <Hero headline={headline} description={description} />}</>;
 };

@@ -11,14 +11,7 @@ function Logo({
 }) {
   return (
     <Link onClick={onClick} href={'/'} className={className}>
-      <Image
-        src={'/assets/logo.png'}
-        width={120}
-        height={50}
-        quality={100}
-        priority={true}
-        alt="logo"
-      />
+      <Image src={'/assets/logo.png'} width={120} height={50} priority={true} alt="logo" />
     </Link>
   );
 }
