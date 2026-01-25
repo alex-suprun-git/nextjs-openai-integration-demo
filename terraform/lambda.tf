@@ -33,6 +33,10 @@ resource "aws_lambda_function" "nextjs_public_app" {
   memory_size      = 1024
   timeout          = 30
 
+  # Datadog Serverless instrumentation layers
+  # Note: the extension layer is required. Add runtime library layer ARNs via var.dd_additional_layer_arns if desired.
+  layers = concat([var.dd_extension_layer_arn], var.dd_additional_layer_arns)
+
   lifecycle {
     ignore_changes = [
       filename,
@@ -49,6 +53,19 @@ resource "aws_lambda_function" "nextjs_public_app" {
       CONTENTFUL_PREVIEW_ACCESS_TOKEN = var.contentful_preview_access_token
       CONTENTFUL_PREVIEW_SECRET       = var.contentful_preview_secret
       CONTENTFUL_WEBHOOK_SECRET       = var.contentful_webhook_secret
+
+      # Datadog (Serverless / Lambda)
+      DD_API_KEY                 = var.dd_api_key
+      DD_SITE                    = var.dd_site
+      DD_ENV                     = var.dd_env
+      DD_SERVICE                 = var.dd_service
+      DD_VERSION                 = var.dd_version
+      DD_TRACE_ENABLED           = tostring(var.dd_trace_enabled)
+      DD_SERVERLESS_LOGS_ENABLED = tostring(var.dd_serverless_logs_enabled)
+      DD_CAPTURE_LAMBDA_PAYLOAD  = tostring(var.dd_capture_lambda_payload)
+      DD_MERGE_XRAY_TRACES       = tostring(var.dd_merge_xray_traces)
+      DD_LAMBDA_HANDLER          = var.dd_lambda_handler
+      DD_TAGS                    = var.dd_tags
     }
   }
 }
