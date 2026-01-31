@@ -68,6 +68,9 @@ if [ ! -f "$REQUIRED_FILES_JSON" ]; then
   exit 1
 fi
 
+# Copy the required-server-files.json itself (Next.js needs it at runtime)
+cp "$REQUIRED_FILES_JSON" "$LAMBDA_DIR/.next/required-server-files.json"
+
 node -e "const r=require(process.argv[1]); process.stdout.write(r.files.join('\n'))" "$REQUIRED_FILES_JSON" | while IFS= read -r rel; do
   [ -z "$rel" ] && continue
   src="$APP_DIR/$rel"
