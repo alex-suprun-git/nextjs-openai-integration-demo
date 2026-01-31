@@ -15,18 +15,6 @@ const nextConfig = {
     remotePatterns: [new URL('https://images.ctfassets.net/**')],
     unoptimized: true, // Lambda doesn't support sharp for image optimization
   },
-  // Exclude Sentry and OpenTelemetry packages from server bundling to avoid
-  // require-in-the-middle module resolution issues in Lambda standalone builds
-  serverExternalPackages: [
-    '@sentry/nextjs',
-    '@sentry/core',
-    '@sentry/node',
-    '@sentry/opentelemetry',
-    '@opentelemetry/instrumentation',
-    '@opentelemetry/api',
-    '@opentelemetry/core',
-    'require-in-the-middle',
-  ],
 };
 
 export default withSentryConfig(withPWAConfig(withNextIntl(nextConfig)), {
