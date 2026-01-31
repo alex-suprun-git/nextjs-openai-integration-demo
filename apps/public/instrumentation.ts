@@ -1,20 +1,10 @@
-import * as Sentry from '@sentry/nextjs';
+// Instrumentation disabled to avoid Sentry dependency bundling issues in Lambda
+// with Next.js 16.1.x standalone builds. Sentry still works via error boundaries
+// and manual captures in the application code.
+//
+// See: https://github.com/vercel/next.js/issues/69023
+// See: https://github.com/getsentry/sentry-javascript/issues/15209
 
 export async function register() {
-  // Disable instrumentation in Lambda environment to avoid module resolution issues
-  // Sentry will still work via the error boundary and manual captures
-  if (process.env.AWS_LAMBDA_FUNCTION_NAME) {
-    console.log('Skipping Sentry instrumentation in Lambda environment');
-    return;
-  }
-
-  if (process.env.NEXT_RUNTIME === 'nodejs') {
-    await import('./sentry.server.config');
-  }
-
-  if (process.env.NEXT_RUNTIME === 'edge') {
-    await import('./sentry.edge.config');
-  }
+  console.log('Instrumentation hook disabled for Lambda compatibility');
 }
-
-export const onRequestError = Sentry.captureRequestError;
