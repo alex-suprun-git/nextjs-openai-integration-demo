@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Script from 'next/script';
 import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
@@ -44,11 +43,8 @@ export default async function RootLocaleLayout({
 
   return (
     <html lang={locale}>
-      <head>
-        <Script strategy="beforeInteractive" id="usercentrics-cmp" src="https://web.cmp.usercentrics.eu/ui/loader.js" data-settings-id="P8QhQYR7HIFVvh" async />
-      </head>
       <body className={`min-h-dvh bg-slate-900 ${inter.className}`}>
-        <AnalyticsManager gtmId="GTM-N4MLTRT2" usercentricsServiceId="BJ59EidsWQ" />
+        <AnalyticsManager gtmId="GTM-N4MLTRT2" />
         <NextIntlClientProvider messages={messages}>
           <Navbar />
           {children}
