@@ -53,10 +53,4 @@ export default withSentryConfig(withPWAConfig(withNextIntl(nextConfig)), {
 
   // Automatically tree-shake Sentry logger statements to reduce bundle size
   disableLogger: true,
-
-  // Exclude tracing/instrumentation code from server bundle to avoid require-in-the-middle
-  // bundling issues in Next.js standalone (Lambda). See docs/SENTRY-LAMBDA-INSTRUMENTATION-FIX.md
-  bundleSizeOptimizations: {
-    excludeTracing: true,
-  },
 });
