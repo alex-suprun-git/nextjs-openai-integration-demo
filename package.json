@@ -41,6 +41,7 @@
 		"packages/*"
 	],
 	"dependencies": {
-		"contentful-management": "^11.63.1"
+		"contentful-management": "^11.63.1",
+		"next": "^16.2.0-canary.22"
 	}
 }
