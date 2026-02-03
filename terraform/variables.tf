@@ -105,3 +105,8 @@ variable "dd_tags" {
   description = "Optional comma-separated Datadog tags (DD_TAGS), e.g. 'app:public,repo:nextjs-openai-integration-demo'"
   default     = ""
 }
+
+variable "next_public_c15t_url" {
+  type        = string
+  description = "c15t backend URL for consent management"
+}

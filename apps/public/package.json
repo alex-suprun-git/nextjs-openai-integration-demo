@@ -17,6 +17,7 @@
     "postbuild": "next-sitemap --config next-sitemap.config.cjs"
   },
   "dependencies": {
+    "@c15t/nextjs": "^1.0.0",
     "@contentful/rich-text-react-renderer": "^16.0.1",
     "@langchain/core": "^0.3.66",
     "@langchain/openai": "^0.6.2",

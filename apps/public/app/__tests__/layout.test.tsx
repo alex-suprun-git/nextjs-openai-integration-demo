@@ -7,6 +7,16 @@ vi.mock('next/navigation', () => ({
   notFound: vi.fn(),
 }));
 
+vi.mock('next/headers', () => ({
+  headers: vi.fn(() => ({
+    get: vi.fn(),
+  })),
+  cookies: vi.fn(() => ({
+    get: vi.fn(),
+    set: vi.fn(),
+  })),
+}));
+
 vi.mock('next-intl', () => ({
   hasLocale: () => true,
   useTranslations: () => (key: string) => key,
@@ -30,6 +40,18 @@ vi.mock('@/components/Navbar', () => ({
 
 vi.mock('next/font/google', () => ({
   Inter: () => ({ className: 'inter-class' }),
+}));
+
+vi.mock('@c15t/nextjs', () => ({
+  ConsentManagerProvider: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="consent-provider">{children}</div>
+  ),
+  CookieBanner: () => <div data-testid="cookie-banner" />,
+  ConsentManagerDialog: () => <div data-testid="consent-dialog" />,
+}));
+
+vi.mock('@repo/global-analytics', () => ({
+  AnalyticsManager: () => <div data-testid="analytics-manager" />,
 }));
 
 describe('RootLocaleLayout (mocked)', () => {

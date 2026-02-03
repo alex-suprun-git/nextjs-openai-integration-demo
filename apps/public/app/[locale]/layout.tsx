@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { Inter } from 'next/font/google';
+import { ConsentManagerProvider, CookieBanner, ConsentManagerDialog } from '@c15t/nextjs';
 
 import { routing } from '@/i18n/routing';
 import Navbar from '@/components/Navbar';
@@ -44,11 +45,22 @@ export default async function RootLocaleLayout({
   return (
     <html lang={locale}>
       <body className={`min-h-dvh bg-slate-900 ${inter.className}`}>
-        <AnalyticsManager gtmId="GTM-N4MLTRT2" />
-        <NextIntlClientProvider messages={messages}>
-          <Navbar />
-          {children}
-        </NextIntlClientProvider>
+        <ConsentManagerProvider
+          options={{
+            mode: 'c15t',
+            backendURL: '/api/c15t',
+            consentCategories: ['necessary', 'marketing', 'measurement'],
+            ignoreGeoLocation: true, // For development - remove in production
+          }}
+        >
+          <CookieBanner />
+          <ConsentManagerDialog />
+          <AnalyticsManager gtmId="GTM-N4MLTRT2" />
+          <NextIntlClientProvider messages={messages}>
+            <Navbar />
+            {children}
+          </NextIntlClientProvider>
+        </ConsentManagerProvider>
       </body>
     </html>
   );
