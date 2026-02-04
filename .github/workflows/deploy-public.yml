@@ -46,7 +46,7 @@ jobs:
         run: yarn install --immutable
 
       - name: Build apps/public
-        run: yarn workspace public build
+        run: yarn build --filter=public
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
