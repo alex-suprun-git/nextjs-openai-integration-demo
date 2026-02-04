@@ -15,6 +15,14 @@ const nextConfig = {
     remotePatterns: [new URL('https://images.ctfassets.net/**')],
     unoptimized: true, // Lambda doesn't support sharp for image optimization
   },
+  async rewrites() {
+    return [
+      {
+        source: '/api/c15t/:path*',
+        destination: `${process.env.NEXT_PUBLIC_C15T_URL}/:path*`,
+      },
+    ];
+  },
 };
 
 export default withSentryConfig(withPWAConfig(withNextIntl(nextConfig)), {

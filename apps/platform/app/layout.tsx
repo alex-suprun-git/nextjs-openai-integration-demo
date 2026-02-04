@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Script from 'next/script';
+import { ConsentManagerProvider, CookieBanner, ConsentManagerDialog } from '@c15t/nextjs';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 import { Inter } from 'next/font/google';
@@ -29,16 +29,21 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <head>
-        <Script strategy="beforeInteractive" id="usercentrics-cmp" src="https://web.cmp.usercentrics.eu/ui/loader.js" data-settings-id="P8QhQYR7HIFVvh" async></Script>
-      </head>
       <body className={`min-h-dvh bg-slate-900 ${inter.className}`}>
-        <AnalyticsManager gtmId="GTM-N4MLTRT2" usercentricsServiceId="BJ59EidsWQ" />
-        <NextIntlClientProvider messages={messages}>
-          <Providers>
-            {children}
-          </Providers>
-        </NextIntlClientProvider>
+        <ConsentManagerProvider
+          options={{
+            mode: 'c15t',
+            backendURL: '/api/c15t',
+            consentCategories: ['necessary', 'marketing', 'measurement'],
+          }}
+        >
+          <CookieBanner />
+          <ConsentManagerDialog />
+          <AnalyticsManager gtmId="GTM-N4MLTRT2" />
+          <NextIntlClientProvider messages={messages}>
+            <Providers>{children}</Providers>
+          </NextIntlClientProvider>
+        </ConsentManagerProvider>
       </body>
     </html>
   );

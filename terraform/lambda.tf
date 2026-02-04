@@ -66,6 +66,9 @@ resource "aws_lambda_function" "nextjs_public_app" {
       DD_MERGE_XRAY_TRACES       = tostring(var.dd_merge_xray_traces)
       DD_LAMBDA_HANDLER          = var.dd_lambda_handler
       DD_TAGS                    = var.dd_tags
+
+      # c15t Consent Management
+      NEXT_PUBLIC_C15T_URL = var.next_public_c15t_url
     }
   }
 }
