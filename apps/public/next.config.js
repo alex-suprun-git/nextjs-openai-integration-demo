@@ -19,7 +19,7 @@ const nextConfig = {
     return [
       {
         source: '/api/c15t/:path*',
-        destination: `${process.env.NEXT_PUBLIC_C15T_URL || 'https://idk-io-europe-nextjs-ai-platform.c15t.dev'}/:path*`,
+        destination: `${process.env.NEXT_PUBLIC_C15T_URL}/:path*`,
       },
     ];
   },

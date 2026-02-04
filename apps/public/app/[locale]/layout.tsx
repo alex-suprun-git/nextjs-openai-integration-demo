@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
+import { ConsentManagerProvider, CookieBanner, ConsentManagerDialog } from '@c15t/nextjs';
 import { setRequestLocale } from 'next-intl/server';
 import { Inter } from 'next/font/google';
-import { ConsentManagerProvider, CookieBanner, ConsentManagerDialog } from '@c15t/nextjs';
-
 import { routing } from '@/i18n/routing';
 import Navbar from '@/components/Navbar';
 import { AnalyticsManager } from '@repo/global-analytics';
@@ -50,7 +49,6 @@ export default async function RootLocaleLayout({
             mode: 'c15t',
             backendURL: '/api/c15t',
             consentCategories: ['necessary', 'marketing', 'measurement'],
-            ignoreGeoLocation: true, // For development - remove in production
           }}
         >
           <CookieBanner />
