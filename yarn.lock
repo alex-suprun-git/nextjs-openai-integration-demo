@@ -15409,7 +15409,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "public@workspace:apps/public"
   dependencies:
-    "@c15t/nextjs": "npm:^1.0.0"
     "@contentful/rich-text-react-renderer": "npm:^16.0.1"
     "@langchain/core": "npm:^0.3.66"
     "@langchain/openai": "npm:^0.6.2"
