@@ -28,6 +28,7 @@ jobs:
       CONTENTFUL_MANAGEMENT_TOKEN: ${{ secrets.CONTENTFUL_MANAGEMENT_TOKEN }}
       CONTENTFUL_PREVIEW_SECRET: ${{ secrets.CONTENTFUL_PREVIEW_SECRET }}
       CONTENTFUL_WEBHOOK_SECRET: ${{ secrets.CONTENTFUL_WEBHOOK_SECRET }}
+      NEXT_PUBLIC_C15T_URL: ${{ secrets.NEXT_PUBLIC_C15T_URL }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
