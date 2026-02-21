@@ -8,6 +8,12 @@ const withPWAConfig = withPWA({ dest: 'public' });
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'standalone', // Enable standalone mode for Lambda
+  serverExternalPackages: [
+    'require-in-the-middle',
+    '@opentelemetry/instrumentation',
+    '@sentry/node',
+    '@sentry/core',
+  ],
   compress: false, // CloudFront handles compression
   trailingSlash: true, // Enforce trailing slashes on all routes
   productionBrowserSourceMaps: true,
