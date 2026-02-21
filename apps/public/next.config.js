@@ -53,6 +53,9 @@ export default withSentryConfig(withPWAConfig(withNextIntl(nextConfig)), {
   // side errors will fail.
   // tunnelRoute: "/monitoring",
 
-  // Automatically tree-shake Sentry logger statements to reduce bundle size
-  disableLogger: true,
+  webpack: {
+    treeshake: {
+      removeDebugLogging: true,
+    },
+  },
 });

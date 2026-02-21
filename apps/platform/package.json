@@ -33,7 +33,7 @@
     "@repo/global-analytics": "workspace:*",
     "@repo/global-ui": "workspace:*",
     "@repo/global-utils": "workspace:*",
-    "@sentry/nextjs": "^9.12.0",
+    "@sentry/nextjs": "^10.39.0",
     "ai": "^5.0.0",
     "bcryptjs": "^2.4.3",
     "clsx": "^2.1.1",
