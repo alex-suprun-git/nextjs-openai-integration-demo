@@ -1,0 +1,47 @@
+name: Claude PR Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths-ignore:
+      - '**.md'
+      - 'apps/public/public/**'
+
+permissions:
+  contents: read
+  pull-requests: write
+  id-token: write
+
+jobs:
+  review:
+    if: github.event.pull_request.draft == false && github.actor != 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: |
+            REPO: ${{ github.repository }}
+            PR NUMBER: ${{ github.event.pull_request.number }}
+
+            Review this pull request. Pay special attention to:
+            - Auth/authz correctness in apps/platform (NextAuth, session handling)
+            - Prisma queries: injection risk, missing ownership checks on journal entries
+            - AI code in apps/platform/utils/ai.ts: prompt injection risk in the LangChain RAG
+              path, unbounded input sent to OpenAI, leaking PII from journal entries into prompts
+            - Secrets/API key handling (OPENAI_API_KEY, DB connection strings)
+            - General bugs, Next.js/React best practices, test coverage
+
+            The PR branch is already checked out in the working directory.
+            Use `gh pr comment` for a short top-level summary.
+            Use `mcp__github_inline_comment__create_inline_comment` (confirmed: true) for specific line issues.
+            Don't post review text as chat messages — only GitHub comments.
+
+          claude_args: |
+            --max-turns 6
+            --model claude-haiku-4-5-20251001
+            --allowedTools "mcp__github_inline_comment__create_inline_comment,Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*)"
